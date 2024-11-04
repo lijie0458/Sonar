@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated MeasuringUnitEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.MeasuringUnitEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="unit_code" jdbcType="VARCHAR" property="unitCode" />
+        <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity"  >
+        INSERT INTO `measuring_unit` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`unit_code`
+            ,`unit_name`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{unitCode,jdbcType=VARCHAR}
+            ,#{unitName,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `measuring_unit` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`unit_code`
+            ,`unit_name`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.unitCode,jdbcType=VARCHAR}
+            ,#{item.unitName,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity" >
+        UPDATE `measuring_unit`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unitCode')">`unit_code` = #{bean.unitCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unitName')">`unit_name` = #{bean.unitName, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity" >
+        UPDATE `measuring_unit`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unitCode')">`unit_code` = #{bean.unitCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unitName')">`unit_name` = #{bean.unitName, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `measuring_unit` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `measuring_unit` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `measuring_unit`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unitCode'">
+                    AND `unit_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unitName'">
+                    AND `unit_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `measuring_unit` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unitCode'">
+                    AND `unit_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unitName'">
+                    AND `unit_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `measuring_unit`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `measuring_unit`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `measuring_unit`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity">
+        INSERT INTO `measuring_unit` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`unit_code`
+            ,`unit_name`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{unitCode,jdbcType=VARCHAR}
+            ,#{unitName,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `measuring_unit`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('unitCode')">`unit_code` = #{bean.unitCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('unitName')">`unit_name` = #{bean.unitName, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `measuring_unit`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

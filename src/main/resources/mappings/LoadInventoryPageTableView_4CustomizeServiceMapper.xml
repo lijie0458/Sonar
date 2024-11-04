@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadInventoryPageTableView_4CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadInventoryPageTableView_4CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D">
+    <result column="materialCode" property="materialCode"/>
+    <result column="warehouse" property="warehouse"/>
+</resultMap>
+
+<select id="getAnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D" resultMap="AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D">
+SELECT `inventory`.`material_code` `materialCode`,`inventory`.`warehouse` `warehouse` FROM `inventory` LEFT JOIN `material_details` ON `inventory`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` LEFT JOIN `warehouse_level_two` ON `inventory`.`warehouse` = `warehouse_level_two`.`id` 
+<if test=" 1==1 or ( filter!=null and filter.materialCode!=null ) or ( filter!=null and filter.warehouse!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.materialCode!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`inventory`.`material_code` = #{filter.materialCode} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.warehouse!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`inventory`.`warehouse` = #{filter.warehouse} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> GROUP BY `inventory`.`material_code`,`inventory`.`warehouse` 
+<if test=" sort!=null ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" sort!=null ">
+
+<trim  suffix=",">
+${sort} 
+<if test=" order!=null ">
+${@com.dogfood.aa20240808.util.SqlInjectCheckUtil@checkAscOrDesc(order)} 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<resultMap id="defaultDSAnonymousStructure_424448B1B7A0AC083FF2F95BF7CC36C4" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_424448B1B7A0AC083FF2F95BF7CC36C4">
+    <result column="material_code" property="materialCode"/>
+    <result column="stock_quantity" property="stockQuantity"/>
+    <result column="occupied_quantity" property="occupiedQuantity"/>
+    <result column="available_quantity" property="availableQuantity"/>
+    <result column="material_name" property="material_name"/>
+    <result column="specification" property="specification"/>
+    <result column="location_name" property="location_name"/>
+    <result column="warehouse_name" property="warehouse_name"/>
+    <result column="unit_name" property="unitName"/>
+    <result column="total" property="total"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_424448B1B7A0AC083FF2F95BF7CC36C4">
+SELECT `inv`.`material_code`,`inv`.`stock_quantity`,`inv`.`occupied_quantity`,`inv`.`available_quantity`,`mat`.`material_name`,`mat`.`specification`,`sl`.`location_name`,`whl`.`warehouse_name`,`mu`.`unit_name`,sum( `inv`.`stock_quantity`) `total` FROM `inventory` `inv` LEFT JOIN `material_details` `mat` ON `inv`.`material_code` = `mat`.`material_code` LEFT JOIN `warehouse_level_two` `whl` ON `inv`.`warehouse` = `whl`.`id` LEFT JOIN `measuring_unit` `mu` ON `mat`.`unit` = `mu`.`id` LEFT JOIN `storage_location` `sl` ON `whl`.`id` = `sl`.`warehouse_codetwo_id` 
+<if test=" ( filter!=null and filter.warehouse!=null ) or ( filter!=null and filter.materialCode!=null ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<if test=" ( filter!=null and filter.materialCode!=null ) ">
+	
+<trim prefix="(" suffix=")">
+	`inv`.`material_code` = #{filter.materialCode}
+</trim>
+</if> 
+<if test=" ( filter!=null and filter.warehouse!=null ) ">
+	
+<trim prefix="and">
+	
+	<trim prefix="(" suffix=")">
+		`inv`.`warehouse` = #{filter.warehouse}
+	</trim>
+</trim>
+</if>
+</trim>
+</if> GROUP BY `inv`.`material_code` , `inv`.`location` 
+<if test=" lcap_AA9F73EE_limit!=null ">
+	LIMIT 
+<if test=" lcap_7A86C157_offset!=null ">
+	${lcap_7A86C157_offset},
+</if> ${lcap_AA9F73EE_limit}
+</if>
+</select>
+
+<select id="countSql1" resultType="java.lang.Long">
+SELECT COUNT( *) FROM (SELECT `inv`.`material_code`,`inv`.`stock_quantity`,`inv`.`occupied_quantity`,`inv`.`available_quantity`,`mat`.`material_name`,`mat`.`specification`,`sl`.`location_name`,`whl`.`warehouse_name`,`mu`.`unit_name`,sum( `inv`.`stock_quantity`) `total` FROM `inventory` `inv` LEFT JOIN `material_details` `mat` ON `inv`.`material_code` = `mat`.`material_code` LEFT JOIN `warehouse_level_two` `whl` ON `inv`.`warehouse` = `whl`.`id` LEFT JOIN `measuring_unit` `mu` ON `mat`.`unit` = `mu`.`id` LEFT JOIN `storage_location` `sl` ON `whl`.`id` = `sl`.`warehouse_codetwo_id` 
+<if test=" ( filter!=null and filter.warehouse!=null ) or ( filter!=null and filter.materialCode!=null ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<if test=" ( filter!=null and filter.materialCode!=null ) ">
+	
+<trim prefix="(" suffix=")">
+	`inv`.`material_code` = #{filter.materialCode}
+</trim>
+</if> 
+<if test=" ( filter!=null and filter.warehouse!=null ) ">
+	
+<trim prefix="and">
+	
+	<trim prefix="(" suffix=")">
+		`inv`.`warehouse` = #{filter.warehouse}
+	</trim>
+</trim>
+</if>
+</trim>
+</if> GROUP BY `inv`.`material_code` , `inv`.`location`) `sub`
+</select>
+</mapper>

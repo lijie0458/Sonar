@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated SalesOrderDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.SalesOrderDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.SalesOrderDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="material_code" jdbcType="VARCHAR" property="materialCode" />
+        <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+        <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+        <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+        <result column="notes" jdbcType="VARCHAR" property="notes" />
+        <result column="sales_order_number" jdbcType="VARCHAR" property="salesOrderNumber" />
+        <result column="warehouse" jdbcType="BIGINT" property="warehouse" />
+        <result column="quantity_shipped" jdbcType="DECIMAL" property="quantityShipped" />
+        <result column="sales_order_details_id" jdbcType="BIGINT" property="salesOrderDetailsId" />
+        <result column="batch_number" jdbcType="BIGINT" property="batchNumber" />
+        <result column="outbound_quantity" jdbcType="DECIMAL" property="outboundQuantity" />
+        <result column="return_quan_tity" jdbcType="DECIMAL" property="returnQuanTity" />
+        <result column="available_quantity" jdbcType="DECIMAL" property="availableQuantity" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrderDetailsEntity"  >
+        INSERT INTO `sales_order_details` (
+            `id`
+            ,`material_code`
+            ,`quantity`
+            ,`unit_price`
+            ,`delivery_date`
+            ,`notes`
+            ,`sales_order_number`
+            ,`warehouse`
+            ,`quantity_shipped`
+            ,`sales_order_details_id`
+            ,`batch_number`
+            ,`outbound_quantity`
+            ,`return_quan_tity`
+            ,`available_quantity`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{unitPrice,jdbcType=DECIMAL}
+            ,#{deliveryDate,jdbcType=DATE}
+            ,#{notes,jdbcType=VARCHAR}
+            ,#{salesOrderNumber,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{quantityShipped,jdbcType=DECIMAL}
+            ,#{salesOrderDetailsId,jdbcType=BIGINT}
+            ,#{batchNumber,jdbcType=BIGINT}
+            ,#{outboundQuantity,jdbcType=DECIMAL}
+            ,#{returnQuanTity,jdbcType=DECIMAL}
+            ,#{availableQuantity,jdbcType=DECIMAL}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `sales_order_details` (
+            `id`
+            ,`material_code`
+            ,`quantity`
+            ,`unit_price`
+            ,`delivery_date`
+            ,`notes`
+            ,`sales_order_number`
+            ,`warehouse`
+            ,`quantity_shipped`
+            ,`sales_order_details_id`
+            ,`batch_number`
+            ,`outbound_quantity`
+            ,`return_quan_tity`
+            ,`available_quantity`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.materialCode,jdbcType=VARCHAR}
+            ,#{item.quantity,jdbcType=DECIMAL}
+            ,#{item.unitPrice,jdbcType=DECIMAL}
+            ,#{item.deliveryDate,jdbcType=DATE}
+            ,#{item.notes,jdbcType=VARCHAR}
+            ,#{item.salesOrderNumber,jdbcType=VARCHAR}
+            ,#{item.warehouse,jdbcType=BIGINT}
+            ,#{item.quantityShipped,jdbcType=DECIMAL}
+            ,#{item.salesOrderDetailsId,jdbcType=BIGINT}
+            ,#{item.batchNumber,jdbcType=BIGINT}
+            ,#{item.outboundQuantity,jdbcType=DECIMAL}
+            ,#{item.returnQuanTity,jdbcType=DECIMAL}
+            ,#{item.availableQuantity,jdbcType=DECIMAL}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrderDetailsEntity" >
+        UPDATE `sales_order_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('unitPrice')">`unit_price` = #{bean.unitPrice, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('notes')">`notes` = #{bean.notes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('salesOrderNumber')">`sales_order_number` = #{bean.salesOrderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('quantityShipped')">`quantity_shipped` = #{bean.quantityShipped, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('salesOrderDetailsId')">`sales_order_details_id` = #{bean.salesOrderDetailsId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('outboundQuantity')">`outbound_quantity` = #{bean.outboundQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('returnQuanTity')">`return_quan_tity` = #{bean.returnQuanTity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= DECIMAL},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrderDetailsEntity" >
+        UPDATE `sales_order_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('unitPrice')">`unit_price` = #{bean.unitPrice, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('notes')">`notes` = #{bean.notes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('salesOrderNumber')">`sales_order_number` = #{bean.salesOrderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('quantityShipped')">`quantity_shipped` = #{bean.quantityShipped, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('salesOrderDetailsId')">`sales_order_details_id` = #{bean.salesOrderDetailsId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('outboundQuantity')">`outbound_quantity` = #{bean.outboundQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('returnQuanTity')">`return_quan_tity` = #{bean.returnQuanTity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= DECIMAL},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `sales_order_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `sales_order_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `sales_order_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'unitPrice'">
+                    AND `unit_price` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'deliveryDate'">
+                    AND `delivery_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'notes'">
+                    AND `notes` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'salesOrderNumber'">
+                    AND `sales_order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'quantityShipped'">
+                    AND `quantity_shipped` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'salesOrderDetailsId'">
+                    AND `sales_order_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'batchNumber'">
+                    AND `batch_number` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'outboundQuantity'">
+                    AND `outbound_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'returnQuanTity'">
+                    AND `return_quan_tity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'availableQuantity'">
+                    AND `available_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `sales_order_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'unitPrice'">
+                    AND `unit_price` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'deliveryDate'">
+                    AND `delivery_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'notes'">
+                    AND `notes` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'salesOrderNumber'">
+                    AND `sales_order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'quantityShipped'">
+                    AND `quantity_shipped` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'salesOrderDetailsId'">
+                    AND `sales_order_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'batchNumber'">
+                    AND `batch_number` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'outboundQuantity'">
+                    AND `outbound_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'returnQuanTity'">
+                    AND `return_quan_tity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'availableQuantity'">
+                    AND `available_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `sales_order_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `sales_order_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `sales_order_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrderDetailsEntity">
+        INSERT INTO `sales_order_details` (
+            `id`
+            ,`material_code`
+            ,`quantity`
+            ,`unit_price`
+            ,`delivery_date`
+            ,`notes`
+            ,`sales_order_number`
+            ,`warehouse`
+            ,`quantity_shipped`
+            ,`sales_order_details_id`
+            ,`batch_number`
+            ,`outbound_quantity`
+            ,`return_quan_tity`
+            ,`available_quantity`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{unitPrice,jdbcType=DECIMAL}
+            ,#{deliveryDate,jdbcType=DATE}
+            ,#{notes,jdbcType=VARCHAR}
+            ,#{salesOrderNumber,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{quantityShipped,jdbcType=DECIMAL}
+            ,#{salesOrderDetailsId,jdbcType=BIGINT}
+            ,#{batchNumber,jdbcType=BIGINT}
+            ,#{outboundQuantity,jdbcType=DECIMAL}
+            ,#{returnQuanTity,jdbcType=DECIMAL}
+            ,#{availableQuantity,jdbcType=DECIMAL}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `sales_order_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('unitPrice')">`unit_price` = #{bean.unitPrice, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('notes')">`notes` = #{bean.notes, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('salesOrderNumber')">`sales_order_number` = #{bean.salesOrderNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('quantityShipped')">`quantity_shipped` = #{bean.quantityShipped, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('salesOrderDetailsId')">`sales_order_details_id` = #{bean.salesOrderDetailsId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('outboundQuantity')">`outbound_quantity` = #{bean.outboundQuantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('returnQuanTity')">`return_quan_tity` = #{bean.returnQuanTity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= DECIMAL},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `sales_order_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadTransferSlipCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadTransferSlipCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_8DA35266D6FA0C20B8C0F202157B3DD8" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8DA35266D6FA0C20B8C0F202157B3DD8">
+    <result column="document_number" property="documentNumber"/>
+    <result column="inspector" property="inspector"/>
+    <result column="source_document_number" property="sourceDocumentNumber"/>
+    <result column="request_date" property="requestDate"/>
+    <result column="summary" property="summary"/>
+    <result column="attachment" property="attachment"/>
+    <result column="approval_status" property="approvalStatus"/>
+    <result column="shipping_clerk" property="shippingClerk"/>
+    <result column="out_warehouse" property="outWarehouse"/>
+    <result column="in_warehouse" property="inWarehouse"/>
+    <result column="created_by" property="createdBy"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_8DA35266D6FA0C20B8C0F202157B3DD8">
+SELECT * from `transfer_slip` 
+<trim prefix = "ORDER BY" suffixOverrides=",">
+	
+<trim suffix=",">
+	`document_number` ASC
+</trim>
+</trim>
+</select>
+</mapper>

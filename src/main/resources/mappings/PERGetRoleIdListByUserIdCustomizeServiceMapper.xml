@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERGetRoleIdListByUserIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERGetRoleIdListByUserIdCustomizeServiceMapper">
+
+<select id="getSql1" resultType="java.lang.Long">
+select `role_id` from `lcap_user_role_mapping_a6d592` 
+<if test=" userId!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`user_id` = #{userId}
+</trim>
+</if>
+</select>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountBePutInStorageCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountBePutInStorageCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B">
+    <result column="be_put_in_storage_id" property="bePutInStorageId"/>
+    <result column="be_put_in_storage_date" property="bePutInStorageDate"/>
+    <result column="order_number" property="orderNumber"/>
+    <result column="supplier_name" property="supplierName"/>
+    <result column="description" property="description"/>
+    <result column="annex" property="annex"/>
+    <result column="warehouse" property="warehouse"/>
+    <result column="created_by" property="createdBy"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B">
+SELECT * FROM `be_put_in_storage` 
+<if test=" DateTime!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<trim prefix="(" suffix=")" prefixOverrides="and |or">
+	SUBSTRING( `be_put_in_storage_id` , 1 , LENGTH( `be_put_in_storage_id`) - 5)
+</trim> = #{DateTime}
+</trim>
+</if>
+</select>
+</mapper>

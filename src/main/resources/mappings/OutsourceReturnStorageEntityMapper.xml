@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated OutsourceReturnStorageEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.OutsourceReturnStorageEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity">
+        <id column="return_code" jdbcType="VARCHAR" property="returnCode" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+        <result column="outsource_in_s_code" jdbcType="VARCHAR" property="outsourceInSCode" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity"  >
+        INSERT INTO `outsource_return_storage` (
+            `return_code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`state`
+            ,`outsource_in_s_code`
+        )
+        VALUES (
+            #{returnCode,jdbcType=VARCHAR}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{outsourceInSCode,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `outsource_return_storage` (
+            `return_code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`state`
+            ,`outsource_in_s_code`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.returnCode,jdbcType=VARCHAR}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.state,jdbcType=VARCHAR}
+            ,#{item.outsourceInSCode,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity" >
+        UPDATE `outsource_return_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('outsourceInSCode')">`outsource_in_s_code` = #{bean.outsourceInSCode, jdbcType= VARCHAR},</if>
+        </set>
+        where `return_code` = #{bean.returnCode}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity" >
+        UPDATE `outsource_return_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('outsourceInSCode')">`outsource_in_s_code` = #{bean.outsourceInSCode, jdbcType= VARCHAR},</if>
+        </set>
+        where `return_code` = #{bean.returnCode}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `outsource_return_storage` where `return_code` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `outsource_return_storage` where `return_code` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `outsource_return_storage`
+        <where>
+            <choose>
+                <when test="property == 'returnCode'">
+                    AND `return_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'outsourceInSCode'">
+                    AND `outsource_in_s_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `return_code` from `outsource_return_storage` 
+        <where>
+            <choose>
+                <when test="property == 'returnCode'">
+                    AND `return_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'outsourceInSCode'">
+                    AND `outsource_in_s_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `outsource_return_storage`
+        where `return_code`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `outsource_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `outsource_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity">
+        INSERT INTO `outsource_return_storage` (
+            `return_code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`state`
+            ,`outsource_in_s_code`
+        )
+        VALUES (
+            #{returnCode,jdbcType=VARCHAR}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{outsourceInSCode,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `outsource_return_storage`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('outsourceInSCode')">`outsource_in_s_code` = #{bean.outsourceInSCode, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `outsource_return_storage`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

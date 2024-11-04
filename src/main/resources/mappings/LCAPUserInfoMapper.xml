@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPUser Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPUserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.LCAPUser">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="display_name" jdbcType="VARCHAR" property="displayName" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="source" jdbcType="VARCHAR" property="source" />
+        <result column="department__id" jdbcType="BIGINT" property="department_Id" />
+        <result column="direct_leader_id" jdbcType="VARCHAR" property="directLeaderId" />
+        <result column="is_first_login" jdbcType="TINYINT" property="isFirstLogin" />
+    </resultMap>
+
+    <select id="fuzzyQuery" resultMap="BaseResultMap">
+        select * from `lcap_user_a6d592` where `user_id` like concat('%', concat(#{user.userId}, '%')) or `source` like concat('%', concat(#{user.source}, '%'))
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from `lcap_user_a6d592` where `user_id` = #{user.userId} and `source` = #{user.source}
+    </select>
+
+    <select id="getByUserNameAndSource" resultMap="BaseResultMap">
+        select * from `lcap_user_a6d592` where `user_name` = #{userName} and `source` = #{source}
+    </select>
+
+    <select id="getByUserId" resultMap="BaseResultMap">
+        select * from `lcap_user_a6d592` where `user_id` = #{userId}
+    </select>
+
+    <select id="pageQuery" resultMap="BaseResultMap">
+        select * from `lcap_user_a6d592`
+        <where>
+            <if test="name != null and name != ''">
+                `user_name` LIKE concat('%', concat(#{name}, '%'))
+                or
+                `display_name` LIKE concat('%', concat(#{name}, '%'))
+            </if>
+        </where>
+        order by `created_time` desc
+        <if test="page != null and size != null">
+         LIMIT #{page}, #{size}
+        </if>
+    </select>
+
+    <select id="pageQueryCount" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM `lcap_user_a6d592`
+        <where>
+            <if test="name != null and name != ''">
+                `user_name` LIKE concat('%', concat(#{name}, '%'))
+                or
+                `display_name` LIKE concat('%', concat(#{name}, '%'))
+            </if>
+        </where>
+    </select>
+</mapper>

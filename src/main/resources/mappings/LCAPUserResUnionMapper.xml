@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPUserResUnionMapper">
+    <resultMap id="BaseRoleResultMap" type="com.dogfood.aa20240808.domain.entities.LCAPRole">
+            <id column="id" jdbcType="BIGINT" property="id" />
+                <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+                <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+                <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+                <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+                <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+                <result column="name" jdbcType="VARCHAR" property="name" />
+                <result column="description" jdbcType="VARCHAR" property="description" />
+                <result column="role_status" jdbcType="TINYINT" property="roleStatus" />
+                <result column="editable" jdbcType="TINYINT" property="editable" />
+                <result column="view_data_permission" jdbcType="VARCHAR" property="viewDataPermission" />
+                <result column="edit_data_permission" jdbcType="VARCHAR" property="editDataPermission" />
+    </resultMap>
+    <select id="getUserResourceList" resultType="java.lang.String">
+        SELECT  `lcap_resource_a6d592`.`name`
+        FROM `lcap_user_role_mapping_a6d592`
+        INNER JOIN `lcap_role_per_mapping_a6d592`
+        ON `lcap_user_role_mapping_a6d592`.`role_id` =
+        `lcap_role_per_mapping_a6d592`.`role_id`
+        INNER JOIN `lcap_per_res_mapping_a6d592`
+        ON `lcap_role_per_mapping_a6d592`.`permission_id` =
+        `lcap_per_res_mapping_a6d592`.`permission_id`
+        INNER JOIN `lcap_resource_a6d592`
+        ON `lcap_per_res_mapping_a6d592`.`resource_id` =
+        `lcap_resource_a6d592`.`id`
+        WHERE `lcap_user_role_mapping_a6d592`.`user_id` =  #{userId}
+    </select>
+
+    <select id="pageQueryRole" resultMap="BaseRoleResultMap">
+        select * from `lcap_role_a6d592`
+        <where>
+            <if test="name != null and name != ''">
+                `lcap_role_a6d592`.`name` LIKE concat('%', concat(#{name}, '%'))
+            </if>
+        </where>
+        order by `lcap_role_a6d592`.`created_time` desc
+        <if test=" size!=null ">
+            LIMIT
+            #{page},#{size}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPJudgeDeptIdRepeatedCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPJudgeDeptIdRepeatedCustomizeServiceMapper">
+
+<select id="getString" resultType="java.lang.String">
+SELECT `lcap_department_a6d592`.`dept_id` `deptId` FROM `lcap_department_a6d592` GROUP BY `lcap_department_a6d592`.`dept_id`
+</select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadDelSupplierCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadDelSupplierCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_B0D6BA4B2283DC4DA976DAF31C826073" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_B0D6BA4B2283DC4DA976DAF31C826073">
+    <id column="T1_C2" property="purchaseOrder.orderNumber"/>
+    <result column="T1_C1" property="purchaseOrder.purchaser"/>
+    <result column="T1_C3" property="purchaseOrder.supplier"/>
+    <result column="T1_C4" property="purchaseOrder.orderDate"/>
+    <result column="T1_C5" property="purchaseOrder.requiredDate"/>
+    <result column="T1_C6" property="purchaseOrder.approvalStatus"/>
+    <result column="T1_C7" property="purchaseOrder.executionStatus"/>
+    <result column="T1_C8" property="purchaseOrder.description"/>
+    <result column="T1_C9" property="purchaseOrder.remarks"/>
+    <result column="T1_C10" property="purchaseOrder.listPuchaseDetails" typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_2"/>
+    <result column="T1_C11" property="purchaseOrder.manuAuto"/>
+    <result column="T1_C12" property="purchaseOrder.createdBy"/>
+    <result column="T1_C13" property="purchaseOrder.purchaseDetailsIdList" typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_3"/>
+</resultMap>
+
+<select id="getAnonymousStructure_B0D6BA4B2283DC4DA976DAF31C826073" resultMap="AnonymousStructure_B0D6BA4B2283DC4DA976DAF31C826073">
+SELECT `purchase_order`.`purchaser` `T1_C1`,`purchase_order`.`order_number` `T1_C2`,`purchase_order`.`supplier` `T1_C3`,`purchase_order`.`order_date` `T1_C4`,`purchase_order`.`required_date` `T1_C5`,`purchase_order`.`approval_status` `T1_C6`,`purchase_order`.`execution_status` `T1_C7`,`purchase_order`.`description` `T1_C8`,`purchase_order`.`remarks` `T1_C9`,`purchase_order`.`list_puchase_details` `T1_C10`,`purchase_order`.`manu_auto` `T1_C11`,`purchase_order`.`created_by` `T1_C12`,`purchase_order`.`purchase_details_id_list` `T1_C13` FROM `purchase_order` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`purchase_order`.`supplier` = #{param1} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_B0D6BA4B2283DC4DA976DAF31C826073" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `purchase_order` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`purchase_order`.`supplier` = #{param1} 
+</trim> 
+</if>
+</select>
+</mapper>

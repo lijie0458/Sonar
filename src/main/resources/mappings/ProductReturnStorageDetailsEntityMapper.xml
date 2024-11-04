@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated ProductReturnStorageDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.ProductReturnStorageDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.ProductReturnStorageDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="product_in_storage_details_id" jdbcType="BIGINT" property="productInStorageDetailsId" />
+        <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+        <result column="product_return_storage_code" jdbcType="VARCHAR" property="productReturnStorageCode" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageDetailsEntity"  >
+        INSERT INTO `product_return_storage_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`product_in_storage_details_id`
+            ,`quantity`
+            ,`product_return_storage_code`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{productInStorageDetailsId,jdbcType=BIGINT}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{productReturnStorageCode,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `product_return_storage_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`product_in_storage_details_id`
+            ,`quantity`
+            ,`product_return_storage_code`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.productInStorageDetailsId,jdbcType=BIGINT}
+            ,#{item.quantity,jdbcType=DECIMAL}
+            ,#{item.productReturnStorageCode,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageDetailsEntity" >
+        UPDATE `product_return_storage_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('productInStorageDetailsId')">`product_in_storage_details_id` = #{bean.productInStorageDetailsId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('productReturnStorageCode')">`product_return_storage_code` = #{bean.productReturnStorageCode, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageDetailsEntity" >
+        UPDATE `product_return_storage_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('productInStorageDetailsId')">`product_in_storage_details_id` = #{bean.productInStorageDetailsId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('productReturnStorageCode')">`product_return_storage_code` = #{bean.productReturnStorageCode, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `product_return_storage_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `product_return_storage_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `product_return_storage_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'productInStorageDetailsId'">
+                    AND `product_in_storage_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'productReturnStorageCode'">
+                    AND `product_return_storage_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `product_return_storage_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'productInStorageDetailsId'">
+                    AND `product_in_storage_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'productReturnStorageCode'">
+                    AND `product_return_storage_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `product_return_storage_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `product_return_storage_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `product_return_storage_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageDetailsEntity">
+        INSERT INTO `product_return_storage_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`product_in_storage_details_id`
+            ,`quantity`
+            ,`product_return_storage_code`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{productInStorageDetailsId,jdbcType=BIGINT}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{productReturnStorageCode,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `product_return_storage_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('productInStorageDetailsId')">`product_in_storage_details_id` = #{bean.productInStorageDetailsId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('productReturnStorageCode')">`product_return_storage_code` = #{bean.productReturnStorageCode, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `product_return_storage_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

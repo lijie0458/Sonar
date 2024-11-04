@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadWarehouseinventoryByOrderNumberCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadWarehouseinventoryByOrderNumberCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_01FBFC2B31545FDB6654B351805441A4" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_01FBFC2B31545FDB6654B351805441A4">
+    <result column="batch_number" property="batchNumber"/>
+    <result column="quantity" property="quantity"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_01FBFC2B31545FDB6654B351805441A4">
+SELECT `pmrd`.`batch_number`,`pmrd`.`quantity` FROM `production_material_requisition` `pmr` LEFT JOIN `production_material_requisition_details` `pmrd` ON `pmr`.`document_number` = `pmrd`.`production_material_requisition` 
+<if test=" OrderNumber!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`pmr`.`document_number` = #{OrderNumber}
+</trim>
+</if>
+</select>
+
+<resultMap id="defaultDSAnonymousStructure_72217EE9E320F7E2EB0031D1F9C3975F" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_72217EE9E320F7E2EB0031D1F9C3975F">
+    <result column="batch_number" property="batchNumber"/>
+    <result column="return_quan_tity" property="returnQuanTity"/>
+</resultMap>
+
+<select id="getSql2" resultMap="defaultDSAnonymousStructure_72217EE9E320F7E2EB0031D1F9C3975F">
+SELECT `pmrd`.`batch_number`,`pmrd`.`return_quan_tity` FROM `production_material_requisition` `pmr` LEFT JOIN `production_material_requisition_details` `pmrd` ON `pmr`.`document_number` = `pmrd`.`production_material_requisition` 
+<if test=" OrderNumber!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`pmr`.`document_number` = #{OrderNumber}
+</trim>
+</if>
+</select>
+</mapper>

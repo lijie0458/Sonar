@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PurchaseOrderEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.PurchaseOrderEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity">
+        <id column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+        <result column="purchaser" jdbcType="VARCHAR" property="purchaser" />
+        <result column="supplier" jdbcType="BIGINT" property="supplier" />
+        <result column="order_date" jdbcType="DATE" property="orderDate" />
+        <result column="required_date" jdbcType="DATE" property="requiredDate" />
+        <result column="approval_status" jdbcType="VARCHAR" property="approvalStatus" />
+        <result column="execution_status" jdbcType="VARCHAR" property="executionStatus" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+        <result column="list_puchase_details" jdbcType="VARCHAR" property="listPuchaseDetails"  typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_2" />
+        <result column="manu_auto" jdbcType="TINYINT" property="manuAuto" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="purchase_details_id_list" jdbcType="VARCHAR" property="purchaseDetailsIdList"  typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_3" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity"  >
+        INSERT INTO `purchase_order` (
+            `purchaser`
+            ,`order_number`
+            ,`supplier`
+            ,`order_date`
+            ,`required_date`
+            ,`approval_status`
+            ,`execution_status`
+            ,`description`
+            ,`remarks`
+            ,`list_puchase_details`
+            ,`manu_auto`
+            ,`created_by`
+            ,`purchase_details_id_list`
+        )
+        VALUES (
+            #{purchaser,jdbcType=VARCHAR}
+            ,#{orderNumber,jdbcType=VARCHAR}
+            ,#{supplier,jdbcType=BIGINT}
+            ,#{orderDate,jdbcType=DATE}
+            ,#{requiredDate,jdbcType=DATE}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{executionStatus,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{remarks,jdbcType=VARCHAR}
+            ,#{listPuchaseDetails,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_2}
+            ,#{manuAuto,jdbcType=TINYINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{purchaseDetailsIdList,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_3}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `purchase_order` (
+            `purchaser`
+            ,`order_number`
+            ,`supplier`
+            ,`order_date`
+            ,`required_date`
+            ,`approval_status`
+            ,`execution_status`
+            ,`description`
+            ,`remarks`
+            ,`list_puchase_details`
+            ,`manu_auto`
+            ,`created_by`
+            ,`purchase_details_id_list`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.purchaser,jdbcType=VARCHAR}
+            ,#{item.orderNumber,jdbcType=VARCHAR}
+            ,#{item.supplier,jdbcType=BIGINT}
+            ,#{item.orderDate,jdbcType=DATE}
+            ,#{item.requiredDate,jdbcType=DATE}
+            ,#{item.approvalStatus,jdbcType=VARCHAR}
+            ,#{item.executionStatus,jdbcType=VARCHAR}
+            ,#{item.description,jdbcType=VARCHAR}
+            ,#{item.remarks,jdbcType=VARCHAR}
+            ,#{item.listPuchaseDetails,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_2}
+            ,#{item.manuAuto,jdbcType=TINYINT}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.purchaseDetailsIdList,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_3}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity" >
+        UPDATE `purchase_order`
+        <set>
+            <if test="updateFields == null or updateFields.contains('purchaser')">`purchaser` = #{bean.purchaser, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier')">`supplier` = #{bean.supplier, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('orderDate')">`order_date` = #{bean.orderDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('requiredDate')">`required_date` = #{bean.requiredDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('executionStatus')">`execution_status` = #{bean.executionStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('remarks')">`remarks` = #{bean.remarks, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('listPuchaseDetails')">`list_puchase_details` = #{bean.listPuchaseDetails, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_2},</if>
+            <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('purchaseDetailsIdList')">`purchase_details_id_list` = #{bean.purchaseDetailsIdList, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_3},</if>
+        </set>
+        where `order_number` = #{bean.orderNumber}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity" >
+        UPDATE `purchase_order`
+        <set>
+            <if test="updateFields == null or updateFields.contains('purchaser')">`purchaser` = #{bean.purchaser, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier')">`supplier` = #{bean.supplier, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('orderDate')">`order_date` = #{bean.orderDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('requiredDate')">`required_date` = #{bean.requiredDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('executionStatus')">`execution_status` = #{bean.executionStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('remarks')">`remarks` = #{bean.remarks, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('listPuchaseDetails')">`list_puchase_details` = #{bean.listPuchaseDetails, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_2},</if>
+            <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('purchaseDetailsIdList')">`purchase_details_id_list` = #{bean.purchaseDetailsIdList, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_3},</if>
+        </set>
+        where `order_number` = #{bean.orderNumber}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `purchase_order` where `order_number` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `purchase_order` where `order_number` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `purchase_order`
+        <where>
+            <choose>
+                <when test="property == 'purchaser'">
+                    AND `purchaser` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier'">
+                    AND `supplier` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'orderDate'">
+                    AND `order_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'requiredDate'">
+                    AND `required_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'executionStatus'">
+                    AND `execution_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'remarks'">
+                    AND `remarks` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'listPuchaseDetails'">
+                    AND `list_puchase_details` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'manuAuto'">
+                    AND `manu_auto` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'purchaseDetailsIdList'">
+                    AND `purchase_details_id_list` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `order_number` from `purchase_order` 
+        <where>
+            <choose>
+                <when test="property == 'purchaser'">
+                    AND `purchaser` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier'">
+                    AND `supplier` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'orderDate'">
+                    AND `order_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'requiredDate'">
+                    AND `required_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'executionStatus'">
+                    AND `execution_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'remarks'">
+                    AND `remarks` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'listPuchaseDetails'">
+                    AND `list_puchase_details` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'manuAuto'">
+                    AND `manu_auto` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'purchaseDetailsIdList'">
+                    AND `purchase_details_id_list` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `purchase_order`
+        where `order_number`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `purchase_order`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `purchase_order`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity">
+        INSERT INTO `purchase_order` (
+            `purchaser`
+            ,`order_number`
+            ,`supplier`
+            ,`order_date`
+            ,`required_date`
+            ,`approval_status`
+            ,`execution_status`
+            ,`description`
+            ,`remarks`
+            ,`list_puchase_details`
+            ,`manu_auto`
+            ,`created_by`
+            ,`purchase_details_id_list`
+        )
+        VALUES (
+            #{purchaser,jdbcType=VARCHAR}
+            ,#{orderNumber,jdbcType=VARCHAR}
+            ,#{supplier,jdbcType=BIGINT}
+            ,#{orderDate,jdbcType=DATE}
+            ,#{requiredDate,jdbcType=DATE}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{executionStatus,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{remarks,jdbcType=VARCHAR}
+            ,#{listPuchaseDetails,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_2}
+            ,#{manuAuto,jdbcType=TINYINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{purchaseDetailsIdList,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_3}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `purchase_order`
+        <set>
+        <if test="updateFields == null or updateFields.contains('purchaser')">`purchaser` = #{bean.purchaser, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('supplier')">`supplier` = #{bean.supplier, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('orderDate')">`order_date` = #{bean.orderDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('requiredDate')">`required_date` = #{bean.requiredDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('executionStatus')">`execution_status` = #{bean.executionStatus, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('remarks')">`remarks` = #{bean.remarks, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('listPuchaseDetails')">`list_puchase_details` = #{bean.listPuchaseDetails, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_2},</if>
+        <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('purchaseDetailsIdList')">`purchase_details_id_list` = #{bean.purchaseDetailsIdList, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_3},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `purchase_order`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

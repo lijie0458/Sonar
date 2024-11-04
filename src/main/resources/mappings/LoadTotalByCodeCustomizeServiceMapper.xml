@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadTotalByCodeCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadTotalByCodeCustomizeServiceMapper">
+
+<select id="getSql1" resultType="java.math.BigDecimal">
+select SUM( `stock_quantity` - `occupied_quantity`) `total` FROM `inventory` 
+<if test=" param1!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`material_code` = #{param1}
+</trim>
+</if>
+</select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadGoodsReturnedNoteSelect_21Warehouse_levelTwoCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadGoodsReturnedNoteSelect_21Warehouse_levelTwoCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_ABA4D5CA228B2CA9185E2A3A875C5FA2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_ABA4D5CA228B2CA9185E2A3A875C5FA2">
+    <id column="T1_C1" property="warehouse_levelTwo.id"/>
+    <result column="T1_C2" property="warehouse_levelTwo.createdTime"/>
+    <result column="T1_C3" property="warehouse_levelTwo.updatedTime"/>
+    <result column="T1_C4" property="warehouse_levelTwo.createdBy"/>
+    <result column="T1_C5" property="warehouse_levelTwo.updatedBy"/>
+    <result column="T1_C6" property="warehouse_levelTwo.warehouse_code"/>
+    <result column="T1_C7" property="warehouse_levelTwo.warehouse_name"/>
+    <result column="T1_C8" property="warehouse_levelTwo.parent_warehouse_Id"/>
+    <result column="T1_C9" property="warehouse_levelTwo.address"/>
+    <result column="T1_C10" property="warehouse_levelTwo.remark"/>
+    <result column="T1_C11" property="warehouse_levelTwo.warehouse_manager"/>
+    <result column="T1_C12" property="warehouse_levelTwo.detailedAddress"/>
+</resultMap>
+
+<select id="getAnonymousStructure_ABA4D5CA228B2CA9185E2A3A875C5FA2" resultMap="AnonymousStructure_ABA4D5CA228B2CA9185E2A3A875C5FA2">
+SELECT `warehouse_level_two`.`id` `T1_C1`,`warehouse_level_two`.`created_time` `T1_C2`,`warehouse_level_two`.`updated_time` `T1_C3`,`warehouse_level_two`.`created_by` `T1_C4`,`warehouse_level_two`.`updated_by` `T1_C5`,`warehouse_level_two`.`warehouse_code` `T1_C6`,`warehouse_level_two`.`warehouse_name` `T1_C7`,`warehouse_level_two`.`parent_warehouse__id` `T1_C8`,`warehouse_level_two`.`address` `T1_C9`,`warehouse_level_two`.`remark` `T1_C10`,`warehouse_level_two`.`warehouse_manager` `T1_C11`,`warehouse_level_two`.`detailed_address` `T1_C12` FROM `warehouse_level_two` 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_ABA4D5CA228B2CA9185E2A3A875C5FA2" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `warehouse_level_two`
+</select>
+</mapper>

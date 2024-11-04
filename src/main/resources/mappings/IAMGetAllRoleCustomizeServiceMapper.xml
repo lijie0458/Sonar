@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated IAMGetAllRoleCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.IAMGetAllRoleCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_2DEF4ABE7106B802381959043348A3D2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2DEF4ABE7106B802381959043348A3D2">
+    <id column="T1_C1" property="lCAPRole.id"/>
+    <result column="T1_C2" property="lCAPRole.name"/>
+</resultMap>
+
+<select id="getAnonymousStructure_2DEF4ABE7106B802381959043348A3D2" resultMap="AnonymousStructure_2DEF4ABE7106B802381959043348A3D2">
+SELECT `lcap_role_a6d592`.`id` `T1_C1`,`lcap_role_a6d592`.`name` `T1_C2` FROM `lcap_role_a6d592` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_2DEF4ABE7106B802381959043348A3D2" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `lcap_role_a6d592`
+</select>
+</mapper>

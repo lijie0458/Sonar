@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPBatchUpdateDeptUserCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPBatchUpdateDeptUserCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2">
+    <id column="T1_C1" property="lCAPUserDeptMapping.id"/>
+    <result column="T1_C2" property="lCAPUserDeptMapping.createdTime"/>
+    <result column="T1_C3" property="lCAPUserDeptMapping.updatedTime"/>
+    <result column="T1_C4" property="lCAPUserDeptMapping.createdBy"/>
+    <result column="T1_C5" property="lCAPUserDeptMapping.updatedBy"/>
+    <result column="T1_C6" property="lCAPUserDeptMapping.userId"/>
+    <result column="T1_C7" property="lCAPUserDeptMapping.deptId"/>
+    <result column="T1_C8" property="lCAPUserDeptMapping.isDeptLeader"/>
+</resultMap>
+
+<select id="getAnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2" resultMap="AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2">
+SELECT `lcap_user_dept_mapping_a6d592`.`id` `T1_C1`,`lcap_user_dept_mapping_a6d592`.`created_time` `T1_C2`,`lcap_user_dept_mapping_a6d592`.`updated_time` `T1_C3`,`lcap_user_dept_mapping_a6d592`.`created_by` `T1_C4`,`lcap_user_dept_mapping_a6d592`.`updated_by` `T1_C5`,`lcap_user_dept_mapping_a6d592`.`user_id` `T1_C6`,`lcap_user_dept_mapping_a6d592`.`dept_id` `T1_C7`,`lcap_user_dept_mapping_a6d592`.`is_dept_leader` `T1_C8` FROM `lcap_user_dept_mapping_a6d592` 
+<if test=" 1==1 or oldDeptId!=null or ( userIds!=null and userIds.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and oldDeptId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`lcap_user_dept_mapping_a6d592`.`dept_id` = #{oldDeptId} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( userIds!=null and userIds.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `lcap_user_dept_mapping_a6d592`.`user_id` IN 
+<foreach item="item" index="index" collection="userIds" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<resultMap id="AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF21" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2">
+    <id column="T1_C1" property="lCAPUserDeptMapping.id"/>
+    <result column="T1_C2" property="lCAPUserDeptMapping.createdTime"/>
+    <result column="T1_C3" property="lCAPUserDeptMapping.updatedTime"/>
+    <result column="T1_C4" property="lCAPUserDeptMapping.createdBy"/>
+    <result column="T1_C5" property="lCAPUserDeptMapping.updatedBy"/>
+    <result column="T1_C6" property="lCAPUserDeptMapping.userId"/>
+    <result column="T1_C7" property="lCAPUserDeptMapping.deptId"/>
+    <result column="T1_C8" property="lCAPUserDeptMapping.isDeptLeader"/>
+</resultMap>
+
+<select id="getAnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF21" resultMap="AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF21">
+SELECT `lcap_user_dept_mapping_a6d592`.`id` `T1_C1`,`lcap_user_dept_mapping_a6d592`.`created_time` `T1_C2`,`lcap_user_dept_mapping_a6d592`.`updated_time` `T1_C3`,`lcap_user_dept_mapping_a6d592`.`created_by` `T1_C4`,`lcap_user_dept_mapping_a6d592`.`updated_by` `T1_C5`,`lcap_user_dept_mapping_a6d592`.`user_id` `T1_C6`,`lcap_user_dept_mapping_a6d592`.`dept_id` `T1_C7`,`lcap_user_dept_mapping_a6d592`.`is_dept_leader` `T1_C8` FROM `lcap_user_dept_mapping_a6d592` 
+<if test=" 1==1 or deptId!=null or ( userIdList!=null and userIdList.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( userIdList!=null and userIdList.size()>0 ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `lcap_user_dept_mapping_a6d592`.`user_id` IN 
+<foreach item="item" index="index" collection="userIdList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> 
+<if test=" 1==1 and deptId!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`lcap_user_dept_mapping_a6d592`.`dept_id` = #{deptId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

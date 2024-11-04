@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadTotalQuantity1CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadTotalQuantity1CustomizeServiceMapper">
+
+<select id="getStructure1" resultType="java.lang.Long">
+SELECT SUM(`be_put_in_storage_details`.`be_put_in_storage_quantity`) `total` FROM `be_put_in_storage_details` 
+<if test=" 1==1 or code!=null or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`be_put_in_storage_details`.`receiving_details_id` = #{id} 
+</trim> 
+</if> 
+<if test=" 1==1 and code!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`be_put_in_storage_details`.`material_number` = #{code} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadReceivingDetailsByRequestOrderNumber1CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadReceivingDetailsByRequestOrderNumber1CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_F4686D0EDB15544AA67D0364F6D71209" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_F4686D0EDB15544AA67D0364F6D71209">
+    <id column="T1_C1" property="receivingNotifications.notificationId"/>
+    <result column="T1_C2" property="receivingNotifications.notificationDate"/>
+    <result column="T1_C3" property="receivingNotifications.notificationSender"/>
+    <result column="T1_C4" property="receivingNotifications.orderNumber"/>
+    <result column="T1_C5" property="receivingNotifications.supplierName"/>
+    <result column="T1_C6" property="receivingNotifications.description"/>
+    <result column="T1_C7" property="receivingNotifications.annex"/>
+    <result column="T2_C1" property="receivingDetails.id"/>
+    <result column="T2_C2" property="receivingDetails.receiptNumber"/>
+    <result column="T2_C3" property="receivingDetails.receivedQuantity"/>
+    <result column="T2_C4" property="receivingDetails.materialNumber"/>
+    <result column="T2_C5" property="receivingDetails.orderDetailId"/>
+    <result column="T2_C6" property="receivingDetails.receivableQuantity"/>
+    <result column="T3_C1" property="materialDetails.materialCode"/>
+    <result column="T3_C2" property="materialDetails.material_name"/>
+    <result column="T3_C3" property="materialDetails.category_id"/>
+    <result column="T3_C4" property="materialDetails.specification"/>
+    <result column="T3_C5" property="materialDetails.unit"/>
+    <result column="T3_C6" property="materialDetails.description"/>
+    <result column="T3_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T4_C1" property="measuringUnit.id"/>
+    <result column="T4_C2" property="measuringUnit.createdTime"/>
+    <result column="T4_C3" property="measuringUnit.updatedTime"/>
+    <result column="T4_C4" property="measuringUnit.createdBy"/>
+    <result column="T4_C5" property="measuringUnit.updatedBy"/>
+    <result column="T4_C6" property="measuringUnit.unitCode"/>
+    <result column="T4_C7" property="measuringUnit.unitName"/>
+    <result column="T5_C1" property="purchaseOrderDetail.id"/>
+    <result column="T5_C2" property="purchaseOrderDetail.material_code"/>
+    <result column="T5_C3" property="purchaseOrderDetail.orderQuantity"/>
+    <result column="T5_C4" property="purchaseOrderDetail.priceIncludingTax"/>
+    <result column="T5_C5" property="purchaseOrderDetail.taxRate"/>
+    <result column="T5_C6" property="purchaseOrderDetail.relatedOrderNumber"/>
+    <result column="T5_C7" property="purchaseOrderDetail.purchaseDetailsId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_F4686D0EDB15544AA67D0364F6D71209" resultMap="AnonymousStructure_F4686D0EDB15544AA67D0364F6D71209">
+SELECT `receiving_notifications`.`notification_id` `T1_C1`,`receiving_notifications`.`notification_date` `T1_C2`,`receiving_notifications`.`notification_sender` `T1_C3`,`receiving_notifications`.`order_number` `T1_C4`,`receiving_notifications`.`supplier_name` `T1_C5`,`receiving_notifications`.`description` `T1_C6`,`receiving_notifications`.`annex` `T1_C7`,`receiving_details`.`id` `T2_C1`,`receiving_details`.`receipt_number` `T2_C2`,`receiving_details`.`received_quantity` `T2_C3`,`receiving_details`.`material_number` `T2_C4`,`receiving_details`.`order_detail_id` `T2_C5`,`receiving_details`.`receivable_quantity` `T2_C6`,`material_details`.`material_code` `T3_C1`,`material_details`.`material_name` `T3_C2`,`material_details`.`category_id` `T3_C3`,`material_details`.`specification` `T3_C4`,`material_details`.`unit` `T3_C5`,`material_details`.`description` `T3_C6`,`material_details`.`is_batch_enabled` `T3_C7`,`measuring_unit`.`id` `T4_C1`,`measuring_unit`.`created_time` `T4_C2`,`measuring_unit`.`updated_time` `T4_C3`,`measuring_unit`.`created_by` `T4_C4`,`measuring_unit`.`updated_by` `T4_C5`,`measuring_unit`.`unit_code` `T4_C6`,`measuring_unit`.`unit_name` `T4_C7`,`purchase_order_detail`.`id` `T5_C1`,`purchase_order_detail`.`material_code` `T5_C2`,`purchase_order_detail`.`order_quantity` `T5_C3`,`purchase_order_detail`.`price_including_tax` `T5_C4`,`purchase_order_detail`.`tax_rate` `T5_C5`,`purchase_order_detail`.`related_order_number` `T5_C6`,`purchase_order_detail`.`purchase_details_id` `T5_C7` FROM `receiving_notifications` INNER JOIN `receiving_details` ON `receiving_notifications`.`notification_id` = `receiving_details`.`receipt_number` INNER JOIN `material_details` ON `receiving_details`.`material_number` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `purchase_order_detail` ON `receiving_details`.`order_detail_id` = `purchase_order_detail`.`id` 
+<if test=" 1==1 and order_number!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`receiving_notifications`.`notification_id` = #{order_number} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_F4686D0EDB15544AA67D0364F6D71209" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `receiving_notifications` INNER JOIN `receiving_details` ON `receiving_notifications`.`notification_id` = `receiving_details`.`receipt_number` INNER JOIN `material_details` ON `receiving_details`.`material_number` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `purchase_order_detail` ON `receiving_details`.`order_detail_id` = `purchase_order_detail`.`id` 
+<if test=" 1==1 and order_number!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`receiving_notifications`.`notification_id` = #{order_number} 
+</trim> 
+</if>
+</select>
+</mapper>

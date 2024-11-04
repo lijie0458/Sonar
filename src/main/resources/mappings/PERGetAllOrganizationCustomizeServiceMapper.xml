@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERGetAllOrganizationCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERGetAllOrganizationCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_900F3E83EA37D2305A535E248B2A40EF" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_900F3E83EA37D2305A535E248B2A40EF">
+    <id column="T1_C1" property="organisation.id"/>
+    <result column="T1_C2" property="organisation.createdTime"/>
+    <result column="T1_C3" property="organisation.updatedTime"/>
+    <result column="T1_C4" property="organisation.createdBy"/>
+    <result column="T1_C5" property="organisation.updatedBy"/>
+    <result column="T1_C6" property="organisation.name"/>
+    <result column="T1_C7" property="organisation.parentId"/>
+    <result column="T1_C8" property="organisation.hasChildren"/>
+</resultMap>
+
+<select id="getAnonymousStructure_900F3E83EA37D2305A535E248B2A40EF" resultMap="AnonymousStructure_900F3E83EA37D2305A535E248B2A40EF">
+SELECT `Organisation`.`id` `T1_C1`,`Organisation`.`created_time` `T1_C2`,`Organisation`.`updated_time` `T1_C3`,`Organisation`.`created_by` `T1_C4`,`Organisation`.`updated_by` `T1_C5`,`Organisation`.`name` `T1_C6`,`Organisation`.`parent_id` `T1_C7`,`Organisation`.`has_children` `T1_C8` FROM `Organisation` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_900F3E83EA37D2305A535E248B2A40EF" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `Organisation`
+</select>
+</mapper>

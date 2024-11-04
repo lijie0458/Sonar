@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated BePutInStorageDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.BePutInStorageDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.BePutInStorageDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="be_put_in_storage_id" jdbcType="VARCHAR" property="bePutInStorageId" />
+        <result column="be_put_in_storage_quantity" jdbcType="BIGINT" property="bePutInStorageQuantity" />
+        <result column="material_number" jdbcType="VARCHAR" property="materialNumber" />
+        <result column="receivable_quantity" jdbcType="BIGINT" property="receivableQuantity" />
+        <result column="batch_number" jdbcType="VARCHAR" property="batchNumber" />
+        <result column="receiving_details_id" jdbcType="BIGINT" property="receivingDetailsId" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageDetailsEntity"  >
+        INSERT INTO `be_put_in_storage_details` (
+            `id`
+            ,`be_put_in_storage_id`
+            ,`be_put_in_storage_quantity`
+            ,`material_number`
+            ,`receivable_quantity`
+            ,`batch_number`
+            ,`receiving_details_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{bePutInStorageId,jdbcType=VARCHAR}
+            ,#{bePutInStorageQuantity,jdbcType=BIGINT}
+            ,#{materialNumber,jdbcType=VARCHAR}
+            ,#{receivableQuantity,jdbcType=BIGINT}
+            ,#{batchNumber,jdbcType=VARCHAR}
+            ,#{receivingDetailsId,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `be_put_in_storage_details` (
+            `id`
+            ,`be_put_in_storage_id`
+            ,`be_put_in_storage_quantity`
+            ,`material_number`
+            ,`receivable_quantity`
+            ,`batch_number`
+            ,`receiving_details_id`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.bePutInStorageId,jdbcType=VARCHAR}
+            ,#{item.bePutInStorageQuantity,jdbcType=BIGINT}
+            ,#{item.materialNumber,jdbcType=VARCHAR}
+            ,#{item.receivableQuantity,jdbcType=BIGINT}
+            ,#{item.batchNumber,jdbcType=VARCHAR}
+            ,#{item.receivingDetailsId,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageDetailsEntity" >
+        UPDATE `be_put_in_storage_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageId')">`be_put_in_storage_id` = #{bean.bePutInStorageId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageQuantity')">`be_put_in_storage_quantity` = #{bean.bePutInStorageQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('receivingDetailsId')">`receiving_details_id` = #{bean.receivingDetailsId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageDetailsEntity" >
+        UPDATE `be_put_in_storage_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageId')">`be_put_in_storage_id` = #{bean.bePutInStorageId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageQuantity')">`be_put_in_storage_quantity` = #{bean.bePutInStorageQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('receivingDetailsId')">`receiving_details_id` = #{bean.receivingDetailsId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `be_put_in_storage_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `be_put_in_storage_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `be_put_in_storage_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'bePutInStorageId'">
+                    AND `be_put_in_storage_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'bePutInStorageQuantity'">
+                    AND `be_put_in_storage_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialNumber'">
+                    AND `material_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'receivableQuantity'">
+                    AND `receivable_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'batchNumber'">
+                    AND `batch_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'receivingDetailsId'">
+                    AND `receiving_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `be_put_in_storage_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'bePutInStorageId'">
+                    AND `be_put_in_storage_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'bePutInStorageQuantity'">
+                    AND `be_put_in_storage_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialNumber'">
+                    AND `material_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'receivableQuantity'">
+                    AND `receivable_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'batchNumber'">
+                    AND `batch_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'receivingDetailsId'">
+                    AND `receiving_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `be_put_in_storage_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `be_put_in_storage_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `be_put_in_storage_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageDetailsEntity">
+        INSERT INTO `be_put_in_storage_details` (
+            `id`
+            ,`be_put_in_storage_id`
+            ,`be_put_in_storage_quantity`
+            ,`material_number`
+            ,`receivable_quantity`
+            ,`batch_number`
+            ,`receiving_details_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{bePutInStorageId,jdbcType=VARCHAR}
+            ,#{bePutInStorageQuantity,jdbcType=BIGINT}
+            ,#{materialNumber,jdbcType=VARCHAR}
+            ,#{receivableQuantity,jdbcType=BIGINT}
+            ,#{batchNumber,jdbcType=VARCHAR}
+            ,#{receivingDetailsId,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `be_put_in_storage_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('bePutInStorageId')">`be_put_in_storage_id` = #{bean.bePutInStorageId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('bePutInStorageQuantity')">`be_put_in_storage_quantity` = #{bean.bePutInStorageQuantity, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('receivingDetailsId')">`receiving_details_id` = #{bean.receivingDetailsId, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `be_put_in_storage_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

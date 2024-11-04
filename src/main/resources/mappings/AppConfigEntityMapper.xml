@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated AppConfigEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.AppConfigEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.AppConfigEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="login_role_id" jdbcType="BIGINT" property="loginRoleId" />
+        <result column="login_identity_type" jdbcType="VARCHAR" property="loginIdentityType" />
+        <result column="setting_switch" jdbcType="TINYINT" property="settingSwitch" />
+        <result column="login_page_config" jdbcType="VARCHAR" property="loginPageConfig" />
+        <result column="customize_login_url" jdbcType="VARCHAR" property="customizeLoginUrl" />
+        <result column="show_photo_url" jdbcType="VARCHAR" property="showPhotoUrl" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.AppConfigEntity"  >
+        INSERT INTO `AppConfig` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`login_role_id`
+            ,`login_identity_type`
+            ,`setting_switch`
+            ,`login_page_config`
+            ,`customize_login_url`
+            ,`show_photo_url`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{loginRoleId,jdbcType=BIGINT}
+            ,#{loginIdentityType,jdbcType=VARCHAR}
+            ,#{settingSwitch,jdbcType=TINYINT}
+            ,#{loginPageConfig,jdbcType=VARCHAR}
+            ,#{customizeLoginUrl,jdbcType=VARCHAR}
+            ,#{showPhotoUrl,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `AppConfig` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`login_role_id`
+            ,`login_identity_type`
+            ,`setting_switch`
+            ,`login_page_config`
+            ,`customize_login_url`
+            ,`show_photo_url`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.loginRoleId,jdbcType=BIGINT}
+            ,#{item.loginIdentityType,jdbcType=VARCHAR}
+            ,#{item.settingSwitch,jdbcType=TINYINT}
+            ,#{item.loginPageConfig,jdbcType=VARCHAR}
+            ,#{item.customizeLoginUrl,jdbcType=VARCHAR}
+            ,#{item.showPhotoUrl,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.AppConfigEntity" >
+        UPDATE `AppConfig`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('loginRoleId')">`login_role_id` = #{bean.loginRoleId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('loginIdentityType')">`login_identity_type` = #{bean.loginIdentityType, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('settingSwitch')">`setting_switch` = #{bean.settingSwitch, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('loginPageConfig')">`login_page_config` = #{bean.loginPageConfig, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customizeLoginUrl')">`customize_login_url` = #{bean.customizeLoginUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('showPhotoUrl')">`show_photo_url` = #{bean.showPhotoUrl, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.AppConfigEntity" >
+        UPDATE `AppConfig`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('loginRoleId')">`login_role_id` = #{bean.loginRoleId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('loginIdentityType')">`login_identity_type` = #{bean.loginIdentityType, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('settingSwitch')">`setting_switch` = #{bean.settingSwitch, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('loginPageConfig')">`login_page_config` = #{bean.loginPageConfig, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customizeLoginUrl')">`customize_login_url` = #{bean.customizeLoginUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('showPhotoUrl')">`show_photo_url` = #{bean.showPhotoUrl, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `AppConfig` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `AppConfig` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `AppConfig`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'loginRoleId'">
+                    AND `login_role_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'loginIdentityType'">
+                    AND `login_identity_type` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'settingSwitch'">
+                    AND `setting_switch` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'loginPageConfig'">
+                    AND `login_page_config` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customizeLoginUrl'">
+                    AND `customize_login_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'showPhotoUrl'">
+                    AND `show_photo_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `AppConfig` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'loginRoleId'">
+                    AND `login_role_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'loginIdentityType'">
+                    AND `login_identity_type` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'settingSwitch'">
+                    AND `setting_switch` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'loginPageConfig'">
+                    AND `login_page_config` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customizeLoginUrl'">
+                    AND `customize_login_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'showPhotoUrl'">
+                    AND `show_photo_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `AppConfig`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `AppConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `AppConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.AppConfigEntity">
+        INSERT INTO `AppConfig` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`login_role_id`
+            ,`login_identity_type`
+            ,`setting_switch`
+            ,`login_page_config`
+            ,`customize_login_url`
+            ,`show_photo_url`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{loginRoleId,jdbcType=BIGINT}
+            ,#{loginIdentityType,jdbcType=VARCHAR}
+            ,#{settingSwitch,jdbcType=TINYINT}
+            ,#{loginPageConfig,jdbcType=VARCHAR}
+            ,#{customizeLoginUrl,jdbcType=VARCHAR}
+            ,#{showPhotoUrl,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `AppConfig`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('loginRoleId')">`login_role_id` = #{bean.loginRoleId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('loginIdentityType')">`login_identity_type` = #{bean.loginIdentityType, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('settingSwitch')">`setting_switch` = #{bean.settingSwitch, jdbcType= TINYINT},</if>
+        <if test="updateFields == null or updateFields.contains('loginPageConfig')">`login_page_config` = #{bean.loginPageConfig, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('customizeLoginUrl')">`customize_login_url` = #{bean.customizeLoginUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('showPhotoUrl')">`show_photo_url` = #{bean.showPhotoUrl, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `AppConfig`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

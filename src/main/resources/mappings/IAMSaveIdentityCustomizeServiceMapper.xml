@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated IAMSaveIdentityCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.IAMSaveIdentityCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_E6204F88FA3760A005F0E371750B535E" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E6204F88FA3760A005F0E371750B535E">
+    <id column="T1_C1" property="identitySourceConfig.id"/>
+    <result column="T1_C2" property="identitySourceConfig.createdTime"/>
+    <result column="T1_C3" property="identitySourceConfig.updatedTime"/>
+    <result column="T1_C4" property="identitySourceConfig.createdBy"/>
+    <result column="T1_C5" property="identitySourceConfig.updatedBy"/>
+    <result column="T1_C6" property="identitySourceConfig.state"/>
+    <result column="T1_C7" property="identitySourceConfig.icon"/>
+    <result column="T1_C8" property="identitySourceConfig.name"/>
+    <result column="T1_C9" property="identitySourceConfig.appId"/>
+    <result column="T1_C10" property="identitySourceConfig.appSecret"/>
+    <result column="T1_C11" property="identitySourceConfig.successUrl"/>
+    <result column="T1_C12" property="identitySourceConfig.type"/>
+    <result column="T1_C13" property="identitySourceConfig.loginEnable"/>
+    <result column="T1_C14" property="identitySourceConfig.centerLoginUrl"/>
+    <result column="T1_C15" property="identitySourceConfig.tokenUrl"/>
+    <result column="T1_C16" property="identitySourceConfig.tokenMethod"/>
+    <result column="T1_C17" property="identitySourceConfig.userUrl"/>
+    <result column="T1_C18" property="identitySourceConfig.userMethod"/>
+    <result column="T1_C19" property="identitySourceConfig.centerLogoutUrl"/>
+    <result column="T1_C20" property="identitySourceConfig.logoutCallbackUrl"/>
+    <result column="T1_C21" property="identitySourceConfig.casTicketUrl"/>
+    <result column="T1_C22" property="identitySourceConfig.expire"/>
+    <result column="T1_C23" property="identitySourceConfig.redirectUrl"/>
+    <result column="T1_C24" property="identitySourceConfig.agentId"/>
+    <result column="T1_C25" property="identitySourceConfig.tokenHeaderMap" typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1"/>
+    <result column="T1_C26" property="identitySourceConfig.tokenBodyMap" typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1"/>
+    <result column="T1_C27" property="identitySourceConfig.userHeaderMap" typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1"/>
+    <result column="T1_C28" property="identitySourceConfig.userBodyMap" typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1"/>
+    <result column="T1_C29" property="identitySourceConfig.userIdRes"/>
+    <result column="T1_C30" property="identitySourceConfig.userNameRes"/>
+    <result column="T1_C31" property="identitySourceConfig.code"/>
+    <result column="T1_C32" property="identitySourceConfig.ssoUrl"/>
+    <result column="T1_C33" property="identitySourceConfig.wechatToken"/>
+    <result column="T1_C34" property="identitySourceConfig.wechatMsgMethod"/>
+    <result column="T1_C35" property="identitySourceConfig.wechatMsgSecret"/>
+</resultMap>
+
+<select id="getAnonymousStructure_E6204F88FA3760A005F0E371750B535E" resultMap="AnonymousStructure_E6204F88FA3760A005F0E371750B535E">
+SELECT `IdentitySourceConfig`.`id` `T1_C1`,`IdentitySourceConfig`.`created_time` `T1_C2`,`IdentitySourceConfig`.`updated_time` `T1_C3`,`IdentitySourceConfig`.`created_by` `T1_C4`,`IdentitySourceConfig`.`updated_by` `T1_C5`,`IdentitySourceConfig`.`state` `T1_C6`,`IdentitySourceConfig`.`icon` `T1_C7`,`IdentitySourceConfig`.`name` `T1_C8`,`IdentitySourceConfig`.`app_id` `T1_C9`,`IdentitySourceConfig`.`app_secret` `T1_C10`,`IdentitySourceConfig`.`success_url` `T1_C11`,`IdentitySourceConfig`.`type` `T1_C12`,`IdentitySourceConfig`.`login_enable` `T1_C13`,`IdentitySourceConfig`.`center_login_url` `T1_C14`,`IdentitySourceConfig`.`token_url` `T1_C15`,`IdentitySourceConfig`.`token_method` `T1_C16`,`IdentitySourceConfig`.`user_url` `T1_C17`,`IdentitySourceConfig`.`user_method` `T1_C18`,`IdentitySourceConfig`.`center_logout_url` `T1_C19`,`IdentitySourceConfig`.`logout_callback_url` `T1_C20`,`IdentitySourceConfig`.`cas_ticket_url` `T1_C21`,`IdentitySourceConfig`.`expire` `T1_C22`,`IdentitySourceConfig`.`redirect_url` `T1_C23`,`IdentitySourceConfig`.`agent_id` `T1_C24`,`IdentitySourceConfig`.`token_header_map` `T1_C25`,`IdentitySourceConfig`.`token_body_map` `T1_C26`,`IdentitySourceConfig`.`user_header_map` `T1_C27`,`IdentitySourceConfig`.`user_body_map` `T1_C28`,`IdentitySourceConfig`.`user_id_res` `T1_C29`,`IdentitySourceConfig`.`user_name_res` `T1_C30`,`IdentitySourceConfig`.`code` `T1_C31`,`IdentitySourceConfig`.`sso_url` `T1_C32`,`IdentitySourceConfig`.`wechat_token` `T1_C33`,`IdentitySourceConfig`.`wechat_msg_method` `T1_C34`,`IdentitySourceConfig`.`wechat_msg_secret` `T1_C35` FROM `IdentitySourceConfig` 
+<if test=" 1==1 and ( sourceDto!=null and sourceDto.id!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`IdentitySourceConfig`.`id` = #{sourceDto.id} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_E6204F88FA3760A005F0E371750B535E" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `IdentitySourceConfig` 
+<if test=" 1==1 and ( sourceDto!=null and sourceDto.id!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`IdentitySourceConfig`.`id` = #{sourceDto.id} 
+</trim> 
+</if>
+</select>
+
+<select id="getStructure1" resultType="java.lang.Long">
+SELECT COUNT(`IdentitySourceConfig`.`id`) `num` FROM `IdentitySourceConfig` 
+<if test=" 1==1 or ( sourceDto!=null and sourceDto.id!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( sourceDto!=null and sourceDto.id!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`IdentitySourceConfig`.`id` != #{sourceDto.id} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`IdentitySourceConfig`.`login_enable` = 1) 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

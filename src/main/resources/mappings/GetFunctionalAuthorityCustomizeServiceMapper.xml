@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetFunctionalAuthorityCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetFunctionalAuthorityCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E">
+    <id column="T1_C1" property="permissionGroup.id"/>
+    <result column="T1_C2" property="permissionGroup.createdTime"/>
+    <result column="T1_C3" property="permissionGroup.updatedTime"/>
+    <result column="T1_C4" property="permissionGroup.createdBy"/>
+    <result column="T1_C5" property="permissionGroup.updatedBy"/>
+    <result column="T1_C6" property="permissionGroup.name"/>
+</resultMap>
+
+<select id="getAnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E" resultMap="AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E">
+SELECT `permission_group`.`id` `T1_C1`,`permission_group`.`created_time` `T1_C2`,`permission_group`.`updated_time` `T1_C3`,`permission_group`.`created_by` `T1_C4`,`permission_group`.`updated_by` `T1_C5`,`permission_group`.`name` `T1_C6` FROM `permission_group` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `permission_group`
+</select>
+
+<resultMap id="AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5">
+    <id column="T1_C1" property="permissionGroup.id"/>
+    <result column="T1_C2" property="permissionGroup.createdTime"/>
+    <result column="T1_C3" property="permissionGroup.updatedTime"/>
+    <result column="T1_C4" property="permissionGroup.createdBy"/>
+    <result column="T1_C5" property="permissionGroup.updatedBy"/>
+    <result column="T1_C6" property="permissionGroup.name"/>
+    <result column="T2_C1" property="perGroupPerMapping.id"/>
+    <result column="T2_C2" property="perGroupPerMapping.createdTime"/>
+    <result column="T2_C3" property="perGroupPerMapping.updatedTime"/>
+    <result column="T2_C4" property="perGroupPerMapping.createdBy"/>
+    <result column="T2_C5" property="perGroupPerMapping.updatedBy"/>
+    <result column="T2_C6" property="perGroupPerMapping.perGroupId"/>
+    <result column="T2_C7" property="perGroupPerMapping.perId"/>
+    <result column="T3_C1" property="lCAPPermission.id"/>
+    <result column="T3_C2" property="lCAPPermission.createdTime"/>
+    <result column="T3_C3" property="lCAPPermission.updatedTime"/>
+    <result column="T3_C4" property="lCAPPermission.createdBy"/>
+    <result column="T3_C5" property="lCAPPermission.updatedBy"/>
+    <result column="T3_C6" property="lCAPPermission.uuid"/>
+    <result column="T3_C7" property="lCAPPermission.name"/>
+    <result column="T3_C8" property="lCAPPermission.description"/>
+</resultMap>
+
+<select id="getAnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5" resultMap="AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5">
+SELECT `permission_group`.`id` `T1_C1`,`permission_group`.`created_time` `T1_C2`,`permission_group`.`updated_time` `T1_C3`,`permission_group`.`created_by` `T1_C4`,`permission_group`.`updated_by` `T1_C5`,`permission_group`.`name` `T1_C6`,`per_group_per_mapping`.`id` `T2_C1`,`per_group_per_mapping`.`created_time` `T2_C2`,`per_group_per_mapping`.`updated_time` `T2_C3`,`per_group_per_mapping`.`created_by` `T2_C4`,`per_group_per_mapping`.`updated_by` `T2_C5`,`per_group_per_mapping`.`per_group_id` `T2_C6`,`per_group_per_mapping`.`per_id` `T2_C7`,`lcap_permission_a6d592`.`id` `T3_C1`,`lcap_permission_a6d592`.`created_time` `T3_C2`,`lcap_permission_a6d592`.`updated_time` `T3_C3`,`lcap_permission_a6d592`.`created_by` `T3_C4`,`lcap_permission_a6d592`.`updated_by` `T3_C5`,`lcap_permission_a6d592`.`uuid` `T3_C6`,`lcap_permission_a6d592`.`name` `T3_C7`,`lcap_permission_a6d592`.`description` `T3_C8` FROM `permission_group` INNER JOIN `per_group_per_mapping` ON `permission_group`.`id` = `per_group_per_mapping`.`per_group_id` INNER JOIN `lcap_permission_a6d592` ON `per_group_per_mapping`.`per_id` = `lcap_permission_a6d592`.`id` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `permission_group` INNER JOIN `per_group_per_mapping` ON `permission_group`.`id` = `per_group_per_mapping`.`per_group_id` INNER JOIN `lcap_permission_a6d592` ON `per_group_per_mapping`.`per_id` = `lcap_permission_a6d592`.`id`
+</select>
+</mapper>

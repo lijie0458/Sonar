@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated UpdateOutsourceInSUnreturnQuantityCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.UpdateOutsourceInSUnreturnQuantityCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71">
+    <id column="T1_C1" property="outsourceReturnStorageDetails.id"/>
+    <result column="T1_C2" property="outsourceReturnStorageDetails.createdTime"/>
+    <result column="T1_C3" property="outsourceReturnStorageDetails.updatedTime"/>
+    <result column="T1_C4" property="outsourceReturnStorageDetails.createdBy"/>
+    <result column="T1_C5" property="outsourceReturnStorageDetails.updatedBy"/>
+    <result column="T1_C6" property="outsourceReturnStorageDetails.outsourceInSDetailsId"/>
+    <result column="T1_C7" property="outsourceReturnStorageDetails.quantity"/>
+    <result column="T1_C8" property="outsourceReturnStorageDetails.outsourceReturnSCode"/>
+    <result column="T2_C1" property="outsourceInStorageDetails.id"/>
+    <result column="T2_C2" property="outsourceInStorageDetails.createdTime"/>
+    <result column="T2_C3" property="outsourceInStorageDetails.updatedTime"/>
+    <result column="T2_C4" property="outsourceInStorageDetails.createdBy"/>
+    <result column="T2_C5" property="outsourceInStorageDetails.updatedBy"/>
+    <result column="T2_C6" property="outsourceInStorageDetails.outsourceInSCode"/>
+    <result column="T2_C7" property="outsourceInStorageDetails.materialCode"/>
+    <result column="T2_C8" property="outsourceInStorageDetails.lotNumber"/>
+    <result column="T2_C9" property="outsourceInStorageDetails.quantity"/>
+    <result column="T2_C10" property="outsourceInStorageDetails.sourceCode"/>
+    <result column="T2_C11" property="outsourceInStorageDetails.warehouseId"/>
+    <result column="T2_C12" property="outsourceInStorageDetails.remark"/>
+    <result column="T2_C13" property="outsourceInStorageDetails.unreturnQuantity"/>
+    <result column="T2_C14" property="outsourceInStorageDetails.storageLocationId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71" resultMap="AnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71">
+SELECT `outsource_return_storage_details`.`id` `T1_C1`,`outsource_return_storage_details`.`created_time` `T1_C2`,`outsource_return_storage_details`.`updated_time` `T1_C3`,`outsource_return_storage_details`.`created_by` `T1_C4`,`outsource_return_storage_details`.`updated_by` `T1_C5`,`outsource_return_storage_details`.`outsource_in_s_details_id` `T1_C6`,`outsource_return_storage_details`.`quantity` `T1_C7`,`outsource_return_storage_details`.`outsource_return_s_code` `T1_C8`,`outsource_in_storage_details`.`id` `T2_C1`,`outsource_in_storage_details`.`created_time` `T2_C2`,`outsource_in_storage_details`.`updated_time` `T2_C3`,`outsource_in_storage_details`.`created_by` `T2_C4`,`outsource_in_storage_details`.`updated_by` `T2_C5`,`outsource_in_storage_details`.`outsource_in_s_code` `T2_C6`,`outsource_in_storage_details`.`material_code` `T2_C7`,`outsource_in_storage_details`.`lot_number` `T2_C8`,`outsource_in_storage_details`.`quantity` `T2_C9`,`outsource_in_storage_details`.`source_code` `T2_C10`,`outsource_in_storage_details`.`warehouse_id` `T2_C11`,`outsource_in_storage_details`.`remark` `T2_C12`,`outsource_in_storage_details`.`unreturn_quantity` `T2_C13`,`outsource_in_storage_details`.`storage_location_id` `T2_C14` FROM `outsource_return_storage_details` INNER JOIN `outsource_in_storage_details` ON `outsource_return_storage_details`.`outsource_in_s_details_id` = `outsource_in_storage_details`.`id` 
+<if test=" 1==1 and outsourceReturnCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`outsource_return_storage_details`.`outsource_return_s_code` = #{outsourceReturnCode} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `outsource_return_storage_details` INNER JOIN `outsource_in_storage_details` ON `outsource_return_storage_details`.`outsource_in_s_details_id` = `outsource_in_storage_details`.`id` 
+<if test=" 1==1 and outsourceReturnCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`outsource_return_storage_details`.`outsource_return_s_code` = #{outsourceReturnCode} 
+</trim> 
+</if>
+</select>
+</mapper>

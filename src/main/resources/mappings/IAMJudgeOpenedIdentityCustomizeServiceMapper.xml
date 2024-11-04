@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated IAMJudgeOpenedIdentityCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.IAMJudgeOpenedIdentityCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_D41D8CD98F00B204E9800998ECF8427E" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D41D8CD98F00B204E9800998ECF8427E">
+</resultMap>
+
+<select id="getAnonymousStructure_D41D8CD98F00B204E9800998ECF8427E" resultMap="AnonymousStructure_D41D8CD98F00B204E9800998ECF8427E">
+SELECT `IdentitySourceConfig`.`id` FROM `IdentitySourceConfig` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`IdentitySourceConfig`.`login_enable` = 1 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_D41D8CD98F00B204E9800998ECF8427E" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `IdentitySourceConfig` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`IdentitySourceConfig`.`login_enable` = 1 
+</trim> 
+</if>
+</select>
+</mapper>

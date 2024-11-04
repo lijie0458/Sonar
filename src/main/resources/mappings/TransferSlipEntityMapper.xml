@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated TransferSlipEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.TransferSlipEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.TransferSlipEntity">
+        <id column="document_number" jdbcType="VARCHAR" property="documentNumber" />
+        <result column="inspector" jdbcType="BIGINT" property="inspector" />
+        <result column="source_document_number" jdbcType="VARCHAR" property="sourceDocumentNumber" />
+        <result column="request_date" jdbcType="DATE" property="requestDate" />
+        <result column="summary" jdbcType="VARCHAR" property="summary" />
+        <result column="attachment" jdbcType="VARCHAR" property="attachment" />
+        <result column="approval_status" jdbcType="VARCHAR" property="approvalStatus" />
+        <result column="shipping_clerk" jdbcType="BIGINT" property="shippingClerk" />
+        <result column="out_warehouse" jdbcType="BIGINT" property="outWarehouse" />
+        <result column="in_warehouse" jdbcType="BIGINT" property="inWarehouse" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipEntity"  >
+        INSERT INTO `transfer_slip` (
+            `document_number`
+            ,`inspector`
+            ,`source_document_number`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`shipping_clerk`
+            ,`out_warehouse`
+            ,`in_warehouse`
+            ,`created_by`
+        )
+        VALUES (
+            #{documentNumber,jdbcType=VARCHAR}
+            ,#{inspector,jdbcType=BIGINT}
+            ,#{sourceDocumentNumber,jdbcType=VARCHAR}
+            ,#{requestDate,jdbcType=DATE}
+            ,#{summary,jdbcType=VARCHAR}
+            ,#{attachment,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{shippingClerk,jdbcType=BIGINT}
+            ,#{outWarehouse,jdbcType=BIGINT}
+            ,#{inWarehouse,jdbcType=BIGINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `transfer_slip` (
+            `document_number`
+            ,`inspector`
+            ,`source_document_number`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`shipping_clerk`
+            ,`out_warehouse`
+            ,`in_warehouse`
+            ,`created_by`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.documentNumber,jdbcType=VARCHAR}
+            ,#{item.inspector,jdbcType=BIGINT}
+            ,#{item.sourceDocumentNumber,jdbcType=VARCHAR}
+            ,#{item.requestDate,jdbcType=DATE}
+            ,#{item.summary,jdbcType=VARCHAR}
+            ,#{item.attachment,jdbcType=VARCHAR}
+            ,#{item.approvalStatus,jdbcType=VARCHAR}
+            ,#{item.shippingClerk,jdbcType=BIGINT}
+            ,#{item.outWarehouse,jdbcType=BIGINT}
+            ,#{item.inWarehouse,jdbcType=BIGINT}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipEntity" >
+        UPDATE `transfer_slip`
+        <set>
+            <if test="updateFields == null or updateFields.contains('inspector')">`inspector` = #{bean.inspector, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('shippingClerk')">`shipping_clerk` = #{bean.shippingClerk, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('outWarehouse')">`out_warehouse` = #{bean.outWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('inWarehouse')">`in_warehouse` = #{bean.inWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where `document_number` = #{bean.documentNumber}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipEntity" >
+        UPDATE `transfer_slip`
+        <set>
+            <if test="updateFields == null or updateFields.contains('inspector')">`inspector` = #{bean.inspector, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('shippingClerk')">`shipping_clerk` = #{bean.shippingClerk, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('outWarehouse')">`out_warehouse` = #{bean.outWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('inWarehouse')">`in_warehouse` = #{bean.inWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where `document_number` = #{bean.documentNumber}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `transfer_slip` where `document_number` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `transfer_slip` where `document_number` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `transfer_slip`
+        <where>
+            <choose>
+                <when test="property == 'documentNumber'">
+                    AND `document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'inspector'">
+                    AND `inspector` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'sourceDocumentNumber'">
+                    AND `source_document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'requestDate'">
+                    AND `request_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'summary'">
+                    AND `summary` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'attachment'">
+                    AND `attachment` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'shippingClerk'">
+                    AND `shipping_clerk` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'outWarehouse'">
+                    AND `out_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'inWarehouse'">
+                    AND `in_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `document_number` from `transfer_slip` 
+        <where>
+            <choose>
+                <when test="property == 'documentNumber'">
+                    AND `document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'inspector'">
+                    AND `inspector` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'sourceDocumentNumber'">
+                    AND `source_document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'requestDate'">
+                    AND `request_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'summary'">
+                    AND `summary` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'attachment'">
+                    AND `attachment` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'shippingClerk'">
+                    AND `shipping_clerk` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'outWarehouse'">
+                    AND `out_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'inWarehouse'">
+                    AND `in_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `transfer_slip`
+        where `document_number`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `transfer_slip`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `transfer_slip`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipEntity">
+        INSERT INTO `transfer_slip` (
+            `document_number`
+            ,`inspector`
+            ,`source_document_number`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`shipping_clerk`
+            ,`out_warehouse`
+            ,`in_warehouse`
+            ,`created_by`
+        )
+        VALUES (
+            #{documentNumber,jdbcType=VARCHAR}
+            ,#{inspector,jdbcType=BIGINT}
+            ,#{sourceDocumentNumber,jdbcType=VARCHAR}
+            ,#{requestDate,jdbcType=DATE}
+            ,#{summary,jdbcType=VARCHAR}
+            ,#{attachment,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{shippingClerk,jdbcType=BIGINT}
+            ,#{outWarehouse,jdbcType=BIGINT}
+            ,#{inWarehouse,jdbcType=BIGINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `transfer_slip`
+        <set>
+        <if test="updateFields == null or updateFields.contains('inspector')">`inspector` = #{bean.inspector, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('shippingClerk')">`shipping_clerk` = #{bean.shippingClerk, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('outWarehouse')">`out_warehouse` = #{bean.outWarehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('inWarehouse')">`in_warehouse` = #{bean.inWarehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `transfer_slip`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

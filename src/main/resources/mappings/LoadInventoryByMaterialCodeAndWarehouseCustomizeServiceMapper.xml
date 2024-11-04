@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadInventoryByMaterialCodeAndWarehouseCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadInventoryByMaterialCodeAndWarehouseCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_2F4DB4E95AB871687BA63AFCB56ABB2C" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2F4DB4E95AB871687BA63AFCB56ABB2C">
+    <result column="id" property="id"/>
+    <result column="material_code" property="materialCode"/>
+    <result column="lot_number" property="lotNumber"/>
+    <result column="unit" property="unit"/>
+    <result column="warehouse" property="warehouse"/>
+    <result column="stock_quantity" property="stockQuantity"/>
+    <result column="occupied_quantity" property="occupiedQuantity"/>
+    <result column="available_quantity" property="availableQuantity"/>
+    <result column="created_at" property="createdAt"/>
+    <result column="updated_at" property="updatedAt"/>
+    <result column="location" property="location"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_2F4DB4E95AB871687BA63AFCB56ABB2C">
+SELECT * FROM `inventory` 
+<if test=" materialCode!=null or location!=null or lotNumber!=null or warehouse!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<if test=" materialCode!=null ">
+	
+<trim prefix="(" suffix=")">
+	`material_code` = #{materialCode}
+</trim>
+</if> 
+<if test=" location!=null or lotNumber!=null or warehouse!=null ">
+	
+<trim prefix="and">
+	
+	<trim prefix="(" suffix=")" prefixOverrides="and |or">
+		
+	<if test=" warehouse!=null ">
+		
+	<trim prefix="(" suffix=")">
+		`warehouse` = #{warehouse}
+	</trim>
+	</if> 
+	<if test=" location!=null or lotNumber!=null ">
+		
+	<trim prefix="and">
+		
+		<trim prefix="(" suffix=")" prefixOverrides="and |or">
+			
+		<if test=" lotNumber!=null ">
+			
+		<trim prefix="(" suffix=")">
+			`lot_number` = #{lotNumber}
+		</trim>
+		</if> 
+		<if test=" location!=null ">
+			
+		<trim prefix="and">
+			
+			<trim prefix="(" suffix=")">
+				`location` = #{location}
+			</trim>
+		</trim>
+		</if>
+		</trim>
+	</trim>
+	</if>
+	</trim>
+</trim>
+</if>
+</trim>
+</if>
+</select>
+</mapper>

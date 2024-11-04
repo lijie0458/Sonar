@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPUser Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.UserDeptMappingMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.LCAPUserDeptMapping">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+        <result column="is_dept_leader" jdbcType="BIGINT" property="isDeptLeader" />
+    </resultMap>
+
+	<select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap" >
+		select * from `lcap_user_dept_mapping_a6d592` where `user_id` = #{userId}
+	</select>
+	<select id="selectLeaderByDeptId" parameterType="java.lang.String" resultMap="BaseResultMap" >
+		select * from `lcap_user_dept_mapping_a6d592` where `dept_id` = #{deptId} and is_dept_leader = 1
+	</select>
+
+	<select id="getUserByDept" parameterType="java.lang.String" resultType="com.dogfood.aa20240808.domain.entities.LCAPUser" >
+    	select user_id as userId ,user_name as userName from `lcap_user_a6d592` where `user_id`
+    	in (select user_id from `lcap_user_dept_mapping_a6d592`
+    	where `dept_id` = #{deptId}
+    	<if test="onlyLeader">
+    		and `is_dept_leader` = 1
+    	</if>
+    	)
+    </select>
+</mapper>

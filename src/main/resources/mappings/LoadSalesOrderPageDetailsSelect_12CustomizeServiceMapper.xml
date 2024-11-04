@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadSalesOrderPageDetailsSelect_12CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadSalesOrderPageDetailsSelect_12CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1">
+    <id column="T1_C1" property="customerManagement.id"/>
+    <result column="T1_C2" property="customerManagement.createdTime"/>
+    <result column="T1_C3" property="customerManagement.updatedTime"/>
+    <result column="T1_C4" property="customerManagement.createdBy"/>
+    <result column="T1_C5" property="customerManagement.updatedBy"/>
+    <result column="T1_C6" property="customerManagement.customerCode"/>
+    <result column="T1_C7" property="customerManagement.customerName"/>
+    <result column="T1_C8" property="customerManagement.linkMan"/>
+    <result column="T1_C9" property="customerManagement.contactNumber"/>
+    <result column="T1_C10" property="customerManagement.address"/>
+    <result column="T1_C11" property="customerManagement.detailedAddress"/>
+</resultMap>
+
+<select id="getAnonymousStructure_826FFD3E738FEC2EAB499855162B82C1" resultMap="AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1">
+SELECT `customer_management`.`id` `T1_C1`,`customer_management`.`created_time` `T1_C2`,`customer_management`.`updated_time` `T1_C3`,`customer_management`.`created_by` `T1_C4`,`customer_management`.`updated_by` `T1_C5`,`customer_management`.`customer_code` `T1_C6`,`customer_management`.`customer_name` `T1_C7`,`customer_management`.`link_man` `T1_C8`,`customer_management`.`contact_number` `T1_C9`,`customer_management`.`address` `T1_C10`,`customer_management`.`detailed_address` `T1_C11` FROM `customer_management` 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_826FFD3E738FEC2EAB499855162B82C1" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `customer_management`
+</select>
+</mapper>

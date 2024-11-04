@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated SupplierDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.SupplierDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="supplier_code" jdbcType="VARCHAR" property="supplier_code" />
+        <result column="supplier_name" jdbcType="VARCHAR" property="supplier_name" />
+        <result column="credit_code" jdbcType="VARCHAR" property="credit_code" />
+        <result column="supplier_category" jdbcType="VARCHAR" property="supplier_category" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="detailed_address" jdbcType="VARCHAR" property="detailed_address" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="contact_information" jdbcType="VARCHAR" property="contact_information"  typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_4" />
+        <result column="bank" jdbcType="VARCHAR" property="bank"  typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_5" />
+        <result column="supplier" jdbcType="BIGINT" property="supplier" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity"  >
+        INSERT INTO `supplier_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`supplier_code`
+            ,`supplier_name`
+            ,`credit_code`
+            ,`supplier_category`
+            ,`address`
+            ,`detailed_address`
+            ,`remark`
+            ,`contact_information`
+            ,`bank`
+            ,`supplier`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{supplier_code,jdbcType=VARCHAR}
+            ,#{supplier_name,jdbcType=VARCHAR}
+            ,#{credit_code,jdbcType=VARCHAR}
+            ,#{supplier_category,jdbcType=VARCHAR}
+            ,#{address,jdbcType=VARCHAR}
+            ,#{detailed_address,jdbcType=VARCHAR}
+            ,#{remark,jdbcType=VARCHAR}
+            ,#{contact_information,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_4}
+            ,#{bank,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_5}
+            ,#{supplier,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `supplier_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`supplier_code`
+            ,`supplier_name`
+            ,`credit_code`
+            ,`supplier_category`
+            ,`address`
+            ,`detailed_address`
+            ,`remark`
+            ,`contact_information`
+            ,`bank`
+            ,`supplier`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.supplier_code,jdbcType=VARCHAR}
+            ,#{item.supplier_name,jdbcType=VARCHAR}
+            ,#{item.credit_code,jdbcType=VARCHAR}
+            ,#{item.supplier_category,jdbcType=VARCHAR}
+            ,#{item.address,jdbcType=VARCHAR}
+            ,#{item.detailed_address,jdbcType=VARCHAR}
+            ,#{item.remark,jdbcType=VARCHAR}
+            ,#{item.contact_information,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_4}
+            ,#{item.bank,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_5}
+            ,#{item.supplier,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity" >
+        UPDATE `supplier_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier_code')">`supplier_code` = #{bean.supplier_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier_name')">`supplier_name` = #{bean.supplier_name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('credit_code')">`credit_code` = #{bean.credit_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier_category')">`supplier_category` = #{bean.supplier_category, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('address')">`address` = #{bean.address, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('detailed_address')">`detailed_address` = #{bean.detailed_address, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('remark')">`remark` = #{bean.remark, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('contact_information')">`contact_information` = #{bean.contact_information, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_4},</if>
+            <if test="updateFields == null or updateFields.contains('bank')">`bank` = #{bean.bank, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_5},</if>
+            <if test="updateFields == null or updateFields.contains('supplier')">`supplier` = #{bean.supplier, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity" >
+        UPDATE `supplier_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier_code')">`supplier_code` = #{bean.supplier_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier_name')">`supplier_name` = #{bean.supplier_name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('credit_code')">`credit_code` = #{bean.credit_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplier_category')">`supplier_category` = #{bean.supplier_category, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('address')">`address` = #{bean.address, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('detailed_address')">`detailed_address` = #{bean.detailed_address, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('remark')">`remark` = #{bean.remark, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('contact_information')">`contact_information` = #{bean.contact_information, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_4},</if>
+            <if test="updateFields == null or updateFields.contains('bank')">`bank` = #{bean.bank, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_5},</if>
+            <if test="updateFields == null or updateFields.contains('supplier')">`supplier` = #{bean.supplier, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `supplier_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `supplier_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `supplier_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier_code'">
+                    AND `supplier_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier_name'">
+                    AND `supplier_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'credit_code'">
+                    AND `credit_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier_category'">
+                    AND `supplier_category` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'address'">
+                    AND `address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'detailed_address'">
+                    AND `detailed_address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'remark'">
+                    AND `remark` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'contact_information'">
+                    AND `contact_information` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'bank'">
+                    AND `bank` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier'">
+                    AND `supplier` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `supplier_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier_code'">
+                    AND `supplier_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier_name'">
+                    AND `supplier_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'credit_code'">
+                    AND `credit_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier_category'">
+                    AND `supplier_category` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'address'">
+                    AND `address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'detailed_address'">
+                    AND `detailed_address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'remark'">
+                    AND `remark` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'contact_information'">
+                    AND `contact_information` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'bank'">
+                    AND `bank` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplier'">
+                    AND `supplier` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `supplier_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `supplier_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `supplier_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity">
+        INSERT INTO `supplier_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`supplier_code`
+            ,`supplier_name`
+            ,`credit_code`
+            ,`supplier_category`
+            ,`address`
+            ,`detailed_address`
+            ,`remark`
+            ,`contact_information`
+            ,`bank`
+            ,`supplier`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{supplier_code,jdbcType=VARCHAR}
+            ,#{supplier_name,jdbcType=VARCHAR}
+            ,#{credit_code,jdbcType=VARCHAR}
+            ,#{supplier_category,jdbcType=VARCHAR}
+            ,#{address,jdbcType=VARCHAR}
+            ,#{detailed_address,jdbcType=VARCHAR}
+            ,#{remark,jdbcType=VARCHAR}
+            ,#{contact_information,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_4}
+            ,#{bank,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.ListTypeHandler_5}
+            ,#{supplier,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `supplier_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('supplier_code')">`supplier_code` = #{bean.supplier_code, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('supplier_name')">`supplier_name` = #{bean.supplier_name, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('credit_code')">`credit_code` = #{bean.credit_code, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('supplier_category')">`supplier_category` = #{bean.supplier_category, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('address')">`address` = #{bean.address, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('detailed_address')">`detailed_address` = #{bean.detailed_address, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('remark')">`remark` = #{bean.remark, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('contact_information')">`contact_information` = #{bean.contact_information, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_4},</if>
+        <if test="updateFields == null or updateFields.contains('bank')">`bank` = #{bean.bank, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.ListTypeHandler_5},</if>
+        <if test="updateFields == null or updateFields.contains('supplier')">`supplier` = #{bean.supplier, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `supplier_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated IAMOperateCacheCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.IAMOperateCacheCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_34E3E39EB45447A8EA8054133B60899D" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_34E3E39EB45447A8EA8054133B60899D">
+    <id column="T1_C1" property="appCache.id"/>
+    <result column="T1_C2" property="appCache.createdTime"/>
+    <result column="T1_C3" property="appCache.updatedTime"/>
+    <result column="T1_C4" property="appCache.createdBy"/>
+    <result column="T1_C5" property="appCache.updatedBy"/>
+    <result column="T1_C6" property="appCache.key"/>
+    <result column="T1_C7" property="appCache.value"/>
+    <result column="T1_C8" property="appCache.expiration"/>
+</resultMap>
+
+<select id="getAnonymousStructure_34E3E39EB45447A8EA8054133B60899D" resultMap="AnonymousStructure_34E3E39EB45447A8EA8054133B60899D">
+SELECT `AppCache`.`id` `T1_C1`,`AppCache`.`created_time` `T1_C2`,`AppCache`.`updated_time` `T1_C3`,`AppCache`.`created_by` `T1_C4`,`AppCache`.`updated_by` `T1_C5`,`AppCache`.`key` `T1_C6`,`AppCache`.`value` `T1_C7`,`AppCache`.`expiration` `T1_C8` FROM `AppCache` 
+<if test=" 1==1 and key!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`AppCache`.`key` = #{key} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_34E3E39EB45447A8EA8054133B60899D" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `AppCache` 
+<if test=" 1==1 and key!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`AppCache`.`key` = #{key} 
+</trim> 
+</if>
+</select>
+</mapper>

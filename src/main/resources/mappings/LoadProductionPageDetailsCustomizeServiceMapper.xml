@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadProductionPageDetailsCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadProductionPageDetailsCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6">
+    <id column="T1_C1" property="productionMaterialRequisition.documentNumber"/>
+    <result column="T1_C2" property="productionMaterialRequisition.department"/>
+    <result column="T1_C3" property="productionMaterialRequisition.employee"/>
+    <result column="T1_C4" property="productionMaterialRequisition.requestDate"/>
+    <result column="T1_C5" property="productionMaterialRequisition.summary"/>
+    <result column="T1_C6" property="productionMaterialRequisition.attachment"/>
+    <result column="T1_C7" property="productionMaterialRequisition.approvalStatus"/>
+    <result column="T1_C8" property="productionMaterialRequisition.issueReturnDistinction"/>
+    <result column="T1_C9" property="productionMaterialRequisition.guardian"/>
+    <result column="T1_C10" property="productionMaterialRequisition.createdBy"/>
+    <result column="T1_C11" property="productionMaterialRequisition.sourceDocumentNumber"/>
+</resultMap>
+
+<select id="getAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6" resultMap="AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6">
+SELECT `production_material_requisition`.`document_number` `T1_C1`,`production_material_requisition`.`department` `T1_C2`,`production_material_requisition`.`employee` `T1_C3`,`production_material_requisition`.`request_date` `T1_C4`,`production_material_requisition`.`summary` `T1_C5`,`production_material_requisition`.`attachment` `T1_C6`,`production_material_requisition`.`approval_status` `T1_C7`,`production_material_requisition`.`issue_return_distinction` `T1_C8`,`production_material_requisition`.`guardian` `T1_C9`,`production_material_requisition`.`created_by` `T1_C10`,`production_material_requisition`.`source_document_number` `T1_C11` FROM `production_material_requisition` 
+<if test=" 1==1 or DistinctionEnum!=null or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 or DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`production_material_requisition`.`issue_return_distinction` = #{DistinctionEnum} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`production_material_requisition`.`approval_status` = '2') 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`production_material_requisition`.`department` = #{id} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `production_material_requisition` 
+<if test=" 1==1 or DistinctionEnum!=null or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 or DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`production_material_requisition`.`issue_return_distinction` = #{DistinctionEnum} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`production_material_requisition`.`approval_status` = '2') 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`production_material_requisition`.`department` = #{id} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<resultMap id="AnonymousStructure_3EB9CA1571074F966FC0C5CC8F563CDA" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3EB9CA1571074F966FC0C5CC8F563CDA">
+    <id column="T1_C1" property="productionMaterialRequisition.documentNumber"/>
+    <result column="T1_C2" property="productionMaterialRequisition.department"/>
+    <result column="T1_C3" property="productionMaterialRequisition.employee"/>
+    <result column="T1_C4" property="productionMaterialRequisition.requestDate"/>
+    <result column="T1_C5" property="productionMaterialRequisition.summary"/>
+    <result column="T1_C6" property="productionMaterialRequisition.attachment"/>
+    <result column="T1_C7" property="productionMaterialRequisition.approvalStatus"/>
+    <result column="T1_C8" property="productionMaterialRequisition.issueReturnDistinction"/>
+    <result column="T1_C9" property="productionMaterialRequisition.guardian"/>
+    <result column="T1_C10" property="productionMaterialRequisition.createdBy"/>
+    <result column="T1_C11" property="productionMaterialRequisition.sourceDocumentNumber"/>
+    <result column="T2_C1" property="productionMaterialRequisitionDetails.id"/>
+    <result column="T2_C2" property="productionMaterialRequisitionDetails.materialCode"/>
+    <result column="T2_C3" property="productionMaterialRequisitionDetails.quantity"/>
+    <result column="T2_C4" property="productionMaterialRequisitionDetails.unitPrice"/>
+    <result column="T2_C5" property="productionMaterialRequisitionDetails.notes"/>
+    <result column="T2_C6" property="productionMaterialRequisitionDetails.productionMaterialRequisition"/>
+    <result column="T2_C7" property="productionMaterialRequisitionDetails.warehouse"/>
+    <result column="T2_C8" property="productionMaterialRequisitionDetails.productionMaterialRequisitionId"/>
+    <result column="T2_C9" property="productionMaterialRequisitionDetails.batchNumber"/>
+    <result column="T2_C10" property="productionMaterialRequisitionDetails.totalPrice"/>
+    <result column="T2_C11" property="productionMaterialRequisitionDetails.sourceNumber"/>
+    <result column="T2_C12" property="productionMaterialRequisitionDetails.storageLocation"/>
+    <result column="T2_C13" property="productionMaterialRequisitionDetails.returnQuanTity"/>
+    <result column="T2_C14" property="productionMaterialRequisitionDetails.sourceNumberId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_3EB9CA1571074F966FC0C5CC8F563CDA" resultMap="AnonymousStructure_3EB9CA1571074F966FC0C5CC8F563CDA">
+SELECT `production_material_requisition`.`document_number` `T1_C1`,`production_material_requisition`.`department` `T1_C2`,`production_material_requisition`.`employee` `T1_C3`,`production_material_requisition`.`request_date` `T1_C4`,`production_material_requisition`.`summary` `T1_C5`,`production_material_requisition`.`attachment` `T1_C6`,`production_material_requisition`.`approval_status` `T1_C7`,`production_material_requisition`.`issue_return_distinction` `T1_C8`,`production_material_requisition`.`guardian` `T1_C9`,`production_material_requisition`.`created_by` `T1_C10`,`production_material_requisition`.`source_document_number` `T1_C11`,`production_material_requisition_details`.`id` `T2_C1`,`production_material_requisition_details`.`material_code` `T2_C2`,`production_material_requisition_details`.`quantity` `T2_C3`,`production_material_requisition_details`.`unit_price` `T2_C4`,`production_material_requisition_details`.`notes` `T2_C5`,`production_material_requisition_details`.`production_material_requisition` `T2_C6`,`production_material_requisition_details`.`warehouse` `T2_C7`,`production_material_requisition_details`.`production_material_requisition_id` `T2_C8`,`production_material_requisition_details`.`batch_number` `T2_C9`,`production_material_requisition_details`.`total_price` `T2_C10`,`production_material_requisition_details`.`source_number` `T2_C11`,`production_material_requisition_details`.`storage_location` `T2_C12`,`production_material_requisition_details`.`return_quan_tity` `T2_C13`,`production_material_requisition_details`.`source_number_id` `T2_C14` FROM `production_material_requisition` INNER JOIN `production_material_requisition_details` ON `production_material_requisition`.`document_number` = `production_material_requisition_details`.`production_material_requisition` 
+<if test=" 1==1 and item!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`production_material_requisition`.`document_number` = #{item} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_3EB9CA1571074F966FC0C5CC8F563CDA" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `production_material_requisition` INNER JOIN `production_material_requisition_details` ON `production_material_requisition`.`document_number` = `production_material_requisition_details`.`production_material_requisition` 
+<if test=" 1==1 and item!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`production_material_requisition`.`document_number` = #{item} 
+</trim> 
+</if>
+</select>
+
+<resultMap id="defaultDSAnonymousStructure_F59E0BB3343234CE3AF6447EE8462582" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_F59E0BB3343234CE3AF6447EE8462582">
+    <result column="material_code" property="materialCode"/>
+    <result column="quantity" property="quantity"/>
+    <result column="total" property="total"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_F59E0BB3343234CE3AF6447EE8462582">
+SELECT `pmrd`.`material_code`,`pmrd`.`quantity`,SUM( `pmrd`.`return_quan_tity`) `total` from `production_material_requisition` `pmr` LEFT JOIN `production_material_requisition_details` `pmrd` ON `pmr`.`document_number` = `pmrd`.`production_material_requisition` 
+<if test=" item!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`pmr`.`source_document_number` = #{item}
+</trim>
+</if> GROUP BY `pmrd`.`material_code`
+</select>
+
+<resultMap id="AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E61" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6">
+    <id column="T1_C1" property="productionMaterialRequisition.documentNumber"/>
+    <result column="T1_C2" property="productionMaterialRequisition.department"/>
+    <result column="T1_C3" property="productionMaterialRequisition.employee"/>
+    <result column="T1_C4" property="productionMaterialRequisition.requestDate"/>
+    <result column="T1_C5" property="productionMaterialRequisition.summary"/>
+    <result column="T1_C6" property="productionMaterialRequisition.attachment"/>
+    <result column="T1_C7" property="productionMaterialRequisition.approvalStatus"/>
+    <result column="T1_C8" property="productionMaterialRequisition.issueReturnDistinction"/>
+    <result column="T1_C9" property="productionMaterialRequisition.guardian"/>
+    <result column="T1_C10" property="productionMaterialRequisition.createdBy"/>
+    <result column="T1_C11" property="productionMaterialRequisition.sourceDocumentNumber"/>
+</resultMap>
+
+<select id="getAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E61" resultMap="AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E61">
+SELECT `production_material_requisition`.`document_number` `T1_C1`,`production_material_requisition`.`department` `T1_C2`,`production_material_requisition`.`employee` `T1_C3`,`production_material_requisition`.`request_date` `T1_C4`,`production_material_requisition`.`summary` `T1_C5`,`production_material_requisition`.`attachment` `T1_C6`,`production_material_requisition`.`approval_status` `T1_C7`,`production_material_requisition`.`issue_return_distinction` `T1_C8`,`production_material_requisition`.`guardian` `T1_C9`,`production_material_requisition`.`created_by` `T1_C10`,`production_material_requisition`.`source_document_number` `T1_C11` FROM `production_material_requisition` 
+<if test=" 1==1 or DistinctionEnum!=null or ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 or DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`production_material_requisition`.`issue_return_distinction` = #{DistinctionEnum} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`production_material_requisition`.`approval_status` = '2') 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `production_material_requisition`.`document_number` IN 
+<foreach item="item" index="index" collection="TrueListOrderNumber" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E61" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `production_material_requisition` 
+<if test=" 1==1 or DistinctionEnum!=null or ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 or DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`production_material_requisition`.`issue_return_distinction` = #{DistinctionEnum} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`production_material_requisition`.`approval_status` = '2') 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `production_material_requisition`.`document_number` IN 
+<foreach item="item" index="index" collection="TrueListOrderNumber" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

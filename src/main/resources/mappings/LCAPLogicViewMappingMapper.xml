@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPLogicViewMapping Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.LCAPLogicViewMappingMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="logic_identifier" jdbcType="VARCHAR" property="logicIdentifier" />
+        <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
+        <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
+        <result column="group" jdbcType="BIGINT" property="group" />
+        <result column="change_time" jdbcType="BIGINT" property="changeTime" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping"  >
+        INSERT INTO `lcap_logic_view_mapping_a6d592` (
+            `id`
+            ,`logic_identifier`
+            ,`resource_name`
+            ,`resource_type`
+            ,`group`
+            ,`change_time`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{logicIdentifier,jdbcType=VARCHAR}
+            ,#{resourceName,jdbcType=VARCHAR}
+            ,#{resourceType,jdbcType=VARCHAR}
+            ,#{group,jdbcType=BIGINT}
+            ,#{changeTime,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `lcap_logic_view_mapping_a6d592` (
+            `id`
+            ,`logic_identifier`
+            ,`resource_name`
+            ,`resource_type`
+            ,`group`
+            ,`change_time`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.logicIdentifier,jdbcType=VARCHAR}
+            ,#{item.resourceName,jdbcType=VARCHAR}
+            ,#{item.resourceType,jdbcType=VARCHAR}
+            ,#{item.group,jdbcType=BIGINT}
+            ,#{item.changeTime,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping" >
+        UPDATE `lcap_logic_view_mapping_a6d592`
+        <set>
+            <if test="updateFields == null or updateFields.contains('logicIdentifier')">`logic_identifier` = #{bean.logicIdentifier, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('resourceName')">`resource_name` = #{bean.resourceName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('resourceType')">`resource_type` = #{bean.resourceType, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('group')">`group` = #{bean.group, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('changeTime')">`change_time` = #{bean.changeTime, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping" >
+        UPDATE `lcap_logic_view_mapping_a6d592`
+        <set>
+            <if test="updateFields == null or updateFields.contains('logicIdentifier')">`logic_identifier` = #{bean.logicIdentifier, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('resourceName')">`resource_name` = #{bean.resourceName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('resourceType')">`resource_type` = #{bean.resourceType, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('group')">`group` = #{bean.group, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('changeTime')">`change_time` = #{bean.changeTime, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `lcap_logic_view_mapping_a6d592` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `lcap_logic_view_mapping_a6d592` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `lcap_logic_view_mapping_a6d592`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'logicIdentifier'">
+                    AND `logic_identifier` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'resourceName'">
+                    AND `resource_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'resourceType'">
+                    AND `resource_type` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'group'">
+                    AND `group` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'changeTime'">
+                    AND `change_time` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `lcap_logic_view_mapping_a6d592` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'logicIdentifier'">
+                    AND `logic_identifier` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'resourceName'">
+                    AND `resource_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'resourceType'">
+                    AND `resource_type` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'group'">
+                    AND `group` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'changeTime'">
+                    AND `change_time` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `lcap_logic_view_mapping_a6d592`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `lcap_logic_view_mapping_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `lcap_logic_view_mapping_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping">
+        INSERT INTO `lcap_logic_view_mapping_a6d592` (
+            `id`
+            ,`logic_identifier`
+            ,`resource_name`
+            ,`resource_type`
+            ,`group`
+            ,`change_time`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{logicIdentifier,jdbcType=VARCHAR}
+            ,#{resourceName,jdbcType=VARCHAR}
+            ,#{resourceType,jdbcType=VARCHAR}
+            ,#{group,jdbcType=BIGINT}
+            ,#{changeTime,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `lcap_logic_view_mapping_a6d592`
+        <set>
+        <if test="updateFields == null or updateFields.contains('logicIdentifier')">`logic_identifier` = #{bean.logicIdentifier, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('resourceName')">`resource_name` = #{bean.resourceName, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('resourceType')">`resource_type` = #{bean.resourceType, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('group')">`group` = #{bean.group, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('changeTime')">`change_time` = #{bean.changeTime, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `lcap_logic_view_mapping_a6d592`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

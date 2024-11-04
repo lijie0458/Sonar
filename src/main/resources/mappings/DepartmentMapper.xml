@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPUser Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.LCAPDepartment">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+        <result column="parent_dept_id" jdbcType="VARCHAR" property="parentDeptId" />
+    </resultMap>
+
+	<select id="queryByParentDeptId" parameterType="java.lang.String" resultMap="BaseResultMap" >
+		select * from `lcap_department_a6d592`
+		<choose>
+			<when test="deptId == null || deptId==''">
+				where `parent_dept_id` is null
+			</when>
+			<otherwise>
+				where `parent_dept_id` = #{deptId}
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="queryByDeptId" parameterType="java.lang.String" resultMap="BaseResultMap" >
+		select * from `lcap_department_a6d592` where `dept_id` = #{deptId}
+	</select>
+
+	<select id="queryList"  resultMap="BaseResultMap" >
+    	select * from `lcap_department_a6d592`
+    </select>
+</mapper>

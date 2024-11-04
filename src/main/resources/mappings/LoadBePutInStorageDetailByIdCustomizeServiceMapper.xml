@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadBePutInStorageDetailByIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadBePutInStorageDetailByIdCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_FBC19D3E627714EA9E439E295A9EA7AD" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FBC19D3E627714EA9E439E295A9EA7AD">
+    <id column="T1_C1" property="bePutInStorageDetails.id"/>
+    <result column="T1_C2" property="bePutInStorageDetails.bePutInStorageId"/>
+    <result column="T1_C3" property="bePutInStorageDetails.bePutInStorageQuantity"/>
+    <result column="T1_C4" property="bePutInStorageDetails.materialNumber"/>
+    <result column="T1_C5" property="bePutInStorageDetails.receivableQuantity"/>
+    <result column="T1_C6" property="bePutInStorageDetails.batchNumber"/>
+    <result column="T1_C7" property="bePutInStorageDetails.receivingDetailsId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_FBC19D3E627714EA9E439E295A9EA7AD" resultMap="AnonymousStructure_FBC19D3E627714EA9E439E295A9EA7AD">
+SELECT `be_put_in_storage_details`.`id` `T1_C1`,`be_put_in_storage_details`.`be_put_in_storage_id` `T1_C2`,`be_put_in_storage_details`.`be_put_in_storage_quantity` `T1_C3`,`be_put_in_storage_details`.`material_number` `T1_C4`,`be_put_in_storage_details`.`receivable_quantity` `T1_C5`,`be_put_in_storage_details`.`batch_number` `T1_C6`,`be_put_in_storage_details`.`receiving_details_id` `T1_C7` FROM `be_put_in_storage_details` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`be_put_in_storage_details`.`be_put_in_storage_id` = #{param1} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_FBC19D3E627714EA9E439E295A9EA7AD" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `be_put_in_storage_details` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`be_put_in_storage_details`.`be_put_in_storage_id` = #{param1} 
+</trim> 
+</if>
+</select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadOutsourceInStorageDetailsSelect_1SupplierDetailsCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadOutsourceInStorageDetailsSelect_1SupplierDetailsCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_E310A9D695F45E4453B876CB739D4C34" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E310A9D695F45E4453B876CB739D4C34">
+    <id column="T1_C1" property="supplierDetails.id"/>
+    <result column="T1_C2" property="supplierDetails.createdTime"/>
+    <result column="T1_C3" property="supplierDetails.updatedTime"/>
+    <result column="T1_C4" property="supplierDetails.createdBy"/>
+    <result column="T1_C5" property="supplierDetails.updatedBy"/>
+    <result column="T1_C6" property="supplierDetails.supplier_code"/>
+    <result column="T1_C7" property="supplierDetails.supplier_name"/>
+    <result column="T1_C8" property="supplierDetails.credit_code"/>
+    <result column="T1_C9" property="supplierDetails.supplier_category"/>
+    <result column="T1_C10" property="supplierDetails.address"/>
+    <result column="T1_C11" property="supplierDetails.detailed_address"/>
+    <result column="T1_C12" property="supplierDetails.remark"/>
+    <result column="T1_C13" property="supplierDetails.contact_information" typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_4"/>
+    <result column="T1_C14" property="supplierDetails.bank" typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_5"/>
+    <result column="T1_C15" property="supplierDetails.supplier"/>
+</resultMap>
+
+<select id="getAnonymousStructure_E310A9D695F45E4453B876CB739D4C34" resultMap="AnonymousStructure_E310A9D695F45E4453B876CB739D4C34">
+SELECT `supplier_details`.`id` `T1_C1`,`supplier_details`.`created_time` `T1_C2`,`supplier_details`.`updated_time` `T1_C3`,`supplier_details`.`created_by` `T1_C4`,`supplier_details`.`updated_by` `T1_C5`,`supplier_details`.`supplier_code` `T1_C6`,`supplier_details`.`supplier_name` `T1_C7`,`supplier_details`.`credit_code` `T1_C8`,`supplier_details`.`supplier_category` `T1_C9`,`supplier_details`.`address` `T1_C10`,`supplier_details`.`detailed_address` `T1_C11`,`supplier_details`.`remark` `T1_C12`,`supplier_details`.`contact_information` `T1_C13`,`supplier_details`.`bank` `T1_C14`,`supplier_details`.`supplier` `T1_C15` FROM `supplier_details` 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_E310A9D695F45E4453B876CB739D4C34" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `supplier_details`
+</select>
+</mapper>

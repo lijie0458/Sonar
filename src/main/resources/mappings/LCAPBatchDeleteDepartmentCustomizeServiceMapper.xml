@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPBatchDeleteDepartmentCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPBatchDeleteDepartmentCustomizeServiceMapper">
+
+<select id="getString" resultType="java.lang.String">
+SELECT `lcap_department_a6d592`.`dept_id` `deptId` FROM `lcap_department_a6d592` 
+<if test=" 1==1 and ( ids!=null and ids.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `lcap_department_a6d592`.`id` IN 
+<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> GROUP BY `lcap_department_a6d592`.`dept_id`
+</select>
+
+<resultMap id="AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2">
+    <id column="T1_C1" property="lCAPUserDeptMapping.id"/>
+    <result column="T1_C2" property="lCAPUserDeptMapping.createdTime"/>
+    <result column="T1_C3" property="lCAPUserDeptMapping.updatedTime"/>
+    <result column="T1_C4" property="lCAPUserDeptMapping.createdBy"/>
+    <result column="T1_C5" property="lCAPUserDeptMapping.updatedBy"/>
+    <result column="T1_C6" property="lCAPUserDeptMapping.userId"/>
+    <result column="T1_C7" property="lCAPUserDeptMapping.deptId"/>
+    <result column="T1_C8" property="lCAPUserDeptMapping.isDeptLeader"/>
+</resultMap>
+
+<select id="getAnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2" resultMap="AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2">
+SELECT `lcap_user_dept_mapping_a6d592`.`id` `T1_C1`,`lcap_user_dept_mapping_a6d592`.`created_time` `T1_C2`,`lcap_user_dept_mapping_a6d592`.`updated_time` `T1_C3`,`lcap_user_dept_mapping_a6d592`.`created_by` `T1_C4`,`lcap_user_dept_mapping_a6d592`.`updated_by` `T1_C5`,`lcap_user_dept_mapping_a6d592`.`user_id` `T1_C6`,`lcap_user_dept_mapping_a6d592`.`dept_id` `T1_C7`,`lcap_user_dept_mapping_a6d592`.`is_dept_leader` `T1_C8` FROM `lcap_user_dept_mapping_a6d592` 
+<if test=" 1==1 and ( deptIdList!=null and deptIdList.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `lcap_user_dept_mapping_a6d592`.`dept_id` IN 
+<foreach item="item" index="index" collection="deptIdList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if>
+</select>
+
+<resultMap id="defaultDSAnonymousStructure_C3F54AE7C6EB0826B17CF78EDFE6659E" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_C3F54AE7C6EB0826B17CF78EDFE6659E">
+    <result column="id" property="id"/>
+    <result column="created_time" property="createdTime"/>
+    <result column="updated_time" property="updatedTime"/>
+    <result column="created_by" property="createdBy"/>
+    <result column="updated_by" property="updatedBy"/>
+    <result column="name" property="name"/>
+    <result column="dept_id" property="deptId"/>
+    <result column="parent_dept_id" property="parentDeptId"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_C3F54AE7C6EB0826B17CF78EDFE6659E">
+select * from `lcap_department_a6d592` 
+<if test=" ( deptIdList!=null and deptIdList.size()>0 ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`parent_dept_id` in <foreach item="item" index="index" collection="deptIdList" open="(" separator="," close=")">
+#{item}
+</foreach>
+
+</trim>
+</if>
+</select>
+</mapper>

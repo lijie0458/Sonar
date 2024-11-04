@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PurchaseRequestEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.PurchaseRequestEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.PurchaseRequestEntity">
+        <id column="request_number" jdbcType="VARCHAR" property="requestNumber" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="department" jdbcType="BIGINT" property="department" />
+        <result column="request_reason" jdbcType="VARCHAR" property="requestReason" />
+        <result column="annex" jdbcType="VARCHAR" property="annex" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="approval_status" jdbcType="VARCHAR" property="approvalStatus" />
+        <result column="application_date" jdbcType="DATE" property="applicationDate" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseRequestEntity"  >
+        INSERT INTO `purchase_request` (
+            `title`
+            ,`request_number`
+            ,`department`
+            ,`request_reason`
+            ,`annex`
+            ,`created_by`
+            ,`approval_status`
+            ,`application_date`
+        )
+        VALUES (
+            #{title,jdbcType=VARCHAR}
+            ,#{requestNumber,jdbcType=VARCHAR}
+            ,#{department,jdbcType=BIGINT}
+            ,#{requestReason,jdbcType=VARCHAR}
+            ,#{annex,jdbcType=VARCHAR}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{applicationDate,jdbcType=DATE}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `purchase_request` (
+            `title`
+            ,`request_number`
+            ,`department`
+            ,`request_reason`
+            ,`annex`
+            ,`created_by`
+            ,`approval_status`
+            ,`application_date`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.title,jdbcType=VARCHAR}
+            ,#{item.requestNumber,jdbcType=VARCHAR}
+            ,#{item.department,jdbcType=BIGINT}
+            ,#{item.requestReason,jdbcType=VARCHAR}
+            ,#{item.annex,jdbcType=VARCHAR}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.approvalStatus,jdbcType=VARCHAR}
+            ,#{item.applicationDate,jdbcType=DATE}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseRequestEntity" >
+        UPDATE `purchase_request`
+        <set>
+            <if test="updateFields == null or updateFields.contains('title')">`title` = #{bean.title, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('requestReason')">`request_reason` = #{bean.requestReason, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('applicationDate')">`application_date` = #{bean.applicationDate, jdbcType= DATE},</if>
+        </set>
+        where `request_number` = #{bean.requestNumber}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseRequestEntity" >
+        UPDATE `purchase_request`
+        <set>
+            <if test="updateFields == null or updateFields.contains('title')">`title` = #{bean.title, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('requestReason')">`request_reason` = #{bean.requestReason, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('applicationDate')">`application_date` = #{bean.applicationDate, jdbcType= DATE},</if>
+        </set>
+        where `request_number` = #{bean.requestNumber}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `purchase_request` where `request_number` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `purchase_request` where `request_number` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `purchase_request`
+        <where>
+            <choose>
+                <when test="property == 'title'">
+                    AND `title` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'requestNumber'">
+                    AND `request_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'department'">
+                    AND `department` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'requestReason'">
+                    AND `request_reason` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'annex'">
+                    AND `annex` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'applicationDate'">
+                    AND `application_date` = #{value, jdbcType=DATE}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `request_number` from `purchase_request` 
+        <where>
+            <choose>
+                <when test="property == 'title'">
+                    AND `title` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'requestNumber'">
+                    AND `request_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'department'">
+                    AND `department` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'requestReason'">
+                    AND `request_reason` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'annex'">
+                    AND `annex` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'applicationDate'">
+                    AND `application_date` = #{value, jdbcType=DATE}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `purchase_request`
+        where `request_number`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `purchase_request`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `purchase_request`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseRequestEntity">
+        INSERT INTO `purchase_request` (
+            `title`
+            ,`request_number`
+            ,`department`
+            ,`request_reason`
+            ,`annex`
+            ,`created_by`
+            ,`approval_status`
+            ,`application_date`
+        )
+        VALUES (
+            #{title,jdbcType=VARCHAR}
+            ,#{requestNumber,jdbcType=VARCHAR}
+            ,#{department,jdbcType=BIGINT}
+            ,#{requestReason,jdbcType=VARCHAR}
+            ,#{annex,jdbcType=VARCHAR}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{applicationDate,jdbcType=DATE}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `purchase_request`
+        <set>
+        <if test="updateFields == null or updateFields.contains('title')">`title` = #{bean.title, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('requestReason')">`request_reason` = #{bean.requestReason, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('applicationDate')">`application_date` = #{bean.applicationDate, jdbcType= DATE},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `purchase_request`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

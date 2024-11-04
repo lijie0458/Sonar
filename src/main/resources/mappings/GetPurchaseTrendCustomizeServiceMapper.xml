@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetPurchaseTrendCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetPurchaseTrendCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_2AC74E45ED5FB770049D4B45F0737151" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2AC74E45ED5FB770049D4B45F0737151">
+    <result column="months" property="months"/>
+    <result column="sumPrice" property="sumPrice"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_2AC74E45ED5FB770049D4B45F0737151">
+SELECT DATE_FORMAT( `po`.`order_date` , '%Y-%m') `months`,
+<trim prefix="(" suffix=")" prefixOverrides="and |or">
+	SUM( `pod`.`order_quantity` * `pod`.`price_including_tax`) / 10000
+</trim> `sumPrice` FROM `purchase_order` `po` LEFT JOIN `purchase_order_detail` `pod` ON `po`.`order_number` = `pod`.`related_order_number` GROUP BY DATE_FORMAT( `po`.`order_date` , '%Y-%m')
+</select>
+</mapper>

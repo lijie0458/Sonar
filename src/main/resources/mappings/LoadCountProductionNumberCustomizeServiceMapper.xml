@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountProductionNumberCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountProductionNumberCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6">
+    <id column="T1_C1" property="productionMaterialRequisition.documentNumber"/>
+    <result column="T1_C2" property="productionMaterialRequisition.department"/>
+    <result column="T1_C3" property="productionMaterialRequisition.employee"/>
+    <result column="T1_C4" property="productionMaterialRequisition.requestDate"/>
+    <result column="T1_C5" property="productionMaterialRequisition.summary"/>
+    <result column="T1_C6" property="productionMaterialRequisition.attachment"/>
+    <result column="T1_C7" property="productionMaterialRequisition.approvalStatus"/>
+    <result column="T1_C8" property="productionMaterialRequisition.issueReturnDistinction"/>
+    <result column="T1_C9" property="productionMaterialRequisition.guardian"/>
+    <result column="T1_C10" property="productionMaterialRequisition.createdBy"/>
+    <result column="T1_C11" property="productionMaterialRequisition.sourceDocumentNumber"/>
+</resultMap>
+
+<select id="getAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6" resultMap="AnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6">
+SELECT `production_material_requisition`.`document_number` `T1_C1`,`production_material_requisition`.`department` `T1_C2`,`production_material_requisition`.`employee` `T1_C3`,`production_material_requisition`.`request_date` `T1_C4`,`production_material_requisition`.`summary` `T1_C5`,`production_material_requisition`.`attachment` `T1_C6`,`production_material_requisition`.`approval_status` `T1_C7`,`production_material_requisition`.`issue_return_distinction` `T1_C8`,`production_material_requisition`.`guardian` `T1_C9`,`production_material_requisition`.`created_by` `T1_C10`,`production_material_requisition`.`source_document_number` `T1_C11` FROM `production_material_requisition` 
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`production_material_requisition`.`issue_return_distinction` = #{DistinctionEnum} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" 1==1 ">
+
+<trim  suffix=",">
+`production_material_requisition`.`document_number` 
+<if test=" 1==1 ">
+DESC 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `production_material_requisition` 
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`production_material_requisition`.`issue_return_distinction` = #{DistinctionEnum} 
+</trim> 
+</if>
+</select>
+</mapper>

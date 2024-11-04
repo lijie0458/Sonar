@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadAllWarehouse_levelCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadAllWarehouse_levelCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_FBDF0236130EE9AC89BCD2B8CB75C869" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FBDF0236130EE9AC89BCD2B8CB75C869">
+    <id column="T1_C1" property="warehouse_level.id"/>
+    <result column="T1_C2" property="warehouse_level.createdTime"/>
+    <result column="T1_C3" property="warehouse_level.updatedTime"/>
+    <result column="T1_C4" property="warehouse_level.createdBy"/>
+    <result column="T1_C5" property="warehouse_level.updatedBy"/>
+    <result column="T1_C6" property="warehouse_level.warehouse_code"/>
+    <result column="T1_C7" property="warehouse_level.warehouse_name"/>
+    <result column="T1_C8" property="warehouse_level.warehouse_manager"/>
+</resultMap>
+
+<select id="getAnonymousStructure_FBDF0236130EE9AC89BCD2B8CB75C869" resultMap="AnonymousStructure_FBDF0236130EE9AC89BCD2B8CB75C869">
+SELECT `warehouse_level`.`id` `T1_C1`,`warehouse_level`.`created_time` `T1_C2`,`warehouse_level`.`updated_time` `T1_C3`,`warehouse_level`.`created_by` `T1_C4`,`warehouse_level`.`updated_by` `T1_C5`,`warehouse_level`.`warehouse_code` `T1_C6`,`warehouse_level`.`warehouse_name` `T1_C7`,`warehouse_level`.`warehouse_manager` `T1_C8` FROM `warehouse_level` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_FBDF0236130EE9AC89BCD2B8CB75C869" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `warehouse_level`
+</select>
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated UpdateProductInSUnreturnQuantityCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.UpdateProductInSUnreturnQuantityCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_A5F5ED3CF74D96011E0704718C47ACE4" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A5F5ED3CF74D96011E0704718C47ACE4">
+    <id column="T1_C1" property="productReturnStorageDetails.id"/>
+    <result column="T1_C2" property="productReturnStorageDetails.createdTime"/>
+    <result column="T1_C3" property="productReturnStorageDetails.updatedTime"/>
+    <result column="T1_C4" property="productReturnStorageDetails.createdBy"/>
+    <result column="T1_C5" property="productReturnStorageDetails.updatedBy"/>
+    <result column="T1_C6" property="productReturnStorageDetails.productInStorageDetailsId"/>
+    <result column="T1_C7" property="productReturnStorageDetails.quantity"/>
+    <result column="T1_C8" property="productReturnStorageDetails.productReturnStorageCode"/>
+    <result column="T2_C1" property="productInStorageDetails.id"/>
+    <result column="T2_C2" property="productInStorageDetails.createdTime"/>
+    <result column="T2_C3" property="productInStorageDetails.updatedTime"/>
+    <result column="T2_C4" property="productInStorageDetails.createdBy"/>
+    <result column="T2_C5" property="productInStorageDetails.updatedBy"/>
+    <result column="T2_C6" property="productInStorageDetails.code"/>
+    <result column="T2_C7" property="productInStorageDetails.materialCode"/>
+    <result column="T2_C8" property="productInStorageDetails.lotNumber"/>
+    <result column="T2_C9" property="productInStorageDetails.quantity"/>
+    <result column="T2_C10" property="productInStorageDetails.sourceCode"/>
+    <result column="T2_C11" property="productInStorageDetails.warehouseId"/>
+    <result column="T2_C12" property="productInStorageDetails.remark"/>
+    <result column="T2_C13" property="productInStorageDetails.unreturnQuantity"/>
+    <result column="T2_C14" property="productInStorageDetails.storageLocationId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_A5F5ED3CF74D96011E0704718C47ACE4" resultMap="AnonymousStructure_A5F5ED3CF74D96011E0704718C47ACE4">
+SELECT `product_return_storage_details`.`id` `T1_C1`,`product_return_storage_details`.`created_time` `T1_C2`,`product_return_storage_details`.`updated_time` `T1_C3`,`product_return_storage_details`.`created_by` `T1_C4`,`product_return_storage_details`.`updated_by` `T1_C5`,`product_return_storage_details`.`product_in_storage_details_id` `T1_C6`,`product_return_storage_details`.`quantity` `T1_C7`,`product_return_storage_details`.`product_return_storage_code` `T1_C8`,`product_in_storage_details`.`id` `T2_C1`,`product_in_storage_details`.`created_time` `T2_C2`,`product_in_storage_details`.`updated_time` `T2_C3`,`product_in_storage_details`.`created_by` `T2_C4`,`product_in_storage_details`.`updated_by` `T2_C5`,`product_in_storage_details`.`code` `T2_C6`,`product_in_storage_details`.`material_code` `T2_C7`,`product_in_storage_details`.`lot_number` `T2_C8`,`product_in_storage_details`.`quantity` `T2_C9`,`product_in_storage_details`.`source_code` `T2_C10`,`product_in_storage_details`.`warehouse_id` `T2_C11`,`product_in_storage_details`.`remark` `T2_C12`,`product_in_storage_details`.`unreturn_quantity` `T2_C13`,`product_in_storage_details`.`storage_location_id` `T2_C14` FROM `product_return_storage_details` INNER JOIN `product_in_storage_details` ON `product_return_storage_details`.`product_in_storage_details_id` = `product_in_storage_details`.`id` 
+<if test=" 1==1 and productReturnCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`product_return_storage_details`.`product_return_storage_code` = #{productReturnCode} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_A5F5ED3CF74D96011E0704718C47ACE4" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `product_return_storage_details` INNER JOIN `product_in_storage_details` ON `product_return_storage_details`.`product_in_storage_details_id` = `product_in_storage_details`.`id` 
+<if test=" 1==1 and productReturnCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`product_return_storage_details`.`product_return_storage_code` = #{productReturnCode} 
+</trim> 
+</if>
+</select>
+</mapper>

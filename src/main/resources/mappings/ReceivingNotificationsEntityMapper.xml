@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated ReceivingNotificationsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.ReceivingNotificationsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity">
+        <id column="notification_id" jdbcType="VARCHAR" property="notificationId" />
+        <result column="notification_date" jdbcType="DATE" property="notificationDate" />
+        <result column="notification_sender" jdbcType="VARCHAR" property="notificationSender" />
+        <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+        <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="annex" jdbcType="VARCHAR" property="annex" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity"  >
+        INSERT INTO `receiving_notifications` (
+            `notification_id`
+            ,`notification_date`
+            ,`notification_sender`
+            ,`order_number`
+            ,`supplier_name`
+            ,`description`
+            ,`annex`
+        )
+        VALUES (
+            #{notificationId,jdbcType=VARCHAR}
+            ,#{notificationDate,jdbcType=DATE}
+            ,#{notificationSender,jdbcType=VARCHAR}
+            ,#{orderNumber,jdbcType=VARCHAR}
+            ,#{supplierName,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{annex,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `receiving_notifications` (
+            `notification_id`
+            ,`notification_date`
+            ,`notification_sender`
+            ,`order_number`
+            ,`supplier_name`
+            ,`description`
+            ,`annex`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.notificationId,jdbcType=VARCHAR}
+            ,#{item.notificationDate,jdbcType=DATE}
+            ,#{item.notificationSender,jdbcType=VARCHAR}
+            ,#{item.orderNumber,jdbcType=VARCHAR}
+            ,#{item.supplierName,jdbcType=VARCHAR}
+            ,#{item.description,jdbcType=VARCHAR}
+            ,#{item.annex,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity" >
+        UPDATE `receiving_notifications`
+        <set>
+            <if test="updateFields == null or updateFields.contains('notificationDate')">`notification_date` = #{bean.notificationDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('notificationSender')">`notification_sender` = #{bean.notificationSender, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+        </set>
+        where `notification_id` = #{bean.notificationId}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity" >
+        UPDATE `receiving_notifications`
+        <set>
+            <if test="updateFields == null or updateFields.contains('notificationDate')">`notification_date` = #{bean.notificationDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('notificationSender')">`notification_sender` = #{bean.notificationSender, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+        </set>
+        where `notification_id` = #{bean.notificationId}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `receiving_notifications` where `notification_id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `receiving_notifications` where `notification_id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `receiving_notifications`
+        <where>
+            <choose>
+                <when test="property == 'notificationId'">
+                    AND `notification_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'notificationDate'">
+                    AND `notification_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'notificationSender'">
+                    AND `notification_sender` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplierName'">
+                    AND `supplier_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'annex'">
+                    AND `annex` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `notification_id` from `receiving_notifications` 
+        <where>
+            <choose>
+                <when test="property == 'notificationId'">
+                    AND `notification_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'notificationDate'">
+                    AND `notification_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'notificationSender'">
+                    AND `notification_sender` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplierName'">
+                    AND `supplier_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'annex'">
+                    AND `annex` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `receiving_notifications`
+        where `notification_id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `receiving_notifications`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `receiving_notifications`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity">
+        INSERT INTO `receiving_notifications` (
+            `notification_id`
+            ,`notification_date`
+            ,`notification_sender`
+            ,`order_number`
+            ,`supplier_name`
+            ,`description`
+            ,`annex`
+        )
+        VALUES (
+            #{notificationId,jdbcType=VARCHAR}
+            ,#{notificationDate,jdbcType=DATE}
+            ,#{notificationSender,jdbcType=VARCHAR}
+            ,#{orderNumber,jdbcType=VARCHAR}
+            ,#{supplierName,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{annex,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `receiving_notifications`
+        <set>
+        <if test="updateFields == null or updateFields.contains('notificationDate')">`notification_date` = #{bean.notificationDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('notificationSender')">`notification_sender` = #{bean.notificationSender, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `receiving_notifications`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

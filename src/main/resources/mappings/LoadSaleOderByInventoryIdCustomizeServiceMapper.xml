@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadSaleOderByInventoryIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadSaleOderByInventoryIdCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_9E4317B835B85F4F0A55543D88FC5FF1" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9E4317B835B85F4F0A55543D88FC5FF1">
+    <result column="material_code" property="materialCode"/>
+    <result column="material_name" property="material_name"/>
+    <result column="specification" property="specification"/>
+    <result column="unit_name" property="unitName"/>
+    <result column="total" property="total"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_9E4317B835B85F4F0A55543D88FC5FF1">
+SELECT `mat`.`material_code`,`mat`.`material_name`,`mat`.`specification`,`mu`.`unit_name`,COALESCE( sum( `inv`.`stock_quantity`) , 0) `total` FROM `material_details` `mat` LEFT JOIN `inventory` `inv` ON `inv`.`material_code` = `mat`.`material_code` LEFT JOIN `measuring_unit` `mu` ON `mat`.`unit` = `mu`.`id` 
+<if test=" ( param1!=null and param1.size()>0 ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`mat`.`material_code` IN <foreach item="item" index="index" collection="param1" open="(" separator="," close=")">
+#{item}
+</foreach>
+
+</trim>
+</if> GROUP BY `mat`.`material_code`
+</select>
+</mapper>

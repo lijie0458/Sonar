@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadSalesReturnDetailsSelect_20CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadSalesReturnDetailsSelect_20CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_19AE6979770076098EC91325F1B403C2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_19AE6979770076098EC91325F1B403C2">
+    <id column="T1_C1" property="salesOrders.orderNumber"/>
+    <result column="T1_C2" property="salesOrders.customer"/>
+    <result column="T1_C3" property="salesOrders.salesperson"/>
+    <result column="T1_C4" property="salesOrders.department"/>
+    <result column="T1_C5" property="salesOrders.requestDate"/>
+    <result column="T1_C6" property="salesOrders.summary"/>
+    <result column="T1_C7" property="salesOrders.attachment"/>
+    <result column="T1_C8" property="salesOrders.approvalStatus"/>
+    <result column="T1_C9" property="salesOrders.distinction"/>
+    <result column="T1_C10" property="salesOrders.warehouse"/>
+    <result column="T1_C11" property="salesOrders.manuAuto"/>
+    <result column="T1_C12" property="salesOrders.sourceNumber"/>
+    <result column="T1_C13" property="salesOrders.salesman"/>
+    <result column="T1_C14" property="salesOrders.createdBy"/>
+</resultMap>
+
+<select id="getAnonymousStructure_19AE6979770076098EC91325F1B403C2" resultMap="AnonymousStructure_19AE6979770076098EC91325F1B403C2">
+SELECT `sales_orders`.`order_number` `T1_C1`,`sales_orders`.`customer` `T1_C2`,`sales_orders`.`salesperson` `T1_C3`,`sales_orders`.`department` `T1_C4`,`sales_orders`.`request_date` `T1_C5`,`sales_orders`.`summary` `T1_C6`,`sales_orders`.`attachment` `T1_C7`,`sales_orders`.`approval_status` `T1_C8`,`sales_orders`.`distinction` `T1_C9`,`sales_orders`.`warehouse` `T1_C10`,`sales_orders`.`manu_auto` `T1_C11`,`sales_orders`.`source_number` `T1_C12`,`sales_orders`.`salesman` `T1_C13`,`sales_orders`.`created_by` `T1_C14` FROM `sales_orders` 
+<if test=" 1==1 or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`sales_orders`.`distinction` = 'XOUT') 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`sales_orders`.`approval_status` = '2') 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`customer` = #{id} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_19AE6979770076098EC91325F1B403C2" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `sales_orders` 
+<if test=" 1==1 or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`sales_orders`.`distinction` = 'XOUT') 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`sales_orders`.`approval_status` = '2') 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`customer` = #{id} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<resultMap id="AnonymousStructure_19AE6979770076098EC91325F1B403C21" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_19AE6979770076098EC91325F1B403C2">
+    <id column="T1_C1" property="salesOrders.orderNumber"/>
+    <result column="T1_C2" property="salesOrders.customer"/>
+    <result column="T1_C3" property="salesOrders.salesperson"/>
+    <result column="T1_C4" property="salesOrders.department"/>
+    <result column="T1_C5" property="salesOrders.requestDate"/>
+    <result column="T1_C6" property="salesOrders.summary"/>
+    <result column="T1_C7" property="salesOrders.attachment"/>
+    <result column="T1_C8" property="salesOrders.approvalStatus"/>
+    <result column="T1_C9" property="salesOrders.distinction"/>
+    <result column="T1_C10" property="salesOrders.warehouse"/>
+    <result column="T1_C11" property="salesOrders.manuAuto"/>
+    <result column="T1_C12" property="salesOrders.sourceNumber"/>
+    <result column="T1_C13" property="salesOrders.salesman"/>
+    <result column="T1_C14" property="salesOrders.createdBy"/>
+</resultMap>
+
+<select id="getAnonymousStructure_19AE6979770076098EC91325F1B403C21" resultMap="AnonymousStructure_19AE6979770076098EC91325F1B403C21">
+SELECT `sales_orders`.`order_number` `T1_C1`,`sales_orders`.`customer` `T1_C2`,`sales_orders`.`salesperson` `T1_C3`,`sales_orders`.`department` `T1_C4`,`sales_orders`.`request_date` `T1_C5`,`sales_orders`.`summary` `T1_C6`,`sales_orders`.`attachment` `T1_C7`,`sales_orders`.`approval_status` `T1_C8`,`sales_orders`.`distinction` `T1_C9`,`sales_orders`.`warehouse` `T1_C10`,`sales_orders`.`manu_auto` `T1_C11`,`sales_orders`.`source_number` `T1_C12`,`sales_orders`.`salesman` `T1_C13`,`sales_orders`.`created_by` `T1_C14` FROM `sales_orders` 
+<if test=" 1==1 or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`sales_orders`.`distinction` = 'XOUT') 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`sales_orders`.`approval_status` = '2') 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`customer` = #{id} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_19AE6979770076098EC91325F1B403C21" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `sales_orders` 
+<if test=" 1==1 or id!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`sales_orders`.`distinction` = 'XOUT') 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`sales_orders`.`approval_status` = '2') 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`customer` = #{id} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<resultMap id="AnonymousStructure_9C387961E6D66F52987268EB7DB609B7" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9C387961E6D66F52987268EB7DB609B7">
+    <id column="T1_C1" property="salesOrders.orderNumber"/>
+    <result column="T1_C2" property="salesOrders.customer"/>
+    <result column="T1_C3" property="salesOrders.salesperson"/>
+    <result column="T1_C4" property="salesOrders.department"/>
+    <result column="T1_C5" property="salesOrders.requestDate"/>
+    <result column="T1_C6" property="salesOrders.summary"/>
+    <result column="T1_C7" property="salesOrders.attachment"/>
+    <result column="T1_C8" property="salesOrders.approvalStatus"/>
+    <result column="T1_C9" property="salesOrders.distinction"/>
+    <result column="T1_C10" property="salesOrders.warehouse"/>
+    <result column="T1_C11" property="salesOrders.manuAuto"/>
+    <result column="T1_C12" property="salesOrders.sourceNumber"/>
+    <result column="T1_C13" property="salesOrders.salesman"/>
+    <result column="T1_C14" property="salesOrders.createdBy"/>
+    <result column="T2_C1" property="salesOrderDetails.id"/>
+    <result column="T2_C2" property="salesOrderDetails.materialCode"/>
+    <result column="T2_C3" property="salesOrderDetails.quantity"/>
+    <result column="T2_C4" property="salesOrderDetails.unitPrice"/>
+    <result column="T2_C5" property="salesOrderDetails.deliveryDate"/>
+    <result column="T2_C6" property="salesOrderDetails.notes"/>
+    <result column="T2_C7" property="salesOrderDetails.salesOrderNumber"/>
+    <result column="T2_C8" property="salesOrderDetails.warehouse"/>
+    <result column="T2_C9" property="salesOrderDetails.quantityShipped"/>
+    <result column="T2_C10" property="salesOrderDetails.salesOrderDetailsId"/>
+    <result column="T2_C11" property="salesOrderDetails.batchNumber"/>
+    <result column="T2_C12" property="salesOrderDetails.outboundQuantity"/>
+    <result column="T2_C13" property="salesOrderDetails.returnQuanTity"/>
+    <result column="T2_C14" property="salesOrderDetails.availableQuantity"/>
+</resultMap>
+
+<select id="getAnonymousStructure_9C387961E6D66F52987268EB7DB609B7" resultMap="AnonymousStructure_9C387961E6D66F52987268EB7DB609B7">
+SELECT `sales_orders`.`order_number` `T1_C1`,`sales_orders`.`customer` `T1_C2`,`sales_orders`.`salesperson` `T1_C3`,`sales_orders`.`department` `T1_C4`,`sales_orders`.`request_date` `T1_C5`,`sales_orders`.`summary` `T1_C6`,`sales_orders`.`attachment` `T1_C7`,`sales_orders`.`approval_status` `T1_C8`,`sales_orders`.`distinction` `T1_C9`,`sales_orders`.`warehouse` `T1_C10`,`sales_orders`.`manu_auto` `T1_C11`,`sales_orders`.`source_number` `T1_C12`,`sales_orders`.`salesman` `T1_C13`,`sales_orders`.`created_by` `T1_C14`,`sales_order_details`.`id` `T2_C1`,`sales_order_details`.`material_code` `T2_C2`,`sales_order_details`.`quantity` `T2_C3`,`sales_order_details`.`unit_price` `T2_C4`,`sales_order_details`.`delivery_date` `T2_C5`,`sales_order_details`.`notes` `T2_C6`,`sales_order_details`.`sales_order_number` `T2_C7`,`sales_order_details`.`warehouse` `T2_C8`,`sales_order_details`.`quantity_shipped` `T2_C9`,`sales_order_details`.`sales_order_details_id` `T2_C10`,`sales_order_details`.`batch_number` `T2_C11`,`sales_order_details`.`outbound_quantity` `T2_C12`,`sales_order_details`.`return_quan_tity` `T2_C13`,`sales_order_details`.`available_quantity` `T2_C14` FROM `sales_orders` INNER JOIN `sales_order_details` ON `sales_orders`.`order_number` = `sales_order_details`.`sales_order_number` 
+<if test=" 1==1 and item!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`sales_orders`.`order_number` = #{item} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_9C387961E6D66F52987268EB7DB609B7" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `sales_orders` INNER JOIN `sales_order_details` ON `sales_orders`.`order_number` = `sales_order_details`.`sales_order_number` 
+<if test=" 1==1 and item!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`sales_orders`.`order_number` = #{item} 
+</trim> 
+</if>
+</select>
+
+<resultMap id="defaultDSAnonymousStructure_0C942FA717268536916F444E2B135D0C" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_0C942FA717268536916F444E2B135D0C">
+    <result column="material_code" property="materialCode"/>
+    <result column="outbound_quantity" property="outboundQuantity"/>
+    <result column="total" property="total"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_0C942FA717268536916F444E2B135D0C">
+SELECT `sod`.`material_code`,`sod`.`outbound_quantity`,SUM( `sod`.`return_quan_tity`) `total` from `sales_orders` `so` LEFT JOIN `sales_order_details` `sod` ON `so`.`order_number` = `sod`.`sales_order_number` 
+<if test=" item!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`so`.`source_number` = #{item}
+</trim>
+</if> GROUP BY `sod`.`material_code`
+</select>
+
+<resultMap id="AnonymousStructure_19AE6979770076098EC91325F1B403C22" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_19AE6979770076098EC91325F1B403C2">
+    <id column="T1_C1" property="salesOrders.orderNumber"/>
+    <result column="T1_C2" property="salesOrders.customer"/>
+    <result column="T1_C3" property="salesOrders.salesperson"/>
+    <result column="T1_C4" property="salesOrders.department"/>
+    <result column="T1_C5" property="salesOrders.requestDate"/>
+    <result column="T1_C6" property="salesOrders.summary"/>
+    <result column="T1_C7" property="salesOrders.attachment"/>
+    <result column="T1_C8" property="salesOrders.approvalStatus"/>
+    <result column="T1_C9" property="salesOrders.distinction"/>
+    <result column="T1_C10" property="salesOrders.warehouse"/>
+    <result column="T1_C11" property="salesOrders.manuAuto"/>
+    <result column="T1_C12" property="salesOrders.sourceNumber"/>
+    <result column="T1_C13" property="salesOrders.salesman"/>
+    <result column="T1_C14" property="salesOrders.createdBy"/>
+</resultMap>
+
+<select id="getAnonymousStructure_19AE6979770076098EC91325F1B403C22" resultMap="AnonymousStructure_19AE6979770076098EC91325F1B403C22">
+SELECT `sales_orders`.`order_number` `T1_C1`,`sales_orders`.`customer` `T1_C2`,`sales_orders`.`salesperson` `T1_C3`,`sales_orders`.`department` `T1_C4`,`sales_orders`.`request_date` `T1_C5`,`sales_orders`.`summary` `T1_C6`,`sales_orders`.`attachment` `T1_C7`,`sales_orders`.`approval_status` `T1_C8`,`sales_orders`.`distinction` `T1_C9`,`sales_orders`.`warehouse` `T1_C10`,`sales_orders`.`manu_auto` `T1_C11`,`sales_orders`.`source_number` `T1_C12`,`sales_orders`.`salesman` `T1_C13`,`sales_orders`.`created_by` `T1_C14` FROM `sales_orders` 
+<if test=" 1==1 or ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`sales_orders`.`distinction` = 'XOUT') 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`sales_orders`.`approval_status` = '2') 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `sales_orders`.`order_number` IN 
+<foreach item="item" index="index" collection="TrueListOrderNumber" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_19AE6979770076098EC91325F1B403C22" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `sales_orders` 
+<if test=" 1==1 or ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`sales_orders`.`distinction` = 'XOUT') 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`sales_orders`.`approval_status` = '2') 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and ( TrueListOrderNumber!=null and TrueListOrderNumber.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `sales_orders`.`order_number` IN 
+<foreach item="item" index="index" collection="TrueListOrderNumber" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

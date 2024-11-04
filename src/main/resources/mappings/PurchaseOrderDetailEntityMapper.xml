@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PurchaseOrderDetailEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.PurchaseOrderDetailEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.PurchaseOrderDetailEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="material_code" jdbcType="VARCHAR" property="material_code" />
+        <result column="order_quantity" jdbcType="DECIMAL" property="orderQuantity" />
+        <result column="price_including_tax" jdbcType="DECIMAL" property="priceIncludingTax" />
+        <result column="tax_rate" jdbcType="DECIMAL" property="taxRate" />
+        <result column="related_order_number" jdbcType="VARCHAR" property="relatedOrderNumber" />
+        <result column="purchase_details_id" jdbcType="BIGINT" property="purchaseDetailsId" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderDetailEntity"  >
+        INSERT INTO `purchase_order_detail` (
+            `id`
+            ,`material_code`
+            ,`order_quantity`
+            ,`price_including_tax`
+            ,`tax_rate`
+            ,`related_order_number`
+            ,`purchase_details_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{material_code,jdbcType=VARCHAR}
+            ,#{orderQuantity,jdbcType=DECIMAL}
+            ,#{priceIncludingTax,jdbcType=DECIMAL}
+            ,#{taxRate,jdbcType=DECIMAL}
+            ,#{relatedOrderNumber,jdbcType=VARCHAR}
+            ,#{purchaseDetailsId,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `purchase_order_detail` (
+            `id`
+            ,`material_code`
+            ,`order_quantity`
+            ,`price_including_tax`
+            ,`tax_rate`
+            ,`related_order_number`
+            ,`purchase_details_id`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.material_code,jdbcType=VARCHAR}
+            ,#{item.orderQuantity,jdbcType=DECIMAL}
+            ,#{item.priceIncludingTax,jdbcType=DECIMAL}
+            ,#{item.taxRate,jdbcType=DECIMAL}
+            ,#{item.relatedOrderNumber,jdbcType=VARCHAR}
+            ,#{item.purchaseDetailsId,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderDetailEntity" >
+        UPDATE `purchase_order_detail`
+        <set>
+            <if test="updateFields == null or updateFields.contains('material_code')">`material_code` = #{bean.material_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('orderQuantity')">`order_quantity` = #{bean.orderQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('priceIncludingTax')">`price_including_tax` = #{bean.priceIncludingTax, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('taxRate')">`tax_rate` = #{bean.taxRate, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('relatedOrderNumber')">`related_order_number` = #{bean.relatedOrderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('purchaseDetailsId')">`purchase_details_id` = #{bean.purchaseDetailsId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderDetailEntity" >
+        UPDATE `purchase_order_detail`
+        <set>
+            <if test="updateFields == null or updateFields.contains('material_code')">`material_code` = #{bean.material_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('orderQuantity')">`order_quantity` = #{bean.orderQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('priceIncludingTax')">`price_including_tax` = #{bean.priceIncludingTax, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('taxRate')">`tax_rate` = #{bean.taxRate, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('relatedOrderNumber')">`related_order_number` = #{bean.relatedOrderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('purchaseDetailsId')">`purchase_details_id` = #{bean.purchaseDetailsId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `purchase_order_detail` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `purchase_order_detail` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `purchase_order_detail`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'material_code'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderQuantity'">
+                    AND `order_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'priceIncludingTax'">
+                    AND `price_including_tax` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'taxRate'">
+                    AND `tax_rate` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'relatedOrderNumber'">
+                    AND `related_order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'purchaseDetailsId'">
+                    AND `purchase_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `purchase_order_detail` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'material_code'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderQuantity'">
+                    AND `order_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'priceIncludingTax'">
+                    AND `price_including_tax` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'taxRate'">
+                    AND `tax_rate` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'relatedOrderNumber'">
+                    AND `related_order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'purchaseDetailsId'">
+                    AND `purchase_details_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `purchase_order_detail`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `purchase_order_detail`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `purchase_order_detail`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.PurchaseOrderDetailEntity">
+        INSERT INTO `purchase_order_detail` (
+            `id`
+            ,`material_code`
+            ,`order_quantity`
+            ,`price_including_tax`
+            ,`tax_rate`
+            ,`related_order_number`
+            ,`purchase_details_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{material_code,jdbcType=VARCHAR}
+            ,#{orderQuantity,jdbcType=DECIMAL}
+            ,#{priceIncludingTax,jdbcType=DECIMAL}
+            ,#{taxRate,jdbcType=DECIMAL}
+            ,#{relatedOrderNumber,jdbcType=VARCHAR}
+            ,#{purchaseDetailsId,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `purchase_order_detail`
+        <set>
+        <if test="updateFields == null or updateFields.contains('material_code')">`material_code` = #{bean.material_code, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('orderQuantity')">`order_quantity` = #{bean.orderQuantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('priceIncludingTax')">`price_including_tax` = #{bean.priceIncludingTax, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('taxRate')">`tax_rate` = #{bean.taxRate, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('relatedOrderNumber')">`related_order_number` = #{bean.relatedOrderNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('purchaseDetailsId')">`purchase_details_id` = #{bean.purchaseDetailsId, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `purchase_order_detail`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

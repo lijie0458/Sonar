@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERJudgeOrgHasChildrenCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERJudgeOrgHasChildrenCustomizeServiceMapper">
+
+<select id="getSql1" resultType="java.lang.Long">
+select count( 1) from `Organisation` 
+<if test=" id!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`parent_id` = #{id}
+</trim>
+</if>
+</select>
+</mapper>

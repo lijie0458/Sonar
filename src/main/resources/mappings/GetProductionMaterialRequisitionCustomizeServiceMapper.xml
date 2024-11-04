@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetProductionMaterialRequisitionCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetProductionMaterialRequisitionCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_9CC0EE8B16D7F77961F310C582D9C396" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9CC0EE8B16D7F77961F310C582D9C396">
+    <result column="document_number" property="documentNumber"/>
+    <result column="department" property="department"/>
+    <result column="employee" property="employee"/>
+    <result column="request_date" property="requestDate"/>
+    <result column="summary" property="summary"/>
+    <result column="attachment" property="attachment"/>
+    <result column="approval_status" property="approvalStatus"/>
+    <result column="issue_return_distinction" property="issueReturnDistinction"/>
+    <result column="guardian" property="guardian"/>
+    <result column="created_by" property="createdBy"/>
+    <result column="source_document_number" property="sourceDocumentNumber"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_9CC0EE8B16D7F77961F310C582D9C396">
+SELECT `document_number`,`department`,`employee`,`request_date`,`summary`,`attachment`,`approval_status`,`issue_return_distinction`,`guardian`,`created_by`,`source_document_number` FROM `production_material_requisition` 
+<if test=" param1!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`document_number` = #{param1}
+</trim>
+</if>
+</select>
+</mapper>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated CustomerManagementEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.CustomerManagementEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.CustomerManagementEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="customer_code" jdbcType="VARCHAR" property="customerCode" />
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+        <result column="link_man" jdbcType="VARCHAR" property="linkMan" />
+        <result column="contact_number" jdbcType="VARCHAR" property="contactNumber" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="detailed_address" jdbcType="VARCHAR" property="detailedAddress" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.CustomerManagementEntity"  >
+        INSERT INTO `customer_management` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`customer_code`
+            ,`customer_name`
+            ,`link_man`
+            ,`contact_number`
+            ,`address`
+            ,`detailed_address`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{customerCode,jdbcType=VARCHAR}
+            ,#{customerName,jdbcType=VARCHAR}
+            ,#{linkMan,jdbcType=VARCHAR}
+            ,#{contactNumber,jdbcType=VARCHAR}
+            ,#{address,jdbcType=VARCHAR}
+            ,#{detailedAddress,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `customer_management` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`customer_code`
+            ,`customer_name`
+            ,`link_man`
+            ,`contact_number`
+            ,`address`
+            ,`detailed_address`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.customerCode,jdbcType=VARCHAR}
+            ,#{item.customerName,jdbcType=VARCHAR}
+            ,#{item.linkMan,jdbcType=VARCHAR}
+            ,#{item.contactNumber,jdbcType=VARCHAR}
+            ,#{item.address,jdbcType=VARCHAR}
+            ,#{item.detailedAddress,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.CustomerManagementEntity" >
+        UPDATE `customer_management`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customerCode')">`customer_code` = #{bean.customerCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customerName')">`customer_name` = #{bean.customerName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('linkMan')">`link_man` = #{bean.linkMan, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('contactNumber')">`contact_number` = #{bean.contactNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('address')">`address` = #{bean.address, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('detailedAddress')">`detailed_address` = #{bean.detailedAddress, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.CustomerManagementEntity" >
+        UPDATE `customer_management`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customerCode')">`customer_code` = #{bean.customerCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customerName')">`customer_name` = #{bean.customerName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('linkMan')">`link_man` = #{bean.linkMan, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('contactNumber')">`contact_number` = #{bean.contactNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('address')">`address` = #{bean.address, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('detailedAddress')">`detailed_address` = #{bean.detailedAddress, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `customer_management` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `customer_management` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `customer_management`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customerCode'">
+                    AND `customer_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customerName'">
+                    AND `customer_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'linkMan'">
+                    AND `link_man` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'contactNumber'">
+                    AND `contact_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'address'">
+                    AND `address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'detailedAddress'">
+                    AND `detailed_address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `customer_management` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customerCode'">
+                    AND `customer_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customerName'">
+                    AND `customer_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'linkMan'">
+                    AND `link_man` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'contactNumber'">
+                    AND `contact_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'address'">
+                    AND `address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'detailedAddress'">
+                    AND `detailed_address` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `customer_management`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `customer_management`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `customer_management`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.CustomerManagementEntity">
+        INSERT INTO `customer_management` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`customer_code`
+            ,`customer_name`
+            ,`link_man`
+            ,`contact_number`
+            ,`address`
+            ,`detailed_address`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{customerCode,jdbcType=VARCHAR}
+            ,#{customerName,jdbcType=VARCHAR}
+            ,#{linkMan,jdbcType=VARCHAR}
+            ,#{contactNumber,jdbcType=VARCHAR}
+            ,#{address,jdbcType=VARCHAR}
+            ,#{detailedAddress,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `customer_management`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('customerCode')">`customer_code` = #{bean.customerCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('customerName')">`customer_name` = #{bean.customerName, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('linkMan')">`link_man` = #{bean.linkMan, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('contactNumber')">`contact_number` = #{bean.contactNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('address')">`address` = #{bean.address, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('detailedAddress')">`detailed_address` = #{bean.detailedAddress, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `customer_management`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

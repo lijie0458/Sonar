@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated TransferSlipDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.TransferSlipDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.TransferSlipDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="material_code" jdbcType="VARCHAR" property="materialCode" />
+        <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+        <result column="notes" jdbcType="VARCHAR" property="notes" />
+        <result column="production_material_requisition" jdbcType="VARCHAR" property="productionMaterialRequisition" />
+        <result column="out_warehouse" jdbcType="BIGINT" property="outWarehouse" />
+        <result column="batch_number" jdbcType="BIGINT" property="batchNumber" />
+        <result column="out_storage_location" jdbcType="VARCHAR" property="outStorageLocation" />
+        <result column="in_warehouse" jdbcType="BIGINT" property="inWarehouse" />
+        <result column="in_storage_location" jdbcType="VARCHAR" property="inStorageLocation" />
+        <result column="lotNumber" jdbcType="VARCHAR" property="lotNumber" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipDetailsEntity"  >
+        INSERT INTO `transfer_slip_details` (
+            `id`
+            ,`material_code`
+            ,`quantity`
+            ,`notes`
+            ,`production_material_requisition`
+            ,`out_warehouse`
+            ,`batch_number`
+            ,`out_storage_location`
+            ,`in_warehouse`
+            ,`in_storage_location`
+            ,`lotNumber`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{notes,jdbcType=VARCHAR}
+            ,#{productionMaterialRequisition,jdbcType=VARCHAR}
+            ,#{outWarehouse,jdbcType=BIGINT}
+            ,#{batchNumber,jdbcType=BIGINT}
+            ,#{outStorageLocation,jdbcType=VARCHAR}
+            ,#{inWarehouse,jdbcType=BIGINT}
+            ,#{inStorageLocation,jdbcType=VARCHAR}
+            ,#{lotNumber,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `transfer_slip_details` (
+            `id`
+            ,`material_code`
+            ,`quantity`
+            ,`notes`
+            ,`production_material_requisition`
+            ,`out_warehouse`
+            ,`batch_number`
+            ,`out_storage_location`
+            ,`in_warehouse`
+            ,`in_storage_location`
+            ,`lotNumber`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.materialCode,jdbcType=VARCHAR}
+            ,#{item.quantity,jdbcType=DECIMAL}
+            ,#{item.notes,jdbcType=VARCHAR}
+            ,#{item.productionMaterialRequisition,jdbcType=VARCHAR}
+            ,#{item.outWarehouse,jdbcType=BIGINT}
+            ,#{item.batchNumber,jdbcType=BIGINT}
+            ,#{item.outStorageLocation,jdbcType=VARCHAR}
+            ,#{item.inWarehouse,jdbcType=BIGINT}
+            ,#{item.inStorageLocation,jdbcType=VARCHAR}
+            ,#{item.lotNumber,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipDetailsEntity" >
+        UPDATE `transfer_slip_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('notes')">`notes` = #{bean.notes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('productionMaterialRequisition')">`production_material_requisition` = #{bean.productionMaterialRequisition, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('outWarehouse')">`out_warehouse` = #{bean.outWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('outStorageLocation')">`out_storage_location` = #{bean.outStorageLocation, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('inWarehouse')">`in_warehouse` = #{bean.inWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('inStorageLocation')">`in_storage_location` = #{bean.inStorageLocation, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">`lotNumber` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipDetailsEntity" >
+        UPDATE `transfer_slip_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('notes')">`notes` = #{bean.notes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('productionMaterialRequisition')">`production_material_requisition` = #{bean.productionMaterialRequisition, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('outWarehouse')">`out_warehouse` = #{bean.outWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('outStorageLocation')">`out_storage_location` = #{bean.outStorageLocation, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('inWarehouse')">`in_warehouse` = #{bean.inWarehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('inStorageLocation')">`in_storage_location` = #{bean.inStorageLocation, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">`lotNumber` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `transfer_slip_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `transfer_slip_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `transfer_slip_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'notes'">
+                    AND `notes` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'productionMaterialRequisition'">
+                    AND `production_material_requisition` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'outWarehouse'">
+                    AND `out_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'batchNumber'">
+                    AND `batch_number` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'outStorageLocation'">
+                    AND `out_storage_location` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'inWarehouse'">
+                    AND `in_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'inStorageLocation'">
+                    AND `in_storage_location` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'lotNumber'">
+                    AND `lotNumber` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `transfer_slip_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'notes'">
+                    AND `notes` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'productionMaterialRequisition'">
+                    AND `production_material_requisition` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'outWarehouse'">
+                    AND `out_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'batchNumber'">
+                    AND `batch_number` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'outStorageLocation'">
+                    AND `out_storage_location` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'inWarehouse'">
+                    AND `in_warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'inStorageLocation'">
+                    AND `in_storage_location` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'lotNumber'">
+                    AND `lotNumber` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `transfer_slip_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `transfer_slip_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `transfer_slip_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.TransferSlipDetailsEntity">
+        INSERT INTO `transfer_slip_details` (
+            `id`
+            ,`material_code`
+            ,`quantity`
+            ,`notes`
+            ,`production_material_requisition`
+            ,`out_warehouse`
+            ,`batch_number`
+            ,`out_storage_location`
+            ,`in_warehouse`
+            ,`in_storage_location`
+            ,`lotNumber`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{notes,jdbcType=VARCHAR}
+            ,#{productionMaterialRequisition,jdbcType=VARCHAR}
+            ,#{outWarehouse,jdbcType=BIGINT}
+            ,#{batchNumber,jdbcType=BIGINT}
+            ,#{outStorageLocation,jdbcType=VARCHAR}
+            ,#{inWarehouse,jdbcType=BIGINT}
+            ,#{inStorageLocation,jdbcType=VARCHAR}
+            ,#{lotNumber,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `transfer_slip_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('notes')">`notes` = #{bean.notes, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('productionMaterialRequisition')">`production_material_requisition` = #{bean.productionMaterialRequisition, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('outWarehouse')">`out_warehouse` = #{bean.outWarehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('batchNumber')">`batch_number` = #{bean.batchNumber, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('outStorageLocation')">`out_storage_location` = #{bean.outStorageLocation, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('inWarehouse')">`in_warehouse` = #{bean.inWarehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('inStorageLocation')">`in_storage_location` = #{bean.inStorageLocation, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('lotNumber')">`lotNumber` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `transfer_slip_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

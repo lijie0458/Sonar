@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetPermissionIdListByRoleIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetPermissionIdListByRoleIdCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_1C8D1250B6DC21B85363C7974FAD68BD" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_1C8D1250B6DC21B85363C7974FAD68BD">
+    <id column="T1_C1" property="lCAPRolePerMapping.id"/>
+    <result column="T1_C2" property="lCAPRolePerMapping.createdTime"/>
+    <result column="T1_C3" property="lCAPRolePerMapping.updatedTime"/>
+    <result column="T1_C4" property="lCAPRolePerMapping.createdBy"/>
+    <result column="T1_C5" property="lCAPRolePerMapping.updatedBy"/>
+    <result column="T1_C6" property="lCAPRolePerMapping.roleId"/>
+    <result column="T1_C7" property="lCAPRolePerMapping.permissionId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_1C8D1250B6DC21B85363C7974FAD68BD" resultMap="AnonymousStructure_1C8D1250B6DC21B85363C7974FAD68BD">
+SELECT `lcap_role_per_mapping_a6d592`.`id` `T1_C1`,`lcap_role_per_mapping_a6d592`.`created_time` `T1_C2`,`lcap_role_per_mapping_a6d592`.`updated_time` `T1_C3`,`lcap_role_per_mapping_a6d592`.`created_by` `T1_C4`,`lcap_role_per_mapping_a6d592`.`updated_by` `T1_C5`,`lcap_role_per_mapping_a6d592`.`role_id` `T1_C6`,`lcap_role_per_mapping_a6d592`.`permission_id` `T1_C7` FROM `lcap_role_per_mapping_a6d592` 
+<if test=" 1==1 and roleId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`lcap_role_per_mapping_a6d592`.`role_id` = #{roleId} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_1C8D1250B6DC21B85363C7974FAD68BD" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `lcap_role_per_mapping_a6d592` 
+<if test=" 1==1 and roleId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`lcap_role_per_mapping_a6d592`.`role_id` = #{roleId} 
+</trim> 
+</if>
+</select>
+</mapper>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadProductReturnStorageTableView_3CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadProductReturnStorageTableView_3CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413">
+    <id column="T1_C1" property="productReturnStorage.productReturnCode"/>
+    <result column="T1_C2" property="productReturnStorage.createdTime"/>
+    <result column="T1_C3" property="productReturnStorage.createdBy"/>
+    <result column="T1_C4" property="productReturnStorage.updatedTime"/>
+    <result column="T1_C5" property="productReturnStorage.updatedBy"/>
+    <result column="T1_C6" property="productReturnStorage.state"/>
+    <result column="T1_C7" property="productReturnStorage.productInStorageNum"/>
+    <result column="T2_C1" property="productInStorage.num"/>
+    <result column="T2_C2" property="productInStorage.createdTime"/>
+    <result column="T2_C3" property="productInStorage.createdBy"/>
+    <result column="T2_C4" property="productInStorage.updatedTime"/>
+    <result column="T2_C5" property="productInStorage.updatedBy"/>
+    <result column="T2_C6" property="productInStorage.userId"/>
+    <result column="T2_C7" property="productInStorage.sourceCode"/>
+    <result column="T2_C8" property="productInStorage.desc"/>
+    <result column="T2_C9" property="productInStorage.state"/>
+    <result column="T2_C10" property="productInStorage.applyDate"/>
+    <result column="T2_C11" property="productInStorage.deliveryDate"/>
+    <result column="T2_C12" property="productInStorage.departmentId"/>
+    <result column="T2_C13" property="productInStorage.accessory"/>
+    <result column="T3_C1" property="lCAPUser.id"/>
+    <result column="T3_C2" property="lCAPUser.createdTime"/>
+    <result column="T3_C3" property="lCAPUser.updatedTime"/>
+    <result column="T3_C4" property="lCAPUser.userId"/>
+    <result column="T3_C5" property="lCAPUser.userName"/>
+    <result column="T3_C6" property="lCAPUser.password"/>
+    <result column="T3_C7" property="lCAPUser.phone"/>
+    <result column="T3_C8" property="lCAPUser.email"/>
+    <result column="T3_C9" property="lCAPUser.displayName"/>
+    <result column="T3_C10" property="lCAPUser.status"/>
+    <result column="T3_C11" property="lCAPUser.source"/>
+    <result column="T3_C12" property="lCAPUser.department_Id"/>
+    <result column="T3_C13" property="lCAPUser.directLeaderId"/>
+    <result column="T3_C14" property="lCAPUser.isFirstLogin"/>
+    <result column="T4_C1" property="department.id"/>
+    <result column="T4_C2" property="department.createdTime"/>
+    <result column="T4_C3" property="department.updatedTime"/>
+    <result column="T4_C4" property="department.createdBy"/>
+    <result column="T4_C5" property="department.updatedBy"/>
+    <result column="T4_C6" property="department.department_Name"/>
+    <result column="T4_C7" property="department.parent_id"/>
+    <result column="T5_C1" property="productReturnStorageDetails.id"/>
+    <result column="T5_C2" property="productReturnStorageDetails.createdTime"/>
+    <result column="T5_C3" property="productReturnStorageDetails.updatedTime"/>
+    <result column="T5_C4" property="productReturnStorageDetails.createdBy"/>
+    <result column="T5_C5" property="productReturnStorageDetails.updatedBy"/>
+    <result column="T5_C6" property="productReturnStorageDetails.productInStorageDetailsId"/>
+    <result column="T5_C7" property="productReturnStorageDetails.quantity"/>
+    <result column="T5_C8" property="productReturnStorageDetails.productReturnStorageCode"/>
+    <result column="T6_C1" property="productInStorageDetails.id"/>
+    <result column="T6_C2" property="productInStorageDetails.createdTime"/>
+    <result column="T6_C3" property="productInStorageDetails.updatedTime"/>
+    <result column="T6_C4" property="productInStorageDetails.createdBy"/>
+    <result column="T6_C5" property="productInStorageDetails.updatedBy"/>
+    <result column="T6_C6" property="productInStorageDetails.code"/>
+    <result column="T6_C7" property="productInStorageDetails.materialCode"/>
+    <result column="T6_C8" property="productInStorageDetails.lotNumber"/>
+    <result column="T6_C9" property="productInStorageDetails.quantity"/>
+    <result column="T6_C10" property="productInStorageDetails.sourceCode"/>
+    <result column="T6_C11" property="productInStorageDetails.warehouseId"/>
+    <result column="T6_C12" property="productInStorageDetails.remark"/>
+    <result column="T6_C13" property="productInStorageDetails.unreturnQuantity"/>
+    <result column="T6_C14" property="productInStorageDetails.storageLocationId"/>
+    <result column="T7_C1" property="materialDetails.materialCode"/>
+    <result column="T7_C2" property="materialDetails.material_name"/>
+    <result column="T7_C3" property="materialDetails.category_id"/>
+    <result column="T7_C4" property="materialDetails.specification"/>
+    <result column="T7_C5" property="materialDetails.unit"/>
+    <result column="T7_C6" property="materialDetails.description"/>
+    <result column="T7_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T8_C1" property="measuringUnit.id"/>
+    <result column="T8_C2" property="measuringUnit.createdTime"/>
+    <result column="T8_C3" property="measuringUnit.updatedTime"/>
+    <result column="T8_C4" property="measuringUnit.createdBy"/>
+    <result column="T8_C5" property="measuringUnit.updatedBy"/>
+    <result column="T8_C6" property="measuringUnit.unitCode"/>
+    <result column="T8_C7" property="measuringUnit.unitName"/>
+    <result column="T9_C1" property="warehouse_levelTwo.id"/>
+    <result column="T9_C2" property="warehouse_levelTwo.createdTime"/>
+    <result column="T9_C3" property="warehouse_levelTwo.updatedTime"/>
+    <result column="T9_C4" property="warehouse_levelTwo.createdBy"/>
+    <result column="T9_C5" property="warehouse_levelTwo.updatedBy"/>
+    <result column="T9_C6" property="warehouse_levelTwo.warehouse_code"/>
+    <result column="T9_C7" property="warehouse_levelTwo.warehouse_name"/>
+    <result column="T9_C8" property="warehouse_levelTwo.parent_warehouse_Id"/>
+    <result column="T9_C9" property="warehouse_levelTwo.address"/>
+    <result column="T9_C10" property="warehouse_levelTwo.remark"/>
+    <result column="T9_C11" property="warehouse_levelTwo.warehouse_manager"/>
+    <result column="T9_C12" property="warehouse_levelTwo.detailedAddress"/>
+</resultMap>
+
+<select id="getAnonymousStructure_3AA16578BD81DFBC3A3467B39A512413" resultMap="AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413">
+SELECT `product_return_storage`.`product_return_code` `T1_C1`,`product_return_storage`.`created_time` `T1_C2`,`product_return_storage`.`created_by` `T1_C3`,`product_return_storage`.`updated_time` `T1_C4`,`product_return_storage`.`updated_by` `T1_C5`,`product_return_storage`.`state` `T1_C6`,`product_return_storage`.`product_in_storage_num` `T1_C7`,`product_in_storage`.`num` `T2_C1`,`product_in_storage`.`created_time` `T2_C2`,`product_in_storage`.`created_by` `T2_C3`,`product_in_storage`.`updated_time` `T2_C4`,`product_in_storage`.`updated_by` `T2_C5`,`product_in_storage`.`user_id` `T2_C6`,`product_in_storage`.`source_code` `T2_C7`,`product_in_storage`.`desc` `T2_C8`,`product_in_storage`.`state` `T2_C9`,`product_in_storage`.`apply_date` `T2_C10`,`product_in_storage`.`delivery_date` `T2_C11`,`product_in_storage`.`department_id` `T2_C12`,`product_in_storage`.`accessory` `T2_C13`,`lcap_user_a6d592`.`id` `T3_C1`,`lcap_user_a6d592`.`created_time` `T3_C2`,`lcap_user_a6d592`.`updated_time` `T3_C3`,`lcap_user_a6d592`.`user_id` `T3_C4`,`lcap_user_a6d592`.`user_name` `T3_C5`,`lcap_user_a6d592`.`password` `T3_C6`,`lcap_user_a6d592`.`phone` `T3_C7`,`lcap_user_a6d592`.`email` `T3_C8`,`lcap_user_a6d592`.`display_name` `T3_C9`,`lcap_user_a6d592`.`status` `T3_C10`,`lcap_user_a6d592`.`source` `T3_C11`,`lcap_user_a6d592`.`department__id` `T3_C12`,`lcap_user_a6d592`.`direct_leader_id` `T3_C13`,`lcap_user_a6d592`.`is_first_login` `T3_C14`,`department`.`id` `T4_C1`,`department`.`created_time` `T4_C2`,`department`.`updated_time` `T4_C3`,`department`.`created_by` `T4_C4`,`department`.`updated_by` `T4_C5`,`department`.`department__name` `T4_C6`,`department`.`parent_id` `T4_C7`,`product_return_storage_details`.`id` `T5_C1`,`product_return_storage_details`.`created_time` `T5_C2`,`product_return_storage_details`.`updated_time` `T5_C3`,`product_return_storage_details`.`created_by` `T5_C4`,`product_return_storage_details`.`updated_by` `T5_C5`,`product_return_storage_details`.`product_in_storage_details_id` `T5_C6`,`product_return_storage_details`.`quantity` `T5_C7`,`product_return_storage_details`.`product_return_storage_code` `T5_C8`,`product_in_storage_details`.`id` `T6_C1`,`product_in_storage_details`.`created_time` `T6_C2`,`product_in_storage_details`.`updated_time` `T6_C3`,`product_in_storage_details`.`created_by` `T6_C4`,`product_in_storage_details`.`updated_by` `T6_C5`,`product_in_storage_details`.`code` `T6_C6`,`product_in_storage_details`.`material_code` `T6_C7`,`product_in_storage_details`.`lot_number` `T6_C8`,`product_in_storage_details`.`quantity` `T6_C9`,`product_in_storage_details`.`source_code` `T6_C10`,`product_in_storage_details`.`warehouse_id` `T6_C11`,`product_in_storage_details`.`remark` `T6_C12`,`product_in_storage_details`.`unreturn_quantity` `T6_C13`,`product_in_storage_details`.`storage_location_id` `T6_C14`,`material_details`.`material_code` `T7_C1`,`material_details`.`material_name` `T7_C2`,`material_details`.`category_id` `T7_C3`,`material_details`.`specification` `T7_C4`,`material_details`.`unit` `T7_C5`,`material_details`.`description` `T7_C6`,`material_details`.`is_batch_enabled` `T7_C7`,`warehouse_level_two`.`id` `T9_C1`,`warehouse_level_two`.`created_time` `T9_C2`,`warehouse_level_two`.`updated_time` `T9_C3`,`warehouse_level_two`.`created_by` `T9_C4`,`warehouse_level_two`.`updated_by` `T9_C5`,`warehouse_level_two`.`warehouse_code` `T9_C6`,`warehouse_level_two`.`warehouse_name` `T9_C7`,`warehouse_level_two`.`parent_warehouse__id` `T9_C8`,`warehouse_level_two`.`address` `T9_C9`,`warehouse_level_two`.`remark` `T9_C10`,`warehouse_level_two`.`warehouse_manager` `T9_C11`,`warehouse_level_two`.`detailed_address` `T9_C12`,`measuring_unit`.`id` `T8_C1`,`measuring_unit`.`created_time` `T8_C2`,`measuring_unit`.`updated_time` `T8_C3`,`measuring_unit`.`created_by` `T8_C4`,`measuring_unit`.`updated_by` `T8_C5`,`measuring_unit`.`unit_code` `T8_C6`,`measuring_unit`.`unit_name` `T8_C7` FROM `product_return_storage` INNER JOIN `product_in_storage` ON `product_return_storage`.`product_in_storage_num` = `product_in_storage`.`num` INNER JOIN `lcap_user_a6d592` ON `product_in_storage`.`user_id` = `lcap_user_a6d592`.`user_id` INNER JOIN `department` ON `product_in_storage`.`department_id` = `department`.`id` INNER JOIN `product_return_storage_details` ON `product_return_storage`.`product_return_code` = `product_return_storage_details`.`product_return_storage_code` INNER JOIN `product_in_storage_details` ON `product_return_storage_details`.`product_in_storage_details_id` = `product_in_storage_details`.`id` INNER JOIN `material_details` ON `product_in_storage_details`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `warehouse_level_two` ON `product_in_storage_details`.`warehouse_id` = `warehouse_level_two`.`id` 
+<if test=" 1==1 or ( dataViewAuthority!=null and dataViewAuthority.size()>0 ) or ( filter!=null and filter.departmentId!=null ) or ( filter!=null and filter.num!=null ) or ( filter!=null and filter.userId!=null ) or ( filter1!=null and filter1.state!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( dataViewAuthority!=null and dataViewAuthority.size()>0 ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `product_return_storage`.`created_by` IN 
+<foreach item="item" index="index" collection="dataViewAuthority" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> 
+<if test=" 1==1 or ( filter!=null and filter.departmentId!=null ) or ( filter!=null and filter.num!=null ) or ( filter!=null and filter.userId!=null ) or ( filter1!=null and filter1.state!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( filter!=null and filter.num!=null ) or ( filter!=null and filter.userId!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.num!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`num` LIKE concat('%', concat(#{filter.num}, '%')) 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.userId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`user_id` = #{filter.userId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 or ( filter!=null and filter.departmentId!=null ) or ( filter1!=null and filter1.state!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter1!=null and filter1.state!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_return_storage`.`state` = #{filter1.state} 
+</trim> 
+</if> 
+<if test=" 1==1 or ( filter!=null and filter.departmentId!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`apply_date` &gt;= #{timeHorizon.startTime} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( timeHorizon!=null and timeHorizon.endTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`apply_date` &lt;= #{timeHorizon.endTime} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.departmentId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`department_id` = #{filter.departmentId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" sort!=null ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" sort!=null ">
+
+<trim  suffix=",">
+${sort} 
+<if test=" order!=null ">
+${@com.dogfood.aa20240808.util.SqlInjectCheckUtil@checkAscOrDesc(order)} 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_3AA16578BD81DFBC3A3467B39A512413" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `product_return_storage` INNER JOIN `product_in_storage` ON `product_return_storage`.`product_in_storage_num` = `product_in_storage`.`num` INNER JOIN `lcap_user_a6d592` ON `product_in_storage`.`user_id` = `lcap_user_a6d592`.`user_id` INNER JOIN `department` ON `product_in_storage`.`department_id` = `department`.`id` INNER JOIN `product_return_storage_details` ON `product_return_storage`.`product_return_code` = `product_return_storage_details`.`product_return_storage_code` INNER JOIN `product_in_storage_details` ON `product_return_storage_details`.`product_in_storage_details_id` = `product_in_storage_details`.`id` INNER JOIN `material_details` ON `product_in_storage_details`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `warehouse_level_two` ON `product_in_storage_details`.`warehouse_id` = `warehouse_level_two`.`id` 
+<if test=" 1==1 or ( dataViewAuthority!=null and dataViewAuthority.size()>0 ) or ( filter!=null and filter.departmentId!=null ) or ( filter!=null and filter.num!=null ) or ( filter!=null and filter.userId!=null ) or ( filter1!=null and filter1.state!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( dataViewAuthority!=null and dataViewAuthority.size()>0 ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `product_return_storage`.`created_by` IN 
+<foreach item="item" index="index" collection="dataViewAuthority" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> 
+<if test=" 1==1 or ( filter!=null and filter.departmentId!=null ) or ( filter!=null and filter.num!=null ) or ( filter!=null and filter.userId!=null ) or ( filter1!=null and filter1.state!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( filter!=null and filter.num!=null ) or ( filter!=null and filter.userId!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.num!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`num` LIKE concat('%', concat(#{filter.num}, '%')) 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.userId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`user_id` = #{filter.userId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 or ( filter!=null and filter.departmentId!=null ) or ( filter1!=null and filter1.state!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter1!=null and filter1.state!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_return_storage`.`state` = #{filter1.state} 
+</trim> 
+</if> 
+<if test=" 1==1 or ( filter!=null and filter.departmentId!=null ) or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( timeHorizon!=null and timeHorizon.endTime!=null ) or ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( timeHorizon!=null and timeHorizon.startTime!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`apply_date` &gt;= #{timeHorizon.startTime} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( timeHorizon!=null and timeHorizon.endTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`apply_date` &lt;= #{timeHorizon.endTime} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.departmentId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`product_in_storage`.`department_id` = #{filter.departmentId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

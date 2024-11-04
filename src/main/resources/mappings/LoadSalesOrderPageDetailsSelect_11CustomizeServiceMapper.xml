@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadSalesOrderPageDetailsSelect_11CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadSalesOrderPageDetailsSelect_11CustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_A11AF91CE5BDC8E059810F0AAE38812B" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A11AF91CE5BDC8E059810F0AAE38812B">
+    <result column="id" property="id"/>
+    <result column="material_code" property="materialCode"/>
+    <result column="lot_number" property="lotNumber"/>
+    <result column="unit" property="unit"/>
+    <result column="warehouse" property="warehouse"/>
+    <result column="stock_quantity" property="stockQuantity"/>
+    <result column="occupied_quantity" property="occupiedQuantity"/>
+    <result column="available_quantity" property="availableQuantity"/>
+    <result column="created_at" property="createdAt"/>
+    <result column="updated_at" property="updatedAt"/>
+    <result column="location" property="location"/>
+    <result column="material_name" property="material_name"/>
+    <result column="total" property="total"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_A11AF91CE5BDC8E059810F0AAE38812B">
+SELECT `inv`.*,`mat`.`material_name`,sum( `inv`.`stock_quantity`) `total` FROM `inventory` `inv` LEFT JOIN `material_details` `mat` ON `inv`.`material_code` = `mat`.`material_code` 
+<if test=" ( List!=null and List.size()>0 ) or ( param1!=null and param1.size()>0 ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<if test=" ( List!=null and List.size()>0 ) ">
+	
+<trim prefix="(" suffix=")">
+	`inv`.`material_code` NOT IN <foreach item="item" index="index" collection="List" open="(" separator="," close=")">
+#{item}
+</foreach>
+
+</trim>
+</if> 
+<if test=" ( param1!=null and param1.size()>0 ) ">
+	
+<trim prefix="and">
+	
+	<trim prefix="(" suffix=")">
+		`inv`.`warehouse` IN <foreach item="item" index="index" collection="param1" open="(" separator="," close=")">
+	#{item}
+	</foreach>
+	
+	</trim>
+</trim>
+</if>
+</trim>
+</if> GROUP BY `inv`.`material_code`
+</select>
+</mapper>

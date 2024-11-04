@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadGoodsReturnedNoteDetailsBygoodsReturnedNoteCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadGoodsReturnedNoteDetailsBygoodsReturnedNoteCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_6657CD3B9E0C841818A0548291FF597D" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6657CD3B9E0C841818A0548291FF597D">
+    <id column="T1_C1" property="goodsReturnedNote.goodsReturnedNote"/>
+    <result column="T1_C2" property="goodsReturnedNote.goodsReturnedNoteDate"/>
+    <result column="T1_C3" property="goodsReturnedNote.bePutInStorage"/>
+    <result column="T1_C4" property="goodsReturnedNote.supplierName"/>
+    <result column="T1_C5" property="goodsReturnedNote.description"/>
+    <result column="T1_C6" property="goodsReturnedNote.annex"/>
+    <result column="T1_C7" property="goodsReturnedNote.warehouse"/>
+    <result column="T1_C8" property="goodsReturnedNote.status"/>
+    <result column="T1_C9" property="goodsReturnedNote.createdBy"/>
+    <result column="T2_C1" property="goodsReturnedNoteDetails.id"/>
+    <result column="T2_C2" property="goodsReturnedNoteDetails.goodsReturnedNote"/>
+    <result column="T2_C3" property="goodsReturnedNoteDetails.bePutInStorageQuantity"/>
+    <result column="T2_C4" property="goodsReturnedNoteDetails.materialNumber"/>
+    <result column="T2_C5" property="goodsReturnedNoteDetails.batchNumber"/>
+    <result column="T2_C6" property="goodsReturnedNoteDetails.bePutInStorageDetailsId"/>
+    <result column="T3_C1" property="materialDetails.materialCode"/>
+    <result column="T3_C2" property="materialDetails.material_name"/>
+    <result column="T3_C3" property="materialDetails.category_id"/>
+    <result column="T3_C4" property="materialDetails.specification"/>
+    <result column="T3_C5" property="materialDetails.unit"/>
+    <result column="T3_C6" property="materialDetails.description"/>
+    <result column="T3_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T4_C1" property="measuringUnit.id"/>
+    <result column="T4_C2" property="measuringUnit.createdTime"/>
+    <result column="T4_C3" property="measuringUnit.updatedTime"/>
+    <result column="T4_C4" property="measuringUnit.createdBy"/>
+    <result column="T4_C5" property="measuringUnit.updatedBy"/>
+    <result column="T4_C6" property="measuringUnit.unitCode"/>
+    <result column="T4_C7" property="measuringUnit.unitName"/>
+    <result column="T5_C1" property="bePutInStorageDetails.id"/>
+    <result column="T5_C2" property="bePutInStorageDetails.bePutInStorageId"/>
+    <result column="T5_C3" property="bePutInStorageDetails.bePutInStorageQuantity"/>
+    <result column="T5_C4" property="bePutInStorageDetails.materialNumber"/>
+    <result column="T5_C5" property="bePutInStorageDetails.receivableQuantity"/>
+    <result column="T5_C6" property="bePutInStorageDetails.batchNumber"/>
+    <result column="T5_C7" property="bePutInStorageDetails.receivingDetailsId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_6657CD3B9E0C841818A0548291FF597D" resultMap="AnonymousStructure_6657CD3B9E0C841818A0548291FF597D">
+SELECT `goods_returned_note`.`goods_returned_note` `T1_C1`,`goods_returned_note`.`goods_returned_note_date` `T1_C2`,`goods_returned_note`.`be_put_in_storage` `T1_C3`,`goods_returned_note`.`supplier_name` `T1_C4`,`goods_returned_note`.`description` `T1_C5`,`goods_returned_note`.`annex` `T1_C6`,`goods_returned_note`.`warehouse` `T1_C7`,`goods_returned_note`.`status` `T1_C8`,`goods_returned_note`.`created_by` `T1_C9`,`goods_returned_note_details`.`id` `T2_C1`,`goods_returned_note_details`.`goods_returned_note` `T2_C2`,`goods_returned_note_details`.`be_put_in_storage_quantity` `T2_C3`,`goods_returned_note_details`.`material_number` `T2_C4`,`goods_returned_note_details`.`batch_number` `T2_C5`,`goods_returned_note_details`.`be_put_in_storage_details_id` `T2_C6`,`material_details`.`material_code` `T3_C1`,`material_details`.`material_name` `T3_C2`,`material_details`.`category_id` `T3_C3`,`material_details`.`specification` `T3_C4`,`material_details`.`unit` `T3_C5`,`material_details`.`description` `T3_C6`,`material_details`.`is_batch_enabled` `T3_C7`,`measuring_unit`.`id` `T4_C1`,`measuring_unit`.`created_time` `T4_C2`,`measuring_unit`.`updated_time` `T4_C3`,`measuring_unit`.`created_by` `T4_C4`,`measuring_unit`.`updated_by` `T4_C5`,`measuring_unit`.`unit_code` `T4_C6`,`measuring_unit`.`unit_name` `T4_C7`,`be_put_in_storage_details`.`id` `T5_C1`,`be_put_in_storage_details`.`be_put_in_storage_id` `T5_C2`,`be_put_in_storage_details`.`be_put_in_storage_quantity` `T5_C3`,`be_put_in_storage_details`.`material_number` `T5_C4`,`be_put_in_storage_details`.`receivable_quantity` `T5_C5`,`be_put_in_storage_details`.`batch_number` `T5_C6`,`be_put_in_storage_details`.`receiving_details_id` `T5_C7` FROM `goods_returned_note` INNER JOIN `goods_returned_note_details` ON `goods_returned_note`.`goods_returned_note` = `goods_returned_note_details`.`goods_returned_note` INNER JOIN `material_details` ON `goods_returned_note_details`.`material_number` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `be_put_in_storage_details` ON `goods_returned_note_details`.`be_put_in_storage_details_id` = `be_put_in_storage_details`.`id` 
+<if test=" 1==1 and order_number!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`goods_returned_note`.`goods_returned_note` = #{order_number} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_6657CD3B9E0C841818A0548291FF597D" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `goods_returned_note` INNER JOIN `goods_returned_note_details` ON `goods_returned_note`.`goods_returned_note` = `goods_returned_note_details`.`goods_returned_note` INNER JOIN `material_details` ON `goods_returned_note_details`.`material_number` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `be_put_in_storage_details` ON `goods_returned_note_details`.`be_put_in_storage_details_id` = `be_put_in_storage_details`.`id` 
+<if test=" 1==1 and order_number!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`goods_returned_note`.`goods_returned_note` = #{order_number} 
+</trim> 
+</if>
+</select>
+</mapper>

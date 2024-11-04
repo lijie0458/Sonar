@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated FunctionTableEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.FunctionTableEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.FunctionTableEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="module_id" jdbcType="BIGINT" property="moduleId" />
+        <result column="page_id" jdbcType="BIGINT" property="pageId" />
+        <result column="permission_id" jdbcType="BIGINT" property="permissionId" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.FunctionTableEntity"  >
+        INSERT INTO `FunctionTable` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`name`
+            ,`description`
+            ,`module_id`
+            ,`page_id`
+            ,`permission_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{moduleId,jdbcType=BIGINT}
+            ,#{pageId,jdbcType=BIGINT}
+            ,#{permissionId,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `FunctionTable` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`name`
+            ,`description`
+            ,`module_id`
+            ,`page_id`
+            ,`permission_id`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.name,jdbcType=VARCHAR}
+            ,#{item.description,jdbcType=VARCHAR}
+            ,#{item.moduleId,jdbcType=BIGINT}
+            ,#{item.pageId,jdbcType=BIGINT}
+            ,#{item.permissionId,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.FunctionTableEntity" >
+        UPDATE `FunctionTable`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('moduleId')">`module_id` = #{bean.moduleId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('pageId')">`page_id` = #{bean.pageId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('permissionId')">`permission_id` = #{bean.permissionId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.FunctionTableEntity" >
+        UPDATE `FunctionTable`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('moduleId')">`module_id` = #{bean.moduleId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('pageId')">`page_id` = #{bean.pageId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('permissionId')">`permission_id` = #{bean.permissionId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `FunctionTable` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `FunctionTable` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `FunctionTable`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'name'">
+                    AND `name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'moduleId'">
+                    AND `module_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'pageId'">
+                    AND `page_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'permissionId'">
+                    AND `permission_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `FunctionTable` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'name'">
+                    AND `name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'moduleId'">
+                    AND `module_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'pageId'">
+                    AND `page_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'permissionId'">
+                    AND `permission_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `FunctionTable`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `FunctionTable`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `FunctionTable`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.FunctionTableEntity">
+        INSERT INTO `FunctionTable` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`name`
+            ,`description`
+            ,`module_id`
+            ,`page_id`
+            ,`permission_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{moduleId,jdbcType=BIGINT}
+            ,#{pageId,jdbcType=BIGINT}
+            ,#{permissionId,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `FunctionTable`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('moduleId')">`module_id` = #{bean.moduleId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('pageId')">`page_id` = #{bean.pageId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('permissionId')">`permission_id` = #{bean.permissionId, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `FunctionTable`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadUserManagementSelect_1DepartmentCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadUserManagementSelect_1DepartmentCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_3421ED028B001C489CD794910A15D0C0" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3421ED028B001C489CD794910A15D0C0">
+    <id column="T1_C1" property="department.id"/>
+    <result column="T1_C2" property="department.createdTime"/>
+    <result column="T1_C3" property="department.updatedTime"/>
+    <result column="T1_C4" property="department.createdBy"/>
+    <result column="T1_C5" property="department.updatedBy"/>
+    <result column="T1_C6" property="department.department_Name"/>
+    <result column="T1_C7" property="department.parent_id"/>
+</resultMap>
+
+<select id="getAnonymousStructure_3421ED028B001C489CD794910A15D0C0" resultMap="AnonymousStructure_3421ED028B001C489CD794910A15D0C0">
+SELECT `department`.`id` `T1_C1`,`department`.`created_time` `T1_C2`,`department`.`updated_time` `T1_C3`,`department`.`created_by` `T1_C4`,`department`.`updated_by` `T1_C5`,`department`.`department__name` `T1_C6`,`department`.`parent_id` `T1_C7` FROM `department` 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_3421ED028B001C489CD794910A15D0C0" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `department`
+</select>
+</mapper>

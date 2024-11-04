@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadOtherReturnStorageDetailsSelect_3CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadOtherReturnStorageDetailsSelect_3CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_FC0F89FED0E9FC4B60DAAE9347527401" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FC0F89FED0E9FC4B60DAAE9347527401">
+    <result column="groupCode" property="groupCode"/>
+    <result column="sum" property="sum"/>
+</resultMap>
+
+<select id="getAnonymousStructure_FC0F89FED0E9FC4B60DAAE9347527401" resultMap="AnonymousStructure_FC0F89FED0E9FC4B60DAAE9347527401">
+SELECT SUM(`other_in_storage_details`.`unreturn_quantity`) `sum`,`other_in_storage`.`code` `groupCode` FROM `other_in_storage` INNER JOIN `other_in_storage_details` ON `other_in_storage`.`code` = `other_in_storage_details`.`other_in_s_code` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`other_in_storage`.`state` = '2' 
+</trim> 
+</if> GROUP BY `other_in_storage`.`code` 
+<if test=" 1==1 or isUpdate!=null ">
+
+<trim  prefix="HAVING" prefixOverrides="and |or">
+
+<if test=" isUpdate!=null ">
+(#{isUpdate}) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(
+<if test=" 1==1 ">
+(( ( SUM(`other_in_storage_details`.`unreturn_quantity`) ) IS NULL )) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(SUM(`other_in_storage_details`.`unreturn_quantity`) != 0) 
+</trim> 
+</if>) 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_FC0F89FED0E9FC4B60DAAE9347527401" resultType="java.lang.Long">
+SELECT COUNT(*) FROM (SELECT SUM(`other_in_storage_details`.`unreturn_quantity`) `sum`,`other_in_storage`.`code` `groupCode` FROM `other_in_storage` INNER JOIN `other_in_storage_details` ON `other_in_storage`.`code` = `other_in_storage_details`.`other_in_s_code` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`other_in_storage`.`state` = '2' 
+</trim> 
+</if> GROUP BY `other_in_storage`.`code` 
+<if test=" 1==1 or isUpdate!=null ">
+
+<trim  prefix="HAVING" prefixOverrides="and |or">
+
+<if test=" isUpdate!=null ">
+(#{isUpdate}) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(
+<if test=" 1==1 ">
+(( ( SUM(`other_in_storage_details`.`unreturn_quantity`) ) IS NULL )) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(SUM(`other_in_storage_details`.`unreturn_quantity`) != 0) 
+</trim> 
+</if>) 
+</trim> 
+</if> 
+</trim> 
+</if>) t_lcap_as_count
+</select>
+</mapper>

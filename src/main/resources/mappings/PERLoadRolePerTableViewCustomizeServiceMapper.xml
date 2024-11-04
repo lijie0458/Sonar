@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERLoadRolePerTableViewCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERLoadRolePerTableViewCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_816CAAB437568B2007971AECDC69D188" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_816CAAB437568B2007971AECDC69D188">
+    <id column="T1_C1" property="functionTable.id"/>
+    <result column="T1_C2" property="functionTable.createdTime"/>
+    <result column="T1_C3" property="functionTable.updatedTime"/>
+    <result column="T1_C4" property="functionTable.createdBy"/>
+    <result column="T1_C5" property="functionTable.updatedBy"/>
+    <result column="T1_C6" property="functionTable.name"/>
+    <result column="T1_C7" property="functionTable.description"/>
+    <result column="T1_C8" property="functionTable.moduleId"/>
+    <result column="T1_C9" property="functionTable.pageId"/>
+    <result column="T1_C10" property="functionTable.permissionId"/>
+    <result column="T2_C1" property="page.id"/>
+    <result column="T2_C2" property="page.createdTime"/>
+    <result column="T2_C3" property="page.updatedTime"/>
+    <result column="T2_C4" property="page.createdBy"/>
+    <result column="T2_C5" property="page.updatedBy"/>
+    <result column="T2_C6" property="page.name"/>
+    <result column="T2_C7" property="page.moduleId"/>
+    <result column="T3_C1" property="moduleTable.id"/>
+    <result column="T3_C2" property="moduleTable.createdTime"/>
+    <result column="T3_C3" property="moduleTable.updatedTime"/>
+    <result column="T3_C4" property="moduleTable.createdBy"/>
+    <result column="T3_C5" property="moduleTable.updatedBy"/>
+    <result column="T3_C6" property="moduleTable.name"/>
+</resultMap>
+
+<select id="getAnonymousStructure_816CAAB437568B2007971AECDC69D188" resultMap="AnonymousStructure_816CAAB437568B2007971AECDC69D188">
+SELECT `FunctionTable`.`id` `T1_C1`,`FunctionTable`.`created_time` `T1_C2`,`FunctionTable`.`updated_time` `T1_C3`,`FunctionTable`.`created_by` `T1_C4`,`FunctionTable`.`updated_by` `T1_C5`,`FunctionTable`.`name` `T1_C6`,`FunctionTable`.`description` `T1_C7`,`FunctionTable`.`module_id` `T1_C8`,`FunctionTable`.`page_id` `T1_C9`,`FunctionTable`.`permission_id` `T1_C10`,`Page`.`id` `T2_C1`,`Page`.`created_time` `T2_C2`,`Page`.`updated_time` `T2_C3`,`Page`.`created_by` `T2_C4`,`Page`.`updated_by` `T2_C5`,`Page`.`name` `T2_C6`,`Page`.`module_id` `T2_C7`,`ModuleTable`.`id` `T3_C1`,`ModuleTable`.`created_time` `T3_C2`,`ModuleTable`.`updated_time` `T3_C3`,`ModuleTable`.`created_by` `T3_C4`,`ModuleTable`.`updated_by` `T3_C5`,`ModuleTable`.`name` `T3_C6` FROM `FunctionTable` LEFT JOIN `Page` ON `FunctionTable`.`page_id` = `Page`.`id` LEFT JOIN `ModuleTable` ON `FunctionTable`.`module_id` = `ModuleTable`.`id` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( NOT ( ( ( `FunctionTable`.`permission_id` ) IS NULL ) ) ) 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_816CAAB437568B2007971AECDC69D188" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `FunctionTable` LEFT JOIN `Page` ON `FunctionTable`.`page_id` = `Page`.`id` LEFT JOIN `ModuleTable` ON `FunctionTable`.`module_id` = `ModuleTable`.`id` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( NOT ( ( ( `FunctionTable`.`permission_id` ) IS NULL ) ) ) 
+</trim> 
+</if>
+</select>
+</mapper>

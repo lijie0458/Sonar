@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated Storage_locationEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.Storage_locationEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.Storage_locationEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="location_code" jdbcType="VARCHAR" property="location_code" />
+        <result column="location_name" jdbcType="VARCHAR" property="location_name" />
+        <result column="warehouse_codetwo_id" jdbcType="BIGINT" property="warehouse_codetwo_id" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.Storage_locationEntity"  >
+        INSERT INTO `storage_location` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`location_code`
+            ,`location_name`
+            ,`warehouse_codetwo_id`
+            ,`description`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{location_code,jdbcType=VARCHAR}
+            ,#{location_name,jdbcType=VARCHAR}
+            ,#{warehouse_codetwo_id,jdbcType=BIGINT}
+            ,#{description,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `storage_location` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`location_code`
+            ,`location_name`
+            ,`warehouse_codetwo_id`
+            ,`description`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.location_code,jdbcType=VARCHAR}
+            ,#{item.location_name,jdbcType=VARCHAR}
+            ,#{item.warehouse_codetwo_id,jdbcType=BIGINT}
+            ,#{item.description,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.Storage_locationEntity" >
+        UPDATE `storage_location`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('location_code')">`location_code` = #{bean.location_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('location_name')">`location_name` = #{bean.location_name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse_codetwo_id')">`warehouse_codetwo_id` = #{bean.warehouse_codetwo_id, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.Storage_locationEntity" >
+        UPDATE `storage_location`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('location_code')">`location_code` = #{bean.location_code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('location_name')">`location_name` = #{bean.location_name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse_codetwo_id')">`warehouse_codetwo_id` = #{bean.warehouse_codetwo_id, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `storage_location` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `storage_location` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `storage_location`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'location_code'">
+                    AND `location_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'location_name'">
+                    AND `location_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse_codetwo_id'">
+                    AND `warehouse_codetwo_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `storage_location` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'location_code'">
+                    AND `location_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'location_name'">
+                    AND `location_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse_codetwo_id'">
+                    AND `warehouse_codetwo_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `storage_location`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `storage_location`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `storage_location`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.Storage_locationEntity">
+        INSERT INTO `storage_location` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`location_code`
+            ,`location_name`
+            ,`warehouse_codetwo_id`
+            ,`description`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{location_code,jdbcType=VARCHAR}
+            ,#{location_name,jdbcType=VARCHAR}
+            ,#{warehouse_codetwo_id,jdbcType=BIGINT}
+            ,#{description,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `storage_location`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('location_code')">`location_code` = #{bean.location_code, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('location_name')">`location_name` = #{bean.location_name, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('warehouse_codetwo_id')">`warehouse_codetwo_id` = #{bean.warehouse_codetwo_id, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `storage_location`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

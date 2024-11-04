@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadProductReturnStorageDetailsSelect_1CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadProductReturnStorageDetailsSelect_1CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_742E48DFC5C3FE76DFBCFC5AEB7FA442" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_742E48DFC5C3FE76DFBCFC5AEB7FA442">
+    <result column="groupNum" property="groupNum"/>
+    <result column="sum" property="sum"/>
+</resultMap>
+
+<select id="getAnonymousStructure_742E48DFC5C3FE76DFBCFC5AEB7FA442" resultMap="AnonymousStructure_742E48DFC5C3FE76DFBCFC5AEB7FA442">
+SELECT SUM(`product_in_storage_details`.`unreturn_quantity`) `sum`,`product_in_storage`.`num` `groupNum` FROM `product_in_storage` INNER JOIN `product_in_storage_details` ON `product_in_storage`.`num` = `product_in_storage_details`.`code` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`product_in_storage`.`state` = '2' 
+</trim> 
+</if> GROUP BY `product_in_storage`.`num` 
+<if test=" 1==1 or isUpdate!=null ">
+
+<trim  prefix="HAVING" prefixOverrides="and |or">
+
+<if test=" isUpdate!=null ">
+(#{isUpdate}) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(
+<if test=" 1==1 ">
+(( ( SUM(`product_in_storage_details`.`unreturn_quantity`) ) IS NULL )) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(SUM(`product_in_storage_details`.`unreturn_quantity`) != 0) 
+</trim> 
+</if>) 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_742E48DFC5C3FE76DFBCFC5AEB7FA442" resultType="java.lang.Long">
+SELECT COUNT(*) FROM (SELECT SUM(`product_in_storage_details`.`unreturn_quantity`) `sum`,`product_in_storage`.`num` `groupNum` FROM `product_in_storage` INNER JOIN `product_in_storage_details` ON `product_in_storage`.`num` = `product_in_storage_details`.`code` 
+<if test=" 1==1 ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`product_in_storage`.`state` = '2' 
+</trim> 
+</if> GROUP BY `product_in_storage`.`num` 
+<if test=" 1==1 or isUpdate!=null ">
+
+<trim  prefix="HAVING" prefixOverrides="and |or">
+
+<if test=" isUpdate!=null ">
+(#{isUpdate}) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(
+<if test=" 1==1 ">
+(( ( SUM(`product_in_storage_details`.`unreturn_quantity`) ) IS NULL )) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(SUM(`product_in_storage_details`.`unreturn_quantity`) != 0) 
+</trim> 
+</if>) 
+</trim> 
+</if> 
+</trim> 
+</if>) t_lcap_as_count
+</select>
+</mapper>

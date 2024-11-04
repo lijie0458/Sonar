@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetOtherInSDetailsByOtherInSCodeCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetOtherInSDetailsByOtherInSCodeCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_CA8F7694D8827E13359AFAFE050C3CB8" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CA8F7694D8827E13359AFAFE050C3CB8">
+    <id column="T1_C1" property="otherInStorageDetails.id"/>
+    <result column="T1_C2" property="otherInStorageDetails.createdTime"/>
+    <result column="T1_C3" property="otherInStorageDetails.updatedTime"/>
+    <result column="T1_C4" property="otherInStorageDetails.createdBy"/>
+    <result column="T1_C5" property="otherInStorageDetails.updatedBy"/>
+    <result column="T1_C6" property="otherInStorageDetails.otherInSCode"/>
+    <result column="T1_C7" property="otherInStorageDetails.materialCode"/>
+    <result column="T1_C8" property="otherInStorageDetails.lotNumber"/>
+    <result column="T1_C9" property="otherInStorageDetails.quantity"/>
+    <result column="T1_C10" property="otherInStorageDetails.sourceCode"/>
+    <result column="T1_C11" property="otherInStorageDetails.warehouseId"/>
+    <result column="T1_C12" property="otherInStorageDetails.remark"/>
+    <result column="T1_C13" property="otherInStorageDetails.unreturnQuantity"/>
+    <result column="T1_C14" property="otherInStorageDetails.storageLocationId"/>
+    <result column="T2_C1" property="materialDetails.materialCode"/>
+    <result column="T2_C2" property="materialDetails.material_name"/>
+    <result column="T2_C3" property="materialDetails.category_id"/>
+    <result column="T2_C4" property="materialDetails.specification"/>
+    <result column="T2_C5" property="materialDetails.unit"/>
+    <result column="T2_C6" property="materialDetails.description"/>
+    <result column="T2_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T3_C1" property="measuringUnit.id"/>
+    <result column="T3_C2" property="measuringUnit.createdTime"/>
+    <result column="T3_C3" property="measuringUnit.updatedTime"/>
+    <result column="T3_C4" property="measuringUnit.createdBy"/>
+    <result column="T3_C5" property="measuringUnit.updatedBy"/>
+    <result column="T3_C6" property="measuringUnit.unitCode"/>
+    <result column="T3_C7" property="measuringUnit.unitName"/>
+    <result column="T4_C1" property="warehouse_levelTwo.id"/>
+    <result column="T4_C2" property="warehouse_levelTwo.createdTime"/>
+    <result column="T4_C3" property="warehouse_levelTwo.updatedTime"/>
+    <result column="T4_C4" property="warehouse_levelTwo.createdBy"/>
+    <result column="T4_C5" property="warehouse_levelTwo.updatedBy"/>
+    <result column="T4_C6" property="warehouse_levelTwo.warehouse_code"/>
+    <result column="T4_C7" property="warehouse_levelTwo.warehouse_name"/>
+    <result column="T4_C8" property="warehouse_levelTwo.parent_warehouse_Id"/>
+    <result column="T4_C9" property="warehouse_levelTwo.address"/>
+    <result column="T4_C10" property="warehouse_levelTwo.remark"/>
+    <result column="T4_C11" property="warehouse_levelTwo.warehouse_manager"/>
+    <result column="T4_C12" property="warehouse_levelTwo.detailedAddress"/>
+    <result column="T5_C1" property="inventory.id"/>
+    <result column="T5_C2" property="inventory.materialCode"/>
+    <result column="T5_C3" property="inventory.lotNumber"/>
+    <result column="T5_C4" property="inventory.unit"/>
+    <result column="T5_C5" property="inventory.warehouse"/>
+    <result column="T5_C6" property="inventory.stockQuantity"/>
+    <result column="T5_C7" property="inventory.occupiedQuantity"/>
+    <result column="T5_C8" property="inventory.availableQuantity"/>
+    <result column="T5_C9" property="inventory.createdAt"/>
+    <result column="T5_C10" property="inventory.updatedAt"/>
+    <result column="T5_C11" property="inventory.location"/>
+</resultMap>
+
+<select id="getAnonymousStructure_CA8F7694D8827E13359AFAFE050C3CB8" resultMap="AnonymousStructure_CA8F7694D8827E13359AFAFE050C3CB8">
+SELECT `other_in_storage_details`.`id` `T1_C1`,`other_in_storage_details`.`created_time` `T1_C2`,`other_in_storage_details`.`updated_time` `T1_C3`,`other_in_storage_details`.`created_by` `T1_C4`,`other_in_storage_details`.`updated_by` `T1_C5`,`other_in_storage_details`.`other_in_s_code` `T1_C6`,`other_in_storage_details`.`material_code` `T1_C7`,`other_in_storage_details`.`lot_number` `T1_C8`,`other_in_storage_details`.`quantity` `T1_C9`,`other_in_storage_details`.`source_code` `T1_C10`,`other_in_storage_details`.`warehouse_id` `T1_C11`,`other_in_storage_details`.`remark` `T1_C12`,`other_in_storage_details`.`unreturn_quantity` `T1_C13`,`other_in_storage_details`.`storage_location_id` `T1_C14`,`material_details`.`material_code` `T2_C1`,`material_details`.`material_name` `T2_C2`,`material_details`.`category_id` `T2_C3`,`material_details`.`specification` `T2_C4`,`material_details`.`unit` `T2_C5`,`material_details`.`description` `T2_C6`,`material_details`.`is_batch_enabled` `T2_C7`,`warehouse_level_two`.`id` `T4_C1`,`warehouse_level_two`.`created_time` `T4_C2`,`warehouse_level_two`.`updated_time` `T4_C3`,`warehouse_level_two`.`created_by` `T4_C4`,`warehouse_level_two`.`updated_by` `T4_C5`,`warehouse_level_two`.`warehouse_code` `T4_C6`,`warehouse_level_two`.`warehouse_name` `T4_C7`,`warehouse_level_two`.`parent_warehouse__id` `T4_C8`,`warehouse_level_two`.`address` `T4_C9`,`warehouse_level_two`.`remark` `T4_C10`,`warehouse_level_two`.`warehouse_manager` `T4_C11`,`warehouse_level_two`.`detailed_address` `T4_C12`,`inventory`.`id` `T5_C1`,`inventory`.`material_code` `T5_C2`,`inventory`.`lot_number` `T5_C3`,`inventory`.`unit` `T5_C4`,`inventory`.`warehouse` `T5_C5`,`inventory`.`stock_quantity` `T5_C6`,`inventory`.`occupied_quantity` `T5_C7`,`inventory`.`available_quantity` `T5_C8`,`inventory`.`created_at` `T5_C9`,`inventory`.`updated_at` `T5_C10`,`inventory`.`location` `T5_C11`,`measuring_unit`.`id` `T3_C1`,`measuring_unit`.`created_time` `T3_C2`,`measuring_unit`.`updated_time` `T3_C3`,`measuring_unit`.`created_by` `T3_C4`,`measuring_unit`.`updated_by` `T3_C5`,`measuring_unit`.`unit_code` `T3_C6`,`measuring_unit`.`unit_name` `T3_C7` FROM `other_in_storage_details` INNER JOIN `material_details` ON `other_in_storage_details`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `warehouse_level_two` ON `other_in_storage_details`.`warehouse_id` = `warehouse_level_two`.`id` LEFT JOIN `inventory` ON 
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`other_in_storage_details`.`material_code` = `inventory`.`material_code`) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`lot_number` = `inventory`.`lot_number`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`warehouse_id` = `inventory`.`warehouse`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`storage_location_id` = `inventory`.`location`) 
+</trim> 
+</if> 
+<if test=" 1==1 and otherInSCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`other_in_storage_details`.`other_in_s_code` = #{otherInSCode} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_CA8F7694D8827E13359AFAFE050C3CB8" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `other_in_storage_details` INNER JOIN `material_details` ON `other_in_storage_details`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` INNER JOIN `warehouse_level_two` ON `other_in_storage_details`.`warehouse_id` = `warehouse_level_two`.`id` LEFT JOIN `inventory` ON 
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`other_in_storage_details`.`material_code` = `inventory`.`material_code`) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`lot_number` = `inventory`.`lot_number`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`warehouse_id` = `inventory`.`warehouse`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`storage_location_id` = `inventory`.`location`) 
+</trim> 
+</if> 
+<if test=" 1==1 and otherInSCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`other_in_storage_details`.`other_in_s_code` = #{otherInSCode} 
+</trim> 
+</if>
+</select>
+
+<resultMap id="AnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB">
+    <id column="T1_C1" property="storage_location.id"/>
+    <result column="T1_C2" property="storage_location.createdTime"/>
+    <result column="T1_C3" property="storage_location.updatedTime"/>
+    <result column="T1_C4" property="storage_location.createdBy"/>
+    <result column="T1_C5" property="storage_location.updatedBy"/>
+    <result column="T1_C6" property="storage_location.location_code"/>
+    <result column="T1_C7" property="storage_location.location_name"/>
+    <result column="T1_C8" property="storage_location.warehouse_codetwo_id"/>
+    <result column="T1_C9" property="storage_location.description"/>
+</resultMap>
+
+<select id="getAnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB" resultMap="AnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB">
+SELECT `storage_location`.`id` `T1_C1`,`storage_location`.`created_time` `T1_C2`,`storage_location`.`updated_time` `T1_C3`,`storage_location`.`created_by` `T1_C4`,`storage_location`.`updated_by` `T1_C5`,`storage_location`.`location_code` `T1_C6`,`storage_location`.`location_name` `T1_C7`,`storage_location`.`warehouse_codetwo_id` `T1_C8`,`storage_location`.`description` `T1_C9` FROM `storage_location` 
+<if test=" 1==1 and ( variable2!=null and variable2.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `storage_location`.`warehouse_codetwo_id` IN 
+<foreach item="item" index="index" collection="variable2" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `storage_location` 
+<if test=" 1==1 and ( variable2!=null and variable2.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `storage_location`.`warehouse_codetwo_id` IN 
+<foreach item="item" index="index" collection="variable2" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if>
+</select>
+</mapper>

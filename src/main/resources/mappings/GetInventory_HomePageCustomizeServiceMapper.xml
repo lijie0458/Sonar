@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetInventory_HomePageCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetInventory_HomePageCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_B4B1E36E87120D339E94C04920333A45" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_B4B1E36E87120D339E94C04920333A45">
+    <result column="material_name" property="material_name"/>
+    <result column="warehouse_name" property="warehouse_name"/>
+    <result column="sum" property="sum"/>
+</resultMap>
+
+<select id="getAnonymousStructure_B4B1E36E87120D339E94C04920333A45" resultMap="AnonymousStructure_B4B1E36E87120D339E94C04920333A45">
+SELECT SUM(`inventory`.`stock_quantity`) `sum`,`material_details`.`material_name` `material_name`,`warehouse_level_two`.`warehouse_name` `warehouse_name` FROM `inventory` LEFT JOIN `material_details` ON `inventory`.`material_code` = `material_details`.`material_code` LEFT JOIN `warehouse_level_two` ON `inventory`.`warehouse` = `warehouse_level_two`.`id` GROUP BY `material_details`.`material_name`,`warehouse_level_two`.`warehouse_name` 
+<if test=" sort!=null ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" sort!=null ">
+
+<trim  suffix=",">
+${sort} 
+<if test=" order!=null ">
+${@com.dogfood.aa20240808.util.SqlInjectCheckUtil@checkAscOrDesc(order)} 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_B4B1E36E87120D339E94C04920333A45" resultType="java.lang.Long">
+SELECT COUNT(*) FROM (SELECT SUM(`inventory`.`stock_quantity`) `sum`,`material_details`.`material_name` `material_name`,`warehouse_level_two`.`warehouse_name` `warehouse_name` FROM `inventory` LEFT JOIN `material_details` ON `inventory`.`material_code` = `material_details`.`material_code` LEFT JOIN `warehouse_level_two` ON `inventory`.`warehouse` = `warehouse_level_two`.`id` GROUP BY `material_details`.`material_name`,`warehouse_level_two`.`warehouse_name`) t_lcap_as_count
+</select>
+</mapper>

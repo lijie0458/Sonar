@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated IdentitySourceConfigEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.IdentitySourceConfigEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+        <result column="icon" jdbcType="VARCHAR" property="icon" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="app_id" jdbcType="VARCHAR" property="appId" />
+        <result column="app_secret" jdbcType="VARCHAR" property="appSecret" />
+        <result column="success_url" jdbcType="VARCHAR" property="successUrl" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="login_enable" jdbcType="TINYINT" property="loginEnable" />
+        <result column="center_login_url" jdbcType="VARCHAR" property="centerLoginUrl" />
+        <result column="token_url" jdbcType="VARCHAR" property="tokenUrl" />
+        <result column="token_method" jdbcType="VARCHAR" property="tokenMethod" />
+        <result column="user_url" jdbcType="VARCHAR" property="userUrl" />
+        <result column="user_method" jdbcType="VARCHAR" property="userMethod" />
+        <result column="center_logout_url" jdbcType="VARCHAR" property="centerLogoutUrl" />
+        <result column="logout_callback_url" jdbcType="VARCHAR" property="logoutCallbackUrl" />
+        <result column="cas_ticket_url" jdbcType="VARCHAR" property="casTicketUrl" />
+        <result column="expire" jdbcType="BIGINT" property="expire" />
+        <result column="redirect_url" jdbcType="VARCHAR" property="redirectUrl" />
+        <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+        <result column="token_header_map" jdbcType="VARCHAR" property="tokenHeaderMap"  typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1" />
+        <result column="token_body_map" jdbcType="VARCHAR" property="tokenBodyMap"  typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1" />
+        <result column="user_header_map" jdbcType="VARCHAR" property="userHeaderMap"  typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1" />
+        <result column="user_body_map" jdbcType="VARCHAR" property="userBodyMap"  typeHandler="com.dogfood.aa20240808.repository.handler.MapTypeHandler_1" />
+        <result column="user_id_res" jdbcType="VARCHAR" property="userIdRes" />
+        <result column="user_name_res" jdbcType="VARCHAR" property="userNameRes" />
+        <result column="code" jdbcType="VARCHAR" property="code" />
+        <result column="sso_url" jdbcType="VARCHAR" property="ssoUrl" />
+        <result column="wechat_token" jdbcType="VARCHAR" property="wechatToken" />
+        <result column="wechat_msg_method" jdbcType="VARCHAR" property="wechatMsgMethod" />
+        <result column="wechat_msg_secret" jdbcType="VARCHAR" property="wechatMsgSecret" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity"  >
+        INSERT INTO `IdentitySourceConfig` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`state`
+            ,`icon`
+            ,`name`
+            ,`app_id`
+            ,`app_secret`
+            ,`success_url`
+            ,`type`
+            ,`login_enable`
+            ,`center_login_url`
+            ,`token_url`
+            ,`token_method`
+            ,`user_url`
+            ,`user_method`
+            ,`center_logout_url`
+            ,`logout_callback_url`
+            ,`cas_ticket_url`
+            ,`expire`
+            ,`redirect_url`
+            ,`agent_id`
+            ,`token_header_map`
+            ,`token_body_map`
+            ,`user_header_map`
+            ,`user_body_map`
+            ,`user_id_res`
+            ,`user_name_res`
+            ,`code`
+            ,`sso_url`
+            ,`wechat_token`
+            ,`wechat_msg_method`
+            ,`wechat_msg_secret`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{icon,jdbcType=VARCHAR}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{appId,jdbcType=VARCHAR}
+            ,#{appSecret,jdbcType=VARCHAR}
+            ,#{successUrl,jdbcType=VARCHAR}
+            ,#{type,jdbcType=VARCHAR}
+            ,#{loginEnable,jdbcType=TINYINT}
+            ,#{centerLoginUrl,jdbcType=VARCHAR}
+            ,#{tokenUrl,jdbcType=VARCHAR}
+            ,#{tokenMethod,jdbcType=VARCHAR}
+            ,#{userUrl,jdbcType=VARCHAR}
+            ,#{userMethod,jdbcType=VARCHAR}
+            ,#{centerLogoutUrl,jdbcType=VARCHAR}
+            ,#{logoutCallbackUrl,jdbcType=VARCHAR}
+            ,#{casTicketUrl,jdbcType=VARCHAR}
+            ,#{expire,jdbcType=BIGINT}
+            ,#{redirectUrl,jdbcType=VARCHAR}
+            ,#{agentId,jdbcType=VARCHAR}
+            ,#{tokenHeaderMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{tokenBodyMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{userHeaderMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{userBodyMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{userIdRes,jdbcType=VARCHAR}
+            ,#{userNameRes,jdbcType=VARCHAR}
+            ,#{code,jdbcType=VARCHAR}
+            ,#{ssoUrl,jdbcType=VARCHAR}
+            ,#{wechatToken,jdbcType=VARCHAR}
+            ,#{wechatMsgMethod,jdbcType=VARCHAR}
+            ,#{wechatMsgSecret,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `IdentitySourceConfig` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`state`
+            ,`icon`
+            ,`name`
+            ,`app_id`
+            ,`app_secret`
+            ,`success_url`
+            ,`type`
+            ,`login_enable`
+            ,`center_login_url`
+            ,`token_url`
+            ,`token_method`
+            ,`user_url`
+            ,`user_method`
+            ,`center_logout_url`
+            ,`logout_callback_url`
+            ,`cas_ticket_url`
+            ,`expire`
+            ,`redirect_url`
+            ,`agent_id`
+            ,`token_header_map`
+            ,`token_body_map`
+            ,`user_header_map`
+            ,`user_body_map`
+            ,`user_id_res`
+            ,`user_name_res`
+            ,`code`
+            ,`sso_url`
+            ,`wechat_token`
+            ,`wechat_msg_method`
+            ,`wechat_msg_secret`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.state,jdbcType=VARCHAR}
+            ,#{item.icon,jdbcType=VARCHAR}
+            ,#{item.name,jdbcType=VARCHAR}
+            ,#{item.appId,jdbcType=VARCHAR}
+            ,#{item.appSecret,jdbcType=VARCHAR}
+            ,#{item.successUrl,jdbcType=VARCHAR}
+            ,#{item.type,jdbcType=VARCHAR}
+            ,#{item.loginEnable,jdbcType=TINYINT}
+            ,#{item.centerLoginUrl,jdbcType=VARCHAR}
+            ,#{item.tokenUrl,jdbcType=VARCHAR}
+            ,#{item.tokenMethod,jdbcType=VARCHAR}
+            ,#{item.userUrl,jdbcType=VARCHAR}
+            ,#{item.userMethod,jdbcType=VARCHAR}
+            ,#{item.centerLogoutUrl,jdbcType=VARCHAR}
+            ,#{item.logoutCallbackUrl,jdbcType=VARCHAR}
+            ,#{item.casTicketUrl,jdbcType=VARCHAR}
+            ,#{item.expire,jdbcType=BIGINT}
+            ,#{item.redirectUrl,jdbcType=VARCHAR}
+            ,#{item.agentId,jdbcType=VARCHAR}
+            ,#{item.tokenHeaderMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{item.tokenBodyMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{item.userHeaderMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{item.userBodyMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{item.userIdRes,jdbcType=VARCHAR}
+            ,#{item.userNameRes,jdbcType=VARCHAR}
+            ,#{item.code,jdbcType=VARCHAR}
+            ,#{item.ssoUrl,jdbcType=VARCHAR}
+            ,#{item.wechatToken,jdbcType=VARCHAR}
+            ,#{item.wechatMsgMethod,jdbcType=VARCHAR}
+            ,#{item.wechatMsgSecret,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity" >
+        UPDATE `IdentitySourceConfig`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('icon')">`icon` = #{bean.icon, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('appId')">`app_id` = #{bean.appId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('appSecret')">`app_secret` = #{bean.appSecret, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('successUrl')">`success_url` = #{bean.successUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('type')">`type` = #{bean.type, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('loginEnable')">`login_enable` = #{bean.loginEnable, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('centerLoginUrl')">`center_login_url` = #{bean.centerLoginUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('tokenUrl')">`token_url` = #{bean.tokenUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('tokenMethod')">`token_method` = #{bean.tokenMethod, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userUrl')">`user_url` = #{bean.userUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userMethod')">`user_method` = #{bean.userMethod, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('centerLogoutUrl')">`center_logout_url` = #{bean.centerLogoutUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('logoutCallbackUrl')">`logout_callback_url` = #{bean.logoutCallbackUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('casTicketUrl')">`cas_ticket_url` = #{bean.casTicketUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('expire')">`expire` = #{bean.expire, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('redirectUrl')">`redirect_url` = #{bean.redirectUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('agentId')">`agent_id` = #{bean.agentId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('tokenHeaderMap')">`token_header_map` = #{bean.tokenHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('tokenBodyMap')">`token_body_map` = #{bean.tokenBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('userHeaderMap')">`user_header_map` = #{bean.userHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('userBodyMap')">`user_body_map` = #{bean.userBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('userIdRes')">`user_id_res` = #{bean.userIdRes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userNameRes')">`user_name_res` = #{bean.userNameRes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('code')">`code` = #{bean.code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('ssoUrl')">`sso_url` = #{bean.ssoUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('wechatToken')">`wechat_token` = #{bean.wechatToken, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('wechatMsgMethod')">`wechat_msg_method` = #{bean.wechatMsgMethod, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('wechatMsgSecret')">`wechat_msg_secret` = #{bean.wechatMsgSecret, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity" >
+        UPDATE `IdentitySourceConfig`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('icon')">`icon` = #{bean.icon, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('appId')">`app_id` = #{bean.appId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('appSecret')">`app_secret` = #{bean.appSecret, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('successUrl')">`success_url` = #{bean.successUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('type')">`type` = #{bean.type, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('loginEnable')">`login_enable` = #{bean.loginEnable, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('centerLoginUrl')">`center_login_url` = #{bean.centerLoginUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('tokenUrl')">`token_url` = #{bean.tokenUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('tokenMethod')">`token_method` = #{bean.tokenMethod, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userUrl')">`user_url` = #{bean.userUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userMethod')">`user_method` = #{bean.userMethod, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('centerLogoutUrl')">`center_logout_url` = #{bean.centerLogoutUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('logoutCallbackUrl')">`logout_callback_url` = #{bean.logoutCallbackUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('casTicketUrl')">`cas_ticket_url` = #{bean.casTicketUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('expire')">`expire` = #{bean.expire, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('redirectUrl')">`redirect_url` = #{bean.redirectUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('agentId')">`agent_id` = #{bean.agentId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('tokenHeaderMap')">`token_header_map` = #{bean.tokenHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('tokenBodyMap')">`token_body_map` = #{bean.tokenBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('userHeaderMap')">`user_header_map` = #{bean.userHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('userBodyMap')">`user_body_map` = #{bean.userBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+            <if test="updateFields == null or updateFields.contains('userIdRes')">`user_id_res` = #{bean.userIdRes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userNameRes')">`user_name_res` = #{bean.userNameRes, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('code')">`code` = #{bean.code, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('ssoUrl')">`sso_url` = #{bean.ssoUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('wechatToken')">`wechat_token` = #{bean.wechatToken, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('wechatMsgMethod')">`wechat_msg_method` = #{bean.wechatMsgMethod, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('wechatMsgSecret')">`wechat_msg_secret` = #{bean.wechatMsgSecret, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `IdentitySourceConfig` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `IdentitySourceConfig` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `IdentitySourceConfig`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'icon'">
+                    AND `icon` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'name'">
+                    AND `name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'appId'">
+                    AND `app_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'appSecret'">
+                    AND `app_secret` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'successUrl'">
+                    AND `success_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'type'">
+                    AND `type` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'loginEnable'">
+                    AND `login_enable` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'centerLoginUrl'">
+                    AND `center_login_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenUrl'">
+                    AND `token_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenMethod'">
+                    AND `token_method` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userUrl'">
+                    AND `user_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userMethod'">
+                    AND `user_method` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'centerLogoutUrl'">
+                    AND `center_logout_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'logoutCallbackUrl'">
+                    AND `logout_callback_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'casTicketUrl'">
+                    AND `cas_ticket_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'expire'">
+                    AND `expire` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'redirectUrl'">
+                    AND `redirect_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'agentId'">
+                    AND `agent_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenHeaderMap'">
+                    AND `token_header_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenBodyMap'">
+                    AND `token_body_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userHeaderMap'">
+                    AND `user_header_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userBodyMap'">
+                    AND `user_body_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userIdRes'">
+                    AND `user_id_res` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userNameRes'">
+                    AND `user_name_res` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'code'">
+                    AND `code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'ssoUrl'">
+                    AND `sso_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'wechatToken'">
+                    AND `wechat_token` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'wechatMsgMethod'">
+                    AND `wechat_msg_method` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'wechatMsgSecret'">
+                    AND `wechat_msg_secret` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `IdentitySourceConfig` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'icon'">
+                    AND `icon` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'name'">
+                    AND `name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'appId'">
+                    AND `app_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'appSecret'">
+                    AND `app_secret` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'successUrl'">
+                    AND `success_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'type'">
+                    AND `type` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'loginEnable'">
+                    AND `login_enable` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'centerLoginUrl'">
+                    AND `center_login_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenUrl'">
+                    AND `token_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenMethod'">
+                    AND `token_method` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userUrl'">
+                    AND `user_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userMethod'">
+                    AND `user_method` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'centerLogoutUrl'">
+                    AND `center_logout_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'logoutCallbackUrl'">
+                    AND `logout_callback_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'casTicketUrl'">
+                    AND `cas_ticket_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'expire'">
+                    AND `expire` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'redirectUrl'">
+                    AND `redirect_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'agentId'">
+                    AND `agent_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenHeaderMap'">
+                    AND `token_header_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'tokenBodyMap'">
+                    AND `token_body_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userHeaderMap'">
+                    AND `user_header_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userBodyMap'">
+                    AND `user_body_map` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userIdRes'">
+                    AND `user_id_res` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userNameRes'">
+                    AND `user_name_res` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'code'">
+                    AND `code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'ssoUrl'">
+                    AND `sso_url` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'wechatToken'">
+                    AND `wechat_token` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'wechatMsgMethod'">
+                    AND `wechat_msg_method` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'wechatMsgSecret'">
+                    AND `wechat_msg_secret` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `IdentitySourceConfig`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `IdentitySourceConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `IdentitySourceConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity">
+        INSERT INTO `IdentitySourceConfig` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`state`
+            ,`icon`
+            ,`name`
+            ,`app_id`
+            ,`app_secret`
+            ,`success_url`
+            ,`type`
+            ,`login_enable`
+            ,`center_login_url`
+            ,`token_url`
+            ,`token_method`
+            ,`user_url`
+            ,`user_method`
+            ,`center_logout_url`
+            ,`logout_callback_url`
+            ,`cas_ticket_url`
+            ,`expire`
+            ,`redirect_url`
+            ,`agent_id`
+            ,`token_header_map`
+            ,`token_body_map`
+            ,`user_header_map`
+            ,`user_body_map`
+            ,`user_id_res`
+            ,`user_name_res`
+            ,`code`
+            ,`sso_url`
+            ,`wechat_token`
+            ,`wechat_msg_method`
+            ,`wechat_msg_secret`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{icon,jdbcType=VARCHAR}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{appId,jdbcType=VARCHAR}
+            ,#{appSecret,jdbcType=VARCHAR}
+            ,#{successUrl,jdbcType=VARCHAR}
+            ,#{type,jdbcType=VARCHAR}
+            ,#{loginEnable,jdbcType=TINYINT}
+            ,#{centerLoginUrl,jdbcType=VARCHAR}
+            ,#{tokenUrl,jdbcType=VARCHAR}
+            ,#{tokenMethod,jdbcType=VARCHAR}
+            ,#{userUrl,jdbcType=VARCHAR}
+            ,#{userMethod,jdbcType=VARCHAR}
+            ,#{centerLogoutUrl,jdbcType=VARCHAR}
+            ,#{logoutCallbackUrl,jdbcType=VARCHAR}
+            ,#{casTicketUrl,jdbcType=VARCHAR}
+            ,#{expire,jdbcType=BIGINT}
+            ,#{redirectUrl,jdbcType=VARCHAR}
+            ,#{agentId,jdbcType=VARCHAR}
+            ,#{tokenHeaderMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{tokenBodyMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{userHeaderMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{userBodyMap,jdbcType=VARCHAR,typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+            ,#{userIdRes,jdbcType=VARCHAR}
+            ,#{userNameRes,jdbcType=VARCHAR}
+            ,#{code,jdbcType=VARCHAR}
+            ,#{ssoUrl,jdbcType=VARCHAR}
+            ,#{wechatToken,jdbcType=VARCHAR}
+            ,#{wechatMsgMethod,jdbcType=VARCHAR}
+            ,#{wechatMsgSecret,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `IdentitySourceConfig`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('icon')">`icon` = #{bean.icon, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('appId')">`app_id` = #{bean.appId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('appSecret')">`app_secret` = #{bean.appSecret, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('successUrl')">`success_url` = #{bean.successUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('type')">`type` = #{bean.type, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('loginEnable')">`login_enable` = #{bean.loginEnable, jdbcType= TINYINT},</if>
+        <if test="updateFields == null or updateFields.contains('centerLoginUrl')">`center_login_url` = #{bean.centerLoginUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('tokenUrl')">`token_url` = #{bean.tokenUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('tokenMethod')">`token_method` = #{bean.tokenMethod, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('userUrl')">`user_url` = #{bean.userUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('userMethod')">`user_method` = #{bean.userMethod, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('centerLogoutUrl')">`center_logout_url` = #{bean.centerLogoutUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('logoutCallbackUrl')">`logout_callback_url` = #{bean.logoutCallbackUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('casTicketUrl')">`cas_ticket_url` = #{bean.casTicketUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('expire')">`expire` = #{bean.expire, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('redirectUrl')">`redirect_url` = #{bean.redirectUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('agentId')">`agent_id` = #{bean.agentId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('tokenHeaderMap')">`token_header_map` = #{bean.tokenHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+        <if test="updateFields == null or updateFields.contains('tokenBodyMap')">`token_body_map` = #{bean.tokenBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+        <if test="updateFields == null or updateFields.contains('userHeaderMap')">`user_header_map` = #{bean.userHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+        <if test="updateFields == null or updateFields.contains('userBodyMap')">`user_body_map` = #{bean.userBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
+        <if test="updateFields == null or updateFields.contains('userIdRes')">`user_id_res` = #{bean.userIdRes, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('userNameRes')">`user_name_res` = #{bean.userNameRes, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('code')">`code` = #{bean.code, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('ssoUrl')">`sso_url` = #{bean.ssoUrl, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('wechatToken')">`wechat_token` = #{bean.wechatToken, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('wechatMsgMethod')">`wechat_msg_method` = #{bean.wechatMsgMethod, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('wechatMsgSecret')">`wechat_msg_secret` = #{bean.wechatMsgSecret, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `IdentitySourceConfig`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

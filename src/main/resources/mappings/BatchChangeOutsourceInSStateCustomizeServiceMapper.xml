@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated BatchChangeOutsourceInSStateCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.BatchChangeOutsourceInSStateCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF">
+    <id column="T1_C1" property="outsourceInStorage.code"/>
+    <result column="T1_C2" property="outsourceInStorage.createdTime"/>
+    <result column="T1_C3" property="outsourceInStorage.createdBy"/>
+    <result column="T1_C4" property="outsourceInStorage.updatedTime"/>
+    <result column="T1_C5" property="outsourceInStorage.updatedBy"/>
+    <result column="T1_C6" property="outsourceInStorage.userId"/>
+    <result column="T1_C7" property="outsourceInStorage.sourceCode"/>
+    <result column="T1_C8" property="outsourceInStorage.desc"/>
+    <result column="T1_C9" property="outsourceInStorage.state"/>
+    <result column="T1_C10" property="outsourceInStorage.applyDate"/>
+    <result column="T1_C11" property="outsourceInStorage.deliveryDate"/>
+    <result column="T1_C12" property="outsourceInStorage.supplierId"/>
+    <result column="T1_C13" property="outsourceInStorage.accessory"/>
+</resultMap>
+
+<select id="getAnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF" resultMap="AnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF">
+SELECT `outsource_in_storage`.`code` `T1_C1`,`outsource_in_storage`.`created_time` `T1_C2`,`outsource_in_storage`.`created_by` `T1_C3`,`outsource_in_storage`.`updated_time` `T1_C4`,`outsource_in_storage`.`updated_by` `T1_C5`,`outsource_in_storage`.`user_id` `T1_C6`,`outsource_in_storage`.`source_code` `T1_C7`,`outsource_in_storage`.`desc` `T1_C8`,`outsource_in_storage`.`state` `T1_C9`,`outsource_in_storage`.`apply_date` `T1_C10`,`outsource_in_storage`.`delivery_date` `T1_C11`,`outsource_in_storage`.`supplier_id` `T1_C12`,`outsource_in_storage`.`accessory` `T1_C13` FROM `outsource_in_storage` 
+<if test=" 1==1 or ( codeList!=null and codeList.size()>0 ) or outsourceInSState!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and outsourceInSState!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`outsource_in_storage`.`state` = #{outsourceInSState} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( codeList!=null and codeList.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `outsource_in_storage`.`code` IN 
+<foreach item="item" index="index" collection="codeList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `outsource_in_storage` 
+<if test=" 1==1 or ( codeList!=null and codeList.size()>0 ) or outsourceInSState!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and outsourceInSState!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`outsource_in_storage`.`state` = #{outsourceInSState} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( codeList!=null and codeList.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `outsource_in_storage`.`code` IN 
+<foreach item="item" index="index" collection="codeList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

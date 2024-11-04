@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadWarehouseTableViewCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadWarehouseTableViewCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_6CA25F63D4A24168C85048D927F1049F" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6CA25F63D4A24168C85048D927F1049F">
+    <id column="T1_C1" property="warehouse_level.id"/>
+    <result column="T1_C2" property="warehouse_level.createdTime"/>
+    <result column="T1_C3" property="warehouse_level.updatedTime"/>
+    <result column="T1_C4" property="warehouse_level.createdBy"/>
+    <result column="T1_C5" property="warehouse_level.updatedBy"/>
+    <result column="T1_C6" property="warehouse_level.warehouse_code"/>
+    <result column="T1_C7" property="warehouse_level.warehouse_name"/>
+    <result column="T1_C8" property="warehouse_level.warehouse_manager"/>
+    <result column="T2_C1" property="lCAPUser.id"/>
+    <result column="T2_C2" property="lCAPUser.createdTime"/>
+    <result column="T2_C3" property="lCAPUser.updatedTime"/>
+    <result column="T2_C4" property="lCAPUser.userId"/>
+    <result column="T2_C5" property="lCAPUser.userName"/>
+    <result column="T2_C6" property="lCAPUser.password"/>
+    <result column="T2_C7" property="lCAPUser.phone"/>
+    <result column="T2_C8" property="lCAPUser.email"/>
+    <result column="T2_C9" property="lCAPUser.displayName"/>
+    <result column="T2_C10" property="lCAPUser.status"/>
+    <result column="T2_C11" property="lCAPUser.source"/>
+    <result column="T2_C12" property="lCAPUser.department_Id"/>
+    <result column="T2_C13" property="lCAPUser.directLeaderId"/>
+    <result column="T2_C14" property="lCAPUser.isFirstLogin"/>
+</resultMap>
+
+<select id="getAnonymousStructure_6CA25F63D4A24168C85048D927F1049F" resultMap="AnonymousStructure_6CA25F63D4A24168C85048D927F1049F">
+SELECT `warehouse_level`.`id` `T1_C1`,`warehouse_level`.`created_time` `T1_C2`,`warehouse_level`.`updated_time` `T1_C3`,`warehouse_level`.`created_by` `T1_C4`,`warehouse_level`.`updated_by` `T1_C5`,`warehouse_level`.`warehouse_code` `T1_C6`,`warehouse_level`.`warehouse_name` `T1_C7`,`warehouse_level`.`warehouse_manager` `T1_C8`,`lcap_user_a6d592`.`id` `T2_C1`,`lcap_user_a6d592`.`created_time` `T2_C2`,`lcap_user_a6d592`.`updated_time` `T2_C3`,`lcap_user_a6d592`.`user_id` `T2_C4`,`lcap_user_a6d592`.`user_name` `T2_C5`,`lcap_user_a6d592`.`password` `T2_C6`,`lcap_user_a6d592`.`phone` `T2_C7`,`lcap_user_a6d592`.`email` `T2_C8`,`lcap_user_a6d592`.`display_name` `T2_C9`,`lcap_user_a6d592`.`status` `T2_C10`,`lcap_user_a6d592`.`source` `T2_C11`,`lcap_user_a6d592`.`department__id` `T2_C12`,`lcap_user_a6d592`.`direct_leader_id` `T2_C13`,`lcap_user_a6d592`.`is_first_login` `T2_C14` FROM `warehouse_level` LEFT JOIN `lcap_user_a6d592` ON `warehouse_level`.`warehouse_manager` = `lcap_user_a6d592`.`id` 
+<if test=" 1==1 or ( filter!=null and filter.warehouse_code!=null ) or ( filter!=null and filter.warehouse_name!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.warehouse_code!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`warehouse_level`.`warehouse_code` LIKE concat('%', concat(#{filter.warehouse_code}, '%')) 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.warehouse_name!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`warehouse_level`.`warehouse_name` LIKE concat('%', concat(#{filter.warehouse_name}, '%')) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" sort!=null ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" sort!=null ">
+
+<trim  suffix=",">
+${sort} 
+<if test=" order!=null ">
+${@com.dogfood.aa20240808.util.SqlInjectCheckUtil@checkAscOrDesc(order)} 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_6CA25F63D4A24168C85048D927F1049F" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `warehouse_level` LEFT JOIN `lcap_user_a6d592` ON `warehouse_level`.`warehouse_manager` = `lcap_user_a6d592`.`id` 
+<if test=" 1==1 or ( filter!=null and filter.warehouse_code!=null ) or ( filter!=null and filter.warehouse_name!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.warehouse_code!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`warehouse_level`.`warehouse_code` LIKE concat('%', concat(#{filter.warehouse_code}, '%')) 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.warehouse_name!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`warehouse_level`.`warehouse_name` LIKE concat('%', concat(#{filter.warehouse_name}, '%')) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

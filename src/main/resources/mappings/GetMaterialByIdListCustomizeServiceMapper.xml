@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetMaterialByIdListCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetMaterialByIdListCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_988572FC06FE621688549C0BC53D9030" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_988572FC06FE621688549C0BC53D9030">
+    <id column="T1_C1" property="material.id"/>
+    <result column="T1_C2" property="material.createdTime"/>
+    <result column="T1_C3" property="material.updatedTime"/>
+    <result column="T1_C4" property="material.createdBy"/>
+    <result column="T1_C5" property="material.updatedBy"/>
+    <result column="T1_C6" property="material.category_name"/>
+    <result column="T1_C7" property="material.category_code"/>
+    <result column="T1_C8" property="material.parent_category_id"/>
+</resultMap>
+
+<select id="getAnonymousStructure_988572FC06FE621688549C0BC53D9030" resultMap="AnonymousStructure_988572FC06FE621688549C0BC53D9030">
+SELECT `material`.`id` `T1_C1`,`material`.`created_time` `T1_C2`,`material`.`updated_time` `T1_C3`,`material`.`created_by` `T1_C4`,`material`.`updated_by` `T1_C5`,`material`.`category_name` `T1_C6`,`material`.`category_code` `T1_C7`,`material`.`parent_category_id` `T1_C8` FROM `material` 
+<if test=" 1==1 and ( idList!=null and idList.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `material`.`parent_category_id` IN 
+<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_988572FC06FE621688549C0BC53D9030" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `material` 
+<if test=" 1==1 and ( idList!=null and idList.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `material`.`parent_category_id` IN 
+<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if>
+</select>
+</mapper>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated InventoryEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.InventoryEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.InventoryEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="material_code" jdbcType="VARCHAR" property="materialCode" />
+        <result column="lot_number" jdbcType="VARCHAR" property="lotNumber" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="warehouse" jdbcType="BIGINT" property="warehouse" />
+        <result column="stock_quantity" jdbcType="DECIMAL" property="stockQuantity" />
+        <result column="occupied_quantity" jdbcType="DECIMAL" property="occupiedQuantity" />
+        <result column="available_quantity" jdbcType="BIGINT" property="availableQuantity" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="location" jdbcType="BIGINT" property="location" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.InventoryEntity"  >
+        INSERT INTO `inventory` (
+            `id`
+            ,`material_code`
+            ,`lot_number`
+            ,`unit`
+            ,`warehouse`
+            ,`stock_quantity`
+            ,`occupied_quantity`
+            ,`available_quantity`
+            ,`created_at`
+            ,`updated_at`
+            ,`location`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{lotNumber,jdbcType=VARCHAR}
+            ,#{unit,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{stockQuantity,jdbcType=DECIMAL}
+            ,#{occupiedQuantity,jdbcType=DECIMAL}
+            ,#{availableQuantity,jdbcType=BIGINT}
+            ,#{createdAt,jdbcType=TIMESTAMP}
+            ,#{updatedAt,jdbcType=TIMESTAMP}
+            ,#{location,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `inventory` (
+            `id`
+            ,`material_code`
+            ,`lot_number`
+            ,`unit`
+            ,`warehouse`
+            ,`stock_quantity`
+            ,`occupied_quantity`
+            ,`available_quantity`
+            ,`created_at`
+            ,`updated_at`
+            ,`location`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.materialCode,jdbcType=VARCHAR}
+            ,#{item.lotNumber,jdbcType=VARCHAR}
+            ,#{item.unit,jdbcType=VARCHAR}
+            ,#{item.warehouse,jdbcType=BIGINT}
+            ,#{item.stockQuantity,jdbcType=DECIMAL}
+            ,#{item.occupiedQuantity,jdbcType=DECIMAL}
+            ,#{item.availableQuantity,jdbcType=BIGINT}
+            ,#{item.createdAt,jdbcType=TIMESTAMP}
+            ,#{item.updatedAt,jdbcType=TIMESTAMP}
+            ,#{item.location,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.InventoryEntity" >
+        UPDATE `inventory`
+        <set>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('stockQuantity')">`stock_quantity` = #{bean.stockQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('occupiedQuantity')">`occupied_quantity` = #{bean.occupiedQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdAt')">`created_at` = #{bean.createdAt, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedAt')">`updated_at` = #{bean.updatedAt, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('location')">`location` = #{bean.location, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.InventoryEntity" >
+        UPDATE `inventory`
+        <set>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('stockQuantity')">`stock_quantity` = #{bean.stockQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('occupiedQuantity')">`occupied_quantity` = #{bean.occupiedQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdAt')">`created_at` = #{bean.createdAt, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedAt')">`updated_at` = #{bean.updatedAt, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('location')">`location` = #{bean.location, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `inventory` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `inventory` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `inventory`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'lotNumber'">
+                    AND `lot_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unit'">
+                    AND `unit` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'stockQuantity'">
+                    AND `stock_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'occupiedQuantity'">
+                    AND `occupied_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'availableQuantity'">
+                    AND `available_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdAt'">
+                    AND `created_at` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedAt'">
+                    AND `updated_at` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'location'">
+                    AND `location` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `inventory` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'lotNumber'">
+                    AND `lot_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unit'">
+                    AND `unit` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'stockQuantity'">
+                    AND `stock_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'occupiedQuantity'">
+                    AND `occupied_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'availableQuantity'">
+                    AND `available_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdAt'">
+                    AND `created_at` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedAt'">
+                    AND `updated_at` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'location'">
+                    AND `location` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `inventory`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `inventory`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `inventory`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.InventoryEntity">
+        INSERT INTO `inventory` (
+            `id`
+            ,`material_code`
+            ,`lot_number`
+            ,`unit`
+            ,`warehouse`
+            ,`stock_quantity`
+            ,`occupied_quantity`
+            ,`available_quantity`
+            ,`created_at`
+            ,`updated_at`
+            ,`location`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{lotNumber,jdbcType=VARCHAR}
+            ,#{unit,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{stockQuantity,jdbcType=DECIMAL}
+            ,#{occupiedQuantity,jdbcType=DECIMAL}
+            ,#{availableQuantity,jdbcType=BIGINT}
+            ,#{createdAt,jdbcType=TIMESTAMP}
+            ,#{updatedAt,jdbcType=TIMESTAMP}
+            ,#{location,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `inventory`
+        <set>
+        <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('stockQuantity')">`stock_quantity` = #{bean.stockQuantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('occupiedQuantity')">`occupied_quantity` = #{bean.occupiedQuantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('createdAt')">`created_at` = #{bean.createdAt, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedAt')">`updated_at` = #{bean.updatedAt, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('location')">`location` = #{bean.location, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `inventory`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated MaterialDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.MaterialDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity">
+        <id column="material_code" jdbcType="VARCHAR" property="materialCode" />
+        <result column="material_name" jdbcType="VARCHAR" property="material_name" />
+        <result column="category_id" jdbcType="BIGINT" property="category_id" />
+        <result column="specification" jdbcType="VARCHAR" property="specification" />
+        <result column="unit" jdbcType="BIGINT" property="unit" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="is_batch_enabled" jdbcType="TINYINT" property="is_batch_enabled" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity"  >
+        INSERT INTO `material_details` (
+            `material_code`
+            ,`material_name`
+            ,`category_id`
+            ,`specification`
+            ,`unit`
+            ,`description`
+            ,`is_batch_enabled`
+        )
+        VALUES (
+            #{materialCode,jdbcType=VARCHAR}
+            ,#{material_name,jdbcType=VARCHAR}
+            ,#{category_id,jdbcType=BIGINT}
+            ,#{specification,jdbcType=VARCHAR}
+            ,#{unit,jdbcType=BIGINT}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{is_batch_enabled,jdbcType=TINYINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `material_details` (
+            `material_code`
+            ,`material_name`
+            ,`category_id`
+            ,`specification`
+            ,`unit`
+            ,`description`
+            ,`is_batch_enabled`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.materialCode,jdbcType=VARCHAR}
+            ,#{item.material_name,jdbcType=VARCHAR}
+            ,#{item.category_id,jdbcType=BIGINT}
+            ,#{item.specification,jdbcType=VARCHAR}
+            ,#{item.unit,jdbcType=BIGINT}
+            ,#{item.description,jdbcType=VARCHAR}
+            ,#{item.is_batch_enabled,jdbcType=TINYINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity" >
+        UPDATE `material_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('material_name')">`material_name` = #{bean.material_name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('category_id')">`category_id` = #{bean.category_id, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('specification')">`specification` = #{bean.specification, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('is_batch_enabled')">`is_batch_enabled` = #{bean.is_batch_enabled, jdbcType= TINYINT},</if>
+        </set>
+        where `material_code` = #{bean.materialCode}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity" >
+        UPDATE `material_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('material_name')">`material_name` = #{bean.material_name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('category_id')">`category_id` = #{bean.category_id, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('specification')">`specification` = #{bean.specification, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('is_batch_enabled')">`is_batch_enabled` = #{bean.is_batch_enabled, jdbcType= TINYINT},</if>
+        </set>
+        where `material_code` = #{bean.materialCode}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `material_details` where `material_code` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `material_details` where `material_code` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `material_details`
+        <where>
+            <choose>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'material_name'">
+                    AND `material_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'category_id'">
+                    AND `category_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'specification'">
+                    AND `specification` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unit'">
+                    AND `unit` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'is_batch_enabled'">
+                    AND `is_batch_enabled` = #{value, jdbcType=TINYINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `material_code` from `material_details` 
+        <where>
+            <choose>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'material_name'">
+                    AND `material_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'category_id'">
+                    AND `category_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'specification'">
+                    AND `specification` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unit'">
+                    AND `unit` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'is_batch_enabled'">
+                    AND `is_batch_enabled` = #{value, jdbcType=TINYINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `material_details`
+        where `material_code`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `material_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `material_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity">
+        INSERT INTO `material_details` (
+            `material_code`
+            ,`material_name`
+            ,`category_id`
+            ,`specification`
+            ,`unit`
+            ,`description`
+            ,`is_batch_enabled`
+        )
+        VALUES (
+            #{materialCode,jdbcType=VARCHAR}
+            ,#{material_name,jdbcType=VARCHAR}
+            ,#{category_id,jdbcType=BIGINT}
+            ,#{specification,jdbcType=VARCHAR}
+            ,#{unit,jdbcType=BIGINT}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{is_batch_enabled,jdbcType=TINYINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `material_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('material_name')">`material_name` = #{bean.material_name, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('category_id')">`category_id` = #{bean.category_id, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('specification')">`specification` = #{bean.specification, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('is_batch_enabled')">`is_batch_enabled` = #{bean.is_batch_enabled, jdbcType= TINYINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `material_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated AutoGenerationOtherReturnSCodeCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.AutoGenerationOtherReturnSCodeCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_CCF83669FF6932F4220A16134A2F3077" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CCF83669FF6932F4220A16134A2F3077">
+    <id column="T1_C1" property="otherReturnStorage.returnCode"/>
+    <result column="T1_C2" property="otherReturnStorage.createdTime"/>
+    <result column="T1_C3" property="otherReturnStorage.createdBy"/>
+    <result column="T1_C4" property="otherReturnStorage.updatedTime"/>
+    <result column="T1_C5" property="otherReturnStorage.updatedBy"/>
+    <result column="T1_C6" property="otherReturnStorage.state"/>
+    <result column="T1_C7" property="otherReturnStorage.otherInSCode"/>
+</resultMap>
+
+<select id="getAnonymousStructure_CCF83669FF6932F4220A16134A2F3077" resultMap="AnonymousStructure_CCF83669FF6932F4220A16134A2F3077">
+SELECT `other_return_storage`.`return_code` `T1_C1`,`other_return_storage`.`created_time` `T1_C2`,`other_return_storage`.`created_by` `T1_C3`,`other_return_storage`.`updated_time` `T1_C4`,`other_return_storage`.`updated_by` `T1_C5`,`other_return_storage`.`state` `T1_C6`,`other_return_storage`.`other_in_s_code` `T1_C7` FROM `other_return_storage` 
+<if test=" 1==1 ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" 1==1 ">
+
+<trim  suffix=",">
+`other_return_storage`.`return_code` 
+<if test=" 1==1 ">
+DESC 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_CCF83669FF6932F4220A16134A2F3077" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `other_return_storage`
+</select>
+</mapper>

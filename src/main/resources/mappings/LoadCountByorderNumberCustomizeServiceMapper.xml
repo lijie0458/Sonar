@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountByorderNumberCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountByorderNumberCustomizeServiceMapper">
+
+<select id="getSql1" resultType="java.lang.Long">
+SELECT count( *) FROM `purchase_order_detail` 
+<if test=" orderNumber!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`related_order_number` = #{orderNumber}
+</trim>
+</if>
+</select>
+</mapper>

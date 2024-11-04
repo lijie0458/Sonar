@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadGoodsReturnedNoteByBePutInStorageCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadGoodsReturnedNoteByBePutInStorageCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_5FEA4FE0D02D7521E8E79FE86D5BDFE6" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5FEA4FE0D02D7521E8E79FE86D5BDFE6">
+    <id column="T1_C1" property="goodsReturnedNote.goodsReturnedNote"/>
+    <result column="T1_C2" property="goodsReturnedNote.goodsReturnedNoteDate"/>
+    <result column="T1_C3" property="goodsReturnedNote.bePutInStorage"/>
+    <result column="T1_C4" property="goodsReturnedNote.supplierName"/>
+    <result column="T1_C5" property="goodsReturnedNote.description"/>
+    <result column="T1_C6" property="goodsReturnedNote.annex"/>
+    <result column="T1_C7" property="goodsReturnedNote.warehouse"/>
+    <result column="T1_C8" property="goodsReturnedNote.status"/>
+    <result column="T1_C9" property="goodsReturnedNote.createdBy"/>
+</resultMap>
+
+<select id="getAnonymousStructure_5FEA4FE0D02D7521E8E79FE86D5BDFE6" resultMap="AnonymousStructure_5FEA4FE0D02D7521E8E79FE86D5BDFE6">
+SELECT `goods_returned_note`.`goods_returned_note` `T1_C1`,`goods_returned_note`.`goods_returned_note_date` `T1_C2`,`goods_returned_note`.`be_put_in_storage` `T1_C3`,`goods_returned_note`.`supplier_name` `T1_C4`,`goods_returned_note`.`description` `T1_C5`,`goods_returned_note`.`annex` `T1_C6`,`goods_returned_note`.`warehouse` `T1_C7`,`goods_returned_note`.`status` `T1_C8`,`goods_returned_note`.`created_by` `T1_C9` FROM `goods_returned_note` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`goods_returned_note`.`be_put_in_storage` = #{param1} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_5FEA4FE0D02D7521E8E79FE86D5BDFE6" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `goods_returned_note` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`goods_returned_note`.`be_put_in_storage` = #{param1} 
+</trim> 
+</if>
+</select>
+</mapper>

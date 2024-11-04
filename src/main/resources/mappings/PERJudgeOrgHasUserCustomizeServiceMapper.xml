@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERJudgeOrgHasUserCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERJudgeOrgHasUserCustomizeServiceMapper">
+
+<select id="getSql1" resultType="java.lang.Long">
+select count( 1) from `UserOrgMapping` 
+<if test=" orgId!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`org_id` = #{orgId}
+</trim>
+</if>
+</select>
+</mapper>

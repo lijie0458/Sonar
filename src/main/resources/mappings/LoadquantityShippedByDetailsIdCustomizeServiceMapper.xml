@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadquantityShippedByDetailsIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadquantityShippedByDetailsIdCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_3D26FC4B14C7240A937FF824EB2C8626" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3D26FC4B14C7240A937FF824EB2C8626">
+    <result column="sales_order_details_id" property="salesOrderDetailsId"/>
+    <result column="sum" property="sum"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_3D26FC4B14C7240A937FF824EB2C8626">
+SELECT `sales_order_details_id`,SUM( `quantity_shipped`) `sum` FROM `sales_order_details` WHERE `outbound_quantity` IS NULL GROUP BY `sales_order_details_id` HAVING `sales_order_details_id` IS NOT NULL
+</select>
+</mapper>

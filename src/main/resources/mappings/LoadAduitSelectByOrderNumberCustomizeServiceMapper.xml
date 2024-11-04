@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadAduitSelectByOrderNumberCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadAduitSelectByOrderNumberCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_9C387961E6D66F52987268EB7DB609B7" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9C387961E6D66F52987268EB7DB609B7">
+    <id column="T1_C1" property="salesOrderDetails.id"/>
+    <result column="T1_C2" property="salesOrderDetails.materialCode"/>
+    <result column="T1_C3" property="salesOrderDetails.quantity"/>
+    <result column="T1_C4" property="salesOrderDetails.unitPrice"/>
+    <result column="T1_C5" property="salesOrderDetails.deliveryDate"/>
+    <result column="T1_C6" property="salesOrderDetails.notes"/>
+    <result column="T1_C7" property="salesOrderDetails.salesOrderNumber"/>
+    <result column="T1_C8" property="salesOrderDetails.warehouse"/>
+    <result column="T1_C9" property="salesOrderDetails.quantityShipped"/>
+    <result column="T1_C10" property="salesOrderDetails.salesOrderDetailsId"/>
+    <result column="T1_C11" property="salesOrderDetails.batchNumber"/>
+    <result column="T1_C12" property="salesOrderDetails.outboundQuantity"/>
+    <result column="T1_C13" property="salesOrderDetails.returnQuanTity"/>
+    <result column="T1_C14" property="salesOrderDetails.availableQuantity"/>
+    <result column="T2_C1" property="salesOrders.orderNumber"/>
+    <result column="T2_C2" property="salesOrders.customer"/>
+    <result column="T2_C3" property="salesOrders.salesperson"/>
+    <result column="T2_C4" property="salesOrders.department"/>
+    <result column="T2_C5" property="salesOrders.requestDate"/>
+    <result column="T2_C6" property="salesOrders.summary"/>
+    <result column="T2_C7" property="salesOrders.attachment"/>
+    <result column="T2_C8" property="salesOrders.approvalStatus"/>
+    <result column="T2_C9" property="salesOrders.distinction"/>
+    <result column="T2_C10" property="salesOrders.warehouse"/>
+    <result column="T2_C11" property="salesOrders.manuAuto"/>
+    <result column="T2_C12" property="salesOrders.sourceNumber"/>
+    <result column="T2_C13" property="salesOrders.salesman"/>
+    <result column="T2_C14" property="salesOrders.createdBy"/>
+</resultMap>
+
+<select id="getAnonymousStructure_9C387961E6D66F52987268EB7DB609B7" resultMap="AnonymousStructure_9C387961E6D66F52987268EB7DB609B7">
+SELECT `sales_order_details`.`id` `T1_C1`,`sales_order_details`.`material_code` `T1_C2`,`sales_order_details`.`quantity` `T1_C3`,`sales_order_details`.`unit_price` `T1_C4`,`sales_order_details`.`delivery_date` `T1_C5`,`sales_order_details`.`notes` `T1_C6`,`sales_order_details`.`sales_order_number` `T1_C7`,`sales_order_details`.`warehouse` `T1_C8`,`sales_order_details`.`quantity_shipped` `T1_C9`,`sales_order_details`.`sales_order_details_id` `T1_C10`,`sales_order_details`.`batch_number` `T1_C11`,`sales_order_details`.`outbound_quantity` `T1_C12`,`sales_order_details`.`return_quan_tity` `T1_C13`,`sales_order_details`.`available_quantity` `T1_C14`,`sales_orders`.`order_number` `T2_C1`,`sales_orders`.`customer` `T2_C2`,`sales_orders`.`salesperson` `T2_C3`,`sales_orders`.`department` `T2_C4`,`sales_orders`.`request_date` `T2_C5`,`sales_orders`.`summary` `T2_C6`,`sales_orders`.`attachment` `T2_C7`,`sales_orders`.`approval_status` `T2_C8`,`sales_orders`.`distinction` `T2_C9`,`sales_orders`.`warehouse` `T2_C10`,`sales_orders`.`manu_auto` `T2_C11`,`sales_orders`.`source_number` `T2_C12`,`sales_orders`.`salesman` `T2_C13`,`sales_orders`.`created_by` `T2_C14` FROM `sales_order_details` INNER JOIN `sales_orders` ON `sales_order_details`.`sales_order_number` = `sales_orders`.`order_number` 
+<if test=" 1==1 and orderNumber!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`sales_order_details`.`sales_order_number` = #{orderNumber} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_9C387961E6D66F52987268EB7DB609B7" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `sales_order_details` INNER JOIN `sales_orders` ON `sales_order_details`.`sales_order_number` = `sales_orders`.`order_number` 
+<if test=" 1==1 and orderNumber!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`sales_order_details`.`sales_order_number` = #{orderNumber} 
+</trim> 
+</if>
+</select>
+</mapper>

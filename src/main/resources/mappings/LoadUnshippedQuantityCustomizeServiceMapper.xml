@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadUnshippedQuantityCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadUnshippedQuantityCustomizeServiceMapper">
+
+<select id="getStructure1" resultType="java.math.BigDecimal">
+SELECT SUM(`sales_order_details`.`outbound_quantity`) `outbound` FROM `sales_order_details` 
+<if test=" 1==1 or id!=null or notid!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and id!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_order_details`.`sales_order_details_id` = #{id} 
+</trim> 
+</if> 
+<if test=" 1==1 and notid!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_order_details`.`id` != #{notid} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadSalesOrderPageTableView_2CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadSalesOrderPageTableView_2CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_89F444DCB36F3A425473660EC2B0814E" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_89F444DCB36F3A425473660EC2B0814E">
+    <id column="T1_C1" property="salesOrders.orderNumber"/>
+    <result column="T1_C2" property="salesOrders.customer"/>
+    <result column="T1_C3" property="salesOrders.salesperson"/>
+    <result column="T1_C4" property="salesOrders.department"/>
+    <result column="T1_C5" property="salesOrders.requestDate"/>
+    <result column="T1_C6" property="salesOrders.summary"/>
+    <result column="T1_C7" property="salesOrders.attachment"/>
+    <result column="T1_C8" property="salesOrders.approvalStatus"/>
+    <result column="T1_C9" property="salesOrders.distinction"/>
+    <result column="T1_C10" property="salesOrders.warehouse"/>
+    <result column="T1_C11" property="salesOrders.manuAuto"/>
+    <result column="T1_C12" property="salesOrders.sourceNumber"/>
+    <result column="T1_C13" property="salesOrders.salesman"/>
+    <result column="T1_C14" property="salesOrders.createdBy"/>
+    <result column="T2_C1" property="customerManagement.id"/>
+    <result column="T2_C2" property="customerManagement.createdTime"/>
+    <result column="T2_C3" property="customerManagement.updatedTime"/>
+    <result column="T2_C4" property="customerManagement.createdBy"/>
+    <result column="T2_C5" property="customerManagement.updatedBy"/>
+    <result column="T2_C6" property="customerManagement.customerCode"/>
+    <result column="T2_C7" property="customerManagement.customerName"/>
+    <result column="T2_C8" property="customerManagement.linkMan"/>
+    <result column="T2_C9" property="customerManagement.contactNumber"/>
+    <result column="T2_C10" property="customerManagement.address"/>
+    <result column="T2_C11" property="customerManagement.detailedAddress"/>
+    <result column="T3_C1" property="lCAPUser.id"/>
+    <result column="T3_C2" property="lCAPUser.createdTime"/>
+    <result column="T3_C3" property="lCAPUser.updatedTime"/>
+    <result column="T3_C4" property="lCAPUser.userId"/>
+    <result column="T3_C5" property="lCAPUser.userName"/>
+    <result column="T3_C6" property="lCAPUser.password"/>
+    <result column="T3_C7" property="lCAPUser.phone"/>
+    <result column="T3_C8" property="lCAPUser.email"/>
+    <result column="T3_C9" property="lCAPUser.displayName"/>
+    <result column="T3_C10" property="lCAPUser.status"/>
+    <result column="T3_C11" property="lCAPUser.source"/>
+    <result column="T3_C12" property="lCAPUser.department_Id"/>
+    <result column="T3_C13" property="lCAPUser.directLeaderId"/>
+    <result column="T3_C14" property="lCAPUser.isFirstLogin"/>
+    <result column="T4_C1" property="department.id"/>
+    <result column="T4_C2" property="department.createdTime"/>
+    <result column="T4_C3" property="department.updatedTime"/>
+    <result column="T4_C4" property="department.createdBy"/>
+    <result column="T4_C5" property="department.updatedBy"/>
+    <result column="T4_C6" property="department.department_Name"/>
+    <result column="T4_C7" property="department.parent_id"/>
+    <result column="T5_C1" property="salesOrderDetails.id"/>
+    <result column="T5_C2" property="salesOrderDetails.materialCode"/>
+    <result column="T5_C3" property="salesOrderDetails.quantity"/>
+    <result column="T5_C4" property="salesOrderDetails.unitPrice"/>
+    <result column="T5_C5" property="salesOrderDetails.deliveryDate"/>
+    <result column="T5_C6" property="salesOrderDetails.notes"/>
+    <result column="T5_C7" property="salesOrderDetails.salesOrderNumber"/>
+    <result column="T5_C8" property="salesOrderDetails.warehouse"/>
+    <result column="T5_C9" property="salesOrderDetails.quantityShipped"/>
+    <result column="T5_C10" property="salesOrderDetails.salesOrderDetailsId"/>
+    <result column="T5_C11" property="salesOrderDetails.batchNumber"/>
+    <result column="T5_C12" property="salesOrderDetails.outboundQuantity"/>
+    <result column="T5_C13" property="salesOrderDetails.returnQuanTity"/>
+    <result column="T5_C14" property="salesOrderDetails.availableQuantity"/>
+    <result column="T6_C1" property="materialDetails.materialCode"/>
+    <result column="T6_C2" property="materialDetails.material_name"/>
+    <result column="T6_C3" property="materialDetails.category_id"/>
+    <result column="T6_C4" property="materialDetails.specification"/>
+    <result column="T6_C5" property="materialDetails.unit"/>
+    <result column="T6_C6" property="materialDetails.description"/>
+    <result column="T6_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T7_C1" property="measuringUnit.id"/>
+    <result column="T7_C2" property="measuringUnit.createdTime"/>
+    <result column="T7_C3" property="measuringUnit.updatedTime"/>
+    <result column="T7_C4" property="measuringUnit.createdBy"/>
+    <result column="T7_C5" property="measuringUnit.updatedBy"/>
+    <result column="T7_C6" property="measuringUnit.unitCode"/>
+    <result column="T7_C7" property="measuringUnit.unitName"/>
+</resultMap>
+
+<select id="getAnonymousStructure_89F444DCB36F3A425473660EC2B0814E" resultMap="AnonymousStructure_89F444DCB36F3A425473660EC2B0814E">
+SELECT `sales_orders`.`order_number` `T1_C1`,`sales_orders`.`customer` `T1_C2`,`sales_orders`.`salesperson` `T1_C3`,`sales_orders`.`department` `T1_C4`,`sales_orders`.`request_date` `T1_C5`,`sales_orders`.`summary` `T1_C6`,`sales_orders`.`attachment` `T1_C7`,`sales_orders`.`approval_status` `T1_C8`,`sales_orders`.`distinction` `T1_C9`,`sales_orders`.`warehouse` `T1_C10`,`sales_orders`.`manu_auto` `T1_C11`,`sales_orders`.`source_number` `T1_C12`,`sales_orders`.`salesman` `T1_C13`,`sales_orders`.`created_by` `T1_C14`,`customer_management`.`id` `T2_C1`,`customer_management`.`created_time` `T2_C2`,`customer_management`.`updated_time` `T2_C3`,`customer_management`.`created_by` `T2_C4`,`customer_management`.`updated_by` `T2_C5`,`customer_management`.`customer_code` `T2_C6`,`customer_management`.`customer_name` `T2_C7`,`customer_management`.`link_man` `T2_C8`,`customer_management`.`contact_number` `T2_C9`,`customer_management`.`address` `T2_C10`,`customer_management`.`detailed_address` `T2_C11`,`lcap_user_a6d592`.`id` `T3_C1`,`lcap_user_a6d592`.`created_time` `T3_C2`,`lcap_user_a6d592`.`updated_time` `T3_C3`,`lcap_user_a6d592`.`user_id` `T3_C4`,`lcap_user_a6d592`.`user_name` `T3_C5`,`lcap_user_a6d592`.`password` `T3_C6`,`lcap_user_a6d592`.`phone` `T3_C7`,`lcap_user_a6d592`.`email` `T3_C8`,`lcap_user_a6d592`.`display_name` `T3_C9`,`lcap_user_a6d592`.`status` `T3_C10`,`lcap_user_a6d592`.`source` `T3_C11`,`lcap_user_a6d592`.`department__id` `T3_C12`,`lcap_user_a6d592`.`direct_leader_id` `T3_C13`,`lcap_user_a6d592`.`is_first_login` `T3_C14`,`department`.`id` `T4_C1`,`department`.`created_time` `T4_C2`,`department`.`updated_time` `T4_C3`,`department`.`created_by` `T4_C4`,`department`.`updated_by` `T4_C5`,`department`.`department__name` `T4_C6`,`department`.`parent_id` `T4_C7`,`sales_order_details`.`id` `T5_C1`,`sales_order_details`.`material_code` `T5_C2`,`sales_order_details`.`quantity` `T5_C3`,`sales_order_details`.`unit_price` `T5_C4`,`sales_order_details`.`delivery_date` `T5_C5`,`sales_order_details`.`notes` `T5_C6`,`sales_order_details`.`sales_order_number` `T5_C7`,`sales_order_details`.`warehouse` `T5_C8`,`sales_order_details`.`quantity_shipped` `T5_C9`,`sales_order_details`.`sales_order_details_id` `T5_C10`,`sales_order_details`.`batch_number` `T5_C11`,`sales_order_details`.`outbound_quantity` `T5_C12`,`sales_order_details`.`return_quan_tity` `T5_C13`,`sales_order_details`.`available_quantity` `T5_C14`,`material_details`.`material_code` `T6_C1`,`material_details`.`material_name` `T6_C2`,`material_details`.`category_id` `T6_C3`,`material_details`.`specification` `T6_C4`,`material_details`.`unit` `T6_C5`,`material_details`.`description` `T6_C6`,`material_details`.`is_batch_enabled` `T6_C7`,`measuring_unit`.`id` `T7_C1`,`measuring_unit`.`created_time` `T7_C2`,`measuring_unit`.`updated_time` `T7_C3`,`measuring_unit`.`created_by` `T7_C4`,`measuring_unit`.`updated_by` `T7_C5`,`measuring_unit`.`unit_code` `T7_C6`,`measuring_unit`.`unit_name` `T7_C7` FROM `sales_orders` LEFT JOIN `customer_management` ON `sales_orders`.`customer` = `customer_management`.`id` LEFT JOIN `lcap_user_a6d592` ON `sales_orders`.`salesperson` = `lcap_user_a6d592`.`id` LEFT JOIN `department` ON `sales_orders`.`department` = `department`.`id` INNER JOIN `sales_order_details` ON `sales_orders`.`order_number` = `sales_order_details`.`sales_order_number` INNER JOIN `material_details` ON `sales_order_details`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` 
+<if test=" 1==1 or DistinctionEnum!=null or ( TimeHorizon!=null and TimeHorizon.endTime!=null ) or ( TimeHorizon!=null and TimeHorizon.startTime!=null ) or ( dataViewAuthorityUserNameList!=null and dataViewAuthorityUserNameList.size()>0 ) or ( filter!=null and filter.approvalStatus!=null ) or ( filter!=null and filter.customer!=null ) or ( filter!=null and filter.department!=null ) or ( filter!=null and filter.salesperson!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 or DistinctionEnum!=null or ( TimeHorizon!=null and TimeHorizon.endTime!=null ) or ( TimeHorizon!=null and TimeHorizon.startTime!=null ) or ( filter!=null and filter.approvalStatus!=null ) or ( filter!=null and filter.customer!=null ) or ( filter!=null and filter.department!=null ) or ( filter!=null and filter.salesperson!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( TimeHorizon!=null and TimeHorizon.endTime!=null ) or ( TimeHorizon!=null and TimeHorizon.startTime!=null ) or ( filter!=null and filter.approvalStatus!=null ) or ( filter!=null and filter.customer!=null ) or ( filter!=null and filter.department!=null ) or ( filter!=null and filter.salesperson!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( filter!=null and filter.customer!=null ) or ( filter!=null and filter.salesperson!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.customer!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`customer` = #{filter.customer} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.salesperson!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`salesperson` = #{filter.salesperson} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 or ( TimeHorizon!=null and TimeHorizon.endTime!=null ) or ( TimeHorizon!=null and TimeHorizon.startTime!=null ) or ( filter!=null and filter.approvalStatus!=null ) or ( filter!=null and filter.department!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.department!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`department` = #{filter.department} 
+</trim> 
+</if> 
+<if test=" 1==1 or ( TimeHorizon!=null and TimeHorizon.endTime!=null ) or ( TimeHorizon!=null and TimeHorizon.startTime!=null ) or ( filter!=null and filter.approvalStatus!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 or ( TimeHorizon!=null and TimeHorizon.endTime!=null ) or ( TimeHorizon!=null and TimeHorizon.startTime!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( TimeHorizon!=null and TimeHorizon.startTime!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`request_date` &gt;= #{TimeHorizon.startTime} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( TimeHorizon!=null and TimeHorizon.endTime!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`request_date` &lt;= #{TimeHorizon.endTime} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.approvalStatus!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`approval_status` = #{filter.approvalStatus} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and DistinctionEnum!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`sales_orders`.`distinction` = #{DistinctionEnum} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and ( dataViewAuthorityUserNameList!=null and dataViewAuthorityUserNameList.size()>0 ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+( `sales_orders`.`created_by` IN 
+<foreach item="item" index="index" collection="dataViewAuthorityUserNameList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" sort!=null ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" sort!=null ">
+
+<trim  suffix=",">
+${sort} 
+<if test=" order!=null ">
+${@com.dogfood.aa20240808.util.SqlInjectCheckUtil@checkAscOrDesc(order)} 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

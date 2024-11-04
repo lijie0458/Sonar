@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountByDepartmentNumberCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountByDepartmentNumberCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_EC270C00E4349160B6B0C122490BDB1B" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_EC270C00E4349160B6B0C122490BDB1B">
+    <id column="T1_C1" property="productionMaterialRequisitionDetails.id"/>
+    <result column="T1_C2" property="productionMaterialRequisitionDetails.materialCode"/>
+    <result column="T1_C3" property="productionMaterialRequisitionDetails.quantity"/>
+    <result column="T1_C4" property="productionMaterialRequisitionDetails.unitPrice"/>
+    <result column="T1_C5" property="productionMaterialRequisitionDetails.notes"/>
+    <result column="T1_C6" property="productionMaterialRequisitionDetails.productionMaterialRequisition"/>
+    <result column="T1_C7" property="productionMaterialRequisitionDetails.warehouse"/>
+    <result column="T1_C8" property="productionMaterialRequisitionDetails.productionMaterialRequisitionId"/>
+    <result column="T1_C9" property="productionMaterialRequisitionDetails.batchNumber"/>
+    <result column="T1_C10" property="productionMaterialRequisitionDetails.totalPrice"/>
+    <result column="T1_C11" property="productionMaterialRequisitionDetails.sourceNumber"/>
+    <result column="T1_C12" property="productionMaterialRequisitionDetails.storageLocation"/>
+    <result column="T1_C13" property="productionMaterialRequisitionDetails.returnQuanTity"/>
+    <result column="T1_C14" property="productionMaterialRequisitionDetails.sourceNumberId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_EC270C00E4349160B6B0C122490BDB1B" resultMap="AnonymousStructure_EC270C00E4349160B6B0C122490BDB1B">
+SELECT `production_material_requisition_details`.`id` `T1_C1`,`production_material_requisition_details`.`material_code` `T1_C2`,`production_material_requisition_details`.`quantity` `T1_C3`,`production_material_requisition_details`.`unit_price` `T1_C4`,`production_material_requisition_details`.`notes` `T1_C5`,`production_material_requisition_details`.`production_material_requisition` `T1_C6`,`production_material_requisition_details`.`warehouse` `T1_C7`,`production_material_requisition_details`.`production_material_requisition_id` `T1_C8`,`production_material_requisition_details`.`batch_number` `T1_C9`,`production_material_requisition_details`.`total_price` `T1_C10`,`production_material_requisition_details`.`source_number` `T1_C11`,`production_material_requisition_details`.`storage_location` `T1_C12`,`production_material_requisition_details`.`return_quan_tity` `T1_C13`,`production_material_requisition_details`.`source_number_id` `T1_C14` FROM `production_material_requisition_details` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`production_material_requisition_details`.`production_material_requisition` = #{param1} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_EC270C00E4349160B6B0C122490BDB1B" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `production_material_requisition_details` 
+<if test=" 1==1 and param1!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`production_material_requisition_details`.`production_material_requisition` = #{param1} 
+</trim> 
+</if>
+</select>
+</mapper>

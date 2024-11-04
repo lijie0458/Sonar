@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated UpdateInventoryByTransferSlipCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.UpdateInventoryByTransferSlipCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF">
+    <id column="T1_C1" property="transferSlipDetails.id"/>
+    <result column="T1_C2" property="transferSlipDetails.materialCode"/>
+    <result column="T1_C3" property="transferSlipDetails.quantity"/>
+    <result column="T1_C4" property="transferSlipDetails.notes"/>
+    <result column="T1_C5" property="transferSlipDetails.productionMaterialRequisition"/>
+    <result column="T1_C6" property="transferSlipDetails.outWarehouse"/>
+    <result column="T1_C7" property="transferSlipDetails.batchNumber"/>
+    <result column="T1_C8" property="transferSlipDetails.outStorageLocation"/>
+    <result column="T1_C9" property="transferSlipDetails.inWarehouse"/>
+    <result column="T1_C10" property="transferSlipDetails.inStorageLocation"/>
+    <result column="T1_C11" property="transferSlipDetails.lotNumber"/>
+    <result column="T2_C1" property="inventory.id"/>
+    <result column="T2_C2" property="inventory.materialCode"/>
+    <result column="T2_C3" property="inventory.lotNumber"/>
+    <result column="T2_C4" property="inventory.unit"/>
+    <result column="T2_C5" property="inventory.warehouse"/>
+    <result column="T2_C6" property="inventory.stockQuantity"/>
+    <result column="T2_C7" property="inventory.occupiedQuantity"/>
+    <result column="T2_C8" property="inventory.availableQuantity"/>
+    <result column="T2_C9" property="inventory.createdAt"/>
+    <result column="T2_C10" property="inventory.updatedAt"/>
+    <result column="T2_C11" property="inventory.location"/>
+</resultMap>
+
+<select id="getAnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF" resultMap="AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF">
+SELECT `transfer_slip_details`.`id` `T1_C1`,`transfer_slip_details`.`material_code` `T1_C2`,`transfer_slip_details`.`quantity` `T1_C3`,`transfer_slip_details`.`notes` `T1_C4`,`transfer_slip_details`.`production_material_requisition` `T1_C5`,`transfer_slip_details`.`out_warehouse` `T1_C6`,`transfer_slip_details`.`batch_number` `T1_C7`,`transfer_slip_details`.`out_storage_location` `T1_C8`,`transfer_slip_details`.`in_warehouse` `T1_C9`,`transfer_slip_details`.`in_storage_location` `T1_C10`,`transfer_slip_details`.`lotNumber` `T1_C11`,`inventory`.`id` `T2_C1`,`inventory`.`material_code` `T2_C2`,`inventory`.`lot_number` `T2_C3`,`inventory`.`unit` `T2_C4`,`inventory`.`warehouse` `T2_C5`,`inventory`.`stock_quantity` `T2_C6`,`inventory`.`occupied_quantity` `T2_C7`,`inventory`.`available_quantity` `T2_C8`,`inventory`.`created_at` `T2_C9`,`inventory`.`updated_at` `T2_C10`,`inventory`.`location` `T2_C11` FROM `transfer_slip_details` LEFT JOIN `inventory` ON 
+<if test=" 1==1 ">
+(`transfer_slip_details`.`material_code` = `inventory`.`material_code`) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`transfer_slip_details`.`out_warehouse` = `inventory`.`warehouse`) 
+</trim> 
+</if> 
+<if test=" 1==1 and documentNumber!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`transfer_slip_details`.`production_material_requisition` = #{documentNumber} 
+</trim> 
+</if>
+</select>
+</mapper>

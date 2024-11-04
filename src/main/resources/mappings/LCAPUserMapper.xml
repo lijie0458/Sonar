@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPUser Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.LCAPUserMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.LCAPUser">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="display_name" jdbcType="VARCHAR" property="displayName" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="source" jdbcType="VARCHAR" property="source" />
+        <result column="department__id" jdbcType="BIGINT" property="department_Id" />
+        <result column="direct_leader_id" jdbcType="VARCHAR" property="directLeaderId" />
+        <result column="is_first_login" jdbcType="TINYINT" property="isFirstLogin" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.LCAPUser"  >
+        INSERT INTO `lcap_user_a6d592` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`user_id`
+            ,`user_name`
+            ,`password`
+            ,`phone`
+            ,`email`
+            ,`display_name`
+            ,`status`
+            ,`source`
+            ,`department__id`
+            ,`direct_leader_id`
+            ,`is_first_login`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{userId,jdbcType=VARCHAR}
+            ,#{userName,jdbcType=VARCHAR}
+            ,#{password,jdbcType=VARCHAR}
+            ,#{phone,jdbcType=VARCHAR}
+            ,#{email,jdbcType=VARCHAR}
+            ,#{displayName,jdbcType=VARCHAR}
+            ,#{status,jdbcType=VARCHAR}
+            ,#{source,jdbcType=VARCHAR}
+            ,#{department_Id,jdbcType=BIGINT}
+            ,#{directLeaderId,jdbcType=VARCHAR}
+            ,#{isFirstLogin,jdbcType=TINYINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `lcap_user_a6d592` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`user_id`
+            ,`user_name`
+            ,`password`
+            ,`phone`
+            ,`email`
+            ,`display_name`
+            ,`status`
+            ,`source`
+            ,`department__id`
+            ,`direct_leader_id`
+            ,`is_first_login`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.userId,jdbcType=VARCHAR}
+            ,#{item.userName,jdbcType=VARCHAR}
+            ,#{item.password,jdbcType=VARCHAR}
+            ,#{item.phone,jdbcType=VARCHAR}
+            ,#{item.email,jdbcType=VARCHAR}
+            ,#{item.displayName,jdbcType=VARCHAR}
+            ,#{item.status,jdbcType=VARCHAR}
+            ,#{item.source,jdbcType=VARCHAR}
+            ,#{item.department_Id,jdbcType=BIGINT}
+            ,#{item.directLeaderId,jdbcType=VARCHAR}
+            ,#{item.isFirstLogin,jdbcType=TINYINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.LCAPUser" >
+        UPDATE `lcap_user_a6d592`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userName')">`user_name` = #{bean.userName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('password')">`password` = #{bean.password, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('displayName')">`display_name` = #{bean.displayName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('status')">`status` = #{bean.status, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('source')">`source` = #{bean.source, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('department_Id')">`department__id` = #{bean.department_Id, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('directLeaderId')">`direct_leader_id` = #{bean.directLeaderId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('isFirstLogin')">`is_first_login` = #{bean.isFirstLogin, jdbcType= TINYINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPUser" >
+        UPDATE `lcap_user_a6d592`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userName')">`user_name` = #{bean.userName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('password')">`password` = #{bean.password, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('displayName')">`display_name` = #{bean.displayName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('status')">`status` = #{bean.status, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('source')">`source` = #{bean.source, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('department_Id')">`department__id` = #{bean.department_Id, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('directLeaderId')">`direct_leader_id` = #{bean.directLeaderId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('isFirstLogin')">`is_first_login` = #{bean.isFirstLogin, jdbcType= TINYINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `lcap_user_a6d592` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `lcap_user_a6d592` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `lcap_user_a6d592`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'userId'">
+                    AND `user_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userName'">
+                    AND `user_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'password'">
+                    AND `password` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'phone'">
+                    AND `phone` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'email'">
+                    AND `email` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'displayName'">
+                    AND `display_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'status'">
+                    AND `status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'source'">
+                    AND `source` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'department_Id'">
+                    AND `department__id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'directLeaderId'">
+                    AND `direct_leader_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'isFirstLogin'">
+                    AND `is_first_login` = #{value, jdbcType=TINYINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `lcap_user_a6d592` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'userId'">
+                    AND `user_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userName'">
+                    AND `user_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'password'">
+                    AND `password` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'phone'">
+                    AND `phone` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'email'">
+                    AND `email` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'displayName'">
+                    AND `display_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'status'">
+                    AND `status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'source'">
+                    AND `source` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'department_Id'">
+                    AND `department__id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'directLeaderId'">
+                    AND `direct_leader_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'isFirstLogin'">
+                    AND `is_first_login` = #{value, jdbcType=TINYINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `lcap_user_a6d592`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `lcap_user_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `lcap_user_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPUser">
+        INSERT INTO `lcap_user_a6d592` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`user_id`
+            ,`user_name`
+            ,`password`
+            ,`phone`
+            ,`email`
+            ,`display_name`
+            ,`status`
+            ,`source`
+            ,`department__id`
+            ,`direct_leader_id`
+            ,`is_first_login`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{userId,jdbcType=VARCHAR}
+            ,#{userName,jdbcType=VARCHAR}
+            ,#{password,jdbcType=VARCHAR}
+            ,#{phone,jdbcType=VARCHAR}
+            ,#{email,jdbcType=VARCHAR}
+            ,#{displayName,jdbcType=VARCHAR}
+            ,#{status,jdbcType=VARCHAR}
+            ,#{source,jdbcType=VARCHAR}
+            ,#{department_Id,jdbcType=BIGINT}
+            ,#{directLeaderId,jdbcType=VARCHAR}
+            ,#{isFirstLogin,jdbcType=TINYINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `lcap_user_a6d592`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('userName')">`user_name` = #{bean.userName, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('password')">`password` = #{bean.password, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('displayName')">`display_name` = #{bean.displayName, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('status')">`status` = #{bean.status, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('source')">`source` = #{bean.source, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('department_Id')">`department__id` = #{bean.department_Id, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('directLeaderId')">`direct_leader_id` = #{bean.directLeaderId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('isFirstLogin')">`is_first_login` = #{bean.isFirstLogin, jdbcType= TINYINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `lcap_user_a6d592`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

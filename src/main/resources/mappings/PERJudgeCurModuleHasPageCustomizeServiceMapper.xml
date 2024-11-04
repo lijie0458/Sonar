@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERJudgeCurModuleHasPageCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERJudgeCurModuleHasPageCustomizeServiceMapper">
+
+<select id="getStructure1" resultType="java.lang.Long">
+SELECT COUNT(`Page`.`id`) `num` FROM `Page` 
+<if test=" 1==1 and moduleId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`Page`.`module_id` = #{moduleId} 
+</trim> 
+</if>
+</select>
+</mapper>

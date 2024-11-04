@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated ThirdIdentityEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.ThirdIdentityEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.ThirdIdentityEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="open_id" jdbcType="VARCHAR" property="openId" />
+        <result column="identity_id" jdbcType="BIGINT" property="identityId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.ThirdIdentityEntity"  >
+        INSERT INTO `ThirdIdentity` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`open_id`
+            ,`identity_id`
+            ,`name`
+            ,`phone`
+            ,`email`
+            ,`user_id`
+            ,`state`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{openId,jdbcType=VARCHAR}
+            ,#{identityId,jdbcType=BIGINT}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{phone,jdbcType=VARCHAR}
+            ,#{email,jdbcType=VARCHAR}
+            ,#{userId,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `ThirdIdentity` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`open_id`
+            ,`identity_id`
+            ,`name`
+            ,`phone`
+            ,`email`
+            ,`user_id`
+            ,`state`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.openId,jdbcType=VARCHAR}
+            ,#{item.identityId,jdbcType=BIGINT}
+            ,#{item.name,jdbcType=VARCHAR}
+            ,#{item.phone,jdbcType=VARCHAR}
+            ,#{item.email,jdbcType=VARCHAR}
+            ,#{item.userId,jdbcType=VARCHAR}
+            ,#{item.state,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.ThirdIdentityEntity" >
+        UPDATE `ThirdIdentity`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('openId')">`open_id` = #{bean.openId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('identityId')">`identity_id` = #{bean.identityId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ThirdIdentityEntity" >
+        UPDATE `ThirdIdentity`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('openId')">`open_id` = #{bean.openId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('identityId')">`identity_id` = #{bean.identityId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `ThirdIdentity` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `ThirdIdentity` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `ThirdIdentity`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'openId'">
+                    AND `open_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'identityId'">
+                    AND `identity_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'name'">
+                    AND `name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'phone'">
+                    AND `phone` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'email'">
+                    AND `email` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userId'">
+                    AND `user_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `ThirdIdentity` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'openId'">
+                    AND `open_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'identityId'">
+                    AND `identity_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'name'">
+                    AND `name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'phone'">
+                    AND `phone` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'email'">
+                    AND `email` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userId'">
+                    AND `user_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `ThirdIdentity`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `ThirdIdentity`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `ThirdIdentity`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ThirdIdentityEntity">
+        INSERT INTO `ThirdIdentity` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`open_id`
+            ,`identity_id`
+            ,`name`
+            ,`phone`
+            ,`email`
+            ,`user_id`
+            ,`state`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{openId,jdbcType=VARCHAR}
+            ,#{identityId,jdbcType=BIGINT}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{phone,jdbcType=VARCHAR}
+            ,#{email,jdbcType=VARCHAR}
+            ,#{userId,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `ThirdIdentity`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('openId')">`open_id` = #{bean.openId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('identityId')">`identity_id` = #{bean.identityId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `ThirdIdentity`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

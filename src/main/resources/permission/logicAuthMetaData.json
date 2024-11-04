@@ -1,0 +1,5689 @@
+{
+  "/api/transfer-slip-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/permission-group:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier-details:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updatePurchaseDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDepartmentByUsername:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/upload:POST": [
+    []
+  ],
+  "/api/inventory/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/permission-group:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceReturnStorageTableView_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/third-identity/by:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/enterpriseIdentityList",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDepartmentTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-per-res-mapping/batch:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/identity-source-config:GET": [
+    [
+      {
+        "uiPath": "/page_config/account_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addCASOrSSOIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadTransferSlip:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMSaveIdentity:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addCASOrSSOIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/enterpriseIdentityList",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/encryptTempMap:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByProductReutrnS2:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByDelProductInS:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMJudgeOpenedIdentity:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/enterpriseIdentityList",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMGetIdentityCodeListByState:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addCASOrSSOIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-return-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPBatchAddDeptUser:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-order-details:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllSupplierDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOtherReturnStorageDetailsSelect_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountInventoryByCodeAndWahouse:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateProductInSUnreturnQuantity:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getMaterialDetailsByCodeList:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionPageDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetPermissionResourseRelated:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetUserByUserId:POST": [
+    [
+      {
+        "uiPath": "/permission_center/addRoleUser",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetPermissionByRoleId:POST": [
+    [
+      {
+        "uiPath": "/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role-per-mapping/batch:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/clearCookieAll:POST": [
+    [
+      {
+        "uiPath": "/page_config/login_admin",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/organisation:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByDelOtherInS:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetDeptUsers:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByOutsourceReutrnStorage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-return-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetAllOrganization:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-return-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/measuring-unit:POST": [
+    [
+      {
+        "uiPath": "/dashboard/MeasuringUnit",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageListSelect_1ReceivingNotifications:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-return-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/measuring-unit:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/organisation:GET": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/be-put-in-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier/batch:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/transfer-slip:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehousingDetailsSelect_11Department:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERSaveUserAndAddOrg:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseinventoryByOrderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetPerResMappingByPermissionId:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/userManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDetailsByOrderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturn",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/DeliveryRelease",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouse",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/be-put-in-storage:GET": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseOrderDetailsByRequestOrderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllMaterialWithoutCurrent:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDepartmentSelect_6:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getDataViewAuthority:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetAllRole:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadALLdepartment:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level-two:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-request:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseSelectLCAPUser:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageDetailsSelect_12:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetRoleRelatedPerIds:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-per-res-mapping:DELETE": [
+    [
+      {
+        "uiPath": "/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/wxLogin:POST": [
+    []
+  ],
+  "/api/l-c-a-p-per-res-mapping/batch:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadStoragelocationTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPSetDeptLeader:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/organisation:PUT": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getUserAndRoleByuserName:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseSelectWarehouse_level:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPCreateDepartment:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier-details:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseOrderSelectSupplierDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/autoGenertewarehousingNum:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPJudgeDeptIdRepeated:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadMeasuringUnitTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard/MeasuringUnit",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllWarehouse_levelTwo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductInStorageDetailsSelect_20:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByOtherReutrnStorage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/receiving-notifications:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-return-storage:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductReturnStorageDetailsSelect_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountPurchaseRequest:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadXOUTsaleOrdersDetailsBySaleOrderNum:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturnDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/receiving-notifications:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadMaterialTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/per-group-per-mapping/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductReturnStorageSelect_21LCAPUser:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionPageDetailsUpdateSelect1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadsaleOrdersDetailsBySaleOrderNum:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadlocationIdByWareHouse:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/logicStorageLocation:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSupplierWithoutCurrent:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/department:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getMaterialCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceSelect_1LCAPUser1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPermissionGroupManagementTableView_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseOrderTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getStoragelocationByStorage:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadMaterialCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetDept:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllMeasuringUnitld:POST": [
+    [
+      {
+        "uiPath": "/dashboard/MeasuringUnit",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageListTableView_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/FunctionalAuthoritySave:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-orders:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPCanceDeptLeader:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage:GET": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadRoleManagementTableView_4:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/permission-group:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getOtherInSDetailsByOtherInSCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-per-res-mapping/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPUpdateDepartment:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/app-config:PUT": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/authen_config/login_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/authen_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSupplierTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getFunctionalAuthority:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getSalesTrend:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-in-storage-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPLoadUserRoleMappingTableView:POST": [
+    [
+      {
+        "uiPath": "/permission_center/addRoleUser",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountsaleOrder:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-details/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/goods-returned-note:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseRequestTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryPageSelect_14Warehouse_levelTwo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-order-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level-two:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMGetUserByUserId:POST": [
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-return-storage:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/transfer-slip:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/goods-returned-note-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOtherReturnStorageTableView_4:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBathNumberByCodeAnddistinctionDistinct:POST": [
+    [
+      {
+        "uiPath": "/dashboard/DeliveryReleaseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getUserInfo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/excel_parser/parseAllSheet:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-per-res-mapping:POST": [
+    [
+      {
+        "uiPath": "/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageByRequestOrderNumber1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPermissionGroupManagementTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier-details/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/measuring-unit:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/MeasuringUnit",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getOutsourceInSDetailsByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMGetIdentitySourceByState:POST": [
+    []
+  ],
+  "/api/lcplogics/updateInventoryByProductReutrnS1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERJudgeCurModuleHasPage:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/casLogin:POST": [
+    []
+  ],
+  "/api/material/batch:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/batchChangeOutsourceReturnSState1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPSearchDeptUsers:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseRequest:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/batchChangeOtherReturnSState:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceSelect_2SupplierDetails1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadidListChild:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user-role-mapping:POST": [
+    [
+      {
+        "uiPath": "/permission_center/addRoleUser",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetMappingByPermissionIdAndResourceId:POST": [
+    [
+      {
+        "uiPath": "/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/deletedepartment:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionDetailByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getInventoryByidList:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAddGoodsReturnedNoteUpdateSelect_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetScopeResourceByRoleId:POST": [
+    [
+      {
+        "uiPath": "/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountBePutInStorage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user:POST": [
+    [
+      {
+        "uiPath": "/dashboard/UserManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/userManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order:POST": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMAccountBindOrUnBind:POST": [
+    [
+      {
+        "uiPath": "/page_config/account_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadReceivingListTableView_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/function-table:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/deletesupplier:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/department:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateOutsourceInSUnreturnQuantity:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/UserManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/userManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageByRequestOrderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage-details/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getInventoryByMaterialDetails1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getWarehousingDetailsByCode1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductReturnStorageSelect_22Department:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceInStorageDetailsSelect_1SupplierDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductReturnStorageDetailsSelect_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehousingDetailsSelect_15:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/automaticallyGeneratePurchaseOrder:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/getWxQRCodeParam:POST": [
+    []
+  ],
+  "/api/lcplogics/perResManagementCreateOrUpdate:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/transfer-slip:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/inventory/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/batchChangeOutsourceInSState:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user-role-mapping:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/addRoleUser",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageSelect_11CustomerManagement:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMGetAllRole:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/authen_config/login_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/authen_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getOutsourceInSDetailsByOutsourceInSCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getPermissionIdListByRoleId:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehousingTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-in-storage:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage-details/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetRolePermissionList:POST": [
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSaleOderByInventoryId:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/schedule/batch:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/supplier-details:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material-details:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionPageDetailSelect_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERJudgeOrgHasChildren:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getWarehouseInfo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/encryptWithDesAndBase64:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level-two:GET": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/storage_location:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateProductRetuenUnreturnQuantity1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryListBywareHouseAndCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadRoleManagementTableView_5:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/module-table:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSaleOderByInventoryId2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERLoadPageTableViewByModuleId:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryPageSelect_13MaterialDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERLoadRolePerTableView:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/identity-source-config/batch:PUT": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/authen_config/login_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/authen_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseRequestDetailsTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAddPurchaseRequestorUpdateSelect:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSupplierSelectSupplier:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/decryptTempMap:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addCASOrSSOIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-details:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/inventory:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDeliveryReleaseDetailsSelect_15:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturnDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/DeliveryReleaseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMFunctionLogic:POST": [
+    []
+  ],
+  "/api/supplier-details:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERJudgeCurPageHasFunction:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-permission:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/decryptWithBase64AndDes:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addOAuthIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/addCASOrSSOIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/customer-management:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/Customer",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/autoGenerationOutsourceReturnSCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllCustomerManagement:POST": [
+    [
+      {
+        "uiPath": "/dashboard/Customer",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/schedule/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageListSelect_2SupplierDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-return-storage-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadGoodsReturnedNoteSelect_20SupplierDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPIsRoleNameRepeated:POST": [
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/outsourceReturnStorageUpdateData:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-request:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadUserByUserId:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPBatchRemoveDeptUser:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/upload/download_files:POST": [
+    []
+  ],
+  "/api/lcplogics/productReturnStorageUpdateData:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSupplierDetailsBySupplierId:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-in-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/department:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-request:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMLoadAccountBindData:POST": [
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/receiving-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadGoodsReturnedNoteSelect_21Warehouse_levelTwo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionPageDetailSelect_21:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseInfo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-return-storage:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/inventory/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageDetailsSelect_11:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOtherReturnSDetailsSelect_5:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetRoleBindUserList:POST": [
+    [
+      {
+        "uiPath": "/permission_center/addRoleUser",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOtherTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/identity-source-config:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity/addIdentity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/socialization_Identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity/enterpriseIdentityList",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/enterprise_identity",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/autoGenerteOutsourceInSCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-orders:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByTransferSlip:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getOtherInSDetailsByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadGoodsReturnedNoteSelect_19BePutInStorage:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadEditToDetailsBydepartmentNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getDataEditAuthority:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-return-storage:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/logicOrderDataByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPBatchUpdateDeptUser:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getInventoryByMaterialDetails2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-order-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadTransferSlipTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-in-storage-details/batch:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadGoodsReturnedNoteTableView_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/storage_location:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getMaterialDetailsByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/app-config:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/authen_config/login_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/authen_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageSelect_12LCAPUser:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERJudgeOrgHasUser:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPermissionGroupManagementTableView_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadALLSupplier:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetAllUserName:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/otherReturnStorageUpdateData:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadoutsourceReturnSDetailsSelect_4:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageTableView_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard/DeliveryRelease",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAddPurchaseOrderUpdateSelect1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryPageTableView_5:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPLoadResourceTableView:POST": [
+    [
+      {
+        "uiPath": "/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-orders:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getMaterialByIdList:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllMaterial:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryPageTableView_4:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-in-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/sales-orders:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateOtherInSUnreturnQuantity:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByDelOutsourceInS:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-return-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getInventory:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByProductReutrnS3:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadMaterialSelectMaterial1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/page/createOrUpdate:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceReturnStorageDetailsSelect_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/automaticallyGenerateSupplierDetailsCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/department:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionMaterialRequisition:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMUpdatePassword:POST": [
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/transfer-slip-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order-detail/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageSelect_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getInventory_HomePage:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageSelect_13Department:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductionPageTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadupdateTransFerSlipDetails1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPLoadRoleManagementTableView:POST": [
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesOrderPageTableView_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/inventory:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturn",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/DeliveryRelease",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouse",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/organisation:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBathNumberByCodeAnddistinction:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturnDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/DeliveryReleaseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDetailByid:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/be-put-in-storage:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/user-org-mapping:PUT": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/goods-returned-note:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERLoadResourceConfigTableView:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetPermissionResourseNotRelated:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/function-table:PUT": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPBatchDeleteDepartment:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehousingSelect_1LCAPUser:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadOutsourceReturnStorageSelect_26:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetUserListByRoleId:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehousingSelect_2Department:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAduitSelectByOrderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturn",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouse",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCustomerManagementTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard/Customer",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseRequestcount:POST": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSaleOderByInventoryId1:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturnDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role-per-mapping/batch:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material-details:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadReceivingDetailsByRequestOrderNumber1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPermissionResourceManagementTableView_1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadProductReturnStorageTableView_3:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSalesReturnDetailsSelect_20:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturnDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAllWarehouse_level:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/user-org-mapping:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order-detail:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/batchChangeOtherInSState:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadTotalQuantity2:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/storage_location:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getOrderTotalPrice_HomePage:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadRoleManagementTableView_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/customer-management:POST": [
+    [
+      {
+        "uiPath": "/dashboard/Customer",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/logicAssociatedData:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERGetRoleIdListByUserId:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getScheduleByDate:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/auth_library_template/oauthLogin:POST": [
+    []
+  ],
+  "/api/lcplogics/LCAPGetUserTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard/UserManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/userManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountInventoryTotalByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByTransferSlip1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-order-detail/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPSearchDepts:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/production-material-requisition-details:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/autoGenerationOtherReturnSCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadMaterialSelect2MeasuringUnit:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-return-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/function-table:GET": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/department/batch:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getAllPendingReviewQuantityInfo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getProductionMaterialRequisition:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/other-return-storage:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryByMaterialCodeAndWarehouse:POST": [
+    [
+      {
+        "uiPath": "/dashboard/BePutInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountReceivingNotifications:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMSocialIdentityLogin:POST": [
+    [
+      {
+        "uiPath": "/page_config/callback",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-return-storage-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OutsourceReturnStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LoadWarehouseInventory:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadBePutInStorageListSelect_3Warehouse_levelTwo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMCreateTokenByLCAPUserInfo:POST": [
+    [
+      {
+        "uiPath": "/page_config/account_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/goods-returned-note-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadTransFerSlipDetailsByNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadSupplierTableView1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/per-group-per-mapping:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseRequestOrder:POST": [
+    [
+      {
+        "uiPath": "/dashboard/AddPurchaseOrderUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/IAMGetConfig:POST": [
+    []
+  ],
+  "/api/outsource-in-storage-details/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getWarehousingDetailsByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-in-storage:GET": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getProductInStorageDetailsByNum:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/customer-management/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard/Customer",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountGoodsReturnedNote:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadPurchaseDetailsByRequestNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetDeptList:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material-details:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPLoadDeptSetLeaderSelect:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-permission:POST": [
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-return-storage-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountByDepartmentNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/function-table:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadStoragelocationSelect_16Warehouse_levelTwo:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-permission:PUT": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/measuring-unit:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/MeasuringUnit",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/warehouse_level-two:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/customer-management:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard/Customer",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role/createOrUpdate:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountByorderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/transfer-slip:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-role-per-mapping:POST": [
+    [
+      {
+        "uiPath": "/permission_center/roleManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-user-role-mapping/batch:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadTransferSlipDetailsByCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getResOriginalDateOrSelectedDateByPerId:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/page:DELETE": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/autoGenerteOtherInSCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard/OtherInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-return-storage:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/autoGenerationProductReturnStorageCode:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadReceivingDetailsByRequestOrderNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/l-c-a-p-permission:GET": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadWarehouseTableView1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/goods-returned-note:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERLoadModuleTableView:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadCountCategory_code:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/outsource-in-storage:PUT": [
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorage",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/OutsourceInStorageDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/purchase-request:GET": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/module-table/createOrUpdate:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/resourceManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/PERLoadOrgUserTableView:POST": [
+    [
+      {
+        "uiPath": "/page_config/identity_config/permission_center/orgManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config/permission_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/identity_config",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getWarehousingDetailsByWarehousingNum:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getPurchaseTrend:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadsalesReturnUpdateSelect:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturnDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPLoadDeptAddUserSelect:POST": [
+    [
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage-details/by:DELETE": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/material-details:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadAddGoodsReturnedNoteUpdateSelect_2:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDepartmentTableView:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/product-in-storage:PUT": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadGoodsReturnedNoteDetailsBygoodsReturnedNote:POST": [
+    [
+      {
+        "uiPath": "/dashboard/addGoodsReturnedNoteUpdate",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadInventoryINBatchNumber:POST": [
+    [
+      {
+        "uiPath": "/dashboard/salesReturn",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/DeliveryRelease",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/SaleOutOfWarehouse",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/dashboard/DeliveryReleaseDetails",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadMaterialTableView1:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/loadDelSupplier:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/LCAPGetAllUsers:POST": [
+    [
+      {
+        "uiPath": "/dashboard/UserManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/addRoleUser",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/permission_center/userManagement",
+        "type": "page"
+      },
+      {
+        "uiPath": "/permission_center",
+        "type": "page"
+      }
+    ],
+    [
+      {
+        "uiPath": "/page_config/user_center/identity_bind",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config/user_center",
+        "type": "page"
+      },
+      {
+        "uiPath": "/page_config",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/updateInventoryByProductReutrnS:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ],
+  "/api/lcplogics/getInventoryByMaterialDetails:POST": [
+    [
+      {
+        "uiPath": "/dashboard",
+        "type": "page"
+      }
+    ]
+  ]
+}

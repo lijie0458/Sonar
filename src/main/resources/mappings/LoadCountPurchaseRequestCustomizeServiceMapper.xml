@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountPurchaseRequestCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountPurchaseRequestCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2">
+    <result column="purchaser" property="purchaser"/>
+    <result column="order_number" property="orderNumber"/>
+    <result column="supplier" property="supplier"/>
+    <result column="order_date" property="orderDate"/>
+    <result column="required_date" property="requiredDate"/>
+    <result column="approval_status" property="approvalStatus"/>
+    <result column="execution_status" property="executionStatus"/>
+    <result column="description" property="description"/>
+    <result column="remarks" property="remarks"/>
+    <result column="list_puchase_details" property="listPuchaseDetails" typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_2"/>
+    <result column="manu_auto" property="manuAuto"/>
+    <result column="created_by" property="createdBy"/>
+    <result column="purchase_details_id_list" property="purchaseDetailsIdList" typeHandler="com.dogfood.aa20240808.repository.handler.ListTypeHandler_3"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2">
+SELECT * FROM `purchase_order` WHERE SUBSTRING( `order_number` , 3 , 8) = CURDATE()
+</select>
+</mapper>

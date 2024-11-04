@@ -1,0 +1,2 @@
+lcp:
+  noAuthPaths: /api/auth_library_template/oauthLogin:POST,/api/lcplogics/IAMFunctionLogic:POST,/api/auth_library_template/casLogin:POST,/api/auth_library_template/getWxQRCodeParam:POST,/api/lcplogics/IAMGetConfig:POST,/api/lcplogics/IAMGetIdentitySourceByState:POST,/api/auth_library_template/wxLogin:POST,/upload:POST,/upload/download_files:POST

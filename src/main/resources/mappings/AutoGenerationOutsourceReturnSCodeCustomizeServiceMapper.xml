@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated AutoGenerationOutsourceReturnSCodeCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.AutoGenerationOutsourceReturnSCodeCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_DD1A03687DC2F5C127EC8B0CC4523170" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_DD1A03687DC2F5C127EC8B0CC4523170">
+    <id column="T1_C1" property="outsourceReturnStorage.returnCode"/>
+    <result column="T1_C2" property="outsourceReturnStorage.createdTime"/>
+    <result column="T1_C3" property="outsourceReturnStorage.createdBy"/>
+    <result column="T1_C4" property="outsourceReturnStorage.updatedTime"/>
+    <result column="T1_C5" property="outsourceReturnStorage.updatedBy"/>
+    <result column="T1_C6" property="outsourceReturnStorage.state"/>
+    <result column="T1_C7" property="outsourceReturnStorage.outsourceInSCode"/>
+</resultMap>
+
+<select id="getAnonymousStructure_DD1A03687DC2F5C127EC8B0CC4523170" resultMap="AnonymousStructure_DD1A03687DC2F5C127EC8B0CC4523170">
+SELECT `outsource_return_storage`.`return_code` `T1_C1`,`outsource_return_storage`.`created_time` `T1_C2`,`outsource_return_storage`.`created_by` `T1_C3`,`outsource_return_storage`.`updated_time` `T1_C4`,`outsource_return_storage`.`updated_by` `T1_C5`,`outsource_return_storage`.`state` `T1_C6`,`outsource_return_storage`.`outsource_in_s_code` `T1_C7` FROM `outsource_return_storage` 
+<if test=" 1==1 ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" 1==1 ">
+
+<trim  suffix=",">
+`outsource_return_storage`.`return_code` 
+<if test=" 1==1 ">
+DESC 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_DD1A03687DC2F5C127EC8B0CC4523170" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `outsource_return_storage`
+</select>
+</mapper>

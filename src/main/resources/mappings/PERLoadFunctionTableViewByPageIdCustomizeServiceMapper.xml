@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated PERLoadFunctionTableViewByPageIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.PERLoadFunctionTableViewByPageIdCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_6A1C3A855CCD635641331B29B571163B" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6A1C3A855CCD635641331B29B571163B">
+    <id column="T1_C1" property="functionTable.id"/>
+    <result column="T1_C2" property="functionTable.createdTime"/>
+    <result column="T1_C3" property="functionTable.updatedTime"/>
+    <result column="T1_C4" property="functionTable.createdBy"/>
+    <result column="T1_C5" property="functionTable.updatedBy"/>
+    <result column="T1_C6" property="functionTable.name"/>
+    <result column="T1_C7" property="functionTable.description"/>
+    <result column="T1_C8" property="functionTable.moduleId"/>
+    <result column="T1_C9" property="functionTable.pageId"/>
+    <result column="T1_C10" property="functionTable.permissionId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_6A1C3A855CCD635641331B29B571163B" resultMap="AnonymousStructure_6A1C3A855CCD635641331B29B571163B">
+SELECT `FunctionTable`.`id` `T1_C1`,`FunctionTable`.`created_time` `T1_C2`,`FunctionTable`.`updated_time` `T1_C3`,`FunctionTable`.`created_by` `T1_C4`,`FunctionTable`.`updated_by` `T1_C5`,`FunctionTable`.`name` `T1_C6`,`FunctionTable`.`description` `T1_C7`,`FunctionTable`.`module_id` `T1_C8`,`FunctionTable`.`page_id` `T1_C9`,`FunctionTable`.`permission_id` `T1_C10` FROM `FunctionTable` 
+<if test=" 1==1 and pageId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`FunctionTable`.`page_id` = #{pageId} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_6A1C3A855CCD635641331B29B571163B" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `FunctionTable` 
+<if test=" 1==1 and pageId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`FunctionTable`.`page_id` = #{pageId} 
+</trim> 
+</if>
+</select>
+</mapper>

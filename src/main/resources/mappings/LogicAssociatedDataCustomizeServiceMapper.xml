@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LogicAssociatedDataCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LogicAssociatedDataCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_D064F9FB058DBE7CA5880F9FE42F0344" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D064F9FB058DBE7CA5880F9FE42F0344">
+    <id column="T1_C1" property="inventory.id"/>
+    <result column="T1_C2" property="inventory.materialCode"/>
+    <result column="T1_C3" property="inventory.lotNumber"/>
+    <result column="T1_C4" property="inventory.unit"/>
+    <result column="T1_C5" property="inventory.warehouse"/>
+    <result column="T1_C6" property="inventory.stockQuantity"/>
+    <result column="T1_C7" property="inventory.occupiedQuantity"/>
+    <result column="T1_C8" property="inventory.availableQuantity"/>
+    <result column="T1_C9" property="inventory.createdAt"/>
+    <result column="T1_C10" property="inventory.updatedAt"/>
+    <result column="T1_C11" property="inventory.location"/>
+</resultMap>
+
+<select id="getAnonymousStructure_D064F9FB058DBE7CA5880F9FE42F0344" resultMap="AnonymousStructure_D064F9FB058DBE7CA5880F9FE42F0344">
+SELECT `inventory`.`id` `T1_C1`,`inventory`.`material_code` `T1_C2`,`inventory`.`lot_number` `T1_C3`,`inventory`.`unit` `T1_C4`,`inventory`.`warehouse` `T1_C5`,`inventory`.`stock_quantity` `T1_C6`,`inventory`.`occupied_quantity` `T1_C7`,`inventory`.`available_quantity` `T1_C8`,`inventory`.`created_at` `T1_C9`,`inventory`.`updated_at` `T1_C10`,`inventory`.`location` `T1_C11` FROM `inventory` 
+<if test=" 1==1 and ( param1!=null and param1.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `inventory`.`material_code` IN 
+<foreach item="item" index="index" collection="param1" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_D064F9FB058DBE7CA5880F9FE42F0344" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `inventory` 
+<if test=" 1==1 and ( param1!=null and param1.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `inventory`.`material_code` IN 
+<foreach item="item" index="index" collection="param1" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if>
+</select>
+</mapper>

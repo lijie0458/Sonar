@@ -1,0 +1,175 @@
+management:
+  server:
+    port: 9090
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.id}
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include:
+        - health
+        - prometheus
+logging:
+  file:
+    path: ${user.home}
+  path: ${logging.file.path}
+spring:
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations[0]: classpath:/static/
+    static-locations[1]: classpath:/static/assets/
+    static-locations[2]: classpath:/static/packages/
+  main:
+    lazy-initialization: false
+  application:
+    name: aa20240808
+    id: a6d592c6-0441-4ebc-835d-a14d6191f045
+  liquibase:
+    enabled: false
+  initDatabase:
+    enabled: false
+  quartz:
+    enabled: true
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.98.102.217:3306/77?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    password: 123456
+    connection-timeout: 3000
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  messages:
+    basename: i18n/messages
+  profiles:
+    include: auth
+mybatis:
+  mapper-locations: classpath*:mappings/**/*Mapper.xml
+  type-handlers-package: com.dogfood.aa20240808.repository.handler
+  configuration:
+    database-id: mysql
+    default-enum-type-handler: com.dogfood.aa20240808.repository.handler.AutoEnumTypeHandler
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+    min-response-size: 1024
+lcp:
+  snowflakeNodeId: null
+  authCenter:
+    enable: true
+    address: http://nuims.gray-low-code:8081/nuims
+    host: nuims.gray-low-code
+    security:
+      lockMilliseconds: 900000
+      maxFailureTimes: 5
+  flowUrl: http://api.gateway.lowcode/gateway/bpms
+  gatewayUrl: ''
+  audit:
+    enable: true
+    address: http://platform-audit.service.163.org
+  uiResourceAddress: /client.js
+  gatewayType: light
+  upload:
+    sinkType: nos
+    sinkPath: /app
+    s3Address: oss-cn-hangzhou.aliyuncs.com
+    s3AccessKey: 'LTAI5tQ7H6B6AKYyqQoq3CJy'
+    s3SecretKey: 'cUQstc2LFiXvCRzDtYpyjZe4n5O2Ys'
+    s3Bucket: suberchen
+    access: public
+    ttl: 7.0
+    cdnAddress: ''
+  logResponse: false
+  logRequest: true
+  report:
+    host: ''
+    tokenKey: ''
+    domainId: null
+    projectId: null
+    reportIdMap: {}
+    componentIdMap: {}
+  nuims: http://nuims.gray-low-code:8081
+  private: null
+  frontends:
+    pc:
+      name: pc
+      path: /
+      title: PC端
+      type: pc
+  quartzTables:
+    SIMPROP_TRIGGERS: NA6D592C_SIMPROP_TRIGGERS
+    BLOB_TRIGGERS: NA6D592C_BLOB_TRIGGERS
+    TRIGGERS: NA6D592C_TRIGGERS
+    SIMPLE_TRIGGERS: NA6D592C_SIMPLE_TRIGGERS
+    LOCKS: NA6D592C_LOCKS
+    CRON_TRIGGERS: NA6D592C_CRON_TRIGGERS
+    FIRED_TRIGGERS: NA6D592C_FIRED_TRIGGERS
+    CALENDARS: NA6D592C_CALENDARS
+    JOB_DETAILS: NA6D592C_JOB_DETAILS
+    SCHEDULER_STATE: NA6D592C_SCHEDULER_STATE
+    PAUSED_TRIGGER_GRPS: NA6D592C_PAUSED_TRIGGER_GRPS
+upload:
+  base-path: app
+file:
+  types: text/plain;text/html;text/css;application/javascript
+extensions:
+  lcap_annotation_data_permission:
+    custom:
+      dataPermissionCacheExpireSeconds: '60'
+      dataPermissionCacheMaximumSize: '60'
+      skipLCAPEntity: 'true'
+  cw_oauth_library:
+    custom:
+      REDIRECT_URI: /page_config/callback
+  interface_encrypt:
+    custom:
+      rsaPublicKey: "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAILxLkw91qVRcID_sDpbVSkK1B7mnBpE_eOkU6bK3t-BH7iWgByvsmmwgrIDU2B1m1v7pNJYu4mljHzpDj0XYNECAwEAAQ"
+      rsaPrivateKey: "MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAgvEuTD3WpVFwgP-wOltVKQrUHuacGkT946RTpsre34EfuJaAHK-yabCCsgNTYHWbW_uk0li7iaWMfOkOPRdg0QIDAQABAkASlVIBxgDxg2ZZGHCVR6MFaSEDpazf2YzCwu6QTFhnFcMK3z-VXOziZhMw0KYUFMzwQEQu4cKK7olcFFN8poRBAiEAyXi3bI91gkVM3zdbk_8fu5QrEI6kLrj0ydWY6MtHeJkCIQCmYbfCehWMAhFoja3AL5NVovRgNnC4LIISX5gpKTQ0-QIgKxse86VGGRdGuUOY3nNpkLLE_Afo7O45wa1nx_cmVZECIQCRghY2Q5TCfDCDUpyo3jKpCzlTR2ku-OXMccPeA4X_6QIgOl1a5cIxSvXyBnuYGx5ZKS-Yst_BoyMQxMVRgr4bmv4"
+logicAuthFlag: true
+auth:
+  pass:
+    salt: $2a!@#$%^&*()_+
+  token:
+    secret: dd6b515fbe8ce73
+    expire: 86400
+  plugin:
+    list:
+      Normal:
+        category: main
+  types: Normal
+  Normal: '{"category":"main"}'
+gw:
+  app:
+    addr:
+      lowcode: http://lcap.low-code:22988
+      nuims: http://nuims.gray-low-code:8081
+      platform: http://121.43.53.91:8081
+custom:
+  api:
+    context-path: /
+  system:
+    time-zone: user

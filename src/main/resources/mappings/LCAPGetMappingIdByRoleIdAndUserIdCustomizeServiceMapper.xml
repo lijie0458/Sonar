@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPGetMappingIdByRoleIdAndUserIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPGetMappingIdByRoleIdAndUserIdCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_E69C6A05AFC359D00B28F67D0E02C8E5" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E69C6A05AFC359D00B28F67D0E02C8E5">
+    <id column="T1_C1" property="lCAPUserRoleMapping.id"/>
+    <result column="T1_C2" property="lCAPUserRoleMapping.createdTime"/>
+    <result column="T1_C3" property="lCAPUserRoleMapping.updatedTime"/>
+    <result column="T1_C4" property="lCAPUserRoleMapping.createdBy"/>
+    <result column="T1_C5" property="lCAPUserRoleMapping.updatedBy"/>
+    <result column="T1_C6" property="lCAPUserRoleMapping.userId"/>
+    <result column="T1_C7" property="lCAPUserRoleMapping.roleId"/>
+    <result column="T1_C8" property="lCAPUserRoleMapping.userName"/>
+    <result column="T1_C9" property="lCAPUserRoleMapping.source"/>
+</resultMap>
+
+<select id="getAnonymousStructure_E69C6A05AFC359D00B28F67D0E02C8E5" resultMap="AnonymousStructure_E69C6A05AFC359D00B28F67D0E02C8E5">
+SELECT `lcap_user_role_mapping_a6d592`.`id` `T1_C1`,`lcap_user_role_mapping_a6d592`.`created_time` `T1_C2`,`lcap_user_role_mapping_a6d592`.`updated_time` `T1_C3`,`lcap_user_role_mapping_a6d592`.`created_by` `T1_C4`,`lcap_user_role_mapping_a6d592`.`updated_by` `T1_C5`,`lcap_user_role_mapping_a6d592`.`user_id` `T1_C6`,`lcap_user_role_mapping_a6d592`.`role_id` `T1_C7`,`lcap_user_role_mapping_a6d592`.`user_name` `T1_C8`,`lcap_user_role_mapping_a6d592`.`source` `T1_C9` FROM `lcap_user_role_mapping_a6d592` 
+<if test=" 1==1 ">
+ LIMIT ${( 2000 * ( 1 - 1 ) )}, ${2000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_E69C6A05AFC359D00B28F67D0E02C8E5" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `lcap_user_role_mapping_a6d592`
+</select>
+</mapper>

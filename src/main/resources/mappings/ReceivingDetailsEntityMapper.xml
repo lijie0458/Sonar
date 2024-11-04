@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated ReceivingDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.ReceivingDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="receipt_number" jdbcType="VARCHAR" property="receiptNumber" />
+        <result column="received_quantity" jdbcType="BIGINT" property="receivedQuantity" />
+        <result column="material_number" jdbcType="VARCHAR" property="materialNumber" />
+        <result column="order_detail_id" jdbcType="BIGINT" property="orderDetailId" />
+        <result column="receivable_quantity" jdbcType="DECIMAL" property="receivableQuantity" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity"  >
+        INSERT INTO `receiving_details` (
+            `id`
+            ,`receipt_number`
+            ,`received_quantity`
+            ,`material_number`
+            ,`order_detail_id`
+            ,`receivable_quantity`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{receiptNumber,jdbcType=VARCHAR}
+            ,#{receivedQuantity,jdbcType=BIGINT}
+            ,#{materialNumber,jdbcType=VARCHAR}
+            ,#{orderDetailId,jdbcType=BIGINT}
+            ,#{receivableQuantity,jdbcType=DECIMAL}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `receiving_details` (
+            `id`
+            ,`receipt_number`
+            ,`received_quantity`
+            ,`material_number`
+            ,`order_detail_id`
+            ,`receivable_quantity`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.receiptNumber,jdbcType=VARCHAR}
+            ,#{item.receivedQuantity,jdbcType=BIGINT}
+            ,#{item.materialNumber,jdbcType=VARCHAR}
+            ,#{item.orderDetailId,jdbcType=BIGINT}
+            ,#{item.receivableQuantity,jdbcType=DECIMAL}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity" >
+        UPDATE `receiving_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('receiptNumber')">`receipt_number` = #{bean.receiptNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('receivedQuantity')">`received_quantity` = #{bean.receivedQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('orderDetailId')">`order_detail_id` = #{bean.orderDetailId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= DECIMAL},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity" >
+        UPDATE `receiving_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('receiptNumber')">`receipt_number` = #{bean.receiptNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('receivedQuantity')">`received_quantity` = #{bean.receivedQuantity, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('orderDetailId')">`order_detail_id` = #{bean.orderDetailId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= DECIMAL},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `receiving_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `receiving_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `receiving_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'receiptNumber'">
+                    AND `receipt_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'receivedQuantity'">
+                    AND `received_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialNumber'">
+                    AND `material_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderDetailId'">
+                    AND `order_detail_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'receivableQuantity'">
+                    AND `receivable_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `receiving_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'receiptNumber'">
+                    AND `receipt_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'receivedQuantity'">
+                    AND `received_quantity` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'materialNumber'">
+                    AND `material_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'orderDetailId'">
+                    AND `order_detail_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'receivableQuantity'">
+                    AND `receivable_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `receiving_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `receiving_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `receiving_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity">
+        INSERT INTO `receiving_details` (
+            `id`
+            ,`receipt_number`
+            ,`received_quantity`
+            ,`material_number`
+            ,`order_detail_id`
+            ,`receivable_quantity`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{receiptNumber,jdbcType=VARCHAR}
+            ,#{receivedQuantity,jdbcType=BIGINT}
+            ,#{materialNumber,jdbcType=VARCHAR}
+            ,#{orderDetailId,jdbcType=BIGINT}
+            ,#{receivableQuantity,jdbcType=DECIMAL}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `receiving_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('receiptNumber')">`receipt_number` = #{bean.receiptNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('receivedQuantity')">`received_quantity` = #{bean.receivedQuantity, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('orderDetailId')">`order_detail_id` = #{bean.orderDetailId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= DECIMAL},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `receiving_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

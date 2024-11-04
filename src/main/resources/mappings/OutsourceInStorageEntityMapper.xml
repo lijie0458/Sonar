@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated OutsourceInStorageEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.OutsourceInStorageEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity">
+        <id column="code" jdbcType="VARCHAR" property="code" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="source_code" jdbcType="VARCHAR" property="sourceCode" />
+        <result column="desc" jdbcType="VARCHAR" property="desc" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+        <result column="apply_date" jdbcType="DATE" property="applyDate" />
+        <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+        <result column="supplier_id" jdbcType="BIGINT" property="supplierId" />
+        <result column="accessory" jdbcType="VARCHAR" property="accessory" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity"  >
+        INSERT INTO `outsource_in_storage` (
+            `code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`user_id`
+            ,`source_code`
+            ,`desc`
+            ,`state`
+            ,`apply_date`
+            ,`delivery_date`
+            ,`supplier_id`
+            ,`accessory`
+        )
+        VALUES (
+            #{code,jdbcType=VARCHAR}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{userId,jdbcType=VARCHAR}
+            ,#{sourceCode,jdbcType=VARCHAR}
+            ,#{desc,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{applyDate,jdbcType=DATE}
+            ,#{deliveryDate,jdbcType=DATE}
+            ,#{supplierId,jdbcType=BIGINT}
+            ,#{accessory,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `outsource_in_storage` (
+            `code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`user_id`
+            ,`source_code`
+            ,`desc`
+            ,`state`
+            ,`apply_date`
+            ,`delivery_date`
+            ,`supplier_id`
+            ,`accessory`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.code,jdbcType=VARCHAR}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.userId,jdbcType=VARCHAR}
+            ,#{item.sourceCode,jdbcType=VARCHAR}
+            ,#{item.desc,jdbcType=VARCHAR}
+            ,#{item.state,jdbcType=VARCHAR}
+            ,#{item.applyDate,jdbcType=DATE}
+            ,#{item.deliveryDate,jdbcType=DATE}
+            ,#{item.supplierId,jdbcType=BIGINT}
+            ,#{item.accessory,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity" >
+        UPDATE `outsource_in_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('desc')">`desc` = #{bean.desc, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('applyDate')">`apply_date` = #{bean.applyDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('supplierId')">`supplier_id` = #{bean.supplierId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('accessory')">`accessory` = #{bean.accessory, jdbcType= VARCHAR},</if>
+        </set>
+        where `code` = #{bean.code}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity" >
+        UPDATE `outsource_in_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('desc')">`desc` = #{bean.desc, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('applyDate')">`apply_date` = #{bean.applyDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('supplierId')">`supplier_id` = #{bean.supplierId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('accessory')">`accessory` = #{bean.accessory, jdbcType= VARCHAR},</if>
+        </set>
+        where `code` = #{bean.code}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `outsource_in_storage` where `code` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `outsource_in_storage` where `code` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `outsource_in_storage`
+        <where>
+            <choose>
+                <when test="property == 'code'">
+                    AND `code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userId'">
+                    AND `user_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'sourceCode'">
+                    AND `source_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'desc'">
+                    AND `desc` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'applyDate'">
+                    AND `apply_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'deliveryDate'">
+                    AND `delivery_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'supplierId'">
+                    AND `supplier_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'accessory'">
+                    AND `accessory` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `code` from `outsource_in_storage` 
+        <where>
+            <choose>
+                <when test="property == 'code'">
+                    AND `code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'userId'">
+                    AND `user_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'sourceCode'">
+                    AND `source_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'desc'">
+                    AND `desc` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'applyDate'">
+                    AND `apply_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'deliveryDate'">
+                    AND `delivery_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'supplierId'">
+                    AND `supplier_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'accessory'">
+                    AND `accessory` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `outsource_in_storage`
+        where `code`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `outsource_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `outsource_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity">
+        INSERT INTO `outsource_in_storage` (
+            `code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`user_id`
+            ,`source_code`
+            ,`desc`
+            ,`state`
+            ,`apply_date`
+            ,`delivery_date`
+            ,`supplier_id`
+            ,`accessory`
+        )
+        VALUES (
+            #{code,jdbcType=VARCHAR}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{userId,jdbcType=VARCHAR}
+            ,#{sourceCode,jdbcType=VARCHAR}
+            ,#{desc,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{applyDate,jdbcType=DATE}
+            ,#{deliveryDate,jdbcType=DATE}
+            ,#{supplierId,jdbcType=BIGINT}
+            ,#{accessory,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `outsource_in_storage`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('desc')">`desc` = #{bean.desc, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('applyDate')">`apply_date` = #{bean.applyDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('supplierId')">`supplier_id` = #{bean.supplierId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('accessory')">`accessory` = #{bean.accessory, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `outsource_in_storage`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

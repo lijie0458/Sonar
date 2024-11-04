@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadReturnByBePutInStorageDetailIdCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadReturnByBePutInStorageDetailIdCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_509F24060C1187880735EB6970D1B3E4" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_509F24060C1187880735EB6970D1B3E4">
+    <result column="be_put_in_storage_details_id" property="bePutInStorageDetailsId"/>
+    <result column="material_number" property="materialNumber"/>
+    <result column="total" property="total"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_509F24060C1187880735EB6970D1B3E4">
+SELECT `be_put_in_storage_details_id`,`material_number`,SUM( `be_put_in_storage_quantity`) `total` from `goods_returned_note_details` 
+<if test=" ( param1!=null and param1.size()>0 ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`be_put_in_storage_details_id` IN <foreach item="item" index="index" collection="param1" open="(" separator="," close=")">
+#{item}
+</foreach>
+
+</trim>
+</if> GROUP BY `material_number`
+</select>
+</mapper>

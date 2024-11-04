@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetScheduleByDateCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetScheduleByDateCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_3F352B7D9C6EC2FC4504021A3B87F456" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3F352B7D9C6EC2FC4504021A3B87F456">
+    <id column="T1_C1" property="schedule.id"/>
+    <result column="T1_C2" property="schedule.createdTime"/>
+    <result column="T1_C3" property="schedule.updatedTime"/>
+    <result column="T1_C4" property="schedule.createdBy"/>
+    <result column="T1_C5" property="schedule.updatedBy"/>
+    <result column="T1_C6" property="schedule.title"/>
+    <result column="T1_C7" property="schedule.content"/>
+    <result column="T1_C8" property="schedule.createDate"/>
+</resultMap>
+
+<select id="getAnonymousStructure_3F352B7D9C6EC2FC4504021A3B87F456" resultMap="AnonymousStructure_3F352B7D9C6EC2FC4504021A3B87F456">
+SELECT `schedule`.`id` `T1_C1`,`schedule`.`created_time` `T1_C2`,`schedule`.`updated_time` `T1_C3`,`schedule`.`created_by` `T1_C4`,`schedule`.`updated_by` `T1_C5`,`schedule`.`title` `T1_C6`,`schedule`.`content` `T1_C7`,`schedule`.`create_date` `T1_C8` FROM `schedule` 
+<if test=" 1==1 and createDate!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`schedule`.`create_date` = #{createDate} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_3F352B7D9C6EC2FC4504021A3B87F456" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `schedule` 
+<if test=" 1==1 and createDate!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`schedule`.`create_date` = #{createDate} 
+</trim> 
+</if>
+</select>
+</mapper>

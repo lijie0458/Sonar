@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated OtherInStorageDetailsEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.OtherInStorageDetailsEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.OtherInStorageDetailsEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="other_in_s_code" jdbcType="VARCHAR" property="otherInSCode" />
+        <result column="material_code" jdbcType="VARCHAR" property="materialCode" />
+        <result column="lot_number" jdbcType="VARCHAR" property="lotNumber" />
+        <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+        <result column="source_code" jdbcType="VARCHAR" property="sourceCode" />
+        <result column="warehouse_id" jdbcType="BIGINT" property="warehouseId" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="unreturn_quantity" jdbcType="DECIMAL" property="unreturnQuantity" />
+        <result column="storage_location_id" jdbcType="BIGINT" property="storageLocationId" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.OtherInStorageDetailsEntity"  >
+        INSERT INTO `other_in_storage_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`other_in_s_code`
+            ,`material_code`
+            ,`lot_number`
+            ,`quantity`
+            ,`source_code`
+            ,`warehouse_id`
+            ,`remark`
+            ,`unreturn_quantity`
+            ,`storage_location_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{otherInSCode,jdbcType=VARCHAR}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{lotNumber,jdbcType=VARCHAR}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{sourceCode,jdbcType=VARCHAR}
+            ,#{warehouseId,jdbcType=BIGINT}
+            ,#{remark,jdbcType=VARCHAR}
+            ,#{unreturnQuantity,jdbcType=DECIMAL}
+            ,#{storageLocationId,jdbcType=BIGINT}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `other_in_storage_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`other_in_s_code`
+            ,`material_code`
+            ,`lot_number`
+            ,`quantity`
+            ,`source_code`
+            ,`warehouse_id`
+            ,`remark`
+            ,`unreturn_quantity`
+            ,`storage_location_id`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.id,jdbcType=BIGINT}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.otherInSCode,jdbcType=VARCHAR}
+            ,#{item.materialCode,jdbcType=VARCHAR}
+            ,#{item.lotNumber,jdbcType=VARCHAR}
+            ,#{item.quantity,jdbcType=DECIMAL}
+            ,#{item.sourceCode,jdbcType=VARCHAR}
+            ,#{item.warehouseId,jdbcType=BIGINT}
+            ,#{item.remark,jdbcType=VARCHAR}
+            ,#{item.unreturnQuantity,jdbcType=DECIMAL}
+            ,#{item.storageLocationId,jdbcType=BIGINT}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.OtherInStorageDetailsEntity" >
+        UPDATE `other_in_storage_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('otherInSCode')">`other_in_s_code` = #{bean.otherInSCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouseId')">`warehouse_id` = #{bean.warehouseId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('remark')">`remark` = #{bean.remark, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unreturnQuantity')">`unreturn_quantity` = #{bean.unreturnQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('storageLocationId')">`storage_location_id` = #{bean.storageLocationId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OtherInStorageDetailsEntity" >
+        UPDATE `other_in_storage_details`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('otherInSCode')">`other_in_s_code` = #{bean.otherInSCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouseId')">`warehouse_id` = #{bean.warehouseId, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('remark')">`remark` = #{bean.remark, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('unreturnQuantity')">`unreturn_quantity` = #{bean.unreturnQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('storageLocationId')">`storage_location_id` = #{bean.storageLocationId, jdbcType= BIGINT},</if>
+        </set>
+        where `id` = #{bean.id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM `other_in_storage_details` where `id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `other_in_storage_details` where `id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `other_in_storage_details`
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'otherInSCode'">
+                    AND `other_in_s_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'lotNumber'">
+                    AND `lot_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'sourceCode'">
+                    AND `source_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouseId'">
+                    AND `warehouse_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'remark'">
+                    AND `remark` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unreturnQuantity'">
+                    AND `unreturn_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'storageLocationId'">
+                    AND `storage_location_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `id` from `other_in_storage_details` 
+        <where>
+            <choose>
+                <when test="property == 'id'">
+                    AND `id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'otherInSCode'">
+                    AND `other_in_s_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'materialCode'">
+                    AND `material_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'lotNumber'">
+                    AND `lot_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'quantity'">
+                    AND `quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'sourceCode'">
+                    AND `source_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouseId'">
+                    AND `warehouse_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'remark'">
+                    AND `remark` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'unreturnQuantity'">
+                    AND `unreturn_quantity` = #{value, jdbcType=DECIMAL}
+                </when>
+                <when test="property == 'storageLocationId'">
+                    AND `storage_location_id` = #{value, jdbcType=BIGINT}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `other_in_storage_details`
+        where `id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `other_in_storage_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `other_in_storage_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OtherInStorageDetailsEntity">
+        INSERT INTO `other_in_storage_details` (
+            `id`
+            ,`created_time`
+            ,`updated_time`
+            ,`created_by`
+            ,`updated_by`
+            ,`other_in_s_code`
+            ,`material_code`
+            ,`lot_number`
+            ,`quantity`
+            ,`source_code`
+            ,`warehouse_id`
+            ,`remark`
+            ,`unreturn_quantity`
+            ,`storage_location_id`
+        )
+        VALUES (
+            #{id,jdbcType=BIGINT}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{otherInSCode,jdbcType=VARCHAR}
+            ,#{materialCode,jdbcType=VARCHAR}
+            ,#{lotNumber,jdbcType=VARCHAR}
+            ,#{quantity,jdbcType=DECIMAL}
+            ,#{sourceCode,jdbcType=VARCHAR}
+            ,#{warehouseId,jdbcType=BIGINT}
+            ,#{remark,jdbcType=VARCHAR}
+            ,#{unreturnQuantity,jdbcType=DECIMAL}
+            ,#{storageLocationId,jdbcType=BIGINT}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `other_in_storage_details`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('otherInSCode')">`other_in_s_code` = #{bean.otherInSCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('quantity')">`quantity` = #{bean.quantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('warehouseId')">`warehouse_id` = #{bean.warehouseId, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('remark')">`remark` = #{bean.remark, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('unreturnQuantity')">`unreturn_quantity` = #{bean.unreturnQuantity, jdbcType= DECIMAL},</if>
+        <if test="updateFields == null or updateFields.contains('storageLocationId')">`storage_location_id` = #{bean.storageLocationId, jdbcType= BIGINT},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `other_in_storage_details`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

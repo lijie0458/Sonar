@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated AutoGenerteOtherInSCodeCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.AutoGenerteOtherInSCodeCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_B3BBD4D12970AF27D4FDAF1D48D79119" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_B3BBD4D12970AF27D4FDAF1D48D79119">
+    <id column="T1_C1" property="otherInStorage.code"/>
+    <result column="T1_C2" property="otherInStorage.createdTime"/>
+    <result column="T1_C3" property="otherInStorage.createdBy"/>
+    <result column="T1_C4" property="otherInStorage.updatedTime"/>
+    <result column="T1_C5" property="otherInStorage.updatedBy"/>
+    <result column="T1_C6" property="otherInStorage.userId"/>
+    <result column="T1_C7" property="otherInStorage.sourceCode"/>
+    <result column="T1_C8" property="otherInStorage.desc"/>
+    <result column="T1_C9" property="otherInStorage.state"/>
+    <result column="T1_C10" property="otherInStorage.applyDate"/>
+    <result column="T1_C11" property="otherInStorage.deliveryDate"/>
+    <result column="T1_C12" property="otherInStorage.unit"/>
+    <result column="T1_C13" property="otherInStorage.accessory"/>
+</resultMap>
+
+<select id="getAnonymousStructure_B3BBD4D12970AF27D4FDAF1D48D79119" resultMap="AnonymousStructure_B3BBD4D12970AF27D4FDAF1D48D79119">
+SELECT `other_in_storage`.`code` `T1_C1`,`other_in_storage`.`created_time` `T1_C2`,`other_in_storage`.`created_by` `T1_C3`,`other_in_storage`.`updated_time` `T1_C4`,`other_in_storage`.`updated_by` `T1_C5`,`other_in_storage`.`user_id` `T1_C6`,`other_in_storage`.`source_code` `T1_C7`,`other_in_storage`.`desc` `T1_C8`,`other_in_storage`.`state` `T1_C9`,`other_in_storage`.`apply_date` `T1_C10`,`other_in_storage`.`delivery_date` `T1_C11`,`other_in_storage`.`unit` `T1_C12`,`other_in_storage`.`accessory` `T1_C13` FROM `other_in_storage` 
+<if test=" 1==1 ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" 1==1 ">
+
+<trim  suffix=",">
+`other_in_storage`.`code` 
+<if test=" 1==1 ">
+DESC 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_B3BBD4D12970AF27D4FDAF1D48D79119" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `other_in_storage`
+</select>
+</mapper>

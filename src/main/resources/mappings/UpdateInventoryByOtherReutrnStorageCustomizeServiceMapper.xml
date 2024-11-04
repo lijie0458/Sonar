@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated UpdateInventoryByOtherReutrnStorageCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.UpdateInventoryByOtherReutrnStorageCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_8BFFB96D9E1305E2BCB428D1CD810283" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8BFFB96D9E1305E2BCB428D1CD810283">
+    <id column="T1_C1" property="otherReturnStorageDetails.id"/>
+    <result column="T1_C2" property="otherReturnStorageDetails.createdTime"/>
+    <result column="T1_C3" property="otherReturnStorageDetails.updatedTime"/>
+    <result column="T1_C4" property="otherReturnStorageDetails.createdBy"/>
+    <result column="T1_C5" property="otherReturnStorageDetails.updatedBy"/>
+    <result column="T1_C6" property="otherReturnStorageDetails.otherInSDetailsId"/>
+    <result column="T1_C7" property="otherReturnStorageDetails.quantity"/>
+    <result column="T1_C8" property="otherReturnStorageDetails.otherReturnSCode"/>
+    <result column="T2_C1" property="otherInStorageDetails.id"/>
+    <result column="T2_C2" property="otherInStorageDetails.createdTime"/>
+    <result column="T2_C3" property="otherInStorageDetails.updatedTime"/>
+    <result column="T2_C4" property="otherInStorageDetails.createdBy"/>
+    <result column="T2_C5" property="otherInStorageDetails.updatedBy"/>
+    <result column="T2_C6" property="otherInStorageDetails.otherInSCode"/>
+    <result column="T2_C7" property="otherInStorageDetails.materialCode"/>
+    <result column="T2_C8" property="otherInStorageDetails.lotNumber"/>
+    <result column="T2_C9" property="otherInStorageDetails.quantity"/>
+    <result column="T2_C10" property="otherInStorageDetails.sourceCode"/>
+    <result column="T2_C11" property="otherInStorageDetails.warehouseId"/>
+    <result column="T2_C12" property="otherInStorageDetails.remark"/>
+    <result column="T2_C13" property="otherInStorageDetails.unreturnQuantity"/>
+    <result column="T2_C14" property="otherInStorageDetails.storageLocationId"/>
+    <result column="T3_C1" property="inventory.id"/>
+    <result column="T3_C2" property="inventory.materialCode"/>
+    <result column="T3_C3" property="inventory.lotNumber"/>
+    <result column="T3_C4" property="inventory.unit"/>
+    <result column="T3_C5" property="inventory.warehouse"/>
+    <result column="T3_C6" property="inventory.stockQuantity"/>
+    <result column="T3_C7" property="inventory.occupiedQuantity"/>
+    <result column="T3_C8" property="inventory.availableQuantity"/>
+    <result column="T3_C9" property="inventory.createdAt"/>
+    <result column="T3_C10" property="inventory.updatedAt"/>
+    <result column="T3_C11" property="inventory.location"/>
+</resultMap>
+
+<select id="getAnonymousStructure_8BFFB96D9E1305E2BCB428D1CD810283" resultMap="AnonymousStructure_8BFFB96D9E1305E2BCB428D1CD810283">
+SELECT `other_return_storage_details`.`id` `T1_C1`,`other_return_storage_details`.`created_time` `T1_C2`,`other_return_storage_details`.`updated_time` `T1_C3`,`other_return_storage_details`.`created_by` `T1_C4`,`other_return_storage_details`.`updated_by` `T1_C5`,`other_return_storage_details`.`other_in_s_details_id` `T1_C6`,`other_return_storage_details`.`quantity` `T1_C7`,`other_return_storage_details`.`other_return_s_code` `T1_C8`,`other_in_storage_details`.`id` `T2_C1`,`other_in_storage_details`.`created_time` `T2_C2`,`other_in_storage_details`.`updated_time` `T2_C3`,`other_in_storage_details`.`created_by` `T2_C4`,`other_in_storage_details`.`updated_by` `T2_C5`,`other_in_storage_details`.`other_in_s_code` `T2_C6`,`other_in_storage_details`.`material_code` `T2_C7`,`other_in_storage_details`.`lot_number` `T2_C8`,`other_in_storage_details`.`quantity` `T2_C9`,`other_in_storage_details`.`source_code` `T2_C10`,`other_in_storage_details`.`warehouse_id` `T2_C11`,`other_in_storage_details`.`remark` `T2_C12`,`other_in_storage_details`.`unreturn_quantity` `T2_C13`,`other_in_storage_details`.`storage_location_id` `T2_C14`,`inventory`.`id` `T3_C1`,`inventory`.`material_code` `T3_C2`,`inventory`.`lot_number` `T3_C3`,`inventory`.`unit` `T3_C4`,`inventory`.`warehouse` `T3_C5`,`inventory`.`stock_quantity` `T3_C6`,`inventory`.`occupied_quantity` `T3_C7`,`inventory`.`available_quantity` `T3_C8`,`inventory`.`created_at` `T3_C9`,`inventory`.`updated_at` `T3_C10`,`inventory`.`location` `T3_C11` FROM `other_return_storage_details` INNER JOIN `other_in_storage_details` ON `other_return_storage_details`.`other_in_s_details_id` = `other_in_storage_details`.`id` INNER JOIN `inventory` ON 
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`other_in_storage_details`.`material_code` = `inventory`.`material_code`) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`lot_number` = `inventory`.`lot_number`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`warehouse_id` = `inventory`.`warehouse`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`storage_location_id` = `inventory`.`location`) 
+</trim> 
+</if> 
+<if test=" 1==1 and otherReturnCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`other_return_storage_details`.`other_return_s_code` = #{otherReturnCode} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_8BFFB96D9E1305E2BCB428D1CD810283" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `other_return_storage_details` INNER JOIN `other_in_storage_details` ON `other_return_storage_details`.`other_in_s_details_id` = `other_in_storage_details`.`id` INNER JOIN `inventory` ON 
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(`other_in_storage_details`.`material_code` = `inventory`.`material_code`) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`lot_number` = `inventory`.`lot_number`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`warehouse_id` = `inventory`.`warehouse`) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`other_in_storage_details`.`storage_location_id` = `inventory`.`location`) 
+</trim> 
+</if> 
+<if test=" 1==1 and otherReturnCode!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`other_return_storage_details`.`other_return_s_code` = #{otherReturnCode} 
+</trim> 
+</if>
+</select>
+</mapper>

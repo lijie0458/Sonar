@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadupdateTransFerSlipDetails1CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadupdateTransFerSlipDetails1CustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_25E6E207A23A69C3FD2902BCF708440D" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_25E6E207A23A69C3FD2902BCF708440D">
+    <result column="batch_number" property="batchNumber"/>
+    <result column="quantity" property="quantity"/>
+    <result column="in_warehouse" property="inWarehouse"/>
+    <result column="in_storage_location" property="inStorageLocation"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_25E6E207A23A69C3FD2902BCF708440D">
+SELECT `tsd`.`batch_number`,`tsd`.`quantity`,`tsd`.`in_warehouse`,`tsd`.`in_storage_location` FROM `transfer_slip` `ts` LEFT JOIN `transfer_slip_details` `tsd` ON `ts`.`document_number` = `tsd`.`production_material_requisition` 
+<if test=" OrderNumber!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	`ts`.`document_number` = #{OrderNumber}
+</trim>
+</if>
+</select>
+</mapper>

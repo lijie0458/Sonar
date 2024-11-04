@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated IAMAccountBindOrUnBindCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.IAMAccountBindOrUnBindCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_47C167E7217746A55100F50A57F637C0" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_47C167E7217746A55100F50A57F637C0">
+    <id column="T1_C1" property="lCAPUser.id"/>
+    <result column="T1_C2" property="lCAPUser.createdTime"/>
+    <result column="T1_C3" property="lCAPUser.updatedTime"/>
+    <result column="T1_C4" property="lCAPUser.userId"/>
+    <result column="T1_C5" property="lCAPUser.userName"/>
+    <result column="T1_C6" property="lCAPUser.password"/>
+    <result column="T1_C7" property="lCAPUser.phone"/>
+    <result column="T1_C8" property="lCAPUser.email"/>
+    <result column="T1_C9" property="lCAPUser.displayName"/>
+    <result column="T1_C10" property="lCAPUser.status"/>
+    <result column="T1_C11" property="lCAPUser.source"/>
+    <result column="T1_C12" property="lCAPUser.department_Id"/>
+    <result column="T1_C13" property="lCAPUser.directLeaderId"/>
+    <result column="T1_C14" property="lCAPUser.isFirstLogin"/>
+</resultMap>
+
+<select id="getAnonymousStructure_47C167E7217746A55100F50A57F637C0" resultMap="AnonymousStructure_47C167E7217746A55100F50A57F637C0">
+SELECT `lcap_user_a6d592`.`id` `T1_C1`,`lcap_user_a6d592`.`created_time` `T1_C2`,`lcap_user_a6d592`.`updated_time` `T1_C3`,`lcap_user_a6d592`.`user_id` `T1_C4`,`lcap_user_a6d592`.`user_name` `T1_C5`,`lcap_user_a6d592`.`password` `T1_C6`,`lcap_user_a6d592`.`phone` `T1_C7`,`lcap_user_a6d592`.`email` `T1_C8`,`lcap_user_a6d592`.`display_name` `T1_C9`,`lcap_user_a6d592`.`status` `T1_C10`,`lcap_user_a6d592`.`source` `T1_C11`,`lcap_user_a6d592`.`department__id` `T1_C12`,`lcap_user_a6d592`.`direct_leader_id` `T1_C13`,`lcap_user_a6d592`.`is_first_login` `T1_C14` FROM `lcap_user_a6d592` 
+<if test=" 1==1 and userName!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`lcap_user_a6d592`.`user_name` = #{userName} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_47C167E7217746A55100F50A57F637C0" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `lcap_user_a6d592` 
+<if test=" 1==1 and userName!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`lcap_user_a6d592`.`user_name` = #{userName} 
+</trim> 
+</if>
+</select>
+
+<resultMap id="AnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF">
+    <id column="T1_C1" property="thirdIdentity.id"/>
+    <result column="T1_C2" property="thirdIdentity.createdTime"/>
+    <result column="T1_C3" property="thirdIdentity.updatedTime"/>
+    <result column="T1_C4" property="thirdIdentity.createdBy"/>
+    <result column="T1_C5" property="thirdIdentity.updatedBy"/>
+    <result column="T1_C6" property="thirdIdentity.openId"/>
+    <result column="T1_C7" property="thirdIdentity.identityId"/>
+    <result column="T1_C8" property="thirdIdentity.name"/>
+    <result column="T1_C9" property="thirdIdentity.phone"/>
+    <result column="T1_C10" property="thirdIdentity.email"/>
+    <result column="T1_C11" property="thirdIdentity.userId"/>
+    <result column="T1_C12" property="thirdIdentity.state"/>
+</resultMap>
+
+<select id="getAnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF" resultMap="AnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF">
+SELECT `ThirdIdentity`.`id` `T1_C1`,`ThirdIdentity`.`created_time` `T1_C2`,`ThirdIdentity`.`updated_time` `T1_C3`,`ThirdIdentity`.`created_by` `T1_C4`,`ThirdIdentity`.`updated_by` `T1_C5`,`ThirdIdentity`.`open_id` `T1_C6`,`ThirdIdentity`.`identity_id` `T1_C7`,`ThirdIdentity`.`name` `T1_C8`,`ThirdIdentity`.`phone` `T1_C9`,`ThirdIdentity`.`email` `T1_C10`,`ThirdIdentity`.`user_id` `T1_C11`,`ThirdIdentity`.`state` `T1_C12` FROM `ThirdIdentity` 
+<if test=" 1==1 or identitySourceId!=null or ( userInfo!=null and userInfo.userId!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and identitySourceId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`identity_id` = #{identitySourceId} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( userInfo!=null and userInfo.userId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`user_id` = #{userInfo.userId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `ThirdIdentity` 
+<if test=" 1==1 or identitySourceId!=null or ( userInfo!=null and userInfo.userId!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and identitySourceId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`identity_id` = #{identitySourceId} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( userInfo!=null and userInfo.userId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`user_id` = #{userInfo.userId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<select id="getString" resultType="java.lang.String">
+SELECT `lcap_user_a6d592`.`user_name` `userName` FROM `lcap_user_a6d592` GROUP BY `lcap_user_a6d592`.`user_name` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countString" resultType="java.lang.Long">
+SELECT COUNT(*) FROM (SELECT `lcap_user_a6d592`.`user_name` `userName` FROM `lcap_user_a6d592` GROUP BY `lcap_user_a6d592`.`user_name`) t_lcap_as_count
+</select>
+
+<resultMap id="AnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF1" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF">
+    <id column="T1_C1" property="thirdIdentity.id"/>
+    <result column="T1_C2" property="thirdIdentity.createdTime"/>
+    <result column="T1_C3" property="thirdIdentity.updatedTime"/>
+    <result column="T1_C4" property="thirdIdentity.createdBy"/>
+    <result column="T1_C5" property="thirdIdentity.updatedBy"/>
+    <result column="T1_C6" property="thirdIdentity.openId"/>
+    <result column="T1_C7" property="thirdIdentity.identityId"/>
+    <result column="T1_C8" property="thirdIdentity.name"/>
+    <result column="T1_C9" property="thirdIdentity.phone"/>
+    <result column="T1_C10" property="thirdIdentity.email"/>
+    <result column="T1_C11" property="thirdIdentity.userId"/>
+    <result column="T1_C12" property="thirdIdentity.state"/>
+</resultMap>
+
+<select id="getAnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF1" resultMap="AnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF1">
+SELECT `ThirdIdentity`.`id` `T1_C1`,`ThirdIdentity`.`created_time` `T1_C2`,`ThirdIdentity`.`updated_time` `T1_C3`,`ThirdIdentity`.`created_by` `T1_C4`,`ThirdIdentity`.`updated_by` `T1_C5`,`ThirdIdentity`.`open_id` `T1_C6`,`ThirdIdentity`.`identity_id` `T1_C7`,`ThirdIdentity`.`name` `T1_C8`,`ThirdIdentity`.`phone` `T1_C9`,`ThirdIdentity`.`email` `T1_C10`,`ThirdIdentity`.`user_id` `T1_C11`,`ThirdIdentity`.`state` `T1_C12` FROM `ThirdIdentity` 
+<if test=" 1==1 or ( global_CDD638E00095E76C42DB80D69DFDEC30_currentUser!=null and global_CDD638E00095E76C42DB80D69DFDEC30_currentUser.userId!=null ) or identitySourceId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and identitySourceId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`identity_id` = #{identitySourceId} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( global_CDD638E00095E76C42DB80D69DFDEC30_currentUser!=null and global_CDD638E00095E76C42DB80D69DFDEC30_currentUser.userId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`user_id` = #{global_CDD638E00095E76C42DB80D69DFDEC30_currentUser.userId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_CF0A20C3E9EE29F8B74D4541D72927DF1" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `ThirdIdentity` 
+<if test=" 1==1 or ( global_CDD638E00095E76C42DB80D69DFDEC30_currentUser!=null and global_CDD638E00095E76C42DB80D69DFDEC30_currentUser.userId!=null ) or identitySourceId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and identitySourceId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`identity_id` = #{identitySourceId} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( global_CDD638E00095E76C42DB80D69DFDEC30_currentUser!=null and global_CDD638E00095E76C42DB80D69DFDEC30_currentUser.userId!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`ThirdIdentity`.`user_id` = #{global_CDD638E00095E76C42DB80D69DFDEC30_currentUser.userId} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

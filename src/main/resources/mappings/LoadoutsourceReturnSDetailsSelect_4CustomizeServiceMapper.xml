@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadoutsourceReturnSDetailsSelect_4CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadoutsourceReturnSDetailsSelect_4CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_A658BA46DE07AAD9FEFF3102D27C33D8" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A658BA46DE07AAD9FEFF3102D27C33D8">
+    <id column="T1_C1" property="outsourceInStorage.code"/>
+    <result column="T1_C2" property="outsourceInStorage.createdTime"/>
+    <result column="T1_C3" property="outsourceInStorage.createdBy"/>
+    <result column="T1_C4" property="outsourceInStorage.updatedTime"/>
+    <result column="T1_C5" property="outsourceInStorage.updatedBy"/>
+    <result column="T1_C6" property="outsourceInStorage.userId"/>
+    <result column="T1_C7" property="outsourceInStorage.sourceCode"/>
+    <result column="T1_C8" property="outsourceInStorage.desc"/>
+    <result column="T1_C9" property="outsourceInStorage.state"/>
+    <result column="T1_C10" property="outsourceInStorage.applyDate"/>
+    <result column="T1_C11" property="outsourceInStorage.deliveryDate"/>
+    <result column="T1_C12" property="outsourceInStorage.supplierId"/>
+    <result column="T1_C13" property="outsourceInStorage.accessory"/>
+    <result column="T2_C1" property="outsourceInStorageDetails.id"/>
+    <result column="T2_C2" property="outsourceInStorageDetails.createdTime"/>
+    <result column="T2_C3" property="outsourceInStorageDetails.updatedTime"/>
+    <result column="T2_C4" property="outsourceInStorageDetails.createdBy"/>
+    <result column="T2_C5" property="outsourceInStorageDetails.updatedBy"/>
+    <result column="T2_C6" property="outsourceInStorageDetails.outsourceInSCode"/>
+    <result column="T2_C7" property="outsourceInStorageDetails.materialCode"/>
+    <result column="T2_C8" property="outsourceInStorageDetails.lotNumber"/>
+    <result column="T2_C9" property="outsourceInStorageDetails.quantity"/>
+    <result column="T2_C10" property="outsourceInStorageDetails.sourceCode"/>
+    <result column="T2_C11" property="outsourceInStorageDetails.warehouseId"/>
+    <result column="T2_C12" property="outsourceInStorageDetails.remark"/>
+    <result column="T2_C13" property="outsourceInStorageDetails.unreturnQuantity"/>
+    <result column="T2_C14" property="outsourceInStorageDetails.storageLocationId"/>
+    <result column="T3_C1" property="materialDetails.materialCode"/>
+    <result column="T3_C2" property="materialDetails.material_name"/>
+    <result column="T3_C3" property="materialDetails.category_id"/>
+    <result column="T3_C4" property="materialDetails.specification"/>
+    <result column="T3_C5" property="materialDetails.unit"/>
+    <result column="T3_C6" property="materialDetails.description"/>
+    <result column="T3_C7" property="materialDetails.is_batch_enabled"/>
+</resultMap>
+
+<select id="getAnonymousStructure_A658BA46DE07AAD9FEFF3102D27C33D8" resultMap="AnonymousStructure_A658BA46DE07AAD9FEFF3102D27C33D8">
+SELECT `outsource_in_storage`.`code` `T1_C1`,`outsource_in_storage`.`created_time` `T1_C2`,`outsource_in_storage`.`created_by` `T1_C3`,`outsource_in_storage`.`updated_time` `T1_C4`,`outsource_in_storage`.`updated_by` `T1_C5`,`outsource_in_storage`.`user_id` `T1_C6`,`outsource_in_storage`.`source_code` `T1_C7`,`outsource_in_storage`.`desc` `T1_C8`,`outsource_in_storage`.`state` `T1_C9`,`outsource_in_storage`.`apply_date` `T1_C10`,`outsource_in_storage`.`delivery_date` `T1_C11`,`outsource_in_storage`.`supplier_id` `T1_C12`,`outsource_in_storage`.`accessory` `T1_C13`,`outsource_in_storage_details`.`id` `T2_C1`,`outsource_in_storage_details`.`created_time` `T2_C2`,`outsource_in_storage_details`.`updated_time` `T2_C3`,`outsource_in_storage_details`.`created_by` `T2_C4`,`outsource_in_storage_details`.`updated_by` `T2_C5`,`outsource_in_storage_details`.`outsource_in_s_code` `T2_C6`,`outsource_in_storage_details`.`material_code` `T2_C7`,`outsource_in_storage_details`.`lot_number` `T2_C8`,`outsource_in_storage_details`.`quantity` `T2_C9`,`outsource_in_storage_details`.`source_code` `T2_C10`,`outsource_in_storage_details`.`warehouse_id` `T2_C11`,`outsource_in_storage_details`.`remark` `T2_C12`,`outsource_in_storage_details`.`unreturn_quantity` `T2_C13`,`outsource_in_storage_details`.`storage_location_id` `T2_C14`,`material_details`.`material_code` `T3_C1`,`material_details`.`material_name` `T3_C2`,`material_details`.`category_id` `T3_C3`,`material_details`.`specification` `T3_C4`,`material_details`.`unit` `T3_C5`,`material_details`.`description` `T3_C6`,`material_details`.`is_batch_enabled` `T3_C7` FROM `outsource_in_storage` INNER JOIN `outsource_in_storage_details` ON `outsource_in_storage`.`code` = `outsource_in_storage_details`.`outsource_in_s_code` INNER JOIN `material_details` ON `outsource_in_storage_details`.`material_code` = `material_details`.`material_code` 
+<if test=" 1==1 or code!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(( ( `outsource_in_storage_details`.`unreturn_quantity` ) IS NULL )) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(`outsource_in_storage_details`.`unreturn_quantity` != 0) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and code!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`outsource_in_storage`.`code` = #{code} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_A658BA46DE07AAD9FEFF3102D27C33D8" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `outsource_in_storage` INNER JOIN `outsource_in_storage_details` ON `outsource_in_storage`.`code` = `outsource_in_storage_details`.`outsource_in_s_code` INNER JOIN `material_details` ON `outsource_in_storage_details`.`material_code` = `material_details`.`material_code` 
+<if test=" 1==1 or code!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 ">
+(
+<if test=" 1==1 ">
+(( ( `outsource_in_storage_details`.`unreturn_quantity` ) IS NULL )) 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="or">
+(`outsource_in_storage_details`.`unreturn_quantity` != 0) 
+</trim> 
+</if>) 
+</if> 
+<if test=" 1==1 and code!=null ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`outsource_in_storage`.`code` = #{code} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>

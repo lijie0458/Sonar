@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadInventoryPageTableView_5CustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadInventoryPageTableView_5CustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_A5883BF58719F0F4646C4980B8917913" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A5883BF58719F0F4646C4980B8917913">
+    <id column="T1_C1" property="inventory.id"/>
+    <result column="T1_C2" property="inventory.materialCode"/>
+    <result column="T1_C3" property="inventory.lotNumber"/>
+    <result column="T1_C4" property="inventory.unit"/>
+    <result column="T1_C5" property="inventory.warehouse"/>
+    <result column="T1_C6" property="inventory.stockQuantity"/>
+    <result column="T1_C7" property="inventory.occupiedQuantity"/>
+    <result column="T1_C8" property="inventory.availableQuantity"/>
+    <result column="T1_C9" property="inventory.createdAt"/>
+    <result column="T1_C10" property="inventory.updatedAt"/>
+    <result column="T1_C11" property="inventory.location"/>
+    <result column="T2_C1" property="materialDetails.materialCode"/>
+    <result column="T2_C2" property="materialDetails.material_name"/>
+    <result column="T2_C3" property="materialDetails.category_id"/>
+    <result column="T2_C4" property="materialDetails.specification"/>
+    <result column="T2_C5" property="materialDetails.unit"/>
+    <result column="T2_C6" property="materialDetails.description"/>
+    <result column="T2_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T3_C1" property="measuringUnit.id"/>
+    <result column="T3_C2" property="measuringUnit.createdTime"/>
+    <result column="T3_C3" property="measuringUnit.updatedTime"/>
+    <result column="T3_C4" property="measuringUnit.createdBy"/>
+    <result column="T3_C5" property="measuringUnit.updatedBy"/>
+    <result column="T3_C6" property="measuringUnit.unitCode"/>
+    <result column="T3_C7" property="measuringUnit.unitName"/>
+    <result column="T4_C1" property="warehouse_levelTwo.id"/>
+    <result column="T4_C2" property="warehouse_levelTwo.createdTime"/>
+    <result column="T4_C3" property="warehouse_levelTwo.updatedTime"/>
+    <result column="T4_C4" property="warehouse_levelTwo.createdBy"/>
+    <result column="T4_C5" property="warehouse_levelTwo.updatedBy"/>
+    <result column="T4_C6" property="warehouse_levelTwo.warehouse_code"/>
+    <result column="T4_C7" property="warehouse_levelTwo.warehouse_name"/>
+    <result column="T4_C8" property="warehouse_levelTwo.parent_warehouse_Id"/>
+    <result column="T4_C9" property="warehouse_levelTwo.address"/>
+    <result column="T4_C10" property="warehouse_levelTwo.remark"/>
+    <result column="T4_C11" property="warehouse_levelTwo.warehouse_manager"/>
+    <result column="T4_C12" property="warehouse_levelTwo.detailedAddress"/>
+</resultMap>
+
+<select id="getAnonymousStructure_A5883BF58719F0F4646C4980B8917913" resultMap="AnonymousStructure_A5883BF58719F0F4646C4980B8917913">
+SELECT `material_details`.`material_code` `T2_C1`,`material_details`.`material_name` `T2_C2`,`material_details`.`category_id` `T2_C3`,`material_details`.`specification` `T2_C4`,`material_details`.`unit` `T2_C5`,`material_details`.`description` `T2_C6`,`material_details`.`is_batch_enabled` `T2_C7`,`warehouse_level_two`.`id` `T4_C1`,`warehouse_level_two`.`created_time` `T4_C2`,`warehouse_level_two`.`updated_time` `T4_C3`,`warehouse_level_two`.`created_by` `T4_C4`,`warehouse_level_two`.`updated_by` `T4_C5`,`warehouse_level_two`.`warehouse_code` `T4_C6`,`warehouse_level_two`.`warehouse_name` `T4_C7`,`warehouse_level_two`.`parent_warehouse__id` `T4_C8`,`warehouse_level_two`.`address` `T4_C9`,`warehouse_level_two`.`remark` `T4_C10`,`warehouse_level_two`.`warehouse_manager` `T4_C11`,`warehouse_level_two`.`detailed_address` `T4_C12`,`measuring_unit`.`id` `T3_C1`,`measuring_unit`.`created_time` `T3_C2`,`measuring_unit`.`updated_time` `T3_C3`,`measuring_unit`.`created_by` `T3_C4`,`measuring_unit`.`updated_by` `T3_C5`,`measuring_unit`.`unit_code` `T3_C6`,`measuring_unit`.`unit_name` `T3_C7`,`inventory`.`id` `T1_C1`,`inventory`.`material_code` `T1_C2`,`inventory`.`lot_number` `T1_C3`,`inventory`.`unit` `T1_C4`,`inventory`.`warehouse` `T1_C5`,`inventory`.`stock_quantity` `T1_C6`,`inventory`.`occupied_quantity` `T1_C7`,`inventory`.`available_quantity` `T1_C8`,`inventory`.`created_at` `T1_C9`,`inventory`.`updated_at` `T1_C10`,`inventory`.`location` `T1_C11` FROM `inventory` LEFT JOIN `material_details` ON `inventory`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` LEFT JOIN `warehouse_level_two` ON `inventory`.`warehouse` = `warehouse_level_two`.`id` 
+<if test=" 1==1 or ( filter!=null and filter.materialCode!=null ) or ( filter!=null and filter.warehouse!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.materialCode!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`inventory`.`material_code` = #{filter.materialCode} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.warehouse!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`inventory`.`warehouse` = #{filter.warehouse} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" sort!=null ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" sort!=null ">
+
+<trim  suffix=",">
+${sort} 
+<if test=" order!=null ">
+${@com.dogfood.aa20240808.util.SqlInjectCheckUtil@checkAscOrDesc(order)} 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_A5883BF58719F0F4646C4980B8917913" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `inventory` LEFT JOIN `material_details` ON `inventory`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` LEFT JOIN `warehouse_level_two` ON `inventory`.`warehouse` = `warehouse_level_two`.`id` 
+<if test=" 1==1 or ( filter!=null and filter.materialCode!=null ) or ( filter!=null and filter.warehouse!=null ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and ( filter!=null and filter.materialCode!=null ) ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`inventory`.`material_code` = #{filter.materialCode} 
+</trim> 
+</if> 
+<if test=" 1==1 and ( filter!=null and filter.warehouse!=null ) ">
+
+<trim  prefix="and">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`inventory`.`warehouse` = #{filter.warehouse} 
+</trim> 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+
+<resultMap id="defaultDSAnonymousStructure_6CB10721F5792DE379A9BB7841F3A2C2" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6CB10721F5792DE379A9BB7841F3A2C2">
+    <result column="material_code" property="materialCode"/>
+    <result column="stock_quantity" property="stockQuantity"/>
+    <result column="occupied_quantity" property="occupiedQuantity"/>
+    <result column="available_quantity" property="availableQuantity"/>
+    <result column="lot_number" property="lotNumber"/>
+    <result column="material_name" property="material_name"/>
+    <result column="specification" property="specification"/>
+    <result column="location_name" property="location_name"/>
+    <result column="warehouse_name" property="warehouse_name"/>
+    <result column="unit_name" property="unitName"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_6CB10721F5792DE379A9BB7841F3A2C2">
+SELECT `inv`.`material_code`,`inv`.`stock_quantity`,`inv`.`occupied_quantity`,`inv`.`available_quantity`,`inv`.`lot_number`,`mat`.`material_name`,`mat`.`specification`,`sl`.`location_name`,`whl`.`warehouse_name`,`mu`.`unit_name` FROM `inventory` `inv` LEFT JOIN `material_details` `mat` ON `inv`.`material_code` = `mat`.`material_code` LEFT JOIN `warehouse_level_two` `whl` ON `inv`.`warehouse` = `whl`.`id` LEFT JOIN `measuring_unit` `mu` ON `mat`.`unit` = `mu`.`id` LEFT JOIN `storage_location` `sl` ON `whl`.`id` = `sl`.`warehouse_codetwo_id` 
+<if test=" ( filter!=null and filter.warehouse!=null ) or ( filter!=null and filter.materialCode!=null ) ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<if test=" ( filter!=null and filter.materialCode!=null ) ">
+	
+<trim prefix="(" suffix=")">
+	`inv`.`material_code` = #{filter.materialCode}
+</trim>
+</if> 
+<if test=" ( filter!=null and filter.warehouse!=null ) ">
+	
+<trim prefix="and">
+	
+	<trim prefix="(" suffix=")">
+		`inv`.`warehouse` = #{filter.warehouse}
+	</trim>
+</trim>
+</if>
+</trim>
+</if> 
+<if test=" size!=null ">
+	LIMIT 
+<if test=" page1!=null ">
+	${page1},
+</if> ${size}
+</if>
+</select>
+</mapper>

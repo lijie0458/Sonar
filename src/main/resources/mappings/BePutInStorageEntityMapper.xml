@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated BePutInStorageEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.BePutInStorageEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity">
+        <id column="be_put_in_storage_id" jdbcType="VARCHAR" property="bePutInStorageId" />
+        <result column="be_put_in_storage_date" jdbcType="DATE" property="bePutInStorageDate" />
+        <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+        <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="annex" jdbcType="VARCHAR" property="annex" />
+        <result column="warehouse" jdbcType="BIGINT" property="warehouse" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity"  >
+        INSERT INTO `be_put_in_storage` (
+            `be_put_in_storage_id`
+            ,`be_put_in_storage_date`
+            ,`order_number`
+            ,`supplier_name`
+            ,`description`
+            ,`annex`
+            ,`warehouse`
+            ,`created_by`
+        )
+        VALUES (
+            #{bePutInStorageId,jdbcType=VARCHAR}
+            ,#{bePutInStorageDate,jdbcType=DATE}
+            ,#{orderNumber,jdbcType=VARCHAR}
+            ,#{supplierName,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{annex,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `be_put_in_storage` (
+            `be_put_in_storage_id`
+            ,`be_put_in_storage_date`
+            ,`order_number`
+            ,`supplier_name`
+            ,`description`
+            ,`annex`
+            ,`warehouse`
+            ,`created_by`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.bePutInStorageId,jdbcType=VARCHAR}
+            ,#{item.bePutInStorageDate,jdbcType=DATE}
+            ,#{item.orderNumber,jdbcType=VARCHAR}
+            ,#{item.supplierName,jdbcType=VARCHAR}
+            ,#{item.description,jdbcType=VARCHAR}
+            ,#{item.annex,jdbcType=VARCHAR}
+            ,#{item.warehouse,jdbcType=BIGINT}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity" >
+        UPDATE `be_put_in_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageDate')">`be_put_in_storage_date` = #{bean.bePutInStorageDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where `be_put_in_storage_id` = #{bean.bePutInStorageId}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity" >
+        UPDATE `be_put_in_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageDate')">`be_put_in_storage_date` = #{bean.bePutInStorageDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where `be_put_in_storage_id` = #{bean.bePutInStorageId}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `be_put_in_storage` where `be_put_in_storage_id` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `be_put_in_storage` where `be_put_in_storage_id` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `be_put_in_storage`
+        <where>
+            <choose>
+                <when test="property == 'bePutInStorageId'">
+                    AND `be_put_in_storage_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'bePutInStorageDate'">
+                    AND `be_put_in_storage_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplierName'">
+                    AND `supplier_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'annex'">
+                    AND `annex` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `be_put_in_storage_id` from `be_put_in_storage` 
+        <where>
+            <choose>
+                <when test="property == 'bePutInStorageId'">
+                    AND `be_put_in_storage_id` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'bePutInStorageDate'">
+                    AND `be_put_in_storage_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'supplierName'">
+                    AND `supplier_name` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'description'">
+                    AND `description` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'annex'">
+                    AND `annex` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `be_put_in_storage`
+        where `be_put_in_storage_id`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `be_put_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `be_put_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity">
+        INSERT INTO `be_put_in_storage` (
+            `be_put_in_storage_id`
+            ,`be_put_in_storage_date`
+            ,`order_number`
+            ,`supplier_name`
+            ,`description`
+            ,`annex`
+            ,`warehouse`
+            ,`created_by`
+        )
+        VALUES (
+            #{bePutInStorageId,jdbcType=VARCHAR}
+            ,#{bePutInStorageDate,jdbcType=DATE}
+            ,#{orderNumber,jdbcType=VARCHAR}
+            ,#{supplierName,jdbcType=VARCHAR}
+            ,#{description,jdbcType=VARCHAR}
+            ,#{annex,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `be_put_in_storage`
+        <set>
+        <if test="updateFields == null or updateFields.contains('bePutInStorageDate')">`be_put_in_storage_date` = #{bean.bePutInStorageDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `be_put_in_storage`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

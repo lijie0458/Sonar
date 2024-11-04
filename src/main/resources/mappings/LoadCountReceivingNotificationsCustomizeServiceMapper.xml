@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountReceivingNotificationsCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountReceivingNotificationsCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_F6C9B32C78FC00A2E7FD3832ABA02CCB" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_F6C9B32C78FC00A2E7FD3832ABA02CCB">
+    <result column="notification_id" property="notificationId"/>
+    <result column="notification_date" property="notificationDate"/>
+    <result column="notification_sender" property="notificationSender"/>
+    <result column="order_number" property="orderNumber"/>
+    <result column="supplier_name" property="supplierName"/>
+    <result column="description" property="description"/>
+    <result column="annex" property="annex"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_F6C9B32C78FC00A2E7FD3832ABA02CCB">
+SELECT * FROM `receiving_notifications` 
+<if test=" DateTime!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<trim prefix="(" suffix=")" prefixOverrides="and |or">
+	SUBSTRING( `notification_id` , 1 , LENGTH( `notification_id`) - 5)
+</trim> = #{DateTime}
+</trim>
+</if>
+</select>
+</mapper>

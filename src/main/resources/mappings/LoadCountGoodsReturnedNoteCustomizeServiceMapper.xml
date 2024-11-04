@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadCountGoodsReturnedNoteCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadCountGoodsReturnedNoteCustomizeServiceMapper">
+
+<select id="getSql1" resultType="java.lang.Long">
+SELECT count( *) FROM `goods_returned_note` 
+<if test=" DateTime!=null ">
+	
+<trim prefix = "WHERE" prefixOverrides = "and |or">
+	
+<trim prefix="(" suffix=")" prefixOverrides="and |or">
+	SUBSTRING( `goods_returned_note` , 1 , LENGTH( `goods_returned_note`) - 5)
+</trim> = #{DateTime}
+</trim>
+</if>
+</select>
+</mapper>

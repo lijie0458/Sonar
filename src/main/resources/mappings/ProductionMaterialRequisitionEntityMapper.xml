@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated ProductionMaterialRequisitionEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.ProductionMaterialRequisitionEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity">
+        <id column="document_number" jdbcType="VARCHAR" property="documentNumber" />
+        <result column="department" jdbcType="BIGINT" property="department" />
+        <result column="employee" jdbcType="BIGINT" property="employee" />
+        <result column="request_date" jdbcType="DATE" property="requestDate" />
+        <result column="summary" jdbcType="VARCHAR" property="summary" />
+        <result column="attachment" jdbcType="VARCHAR" property="attachment" />
+        <result column="approval_status" jdbcType="VARCHAR" property="approvalStatus" />
+        <result column="issue_return_distinction" jdbcType="VARCHAR" property="issueReturnDistinction" />
+        <result column="guardian" jdbcType="BIGINT" property="guardian" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="source_document_number" jdbcType="VARCHAR" property="sourceDocumentNumber" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity"  >
+        INSERT INTO `production_material_requisition` (
+            `document_number`
+            ,`department`
+            ,`employee`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`issue_return_distinction`
+            ,`guardian`
+            ,`created_by`
+            ,`source_document_number`
+        )
+        VALUES (
+            #{documentNumber,jdbcType=VARCHAR}
+            ,#{department,jdbcType=BIGINT}
+            ,#{employee,jdbcType=BIGINT}
+            ,#{requestDate,jdbcType=DATE}
+            ,#{summary,jdbcType=VARCHAR}
+            ,#{attachment,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{issueReturnDistinction,jdbcType=VARCHAR}
+            ,#{guardian,jdbcType=BIGINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{sourceDocumentNumber,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `production_material_requisition` (
+            `document_number`
+            ,`department`
+            ,`employee`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`issue_return_distinction`
+            ,`guardian`
+            ,`created_by`
+            ,`source_document_number`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.documentNumber,jdbcType=VARCHAR}
+            ,#{item.department,jdbcType=BIGINT}
+            ,#{item.employee,jdbcType=BIGINT}
+            ,#{item.requestDate,jdbcType=DATE}
+            ,#{item.summary,jdbcType=VARCHAR}
+            ,#{item.attachment,jdbcType=VARCHAR}
+            ,#{item.approvalStatus,jdbcType=VARCHAR}
+            ,#{item.issueReturnDistinction,jdbcType=VARCHAR}
+            ,#{item.guardian,jdbcType=BIGINT}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.sourceDocumentNumber,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity" >
+        UPDATE `production_material_requisition`
+        <set>
+            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('employee')">`employee` = #{bean.employee, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('issueReturnDistinction')">`issue_return_distinction` = #{bean.issueReturnDistinction, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('guardian')">`guardian` = #{bean.guardian, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+        </set>
+        where `document_number` = #{bean.documentNumber}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity" >
+        UPDATE `production_material_requisition`
+        <set>
+            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('employee')">`employee` = #{bean.employee, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('issueReturnDistinction')">`issue_return_distinction` = #{bean.issueReturnDistinction, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('guardian')">`guardian` = #{bean.guardian, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+        </set>
+        where `document_number` = #{bean.documentNumber}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `production_material_requisition` where `document_number` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `production_material_requisition` where `document_number` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `production_material_requisition`
+        <where>
+            <choose>
+                <when test="property == 'documentNumber'">
+                    AND `document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'department'">
+                    AND `department` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'employee'">
+                    AND `employee` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'requestDate'">
+                    AND `request_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'summary'">
+                    AND `summary` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'attachment'">
+                    AND `attachment` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'issueReturnDistinction'">
+                    AND `issue_return_distinction` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'guardian'">
+                    AND `guardian` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'sourceDocumentNumber'">
+                    AND `source_document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `document_number` from `production_material_requisition` 
+        <where>
+            <choose>
+                <when test="property == 'documentNumber'">
+                    AND `document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'department'">
+                    AND `department` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'employee'">
+                    AND `employee` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'requestDate'">
+                    AND `request_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'summary'">
+                    AND `summary` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'attachment'">
+                    AND `attachment` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'issueReturnDistinction'">
+                    AND `issue_return_distinction` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'guardian'">
+                    AND `guardian` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'sourceDocumentNumber'">
+                    AND `source_document_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `production_material_requisition`
+        where `document_number`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `production_material_requisition`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `production_material_requisition`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity">
+        INSERT INTO `production_material_requisition` (
+            `document_number`
+            ,`department`
+            ,`employee`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`issue_return_distinction`
+            ,`guardian`
+            ,`created_by`
+            ,`source_document_number`
+        )
+        VALUES (
+            #{documentNumber,jdbcType=VARCHAR}
+            ,#{department,jdbcType=BIGINT}
+            ,#{employee,jdbcType=BIGINT}
+            ,#{requestDate,jdbcType=DATE}
+            ,#{summary,jdbcType=VARCHAR}
+            ,#{attachment,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{issueReturnDistinction,jdbcType=VARCHAR}
+            ,#{guardian,jdbcType=BIGINT}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{sourceDocumentNumber,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `production_material_requisition`
+        <set>
+        <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('employee')">`employee` = #{bean.employee, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('issueReturnDistinction')">`issue_return_distinction` = #{bean.issueReturnDistinction, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('guardian')">`guardian` = #{bean.guardian, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `production_material_requisition`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

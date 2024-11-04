@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated SalesOrdersEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.SalesOrdersEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity">
+        <id column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+        <result column="customer" jdbcType="BIGINT" property="customer" />
+        <result column="salesperson" jdbcType="BIGINT" property="salesperson" />
+        <result column="department" jdbcType="BIGINT" property="department" />
+        <result column="request_date" jdbcType="DATE" property="requestDate" />
+        <result column="summary" jdbcType="VARCHAR" property="summary" />
+        <result column="attachment" jdbcType="VARCHAR" property="attachment" />
+        <result column="approval_status" jdbcType="VARCHAR" property="approvalStatus" />
+        <result column="distinction" jdbcType="VARCHAR" property="distinction" />
+        <result column="warehouse" jdbcType="BIGINT" property="warehouse" />
+        <result column="manu_auto" jdbcType="TINYINT" property="manuAuto" />
+        <result column="source_number" jdbcType="VARCHAR" property="sourceNumber" />
+        <result column="salesman" jdbcType="VARCHAR" property="salesman" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity"  >
+        INSERT INTO `sales_orders` (
+            `order_number`
+            ,`customer`
+            ,`salesperson`
+            ,`department`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`distinction`
+            ,`warehouse`
+            ,`manu_auto`
+            ,`source_number`
+            ,`salesman`
+            ,`created_by`
+        )
+        VALUES (
+            #{orderNumber,jdbcType=VARCHAR}
+            ,#{customer,jdbcType=BIGINT}
+            ,#{salesperson,jdbcType=BIGINT}
+            ,#{department,jdbcType=BIGINT}
+            ,#{requestDate,jdbcType=DATE}
+            ,#{summary,jdbcType=VARCHAR}
+            ,#{attachment,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{distinction,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{manuAuto,jdbcType=TINYINT}
+            ,#{sourceNumber,jdbcType=VARCHAR}
+            ,#{salesman,jdbcType=VARCHAR}
+            ,#{createdBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `sales_orders` (
+            `order_number`
+            ,`customer`
+            ,`salesperson`
+            ,`department`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`distinction`
+            ,`warehouse`
+            ,`manu_auto`
+            ,`source_number`
+            ,`salesman`
+            ,`created_by`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.orderNumber,jdbcType=VARCHAR}
+            ,#{item.customer,jdbcType=BIGINT}
+            ,#{item.salesperson,jdbcType=BIGINT}
+            ,#{item.department,jdbcType=BIGINT}
+            ,#{item.requestDate,jdbcType=DATE}
+            ,#{item.summary,jdbcType=VARCHAR}
+            ,#{item.attachment,jdbcType=VARCHAR}
+            ,#{item.approvalStatus,jdbcType=VARCHAR}
+            ,#{item.distinction,jdbcType=VARCHAR}
+            ,#{item.warehouse,jdbcType=BIGINT}
+            ,#{item.manuAuto,jdbcType=TINYINT}
+            ,#{item.sourceNumber,jdbcType=VARCHAR}
+            ,#{item.salesman,jdbcType=VARCHAR}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity" >
+        UPDATE `sales_orders`
+        <set>
+            <if test="updateFields == null or updateFields.contains('customer')">`customer` = #{bean.customer, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('salesperson')">`salesperson` = #{bean.salesperson, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('distinction')">`distinction` = #{bean.distinction, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('sourceNumber')">`source_number` = #{bean.sourceNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('salesman')">`salesman` = #{bean.salesman, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where `order_number` = #{bean.orderNumber}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity" >
+        UPDATE `sales_orders`
+        <set>
+            <if test="updateFields == null or updateFields.contains('customer')">`customer` = #{bean.customer, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('salesperson')">`salesperson` = #{bean.salesperson, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('distinction')">`distinction` = #{bean.distinction, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('sourceNumber')">`source_number` = #{bean.sourceNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('salesman')">`salesman` = #{bean.salesman, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where `order_number` = #{bean.orderNumber}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `sales_orders` where `order_number` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `sales_orders` where `order_number` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `sales_orders`
+        <where>
+            <choose>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customer'">
+                    AND `customer` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'salesperson'">
+                    AND `salesperson` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'department'">
+                    AND `department` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'requestDate'">
+                    AND `request_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'summary'">
+                    AND `summary` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'attachment'">
+                    AND `attachment` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'distinction'">
+                    AND `distinction` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'manuAuto'">
+                    AND `manu_auto` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'sourceNumber'">
+                    AND `source_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'salesman'">
+                    AND `salesman` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `order_number` from `sales_orders` 
+        <where>
+            <choose>
+                <when test="property == 'orderNumber'">
+                    AND `order_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'customer'">
+                    AND `customer` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'salesperson'">
+                    AND `salesperson` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'department'">
+                    AND `department` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'requestDate'">
+                    AND `request_date` = #{value, jdbcType=DATE}
+                </when>
+                <when test="property == 'summary'">
+                    AND `summary` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'attachment'">
+                    AND `attachment` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'approvalStatus'">
+                    AND `approval_status` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'distinction'">
+                    AND `distinction` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'warehouse'">
+                    AND `warehouse` = #{value, jdbcType=BIGINT}
+                </when>
+                <when test="property == 'manuAuto'">
+                    AND `manu_auto` = #{value, jdbcType=TINYINT}
+                </when>
+                <when test="property == 'sourceNumber'">
+                    AND `source_number` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'salesman'">
+                    AND `salesman` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `sales_orders`
+        where `order_number`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `sales_orders`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `sales_orders`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity">
+        INSERT INTO `sales_orders` (
+            `order_number`
+            ,`customer`
+            ,`salesperson`
+            ,`department`
+            ,`request_date`
+            ,`summary`
+            ,`attachment`
+            ,`approval_status`
+            ,`distinction`
+            ,`warehouse`
+            ,`manu_auto`
+            ,`source_number`
+            ,`salesman`
+            ,`created_by`
+        )
+        VALUES (
+            #{orderNumber,jdbcType=VARCHAR}
+            ,#{customer,jdbcType=BIGINT}
+            ,#{salesperson,jdbcType=BIGINT}
+            ,#{department,jdbcType=BIGINT}
+            ,#{requestDate,jdbcType=DATE}
+            ,#{summary,jdbcType=VARCHAR}
+            ,#{attachment,jdbcType=VARCHAR}
+            ,#{approvalStatus,jdbcType=VARCHAR}
+            ,#{distinction,jdbcType=VARCHAR}
+            ,#{warehouse,jdbcType=BIGINT}
+            ,#{manuAuto,jdbcType=TINYINT}
+            ,#{sourceNumber,jdbcType=VARCHAR}
+            ,#{salesman,jdbcType=VARCHAR}
+            ,#{createdBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `sales_orders`
+        <set>
+        <if test="updateFields == null or updateFields.contains('customer')">`customer` = #{bean.customer, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('salesperson')">`salesperson` = #{bean.salesperson, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
+        <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('distinction')">`distinction` = #{bean.distinction, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
+        <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
+        <if test="updateFields == null or updateFields.contains('sourceNumber')">`source_number` = #{bean.sourceNumber, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('salesman')">`salesman` = #{bean.salesman, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `sales_orders`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

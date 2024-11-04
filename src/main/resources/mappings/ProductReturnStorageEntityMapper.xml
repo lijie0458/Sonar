@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated ProductReturnStorageEntity Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.entities.ProductReturnStorageEntityMapper">
+    <resultMap id="BaseResultMap" type="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity">
+        <id column="product_return_code" jdbcType="VARCHAR" property="productReturnCode" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+        <result column="product_in_storage_num" jdbcType="VARCHAR" property="productInStorageNum" />
+    </resultMap>
+
+    <!--
+       ###################################################
+       ######### mysql
+       ###################################################
+     -->
+    <insert id="insert" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity"  >
+        INSERT INTO `product_return_storage` (
+            `product_return_code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`state`
+            ,`product_in_storage_num`
+        )
+        VALUES (
+            #{productReturnCode,jdbcType=VARCHAR}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{productInStorageNum,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="batchInsert"  parameterType="java.util.List" >
+        INSERT INTO `product_return_storage` (
+            `product_return_code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`state`
+            ,`product_in_storage_num`
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.productReturnCode,jdbcType=VARCHAR}
+            ,#{item.createdTime,jdbcType=TIMESTAMP}
+            ,#{item.createdBy,jdbcType=VARCHAR}
+            ,#{item.updatedTime,jdbcType=TIMESTAMP}
+            ,#{item.updatedBy,jdbcType=VARCHAR}
+            ,#{item.state,jdbcType=VARCHAR}
+            ,#{item.productInStorageNum,jdbcType=VARCHAR}
+         )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity" >
+        UPDATE `product_return_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('productInStorageNum')">`product_in_storage_num` = #{bean.productInStorageNum, jdbcType= VARCHAR},</if>
+        </set>
+        where `product_return_code` = #{bean.productReturnCode}
+    </update>
+
+    <!-- todo -->
+    <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity" >
+        UPDATE `product_return_storage`
+        <set>
+            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('productInStorageNum')">`product_in_storage_num` = #{bean.productInStorageNum, jdbcType= VARCHAR},</if>
+        </set>
+        where `product_return_code` = #{bean.productReturnCode}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM `product_return_storage` where `product_return_code` = #{id}
+    </delete>
+
+
+    <delete id="batchDelete" >
+        DELETE FROM `product_return_storage` where `product_return_code` in
+        <foreach collection="list" item="pkValueItem" index="index"  separator="," open="(" close=")">
+            #{pkValueItem}
+        </foreach>
+    </delete>
+
+    <delete id="deleteReference">
+        DELETE FROM `product_return_storage`
+        <where>
+            <choose>
+                <when test="property == 'productReturnCode'">
+                    AND `product_return_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'productInStorageNum'">
+                    AND `product_in_storage_num` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
+    <select id="existReference" resultType="java.lang.Long" >
+        select `product_return_code` from `product_return_storage` 
+        <where>
+            <choose>
+                <when test="property == 'productReturnCode'">
+                    AND `product_return_code` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'createdTime'">
+                    AND `created_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'createdBy'">
+                    AND `created_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'updatedTime'">
+                    AND `updated_time` = #{value, jdbcType=TIMESTAMP}
+                </when>
+                <when test="property == 'updatedBy'">
+                    AND `updated_by` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'state'">
+                    AND `state` = #{value, jdbcType=VARCHAR}
+                </when>
+                <when test="property == 'productInStorageNum'">
+                    AND `product_in_storage_num` = #{value, jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    MUST BE ERROR
+                </otherwise>
+            </choose>
+        </where>
+         LIMIT 1
+    </select>
+
+
+    <select id="selectOne" resultMap="BaseResultMap" >
+        select *
+        from `product_return_storage`
+        where `product_return_code`=#{id}
+    </select>
+
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `product_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `product_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity">
+        INSERT INTO `product_return_storage` (
+            `product_return_code`
+            ,`created_time`
+            ,`created_by`
+            ,`updated_time`
+            ,`updated_by`
+            ,`state`
+            ,`product_in_storage_num`
+        )
+        VALUES (
+            #{productReturnCode,jdbcType=VARCHAR}
+            ,#{createdTime,jdbcType=TIMESTAMP}
+            ,#{createdBy,jdbcType=VARCHAR}
+            ,#{updatedTime,jdbcType=TIMESTAMP}
+            ,#{updatedBy,jdbcType=VARCHAR}
+            ,#{state,jdbcType=VARCHAR}
+            ,#{productInStorageNum,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+    <update id="updateBy">
+        UPDATE `product_return_storage`
+        <set>
+        <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
+        <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
+        <if test="updateFields == null or updateFields.contains('productInStorageNum')">`product_in_storage_num` = #{bean.productInStorageNum, jdbcType= VARCHAR},</if>
+        </set>
+        where ${filter.sql("mysql")} 
+
+    </update>
+
+    <delete id="deleteBy" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter">
+        DELETE FROM `product_return_storage`
+        where ${filter.sql("mysql")} 
+    </delete>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated UpdatePurchaseDetailsCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.UpdatePurchaseDetailsCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_1E1FD0FBFFD3C2705E03B08CB22F80C5" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_1E1FD0FBFFD3C2705E03B08CB22F80C5">
+    <id column="T1_C1" property="purchaseDetails.id"/>
+    <result column="T1_C2" property="purchaseDetails.createdTime"/>
+    <result column="T1_C3" property="purchaseDetails.updatedTime"/>
+    <result column="T1_C4" property="purchaseDetails.createdBy"/>
+    <result column="T1_C5" property="purchaseDetails.updatedBy"/>
+    <result column="T1_C6" property="purchaseDetails.request_quantity"/>
+    <result column="T1_C7" property="purchaseDetails.expected_delivery_date"/>
+    <result column="T1_C8" property="purchaseDetails.related_request_number"/>
+    <result column="T1_C9" property="purchaseDetails.material_code"/>
+    <result column="T1_C10" property="purchaseDetails.down_quantity"/>
+    <result column="T1_C11" property="purchaseDetails.this_quantity"/>
+    <result column="T1_C12" property="purchaseDetails.orderStatus"/>
+    <result column="T2_C1" property="purchaseOrderDetail.id"/>
+    <result column="T2_C2" property="purchaseOrderDetail.material_code"/>
+    <result column="T2_C3" property="purchaseOrderDetail.orderQuantity"/>
+    <result column="T2_C4" property="purchaseOrderDetail.priceIncludingTax"/>
+    <result column="T2_C5" property="purchaseOrderDetail.taxRate"/>
+    <result column="T2_C6" property="purchaseOrderDetail.relatedOrderNumber"/>
+    <result column="T2_C7" property="purchaseOrderDetail.purchaseDetailsId"/>
+</resultMap>
+
+<select id="getAnonymousStructure_1E1FD0FBFFD3C2705E03B08CB22F80C5" resultMap="AnonymousStructure_1E1FD0FBFFD3C2705E03B08CB22F80C5">
+SELECT `purchase_details`.`id` `T1_C1`,`purchase_details`.`created_time` `T1_C2`,`purchase_details`.`updated_time` `T1_C3`,`purchase_details`.`created_by` `T1_C4`,`purchase_details`.`updated_by` `T1_C5`,`purchase_details`.`request_quantity` `T1_C6`,`purchase_details`.`expected_delivery_date` `T1_C7`,`purchase_details`.`related_request_number` `T1_C8`,`purchase_details`.`material_code` `T1_C9`,`purchase_details`.`down_quantity` `T1_C10`,`purchase_details`.`this_quantity` `T1_C11`,`purchase_details`.`order_status` `T1_C12`,`purchase_order_detail`.`id` `T2_C1`,`purchase_order_detail`.`material_code` `T2_C2`,`purchase_order_detail`.`order_quantity` `T2_C3`,`purchase_order_detail`.`price_including_tax` `T2_C4`,`purchase_order_detail`.`tax_rate` `T2_C5`,`purchase_order_detail`.`related_order_number` `T2_C6`,`purchase_order_detail`.`purchase_details_id` `T2_C7` FROM `purchase_details` LEFT JOIN `purchase_order_detail` ON `purchase_details`.`id` = `purchase_order_detail`.`purchase_details_id` 
+<if test=" 1==1 and ( purchaseDetailsIdList!=null and purchaseDetailsIdList.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `purchase_details`.`id` IN 
+<foreach item="item" index="index" collection="purchaseDetailsIdList" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if>
+</select>
+</mapper>

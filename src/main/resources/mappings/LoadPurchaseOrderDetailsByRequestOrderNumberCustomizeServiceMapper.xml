@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadPurchaseOrderDetailsByRequestOrderNumberCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadPurchaseOrderDetailsByRequestOrderNumberCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_898D34F6DFA2CDBCB4C25D9754ABC005" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_898D34F6DFA2CDBCB4C25D9754ABC005">
+    <id column="T1_C1" property="purchaseOrderDetail.id"/>
+    <result column="T1_C2" property="purchaseOrderDetail.material_code"/>
+    <result column="T1_C3" property="purchaseOrderDetail.orderQuantity"/>
+    <result column="T1_C4" property="purchaseOrderDetail.priceIncludingTax"/>
+    <result column="T1_C5" property="purchaseOrderDetail.taxRate"/>
+    <result column="T1_C6" property="purchaseOrderDetail.relatedOrderNumber"/>
+    <result column="T1_C7" property="purchaseOrderDetail.purchaseDetailsId"/>
+    <result column="T2_C1" property="materialDetails.materialCode"/>
+    <result column="T2_C2" property="materialDetails.material_name"/>
+    <result column="T2_C3" property="materialDetails.category_id"/>
+    <result column="T2_C4" property="materialDetails.specification"/>
+    <result column="T2_C5" property="materialDetails.unit"/>
+    <result column="T2_C6" property="materialDetails.description"/>
+    <result column="T2_C7" property="materialDetails.is_batch_enabled"/>
+    <result column="T3_C1" property="measuringUnit.id"/>
+    <result column="T3_C2" property="measuringUnit.createdTime"/>
+    <result column="T3_C3" property="measuringUnit.updatedTime"/>
+    <result column="T3_C4" property="measuringUnit.createdBy"/>
+    <result column="T3_C5" property="measuringUnit.updatedBy"/>
+    <result column="T3_C6" property="measuringUnit.unitCode"/>
+    <result column="T3_C7" property="measuringUnit.unitName"/>
+</resultMap>
+
+<select id="getAnonymousStructure_898D34F6DFA2CDBCB4C25D9754ABC005" resultMap="AnonymousStructure_898D34F6DFA2CDBCB4C25D9754ABC005">
+SELECT `purchase_order_detail`.`id` `T1_C1`,`purchase_order_detail`.`material_code` `T1_C2`,`purchase_order_detail`.`order_quantity` `T1_C3`,`purchase_order_detail`.`price_including_tax` `T1_C4`,`purchase_order_detail`.`tax_rate` `T1_C5`,`purchase_order_detail`.`related_order_number` `T1_C6`,`purchase_order_detail`.`purchase_details_id` `T1_C7`,`material_details`.`material_code` `T2_C1`,`material_details`.`material_name` `T2_C2`,`material_details`.`category_id` `T2_C3`,`material_details`.`specification` `T2_C4`,`material_details`.`unit` `T2_C5`,`material_details`.`description` `T2_C6`,`material_details`.`is_batch_enabled` `T2_C7`,`measuring_unit`.`id` `T3_C1`,`measuring_unit`.`created_time` `T3_C2`,`measuring_unit`.`updated_time` `T3_C3`,`measuring_unit`.`created_by` `T3_C4`,`measuring_unit`.`updated_by` `T3_C5`,`measuring_unit`.`unit_code` `T3_C6`,`measuring_unit`.`unit_name` `T3_C7` FROM `purchase_order_detail` INNER JOIN `material_details` ON `purchase_order_detail`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` 
+<if test=" 1==1 and request_number!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`purchase_order_detail`.`related_order_number` = #{request_number} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_898D34F6DFA2CDBCB4C25D9754ABC005" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `purchase_order_detail` INNER JOIN `material_details` ON `purchase_order_detail`.`material_code` = `material_details`.`material_code` INNER JOIN `measuring_unit` ON `material_details`.`unit` = `measuring_unit`.`id` 
+<if test=" 1==1 and request_number!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`purchase_order_detail`.`related_order_number` = #{request_number} 
+</trim> 
+</if>
+</select>
+</mapper>

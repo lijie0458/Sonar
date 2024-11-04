@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetSalesTrendCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetSalesTrendCustomizeServiceMapper">
+
+<resultMap id="defaultDSAnonymousStructure_2AC74E45ED5FB770049D4B45F0737151" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2AC74E45ED5FB770049D4B45F0737151">
+    <result column="months" property="months"/>
+    <result column="sumPrice" property="sumPrice"/>
+</resultMap>
+
+<select id="getSql1" resultMap="defaultDSAnonymousStructure_2AC74E45ED5FB770049D4B45F0737151">
+SELECT DATE_FORMAT( `delivery_date` , '%Y-%m') `months`,
+<trim prefix="(" suffix=")" prefixOverrides="and |or">
+	SUM( `quantity` * `unit_price`) / 10000
+</trim> `sumPrice` FROM `sales_order_details` GROUP BY DATE_FORMAT( `delivery_date` , '%Y-%m')
+</select>
+</mapper>

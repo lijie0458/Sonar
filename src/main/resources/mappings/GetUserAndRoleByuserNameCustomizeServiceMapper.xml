@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated GetUserAndRoleByuserNameCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.GetUserAndRoleByuserNameCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_DB888B8BD7DBFF31665BCA5E50FB8625" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_DB888B8BD7DBFF31665BCA5E50FB8625">
+    <id column="T1_C1" property="lCAPUser.id"/>
+    <result column="T1_C2" property="lCAPUser.createdTime"/>
+    <result column="T1_C3" property="lCAPUser.updatedTime"/>
+    <result column="T1_C4" property="lCAPUser.userId"/>
+    <result column="T1_C5" property="lCAPUser.userName"/>
+    <result column="T1_C6" property="lCAPUser.password"/>
+    <result column="T1_C7" property="lCAPUser.phone"/>
+    <result column="T1_C8" property="lCAPUser.email"/>
+    <result column="T1_C9" property="lCAPUser.displayName"/>
+    <result column="T1_C10" property="lCAPUser.status"/>
+    <result column="T1_C11" property="lCAPUser.source"/>
+    <result column="T1_C12" property="lCAPUser.department_Id"/>
+    <result column="T1_C13" property="lCAPUser.directLeaderId"/>
+    <result column="T1_C14" property="lCAPUser.isFirstLogin"/>
+    <result column="T2_C1" property="lCAPUserRoleMapping.id"/>
+    <result column="T2_C2" property="lCAPUserRoleMapping.createdTime"/>
+    <result column="T2_C3" property="lCAPUserRoleMapping.updatedTime"/>
+    <result column="T2_C4" property="lCAPUserRoleMapping.createdBy"/>
+    <result column="T2_C5" property="lCAPUserRoleMapping.updatedBy"/>
+    <result column="T2_C6" property="lCAPUserRoleMapping.userId"/>
+    <result column="T2_C7" property="lCAPUserRoleMapping.roleId"/>
+    <result column="T2_C8" property="lCAPUserRoleMapping.userName"/>
+    <result column="T2_C9" property="lCAPUserRoleMapping.source"/>
+    <result column="T3_C1" property="lCAPRole.id"/>
+    <result column="T3_C2" property="lCAPRole.createdTime"/>
+    <result column="T3_C3" property="lCAPRole.updatedTime"/>
+    <result column="T3_C4" property="lCAPRole.createdBy"/>
+    <result column="T3_C5" property="lCAPRole.updatedBy"/>
+    <result column="T3_C6" property="lCAPRole.uuid"/>
+    <result column="T3_C7" property="lCAPRole.name"/>
+    <result column="T3_C8" property="lCAPRole.description"/>
+    <result column="T3_C9" property="lCAPRole.roleStatus"/>
+    <result column="T3_C10" property="lCAPRole.editable"/>
+    <result column="T3_C11" property="lCAPRole.viewDataPermission"/>
+    <result column="T3_C12" property="lCAPRole.editDataPermission"/>
+</resultMap>
+
+<select id="getAnonymousStructure_DB888B8BD7DBFF31665BCA5E50FB8625" resultMap="AnonymousStructure_DB888B8BD7DBFF31665BCA5E50FB8625">
+SELECT `lcap_user_a6d592`.`id` `T1_C1`,`lcap_user_a6d592`.`created_time` `T1_C2`,`lcap_user_a6d592`.`updated_time` `T1_C3`,`lcap_user_a6d592`.`user_id` `T1_C4`,`lcap_user_a6d592`.`user_name` `T1_C5`,`lcap_user_a6d592`.`password` `T1_C6`,`lcap_user_a6d592`.`phone` `T1_C7`,`lcap_user_a6d592`.`email` `T1_C8`,`lcap_user_a6d592`.`display_name` `T1_C9`,`lcap_user_a6d592`.`status` `T1_C10`,`lcap_user_a6d592`.`source` `T1_C11`,`lcap_user_a6d592`.`department__id` `T1_C12`,`lcap_user_a6d592`.`direct_leader_id` `T1_C13`,`lcap_user_a6d592`.`is_first_login` `T1_C14`,`lcap_user_role_mapping_a6d592`.`id` `T2_C1`,`lcap_user_role_mapping_a6d592`.`created_time` `T2_C2`,`lcap_user_role_mapping_a6d592`.`updated_time` `T2_C3`,`lcap_user_role_mapping_a6d592`.`created_by` `T2_C4`,`lcap_user_role_mapping_a6d592`.`updated_by` `T2_C5`,`lcap_user_role_mapping_a6d592`.`user_id` `T2_C6`,`lcap_user_role_mapping_a6d592`.`role_id` `T2_C7`,`lcap_user_role_mapping_a6d592`.`user_name` `T2_C8`,`lcap_user_role_mapping_a6d592`.`source` `T2_C9`,`lcap_role_a6d592`.`id` `T3_C1`,`lcap_role_a6d592`.`created_time` `T3_C2`,`lcap_role_a6d592`.`updated_time` `T3_C3`,`lcap_role_a6d592`.`created_by` `T3_C4`,`lcap_role_a6d592`.`updated_by` `T3_C5`,`lcap_role_a6d592`.`uuid` `T3_C6`,`lcap_role_a6d592`.`name` `T3_C7`,`lcap_role_a6d592`.`description` `T3_C8`,`lcap_role_a6d592`.`role_status` `T3_C9`,`lcap_role_a6d592`.`editable` `T3_C10`,`lcap_role_a6d592`.`view_data_permission` `T3_C11`,`lcap_role_a6d592`.`edit_data_permission` `T3_C12` FROM `lcap_user_a6d592` LEFT JOIN `lcap_user_role_mapping_a6d592` ON `lcap_user_a6d592`.`user_id` = `lcap_user_role_mapping_a6d592`.`user_id` LEFT JOIN `lcap_role_a6d592` ON `lcap_user_role_mapping_a6d592`.`role_id` = `lcap_role_a6d592`.`id` 
+<if test=" 1==1 and userName!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+`lcap_user_a6d592`.`user_name` = #{userName} 
+</trim> 
+</if>
+</select>
+</mapper>

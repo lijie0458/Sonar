@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LoadPurchaseRequestcountCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LoadPurchaseRequestcountCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_93C34739441EB8F4AE7F54EB8CA28354" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_93C34739441EB8F4AE7F54EB8CA28354">
+    <result column="material_code" property="material_code"/>
+    <result column="count" property="count"/>
+</resultMap>
+
+<select id="getAnonymousStructure_93C34739441EB8F4AE7F54EB8CA28354" resultMap="AnonymousStructure_93C34739441EB8F4AE7F54EB8CA28354">
+SELECT SUM(`purchase_details`.`this_quantity`) `count`,`purchase_details`.`material_code` `material_code` FROM `purchase_details` 
+<if test=" 1==1 and ( Code!=null and Code.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `purchase_details`.`id` IN 
+<foreach item="item" index="index" collection="Code" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> GROUP BY `purchase_details`.`material_code` 
+<if test=" 1==1 ">
+ LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_93C34739441EB8F4AE7F54EB8CA28354" resultType="java.lang.Long">
+SELECT COUNT(*) FROM (SELECT SUM(`purchase_details`.`this_quantity`) `count`,`purchase_details`.`material_code` `material_code` FROM `purchase_details` 
+<if test=" 1==1 and ( Code!=null and Code.size()>0 ) ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+( `purchase_details`.`id` IN 
+<foreach item="item" index="index" collection="Code" open="(" separator="," close=")">
+#{item} 
+</foreach> ) 
+</trim> 
+</if> GROUP BY `purchase_details`.`material_code`) t_lcap_as_count
+</select>
+</mapper>

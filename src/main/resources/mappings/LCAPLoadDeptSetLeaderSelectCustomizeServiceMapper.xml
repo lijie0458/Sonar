@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  automatically generated LCAPLoadDeptSetLeaderSelectCustomizeService Mapper xml
+-->
+<mapper namespace="com.dogfood.aa20240808.repository.LCAPLoadDeptSetLeaderSelectCustomizeServiceMapper">
+
+<resultMap id="AnonymousStructure_9C0F38CE0B1F4B46D348B17C9BB990AA" type="com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9C0F38CE0B1F4B46D348B17C9BB990AA">
+    <id column="T1_C1" property="lCAPUserDeptMapping.id"/>
+    <result column="T1_C2" property="lCAPUserDeptMapping.createdTime"/>
+    <result column="T1_C3" property="lCAPUserDeptMapping.updatedTime"/>
+    <result column="T1_C4" property="lCAPUserDeptMapping.createdBy"/>
+    <result column="T1_C5" property="lCAPUserDeptMapping.updatedBy"/>
+    <result column="T1_C6" property="lCAPUserDeptMapping.userId"/>
+    <result column="T1_C7" property="lCAPUserDeptMapping.deptId"/>
+    <result column="T1_C8" property="lCAPUserDeptMapping.isDeptLeader"/>
+    <result column="T2_C1" property="lCAPUser.id"/>
+    <result column="T2_C2" property="lCAPUser.createdTime"/>
+    <result column="T2_C3" property="lCAPUser.updatedTime"/>
+    <result column="T2_C4" property="lCAPUser.userId"/>
+    <result column="T2_C5" property="lCAPUser.userName"/>
+    <result column="T2_C6" property="lCAPUser.password"/>
+    <result column="T2_C7" property="lCAPUser.phone"/>
+    <result column="T2_C8" property="lCAPUser.email"/>
+    <result column="T2_C9" property="lCAPUser.displayName"/>
+    <result column="T2_C10" property="lCAPUser.status"/>
+    <result column="T2_C11" property="lCAPUser.source"/>
+    <result column="T2_C12" property="lCAPUser.department_Id"/>
+    <result column="T2_C13" property="lCAPUser.directLeaderId"/>
+    <result column="T2_C14" property="lCAPUser.isFirstLogin"/>
+</resultMap>
+
+<select id="getAnonymousStructure_9C0F38CE0B1F4B46D348B17C9BB990AA" resultMap="AnonymousStructure_9C0F38CE0B1F4B46D348B17C9BB990AA">
+SELECT `lcap_user_dept_mapping_a6d592`.`id` `T1_C1`,`lcap_user_dept_mapping_a6d592`.`created_time` `T1_C2`,`lcap_user_dept_mapping_a6d592`.`updated_time` `T1_C3`,`lcap_user_dept_mapping_a6d592`.`created_by` `T1_C4`,`lcap_user_dept_mapping_a6d592`.`updated_by` `T1_C5`,`lcap_user_dept_mapping_a6d592`.`user_id` `T1_C6`,`lcap_user_dept_mapping_a6d592`.`dept_id` `T1_C7`,`lcap_user_dept_mapping_a6d592`.`is_dept_leader` `T1_C8`,`lcap_user_a6d592`.`id` `T2_C1`,`lcap_user_a6d592`.`created_time` `T2_C2`,`lcap_user_a6d592`.`updated_time` `T2_C3`,`lcap_user_a6d592`.`user_id` `T2_C4`,`lcap_user_a6d592`.`user_name` `T2_C5`,`lcap_user_a6d592`.`password` `T2_C6`,`lcap_user_a6d592`.`phone` `T2_C7`,`lcap_user_a6d592`.`email` `T2_C8`,`lcap_user_a6d592`.`display_name` `T2_C9`,`lcap_user_a6d592`.`status` `T2_C10`,`lcap_user_a6d592`.`source` `T2_C11`,`lcap_user_a6d592`.`department__id` `T2_C12`,`lcap_user_a6d592`.`direct_leader_id` `T2_C13`,`lcap_user_a6d592`.`is_first_login` `T2_C14` FROM `lcap_user_dept_mapping_a6d592` INNER JOIN `lcap_user_a6d592` ON `lcap_user_dept_mapping_a6d592`.`user_id` = `lcap_user_a6d592`.`user_id` 
+<if test=" 1==1 or deptId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and deptId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`lcap_user_dept_mapping_a6d592`.`dept_id` = #{deptId} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`lcap_user_dept_mapping_a6d592`.`is_dept_leader` = 0) 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="ORDER BY" suffixOverrides=",">
+
+<if test=" 1==1 ">
+
+<trim  suffix=",">
+`lcap_user_a6d592`.`id` 
+<if test=" 1==1 ">
+ASC 
+</if> 
+</trim> 
+</if> 
+</trim> 
+</if> 
+<if test=" 1==1 and lcap_71860C77_page!=null and lcap_F7BD60B7_size!=null ">
+ LIMIT ${( lcap_F7BD60B7_size * ( lcap_71860C77_page - 1 ) )}, ${lcap_F7BD60B7_size} 
+</if>
+</select>
+
+<select id="countAnonymousStructure_9C0F38CE0B1F4B46D348B17C9BB990AA" resultType="java.lang.Long">
+SELECT COUNT(*) FROM `lcap_user_dept_mapping_a6d592` INNER JOIN `lcap_user_a6d592` ON `lcap_user_dept_mapping_a6d592`.`user_id` = `lcap_user_a6d592`.`user_id` 
+<if test=" 1==1 or deptId!=null ">
+
+<trim  prefix="WHERE" prefixOverrides="and |or">
+
+<if test=" 1==1 and deptId!=null ">
+
+<trim  prefix="(" suffix=")" prefixOverrides="and |or">
+`lcap_user_dept_mapping_a6d592`.`dept_id` = #{deptId} 
+</trim> 
+</if> 
+<if test=" 1==1 ">
+
+<trim  prefix="and">
+(`lcap_user_dept_mapping_a6d592`.`is_dept_leader` = 0) 
+</trim> 
+</if> 
+</trim> 
+</if>
+</select>
+</mapper>
