@@ -97,8 +97,6 @@ lcp:
     sinkType: nos
     sinkPath: /app
     s3Address: oss-cn-hangzhou.aliyuncs.com
-    s3AccessKey: ''
-    s3SecretKey: ''
     s3Bucket: suberchen
     access: public
     ttl: 7.0
