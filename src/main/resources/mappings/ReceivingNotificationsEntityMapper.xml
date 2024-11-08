@@ -77,18 +77,56 @@
         where `notification_id` = #{bean.notificationId}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity" >
         UPDATE `receiving_notifications`
         <set>
-            <if test="updateFields == null or updateFields.contains('notificationDate')">`notification_date` = #{bean.notificationDate, jdbcType= DATE},</if>
-            <if test="updateFields == null or updateFields.contains('notificationSender')">`notification_sender` = #{bean.notificationSender, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('notificationDate')">
+                `notification_date` = CASE `notification_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.notificationId} THEN #{bean.notificationDate, jdbcType=DATE}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('notificationSender')">
+                `notification_sender` = CASE `notification_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.notificationId} THEN #{bean.notificationSender, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('orderNumber')">
+                `order_number` = CASE `notification_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.notificationId} THEN #{bean.orderNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('supplierName')">
+                `supplier_name` = CASE `notification_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.notificationId} THEN #{bean.supplierName, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('description')">
+                `description` = CASE `notification_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.notificationId} THEN #{bean.description, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('annex')">
+                `annex` = CASE `notification_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.notificationId} THEN #{bean.annex, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `notification_id` = #{bean.notificationId}
+        where `notification_id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.notificationId}
+        </foreach>
     </update>
 
 
@@ -176,21 +214,6 @@
         where `notification_id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `receiving_notifications`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `receiving_notifications`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity">
         INSERT INTO `receiving_notifications` (
             `notification_id`
@@ -231,4 +254,18 @@
         DELETE FROM `receiving_notifications`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `receiving_notifications`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `receiving_notifications`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

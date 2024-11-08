@@ -34,7 +34,9 @@ public enum DistinctionEnumEnum implements BaseEnum<DistinctionEnumEnum, String>
     FIELD_JINT("JINT", "委外加工入库退回"),; 
 
     public final String code;
+
     public final String desc;
+
 DistinctionEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -56,7 +58,6 @@ DistinctionEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class DistinctionEnumEnumDeserializer extends JsonDeserializer<DistinctionEnumEnum>{
 
             @Override
@@ -75,7 +76,6 @@ DistinctionEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

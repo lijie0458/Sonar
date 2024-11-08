@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface ReceivingNotificationsEntityMapper extends ReferenceHandleMapper {
 
     int insert(ReceivingNotificationsEntity bean);
+
     int batchInsert(List<ReceivingNotificationsEntity> beans);
-    List<ReceivingNotificationsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(ReceivingNotificationsEntity bean, List<String> updateFields);
-    int batchUpdate(List<ReceivingNotificationsEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    ReceivingNotificationsEntity selectOne(String id);
-
-    int createOrUpdate(ReceivingNotificationsEntity bean);
     int updateBy(ReceivingNotificationsEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(ReceivingNotificationsEntity bean);
+
+    int update(ReceivingNotificationsEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<ReceivingNotificationsEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    ReceivingNotificationsEntity selectOne(String id);
+
+
+    List<ReceivingNotificationsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

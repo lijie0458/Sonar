@@ -4,33 +4,52 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import com.dogfood.aa20240808.repository.LoadPermissionGroupManagementTableView_3CustomizeServiceMapper; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_63A62260FC029F5392CCD931B361AF92; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5; 
 import java.util.Map; 
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadPermissionGroupManagementTableView_3CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadPermissionGroupManagementTableView_3CustomizeServiceMapper loadPermissionGroupManagementTableView_3CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA loadPermissionGroupManagementTableView_3(Long page, Long size, String sort, String order, Long perGrouptId) {
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5> variable1 = new ArrayList<>();
+
+    public AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA loadPermissionGroupManagementTableView_3(Long page, Long size, String sort, String order, Long perGrouptId) {
+        List<AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5> variable1 = new ArrayList<>();
         List<Long> variable2 = new ArrayList<>();
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA();
-        variable1 = CommonFunctionUtil.createListPage(loadPermissionGroupManagementTableView_3CustomizeServiceMapper.getAnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5(perGrouptId, page, size, getTableField("AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5", sort), order), loadPermissionGroupManagementTableView_3CustomizeServiceMapper.countAnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5(perGrouptId, page, size, getTableField("AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_63A62260FC029F5392CCD931B361AF92.class).list; 
+        AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA result = new AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA();
+        variable1 = CommonFunctionUtil.createListPage(loadPermissionGroupManagementTableView_3CustomizeServiceMapper.getAnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5(perGrouptId, page, size, getTableField("AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5", sort), order), loadPermissionGroupManagementTableView_3CustomizeServiceMapper.countAnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5(perGrouptId, page, size, getTableField("AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5", sort), order).intValue(), AnonymousStructure_63A62260FC029F5392CCD931B361AF92.class).list; 
         variable2 = CommonFunctionUtil.listTransform(variable1, (item) -> item.lCAPPermission.id); 
-        result = CommonFunctionUtil.createListPage(loadPermissionGroupManagementTableView_3CustomizeServiceMapper.getAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(variable2), loadPermissionGroupManagementTableView_3CustomizeServiceMapper.countAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(variable2).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA.class); 
+        result = CommonFunctionUtil.createListPage(loadPermissionGroupManagementTableView_3CustomizeServiceMapper.getAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(variable2), loadPermissionGroupManagementTableView_3CustomizeServiceMapper.countAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(variable2).intValue(), AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadPermissionGroupManagementTableView_3CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_7FBB4AABBF5FC488B2988C81C738C5E5").put("permissionGroup.id", "`permission_group`.`id`");
@@ -96,6 +115,5 @@ public class LoadPermissionGroupManagementTableView_3CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

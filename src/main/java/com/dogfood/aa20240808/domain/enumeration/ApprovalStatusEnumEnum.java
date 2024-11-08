@@ -16,7 +16,9 @@ public enum ApprovalStatusEnumEnum implements BaseEnum<ApprovalStatusEnumEnum, S
     FIELD_2("2", "已审批"),; 
 
     public final String code;
+
     public final String desc;
+
 ApprovalStatusEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ ApprovalStatusEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class ApprovalStatusEnumEnumDeserializer extends JsonDeserializer<ApprovalStatusEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ ApprovalStatusEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

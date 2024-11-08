@@ -18,7 +18,9 @@ public enum ViewEditPermissionEnumEnum implements BaseEnum<ViewEditPermissionEnu
     FIELD_3("3", "全部"),; 
 
     public final String code;
+
     public final String desc;
+
 ViewEditPermissionEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -40,7 +42,6 @@ ViewEditPermissionEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class ViewEditPermissionEnumEnumDeserializer extends JsonDeserializer<ViewEditPermissionEnumEnum>{
 
             @Override
@@ -59,7 +60,6 @@ ViewEditPermissionEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

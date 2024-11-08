@@ -14,11 +14,11 @@ public class UpdateInventoryByDelProductInSCustomizeController {
 
     @Autowired
     private UpdateInventoryByDelProductInSCustomizeService updateInventoryByDelProductInSCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "ff64a4f0f2754ec78f39a95f9417cb54",rules = { })})
     @PostMapping("/api/lcplogics/updateInventoryByDelProductInS")
     public void updateInventoryByDelProductInS(@RequestBody UpdateInventoryByDelProductInSCustomizeControllerDto body) throws Exception {
         updateInventoryByDelProductInSCustomizeService.updateInventoryByDelProductInS(body.getProductInSNum());
     } 
-
 
 }

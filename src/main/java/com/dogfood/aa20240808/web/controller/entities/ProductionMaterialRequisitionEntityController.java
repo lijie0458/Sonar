@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.ProductionMaterialRequisitionEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.ProductionMaterialRequisitionEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class ProductionMaterialRequisitionEntityController {
     @Resource
     private ProductionMaterialRequisitionEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "9800e85f0d284f7c89bd16d215e33c17",rules = { }),@ValidationRuleGroup(value = "496a4692-09f5-4970-8a0a-45028ea4265c",rules = { }),@ValidationRuleGroup(value = "978aeb08-ebf5-4ba6-80f8-2436f8790bb1",rules = { }),@ValidationRuleGroup(value = "dab44441-72fe-45bf-87ce-dbda90748e0b",rules = { }),@ValidationRuleGroup(value = "bd5a1c77-be18-484b-81dc-d82291aebf49",rules = { }),@ValidationRuleGroup(value = "dc31bdac-bee9-424b-91f5-da3204d9c270",rules = { }),@ValidationRuleGroup(value = "f196d909-61e2-42cb-bee5-10e5195f4887",rules = { }),@ValidationRuleGroup(value = "a25aa3ef-c5e5-4a55-beba-b69b61e09dd0",rules = { })})
+    @GetMapping("/api/production-material-requisition")
+    public ApiReturn<ProductionMaterialRequisitionEntity> get( @RequestParam(required = true) String documentNumber ) { 
+        return ApiReturn.of(service.get( documentNumber )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class ProductionMaterialRequisitionEntityController {
         return ApiReturn.of(service.delete( documentNumber )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "9800e85f0d284f7c89bd16d215e33c17",rules = { }),@ValidationRuleGroup(value = "496a4692-09f5-4970-8a0a-45028ea4265c",rules = { }),@ValidationRuleGroup(value = "978aeb08-ebf5-4ba6-80f8-2436f8790bb1",rules = { }),@ValidationRuleGroup(value = "dab44441-72fe-45bf-87ce-dbda90748e0b",rules = { }),@ValidationRuleGroup(value = "bd5a1c77-be18-484b-81dc-d82291aebf49",rules = { }),@ValidationRuleGroup(value = "f196d909-61e2-42cb-bee5-10e5195f4887",rules = { }),@ValidationRuleGroup(value = "dc31bdac-bee9-424b-91f5-da3204d9c270",rules = { }),@ValidationRuleGroup(value = "a25aa3ef-c5e5-4a55-beba-b69b61e09dd0",rules = { })})
-    @GetMapping("/api/production-material-requisition")
-    public ApiReturn<ProductionMaterialRequisitionEntity> get( @RequestParam(required = true) String documentNumber ) { 
-        return ApiReturn.of(service.get( documentNumber )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class ProductionMaterialRequisitionEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

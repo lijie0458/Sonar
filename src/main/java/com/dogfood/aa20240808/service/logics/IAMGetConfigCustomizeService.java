@@ -6,10 +6,14 @@ import java.util.HashMap;
 import java.util.ArrayList; 
 import java.util.LinkedHashMap; 
 import com.dogfood.aa20240808.domain.structure.BaseResultStructure; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3; 
 import java.util.List; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_81F64A496F582F08EAE3E74042B4F743; 
 import com.dogfood.aa20240808.domain.enumeration.IdentitySourceStateEnumEnum; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E6204F88FA3760A005F0E371750B535E; 
 import java.util.Map; 
+import com.dogfood.aa20240808.util.LambdaParamWrapper; 
 import com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity; 
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
@@ -17,17 +21,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.domain.structure.IdentityConfigStructure; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23; 
 import com.dogfood.aa20240808.domain.entities.AppConfigEntity; 
 import com.dogfood.aa20240808.repository.IAMGetConfigCustomizeServiceMapper; 
 import com.dogfood.aa20240808.domain.structure.ConfigResStructure; 
 import org.springframework.util.ReflectionUtils; 
 
+/**
+ * IAM-获取配置，不包含密钥
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class IAMGetConfigCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private IAMGetConfigCustomizeServiceMapper iAMGetConfigCustomizeServiceMapper;
+
     public BaseResultStructure iAMGetConfig(String type, IdentitySourceStateEnumEnum state) {
         if (GlobalContext.notHandleValidation()) {
             if (state == null) {
@@ -36,26 +56,26 @@ public class IAMGetConfigCustomizeService {
 
         } 
 
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3> appConfig = new ArrayList<>();
-        ConfigResStructure data = new ConfigResStructure();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E6204F88FA3760A005F0E371750B535E> variable1 = new ArrayList<>();
+        List<AnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3> appConfig = new ArrayList<>();
+        LambdaParamWrapper<ConfigResStructure> data = new LambdaParamWrapper<>(new ConfigResStructure());
+        List<AnonymousStructure_E6204F88FA3760A005F0E371750B535E> variable1 = new ArrayList<>();
         IdentitySourceConfigEntity variable2 = new IdentitySourceConfigEntity();
         IdentityConfigStructure variable3 = new IdentityConfigStructure();
         BaseResultStructure result = new BaseResultStructure();
         if ((CommonFunctionUtil.equals(type, "APPLICATION"))) {
-            appConfig = CommonFunctionUtil.createListPage(iAMGetConfigCustomizeServiceMapper.getAnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3(), iAMGetConfigCustomizeServiceMapper.countAnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3().intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_81F64A496F582F08EAE3E74042B4F743.class).list; 
+            appConfig = CommonFunctionUtil.createListPage(iAMGetConfigCustomizeServiceMapper.getAnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3(), iAMGetConfigCustomizeServiceMapper.countAnonymousStructure_95F91B06D36BBD34B9B470BF7A922AA3().intValue(), AnonymousStructure_81F64A496F582F08EAE3E74042B4F743.class).list; 
             if ((CommonFunctionUtil.notEquals(CommonFunctionUtil.length(appConfig), 0L))) {
-                data.appConfig = CommonFunctionUtil.listHead(appConfig).appConfig; 
+                data.param.appConfig = CommonFunctionUtil.listHead(appConfig).appConfig; 
 
                 result.code = 200L; 
                 result.msg = "ok"; 
-                result.data = data; 
+                result.data = data.param; 
 
             } else {
-                data.appConfig = CommonFunctionUtil.newWithInitiation(new AppConfigEntity(), _bean226 -> {}); 
+                data.param.appConfig = CommonFunctionUtil.newWithInitiation(new AppConfigEntity(), _bean1 -> {}); 
                 result.code = 200L; 
                 result.msg = "ok"; 
-                result.data = data; 
+                result.data = data.param; 
 
             } 
 
@@ -65,9 +85,9 @@ public class IAMGetConfigCustomizeService {
 
         if ((CommonFunctionUtil.equals(type, "IDENTITY"))) {
             if (CommonFunctionUtil.hasValue(state)) {
-                variable1 = CommonFunctionUtil.createListPage(iAMGetConfigCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E(state), iAMGetConfigCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E(state).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
+                variable1 = CommonFunctionUtil.createListPage(iAMGetConfigCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E(state), iAMGetConfigCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E(state).intValue(), AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
             } else {
-                variable1 = CommonFunctionUtil.createListPage(iAMGetConfigCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E1(), iAMGetConfigCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E1().intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
+                variable1 = CommonFunctionUtil.createListPage(iAMGetConfigCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E1(), iAMGetConfigCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E1().intValue(), AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
             } 
 
             if ((CommonFunctionUtil.notEquals(CommonFunctionUtil.length(variable1), 0L))) {
@@ -89,16 +109,16 @@ public class IAMGetConfigCustomizeService {
                 variable3.type = CommonFunctionUtil.convert(variable2.type, String.class); 
                 variable3.agentId = variable2.agentId; 
 
-                data.idectityConfig = variable3; 
-                result = CommonFunctionUtil.newWithInitiation(new BaseResultStructure(), _bean690 -> {
-    _bean690.code = 200L; 
-    _bean690.msg = "请求成功"; 
-    _bean690.data = data; 
+                data.param.idectityConfig = variable3; 
+                result = CommonFunctionUtil.newWithInitiation(new BaseResultStructure(), _bean1 -> {
+    _bean1.code = 200L; 
+    _bean1.msg = "请求成功"; 
+    _bean1.data = data.param; 
 } ); 
             } else {
-                result = CommonFunctionUtil.newWithInitiation(new BaseResultStructure(), _bean540 -> {
-    _bean540.code = 201L; 
-    _bean540.msg = "此身份源配置信息为空"; 
+                result = CommonFunctionUtil.newWithInitiation(new BaseResultStructure(), _bean1 -> {
+    _bean1.code = 201L; 
+    _bean1.msg = "此身份源配置信息为空"; 
 } ); 
             } 
 
@@ -143,6 +163,5 @@ public class IAMGetConfigCustomizeService {
         } 
         return elements;
     } 
-
 
 }

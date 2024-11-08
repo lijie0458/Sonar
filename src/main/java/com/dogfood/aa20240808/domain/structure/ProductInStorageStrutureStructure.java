@@ -12,10 +12,13 @@ public class ProductInStorageStrutureStructure {
 
     @Label("产品入库信息")
     public ProductInStorageEntity productInStorage;
+
     @Label("部门信息")
     public DepartmentEntity department;
+
     @Label("保管员信息")
     public LCAPUser user;
+
     public ProductInStorageEntity getProductInStorage() {
         return productInStorage;
     } 
@@ -39,6 +42,5 @@ public class ProductInStorageStrutureStructure {
     public void setUser(LCAPUser user) {
         this.user = user; 
     } 
-
 
 }

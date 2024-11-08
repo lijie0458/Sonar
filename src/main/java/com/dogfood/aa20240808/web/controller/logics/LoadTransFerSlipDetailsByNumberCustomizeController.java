@@ -17,11 +17,11 @@ public class LoadTransFerSlipDetailsByNumberCustomizeController {
 
     @Autowired
     private LoadTransFerSlipDetailsByNumberCustomizeService loadTransFerSlipDetailsByNumberCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "4bce26b6e68747409c5c1f07a7d21358",rules = { })})
     @PostMapping("/api/lcplogics/loadTransFerSlipDetailsByNumber")
     public ApiReturn<List<TransferSlipDetailsStructure>> loadTransFerSlipDetailsByNumber(@RequestBody LoadTransFerSlipDetailsByNumberCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadTransFerSlipDetailsByNumberCustomizeService.loadTransFerSlipDetailsByNumber(body.getDocumentNumber()));
     } 
-
 
 }

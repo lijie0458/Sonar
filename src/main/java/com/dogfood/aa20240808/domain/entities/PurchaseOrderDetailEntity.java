@@ -4,25 +4,33 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 import java.math.BigDecimal; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class PurchaseOrderDetailEntity {
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("物料编号")
     public String material_code;
+
     @Label("订单数量")
     public BigDecimal orderQuantity;
+
     @Label("单价（含税）")
     public BigDecimal priceIncludingTax;
+
     @Label("税率")
     public BigDecimal taxRate;
+
     @Label("关联订单号")
     public String relatedOrderNumber;
+
     public Long purchaseDetailsId;
+
     public Long getId() {
         return id;
     } 
@@ -78,6 +86,5 @@ public class PurchaseOrderDetailEntity {
     public void setPurchaseDetailsId(Long purchaseDetailsId) {
         this.purchaseDetailsId = purchaseDetailsId; 
     } 
-
 
 }

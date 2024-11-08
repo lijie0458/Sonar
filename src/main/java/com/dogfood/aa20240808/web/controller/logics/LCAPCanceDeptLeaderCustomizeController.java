@@ -14,11 +14,11 @@ public class LCAPCanceDeptLeaderCustomizeController {
 
     @Autowired
     private LCAPCanceDeptLeaderCustomizeService lCAPCanceDeptLeaderCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "e931731d1fca4d769613caddb8c20cd6",rules = { })})
     @PostMapping("/api/lcplogics/LCAPCanceDeptLeader")
     public void lCAPCanceDeptLeader(@RequestBody LCAPCanceDeptLeaderCustomizeControllerDto body) throws Exception {
         lCAPCanceDeptLeaderCustomizeService.lCAPCanceDeptLeader(body.getDeptId(), body.getUserId());
     } 
-
 
 }

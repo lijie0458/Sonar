@@ -5,10 +5,15 @@ import com.dogfood.aa20240808.domain.entities.Warehouse_levelTwoEntity;
 public class LoadWarehouseTableView1CustomizeControllerDto {
 
     public Warehouse_levelTwoEntity filter;
+
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public Warehouse_levelTwoEntity getFilter() {
         return filter;
     } 
@@ -48,6 +53,5 @@ public class LoadWarehouseTableView1CustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

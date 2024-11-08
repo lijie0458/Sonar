@@ -7,5 +7,4 @@ public interface LoadTotalByCodeCustomizeServiceMapper {
 
 BigDecimal getSql1(@Param("param1") String param1); 
 
-
 }

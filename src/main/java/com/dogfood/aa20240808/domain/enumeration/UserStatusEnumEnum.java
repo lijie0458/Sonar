@@ -14,7 +14,9 @@ public enum UserStatusEnumEnum implements BaseEnum<UserStatusEnumEnum, String>{
     FIELD_Forbidden("Forbidden", "禁用"),; 
 
     public final String code;
+
     public final String desc;
+
 UserStatusEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -36,7 +38,6 @@ UserStatusEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class UserStatusEnumEnumDeserializer extends JsonDeserializer<UserStatusEnumEnum>{
 
             @Override
@@ -55,7 +56,6 @@ UserStatusEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

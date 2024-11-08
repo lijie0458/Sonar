@@ -220,6 +220,30 @@ public class AppStartPermissionDataService  implements InitializingBean {
             return;
         }
 
+        //考虑某个角色rename后，之前角色的PermissionId要移除
+        List<LCAPRolePerMapping> rolePermissionHasLinked = new ArrayList<>();
+        for (int i = 0; i < rolePerMapToSave.size(); i++) {
+            LCAPRolePerMapping rolePerMapToSaveMapping = rolePerMapToSave.get(i);
+            for (LCAPRolePerMapping dbRolePerMapping : allRolePerMappingInDb) {
+                if (rolePerMapToSaveMapping.getRoleId().equals(dbRolePerMapping.getRoleId())
+                        && !rolePerMapToSaveMapping.getPermissionId().equals(dbRolePerMapping.getPermissionId())) {
+                    //如果要解绑的权限ID是IDE某个角色的权限，就需要被删除
+                    LCAPPermission lcapPermission = permissionMapper.selectOne(dbRolePerMapping.getPermissionId());
+                    if(Objects.nonNull(lcapPermission)){
+                        if (roleMetaData.stream().anyMatch(x -> x.getName().equals(lcapPermission.getName()))) {
+                            rolePermissionHasLinked.add(dbRolePerMapping);
+                        }
+                    }else {
+                        //历史的中间角色遗留脏数据，因不影响业务准确性，暂时先保留
+                    }
+                }
+            }
+        }
+        if (!CollectionUtils.isEmpty(rolePermissionHasLinked)) {
+            log.info("应用发布时权限数据处理 删除如下角色权限关联数据: {}", rolePermissionHasLinked.stream().map(x -> "角色id:" + x.getRoleId() + "权限id:" + x.getPermissionId()).collect(Collectors.toList()));
+            rolePerMappingMapper.batchDelete(rolePermissionHasLinked.stream().map(LCAPRolePerMapping::getId).collect(Collectors.toList()));
+        }
+
         List<LCAPRolePerMapping> rolePermissionNeedCreate = rolePerMapToSave.stream()
                 .filter(x -> allRolePerMappingInDb.stream().noneMatch(y -> x.getPermissionId().equals(y.getPermissionId()) && x.getRoleId().equals(y.getRoleId())))
                 .collect(Collectors.toList());

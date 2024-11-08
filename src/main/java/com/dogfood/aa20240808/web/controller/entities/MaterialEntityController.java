@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.MaterialEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.MaterialEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.MaterialEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class MaterialEntityController {
     @Resource
     private MaterialEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "98aee190-dff2-49cb-8bcd-4c217a9839ae",rules = { @ValidationRule(value = "filled",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "1b7a87398c2a49e0b00df43ce92dad9f",rules = { })})
+    @GetMapping("/api/material")
+    public ApiReturn<MaterialEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class MaterialEntityController {
         return ApiReturn.of(service.batchDelete(ids));
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "98aee190-dff2-49cb-8bcd-4c217a9839ae",rules = { @ValidationRule(value = "filled",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "1b7a87398c2a49e0b00df43ce92dad9f",rules = { })})
-    @GetMapping("/api/material")
-    public ApiReturn<MaterialEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class MaterialEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

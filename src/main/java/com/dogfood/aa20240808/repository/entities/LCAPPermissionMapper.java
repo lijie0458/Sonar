@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface LCAPPermissionMapper extends ReferenceHandleMapper {
 
     int insert(LCAPPermission bean);
+
     int batchInsert(List<LCAPPermission> beans);
-    List<LCAPPermission> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(LCAPPermission bean, List<String> updateFields);
-    int batchUpdate(List<LCAPPermission> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    LCAPPermission selectOne(Long id);
-
-    int createOrUpdate(LCAPPermission bean);
     int updateBy(LCAPPermission bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(LCAPPermission bean);
+
+    int update(LCAPPermission bean, List<String> updateFields);
+
+    int batchUpdate(List<LCAPPermission> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    LCAPPermission selectOne(Long id);
+
+
+    List<LCAPPermission> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

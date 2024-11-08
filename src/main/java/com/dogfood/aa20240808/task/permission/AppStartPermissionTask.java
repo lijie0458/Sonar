@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.io.ClassPathResource;
@@ -31,6 +32,7 @@ import java.util.stream.Collectors;
 * @since 2.22
 */
 @Component
+@ConditionalOnProperty(value = "lcp.authCenter.taskEnable", havingValue = "true", matchIfMissing = true)
 public class AppStartPermissionTask implements ApplicationRunner {
 
     Logger log = LoggerFactory.getLogger(AppStartPermissionTask.class);

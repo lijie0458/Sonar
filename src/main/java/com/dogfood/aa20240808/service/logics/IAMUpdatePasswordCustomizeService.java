@@ -5,6 +5,7 @@ import com.dogfood.aa20240808.service.entities.LCAPUserService;
 import com.dogfood.aa20240808.domain.structure.ResponseResultStructure; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.util.LogicCallUtils; 
+import com.netease.lowcode.template.logic.AuthTemplateLogic; 
 import com.dogfood.aa20240808.util.LambdaParamWrapper; 
 import com.dogfood.aa20240808.domain.entities.LCAPUser; 
 import org.slf4j.Logger; 
@@ -12,14 +13,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * IAM-修改密码
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class IAMUpdatePasswordCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private IAMGetUserByUserIdCustomizeService iAMGetUserByUserIdCustomizeService;
+
     @Autowired
     private LCAPUserService lCAPUserService;
+
     public ResponseResultStructure iAMUpdatePassword(String oldPwd, String newPwd, String confirmNewPwd, String userId) {
         LambdaParamWrapper<String> oldPwdWrapper = new LambdaParamWrapper<>(oldPwd);
         LambdaParamWrapper<LCAPUser> userInfo = new LambdaParamWrapper<>(new LCAPUser());
@@ -36,7 +53,7 @@ public class IAMUpdatePasswordCustomizeService {
                         result.msg = "密码修改成功"; 
 
                     } else {
-                        variable1 = LogicCallUtils.callWithError(() -> com.netease.lowcode.template.logic.AuthTemplateLogic.checkLoginPassword(oldPwdWrapper.param, userInfo.param.password), true); 
+                        variable1 = LogicCallUtils.callWithError(() -> AuthTemplateLogic.checkLoginPassword(oldPwdWrapper.param, userInfo.param.password), true); 
                         if (variable1) {
                             userInfo.param.password = newPwd; 
                             lCAPUserService.update(userInfo.param, null);
@@ -75,6 +92,5 @@ public class IAMUpdatePasswordCustomizeService {
 
         return result;
     } 
-
 
 }

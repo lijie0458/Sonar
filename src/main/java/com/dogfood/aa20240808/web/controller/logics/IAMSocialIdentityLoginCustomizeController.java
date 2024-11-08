@@ -15,11 +15,11 @@ public class IAMSocialIdentityLoginCustomizeController {
 
     @Autowired
     private IAMSocialIdentityLoginCustomizeService iAMSocialIdentityLoginCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "397e1877-9c8c-4b62-94c4-4779364f40f5",rules = { })})
     @PostMapping("/api/lcplogics/IAMSocialIdentityLogin")
     public ApiReturn<String> iAMSocialIdentityLogin(@RequestBody IAMSocialIdentityLoginCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(iAMSocialIdentityLoginCustomizeService.iAMSocialIdentityLogin(body.getCode(), body.getSource()));
     } 
-
 
 }

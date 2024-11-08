@@ -4,7 +4,9 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class GetInventory_HomePageCustomizeControllerDto {
 
     public String sort;
+
     public String order;
+
     public String getSort() {
         return sort;
     } 
@@ -20,6 +22,5 @@ public class GetInventory_HomePageCustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

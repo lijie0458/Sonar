@@ -11,8 +11,10 @@ public class OtherInStorageStrutureStructure {
 
     @Label("其他入库")
     public OtherInStorageEntity otherInStorage;
+
     @Label("保管员信息")
     public LCAPUser user;
+
     public OtherInStorageEntity getOtherInStorage() {
         return otherInStorage;
     } 
@@ -28,6 +30,5 @@ public class OtherInStorageStrutureStructure {
     public void setUser(LCAPUser user) {
         this.user = user; 
     } 
-
 
 }

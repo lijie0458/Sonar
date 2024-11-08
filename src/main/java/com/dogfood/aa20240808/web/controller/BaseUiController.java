@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BaseUiController {
     private final Logger log = LoggerFactory.getLogger(BaseUiController.class);
@@ -96,7 +98,7 @@ public class BaseUiController {
 
     protected synchronized String getIndexHtml(String basePath, String uiResourceAddress) {
         if (indexHtmlMap.containsKey(basePath)) {
-            return indexHtmlMap.get(basePath);
+            return replaceIndexHtmlTimeStamp(uiResourceAddress, indexHtmlMap.get(basePath));
         }
 
         try (InputStream resourceAsStream = this.getClass().getResourceAsStream(INDEX_HTML_PATH);
@@ -111,6 +113,8 @@ public class BaseUiController {
             String indexHtml = sb.toString();
             indexHtml = indexHtml.replace("${uiResourceAddress}", uiResourceAddress);
             indexHtml = indexHtml.replace("${uiBasePath}", "/".equals(uiBasePath) ? "" : uiBasePath);
+            indexHtml = indexHtml.replace("${timestamp}", String.valueOf(System.currentTimeMillis()));
+            indexHtml = replaceIndexHtmlTimeStamp(uiResourceAddress, indexHtml);
             indexHtmlMap.put(basePath, indexHtml);
             return indexHtml;
         } catch (Exception e) {
@@ -119,6 +123,14 @@ public class BaseUiController {
         }
     }
 
+    private String replaceIndexHtmlTimeStamp(String uiResourceAddress, String indexHtml) {
+        Pattern pattern = Pattern.compile(uiResourceAddress + "\\?t=\\d{13}");
+        Matcher matcher = pattern.matcher(indexHtml);
+        if (matcher.find()) {
+            return matcher.replaceFirst(uiResourceAddress + "?t=" + System.currentTimeMillis());
+        }
+        return indexHtml;
+    }
     protected synchronized String getErrorHtml(String errorShowImage) {
         if (ArrayUtils.isEmpty(errorHtmlParts)) {
             try (InputStream resourceAsStream = this.getClass().getResourceAsStream(ERROR_HTML_PATH)) {

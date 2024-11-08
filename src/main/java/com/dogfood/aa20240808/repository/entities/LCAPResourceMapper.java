@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface LCAPResourceMapper extends ReferenceHandleMapper {
 
     int insert(LCAPResource bean);
+
     int batchInsert(List<LCAPResource> beans);
-    List<LCAPResource> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(LCAPResource bean, List<String> updateFields);
-    int batchUpdate(List<LCAPResource> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    LCAPResource selectOne(Long id);
-
-    int createOrUpdate(LCAPResource bean);
     int updateBy(LCAPResource bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(LCAPResource bean);
+
+    int update(LCAPResource bean, List<String> updateFields);
+
+    int batchUpdate(List<LCAPResource> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    LCAPResource selectOne(Long id);
+
+
+    List<LCAPResource> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

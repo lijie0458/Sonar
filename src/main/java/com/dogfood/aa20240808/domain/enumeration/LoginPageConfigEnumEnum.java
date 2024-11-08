@@ -14,7 +14,9 @@ public enum LoginPageConfigEnumEnum implements BaseEnum<LoginPageConfigEnumEnum,
     FIELD_Customize("Customize", "自定义登录页"),; 
 
     public final String code;
+
     public final String desc;
+
 LoginPageConfigEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -36,7 +38,6 @@ LoginPageConfigEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class LoginPageConfigEnumEnumDeserializer extends JsonDeserializer<LoginPageConfigEnumEnum>{
 
             @Override
@@ -55,7 +56,6 @@ LoginPageConfigEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
@@ -14,19 +15,35 @@ import com.dogfood.aa20240808.domain.entities.MaterialEntity;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadMaterialTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadMaterialTableViewCustomizeServiceMapper loadMaterialTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C loadMaterialTableView(Long page, Long size, String sort, String order, MaterialEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C();
-        result = CommonFunctionUtil.createListPage(loadMaterialTableViewCustomizeServiceMapper.getAnonymousStructure_988572FC06FE621688549C0BC53D9030(filter, page, size, getTableField("AnonymousStructure_988572FC06FE621688549C0BC53D9030", sort), order), loadMaterialTableViewCustomizeServiceMapper.countAnonymousStructure_988572FC06FE621688549C0BC53D9030(filter, page, size, getTableField("AnonymousStructure_988572FC06FE621688549C0BC53D9030", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C.class); 
+
+    public AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C loadMaterialTableView(Long page, Long size, String sort, String order, MaterialEntity filter) {
+        AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C result = new AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C();
+        result = CommonFunctionUtil.createListPage(loadMaterialTableViewCustomizeServiceMapper.getAnonymousStructure_988572FC06FE621688549C0BC53D9030(filter, page, size, getTableField("AnonymousStructure_988572FC06FE621688549C0BC53D9030", sort), order), loadMaterialTableViewCustomizeServiceMapper.countAnonymousStructure_988572FC06FE621688549C0BC53D9030(filter, page, size, getTableField("AnonymousStructure_988572FC06FE621688549C0BC53D9030", sort), order).intValue(), AnonymousStructure_5F55CB4B9BA2141C1A7AB94E4A6BCF0C.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadMaterialTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_988572FC06FE621688549C0BC53D9030", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_988572FC06FE621688549C0BC53D9030").put("material.id", "`material`.`id`");
@@ -77,6 +94,5 @@ public class LoadMaterialTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

@@ -10,8 +10,10 @@ public class OutsourceReturnStorageStructureStructure {
 
     @Label("委外加工入库详情数据结构")
     public OutsourceInStorageDetailsStrutureStructure outsourceInStorageDetailsStructure;
+
     @Label("委外加工入库退回详情信息")
     public OutsourceReturnStorageDetailsEntity outsourceReturnStorageDetails;
+
     public OutsourceInStorageDetailsStrutureStructure getOutsourceInStorageDetailsStructure() {
         return outsourceInStorageDetailsStructure;
     } 
@@ -27,6 +29,5 @@ public class OutsourceReturnStorageStructureStructure {
     public void setOutsourceReturnStorageDetails(OutsourceReturnStorageDetailsEntity outsourceReturnStorageDetails) {
         this.outsourceReturnStorageDetails = outsourceReturnStorageDetails; 
     } 
-
 
 }

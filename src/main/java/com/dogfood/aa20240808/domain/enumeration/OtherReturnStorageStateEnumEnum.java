@@ -16,7 +16,9 @@ public enum OtherReturnStorageStateEnumEnum implements BaseEnum<OtherReturnStora
     FIELD_2("2", "已审批"),; 
 
     public final String code;
+
     public final String desc;
+
 OtherReturnStorageStateEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ OtherReturnStorageStateEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class OtherReturnStorageStateEnumEnumDeserializer extends JsonDeserializer<OtherReturnStorageStateEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ OtherReturnStorageStateEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

@@ -14,11 +14,11 @@ public class PERGetAllUserNameCustomizeController {
 
     @Autowired
     private PERGetAllUserNameCustomizeService pERGetAllUserNameCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "2b645700-8b91-4f9a-9c22-9e7218ffbb67",rules = { }),@ValidationRuleGroup(value = "b4344a04-9823-495c-b98d-10240830b2e5",rules = { })})
     @PostMapping("/api/lcplogics/PERGetAllUserName")
     public ApiReturn<List<String>> pERGetAllUserName() throws Exception {
         return ApiReturn.of(pERGetAllUserNameCustomizeService.pERGetAllUserName());
     } 
-
 
 }

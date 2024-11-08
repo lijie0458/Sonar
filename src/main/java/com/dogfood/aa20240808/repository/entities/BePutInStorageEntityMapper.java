@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface BePutInStorageEntityMapper extends ReferenceHandleMapper {
 
     int insert(BePutInStorageEntity bean);
+
     int batchInsert(List<BePutInStorageEntity> beans);
-    List<BePutInStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(BePutInStorageEntity bean, List<String> updateFields);
-    int batchUpdate(List<BePutInStorageEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    BePutInStorageEntity selectOne(String id);
-
-    int createOrUpdate(BePutInStorageEntity bean);
     int updateBy(BePutInStorageEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(BePutInStorageEntity bean);
+
+    int update(BePutInStorageEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<BePutInStorageEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    BePutInStorageEntity selectOne(String id);
+
+
+    List<BePutInStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

@@ -4,8 +4,11 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class PERLoadOrgUserTableViewCustomizeControllerDto {
 
     public Long size;
+
     public Long page;
+
     public Long orgId;
+
     public Long getSize() {
         return size;
     } 
@@ -29,6 +32,5 @@ public class PERLoadOrgUserTableViewCustomizeControllerDto {
     public void setOrgId(Long orgId) {
         this.orgId = orgId; 
     } 
-
 
 }

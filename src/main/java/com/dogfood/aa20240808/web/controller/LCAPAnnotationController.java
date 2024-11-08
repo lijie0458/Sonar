@@ -1,6 +1,7 @@
 package com.dogfood.aa20240808.web.controller;
 
 import com.dogfood.aa20240808.aspect.AnnotationManager;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.netease.lowcode.annotation.context.EntityContext;
 import com.netease.lowcode.annotation.context.LogicContext;
 import com.netease.lowcode.annotation.handler.LCAPLogicAnnotationHandler;
@@ -25,10 +26,10 @@ public class LCAPAnnotationController {
     private AnnotationManager annotationManager;
 
     @GetMapping("/logic")
-    public List<Object>  annotationLogicConfig(String annotationKey) {
+    public ApiReturn<List<Object>>  annotationLogicConfig(String annotationKey) {
         List<LCAPLogicAnnotationHandler> list = annotationManager.getLcapLogicAnnotationHandlers();
         if (CollectionUtils.isEmpty(list)) {
-            return new ArrayList<>();
+            return ApiReturn.of(new ArrayList<>());
         }
         List<Object> annotationMapList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -38,14 +39,14 @@ public class LCAPAnnotationController {
                 annotationMapList.add(value);
             }
         }
-        return annotationMapList;
+        return ApiReturn.of(annotationMapList);
     }
 
     @GetMapping("/logicAll")
-    public List<Map<String, Object>> annotationAllLogicConfig() {
+    public ApiReturn<List<Map<String, Object>>> annotationAllLogicConfig() {
         List<LCAPLogicAnnotationHandler> list = annotationManager.getLcapLogicAnnotationHandlers();
         if (CollectionUtils.isEmpty(list)) {
-            return new ArrayList<>();
+            return ApiReturn.of(new ArrayList<>());
         }
         List<Map<String, Object>> annotationMapList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -60,14 +61,14 @@ public class LCAPAnnotationController {
                 annotationMapList.add(annotationMap);
             }
         }
-        return annotationMapList;
+        return ApiReturn.of(annotationMapList);
     }
 
     @GetMapping("/entity")
-    public List<Object> annotationEntityConfig(String annotationKey) {
+    public ApiReturn<List<Object>> annotationEntityConfig(String annotationKey) {
         List<LCAPSQLAnnotationHandler> list = annotationManager.getLcapSqlAnnotationHandlers();
         if (CollectionUtils.isEmpty(list)) {
-            return new ArrayList<>();
+            return ApiReturn.of(new ArrayList<>());
         }
         List<Object> annotationMapList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -77,14 +78,14 @@ public class LCAPAnnotationController {
                 annotationMapList.add(value);
             }
         }
-        return annotationMapList;
+        return ApiReturn.of(annotationMapList);
     }
 
     @GetMapping("/entityAll")
-    public List<Map<String, Object>> annotationAllEntityConfig() {
+    public ApiReturn<List<Map<String, Object>>> annotationAllEntityConfig() {
         List<LCAPSQLAnnotationHandler> list = annotationManager.getLcapSqlAnnotationHandlers();
         if (CollectionUtils.isEmpty(list)) {
-            return new ArrayList<>();
+            return ApiReturn.of(new ArrayList<>());
         }
         List<Map<String, Object>> annotationMapList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -99,7 +100,7 @@ public class LCAPAnnotationController {
                 annotationMapList.add(annotationMap);
             }
         }
-        return annotationMapList;
+        return ApiReturn.of(annotationMapList);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 public class UpdatePurchaseDetailsCustomizeControllerDto {
 
     public List<Long> purchaseDetailsIdList;
+
     public List<Long> getPurchaseDetailsIdList() {
         return purchaseDetailsIdList;
     } 
@@ -12,6 +13,5 @@ public class UpdatePurchaseDetailsCustomizeControllerDto {
     public void setPurchaseDetailsIdList(List<Long> purchaseDetailsIdList) {
         this.purchaseDetailsIdList = purchaseDetailsIdList; 
     } 
-
 
 }

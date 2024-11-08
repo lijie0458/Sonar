@@ -119,25 +119,105 @@
         where `id` = #{bean.id}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPUser" >
         UPDATE `lcap_user_a6d592`
         <set>
-            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('userName')">`user_name` = #{bean.userName, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('password')">`password` = #{bean.password, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('phone')">`phone` = #{bean.phone, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('email')">`email` = #{bean.email, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('displayName')">`display_name` = #{bean.displayName, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('status')">`status` = #{bean.status, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('source')">`source` = #{bean.source, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('department_Id')">`department__id` = #{bean.department_Id, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('directLeaderId')">`direct_leader_id` = #{bean.directLeaderId, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('isFirstLogin')">`is_first_login` = #{bean.isFirstLogin, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('createdTime')">
+                `created_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.createdTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">
+                `updated_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.updatedTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userId')">
+                `user_id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userId, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userName')">
+                `user_name` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userName, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('password')">
+                `password` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.password, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('phone')">
+                `phone` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.phone, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('email')">
+                `email` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.email, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('displayName')">
+                `display_name` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.displayName, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('status')">
+                `status` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.status, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('source')">
+                `source` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.source, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('department_Id')">
+                `department__id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.department_Id, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('directLeaderId')">
+                `direct_leader_id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.directLeaderId, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('isFirstLogin')">
+                `is_first_login` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.isFirstLogin, jdbcType=TINYINT}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `id` = #{bean.id}
+        where `id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.id}
+        </foreach>
     </update>
 
 
@@ -267,21 +347,6 @@
         where `id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `lcap_user_a6d592`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `lcap_user_a6d592`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPUser">
         INSERT INTO `lcap_user_a6d592` (
             `id`
@@ -343,4 +408,18 @@
         DELETE FROM `lcap_user_a6d592`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `lcap_user_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `lcap_user_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

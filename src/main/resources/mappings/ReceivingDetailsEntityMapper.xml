@@ -71,17 +71,49 @@
         where `id` = #{bean.id}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity" >
         UPDATE `receiving_details`
         <set>
-            <if test="updateFields == null or updateFields.contains('receiptNumber')">`receipt_number` = #{bean.receiptNumber, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('receivedQuantity')">`received_quantity` = #{bean.receivedQuantity, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('materialNumber')">`material_number` = #{bean.materialNumber, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('orderDetailId')">`order_detail_id` = #{bean.orderDetailId, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('receivableQuantity')">`receivable_quantity` = #{bean.receivableQuantity, jdbcType= DECIMAL},</if>
+            <if test="updateFields == null or updateFields.contains('receiptNumber')">
+                `receipt_number` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.receiptNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('receivedQuantity')">
+                `received_quantity` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.receivedQuantity, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('materialNumber')">
+                `material_number` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.materialNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('orderDetailId')">
+                `order_detail_id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.orderDetailId, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('receivableQuantity')">
+                `receivable_quantity` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.receivableQuantity, jdbcType=DECIMAL}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `id` = #{bean.id}
+        where `id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.id}
+        </foreach>
     </update>
 
 
@@ -163,21 +195,6 @@
         where `id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `receiving_details`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `receiving_details`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ReceivingDetailsEntity">
         INSERT INTO `receiving_details` (
             `id`
@@ -215,4 +232,18 @@
         DELETE FROM `receiving_details`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `receiving_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `receiving_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

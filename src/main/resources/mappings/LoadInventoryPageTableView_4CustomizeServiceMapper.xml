@@ -89,7 +89,7 @@ SELECT `inv`.`material_code`,`inv`.`stock_quantity`,`inv`.`occupied_quantity`,`i
 <if test=" lcap_AA9F73EE_limit!=null ">
 	LIMIT 
 <if test=" lcap_7A86C157_offset!=null ">
-	${lcap_7A86C157_offset},
+	${lcap_7A86C157_offset} ,
 </if> ${lcap_AA9F73EE_limit}
 </if>
 </select>

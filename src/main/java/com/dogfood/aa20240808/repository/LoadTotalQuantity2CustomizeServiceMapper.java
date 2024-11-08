@@ -6,5 +6,4 @@ public interface LoadTotalQuantity2CustomizeServiceMapper {
 
 Long getStructure1(@Param("code") String code, @Param("id") Long id, @Param("batchNumber") String batchNumber); 
 
-
 }

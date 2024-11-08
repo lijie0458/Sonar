@@ -245,46 +245,252 @@
         where `id` = #{bean.id}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity" >
         UPDATE `IdentitySourceConfig`
         <set>
-            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('icon')">`icon` = #{bean.icon, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('name')">`name` = #{bean.name, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('appId')">`app_id` = #{bean.appId, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('appSecret')">`app_secret` = #{bean.appSecret, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('successUrl')">`success_url` = #{bean.successUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('type')">`type` = #{bean.type, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('loginEnable')">`login_enable` = #{bean.loginEnable, jdbcType= TINYINT},</if>
-            <if test="updateFields == null or updateFields.contains('centerLoginUrl')">`center_login_url` = #{bean.centerLoginUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('tokenUrl')">`token_url` = #{bean.tokenUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('tokenMethod')">`token_method` = #{bean.tokenMethod, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('userUrl')">`user_url` = #{bean.userUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('userMethod')">`user_method` = #{bean.userMethod, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('centerLogoutUrl')">`center_logout_url` = #{bean.centerLogoutUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('logoutCallbackUrl')">`logout_callback_url` = #{bean.logoutCallbackUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('casTicketUrl')">`cas_ticket_url` = #{bean.casTicketUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('expire')">`expire` = #{bean.expire, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('redirectUrl')">`redirect_url` = #{bean.redirectUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('agentId')">`agent_id` = #{bean.agentId, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('tokenHeaderMap')">`token_header_map` = #{bean.tokenHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
-            <if test="updateFields == null or updateFields.contains('tokenBodyMap')">`token_body_map` = #{bean.tokenBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
-            <if test="updateFields == null or updateFields.contains('userHeaderMap')">`user_header_map` = #{bean.userHeaderMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
-            <if test="updateFields == null or updateFields.contains('userBodyMap')">`user_body_map` = #{bean.userBodyMap, jdbcType= VARCHAR, typeHandler= com.dogfood.aa20240808.repository.handler.MapTypeHandler_1},</if>
-            <if test="updateFields == null or updateFields.contains('userIdRes')">`user_id_res` = #{bean.userIdRes, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('userNameRes')">`user_name_res` = #{bean.userNameRes, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('code')">`code` = #{bean.code, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('ssoUrl')">`sso_url` = #{bean.ssoUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('wechatToken')">`wechat_token` = #{bean.wechatToken, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('wechatMsgMethod')">`wechat_msg_method` = #{bean.wechatMsgMethod, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('wechatMsgSecret')">`wechat_msg_secret` = #{bean.wechatMsgSecret, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdTime')">
+                `created_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.createdTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">
+                `updated_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.updatedTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">
+                `updated_by` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.updatedBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('state')">
+                `state` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.state, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('icon')">
+                `icon` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.icon, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('name')">
+                `name` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.name, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('appId')">
+                `app_id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.appId, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('appSecret')">
+                `app_secret` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.appSecret, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('successUrl')">
+                `success_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.successUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('type')">
+                `type` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.type, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('loginEnable')">
+                `login_enable` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.loginEnable, jdbcType=TINYINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('centerLoginUrl')">
+                `center_login_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.centerLoginUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('tokenUrl')">
+                `token_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.tokenUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('tokenMethod')">
+                `token_method` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.tokenMethod, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userUrl')">
+                `user_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userMethod')">
+                `user_method` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userMethod, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('centerLogoutUrl')">
+                `center_logout_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.centerLogoutUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('logoutCallbackUrl')">
+                `logout_callback_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.logoutCallbackUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('casTicketUrl')">
+                `cas_ticket_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.casTicketUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('expire')">
+                `expire` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.expire, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('redirectUrl')">
+                `redirect_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.redirectUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('agentId')">
+                `agent_id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.agentId, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('tokenHeaderMap')">
+                `token_header_map` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.tokenHeaderMap, jdbcType=VARCHAR, typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('tokenBodyMap')">
+                `token_body_map` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.tokenBodyMap, jdbcType=VARCHAR, typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userHeaderMap')">
+                `user_header_map` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userHeaderMap, jdbcType=VARCHAR, typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userBodyMap')">
+                `user_body_map` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userBodyMap, jdbcType=VARCHAR, typeHandler=com.dogfood.aa20240808.repository.handler.MapTypeHandler_1}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userIdRes')">
+                `user_id_res` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userIdRes, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userNameRes')">
+                `user_name_res` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.userNameRes, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('code')">
+                `code` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.code, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('ssoUrl')">
+                `sso_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.ssoUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('wechatToken')">
+                `wechat_token` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.wechatToken, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('wechatMsgMethod')">
+                `wechat_msg_method` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.wechatMsgMethod, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('wechatMsgSecret')">
+                `wechat_msg_secret` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.wechatMsgSecret, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `id` = #{bean.id}
+        where `id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.id}
+        </foreach>
     </update>
 
 
@@ -540,21 +746,6 @@
         where `id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `IdentitySourceConfig`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `IdentitySourceConfig`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity">
         INSERT INTO `IdentitySourceConfig` (
             `id`
@@ -679,4 +870,18 @@
         DELETE FROM `IdentitySourceConfig`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `IdentitySourceConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `IdentitySourceConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

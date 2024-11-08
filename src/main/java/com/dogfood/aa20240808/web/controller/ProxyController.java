@@ -16,10 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -29,7 +26,8 @@ import com.dogfood.aa20240808.config.AppAddrProperties;
 import com.dogfood.aa20240808.config.Constants;
 import com.dogfood.aa20240808.config.RemoteUserCenterProperties;
 import com.dogfood.aa20240808.util.ExtendMappingJackson2HttpMessageConverter;
-
+import com.dogfood.aa20240808.integration.http.HttpApiUtil;
+import org.springframework.core.env.Environment;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;
@@ -83,7 +81,10 @@ public class ProxyController {
     @Resource
     private RemoteUserCenterProperties remoteUserCenterConfig;
 
-    @RequestMapping(value = "/gateway/{service}/**")
+    @Resource
+    private Environment environment;
+
+    @RequestMapping(path="/gateway/{service}/**", method = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH,RequestMethod.PUT})
     public void passThroughFile(
             @RequestBody(required = false) String body,
             @RequestParam(required = false) MultipartFile file,
@@ -129,7 +130,7 @@ public class ProxyController {
         passThroughResponse(result, response);
     }
 
-    @RequestMapping("/gw/**")
+    @RequestMapping(path="/gw/**", method = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH,RequestMethod.PUT})
     public void gwPassThrough(
             @RequestBody(required = false) String body,
             @RequestParam(value = "file", required = false) List<MultipartFile> files,
@@ -190,6 +191,11 @@ public class ProxyController {
         } else {
             uri = getURI(service, request);
         }
+        // /gw开头的为前端接口调用转发，区分开
+        if(Objects.equals(service, ProxyServiceEnum.OWN_SERVICE)){
+            return ownPassThrough(uri, httpMethod, httpHeaders, body);
+        }
+
         return commonPassThrough(uri, httpMethod, httpHeaders, body);
     }
 
@@ -568,5 +574,58 @@ public class ProxyController {
             }
         }
         return null;
+    }
+
+    private ProxyResult ownPassThrough(URI uri, HttpMethod method, HttpHeaders httpHeaders, Object body) {
+        log.info("============================ own Pass Through Http Log Start ============================");
+        log.info("<OwnPassThrough> ==URL== {}", uri);
+        log.info("<OwnPassThrough> ==METHOD== {}", method.name());
+        log.info("<OwnPassThrough> ==HEADERS== {}", httpHeaders);
+        log.info("<OwnPassThrough> ==requestBody== {}", body);
+
+        int code;
+        String msg = "";
+        byte[] responseBody = null;
+        HttpHeaders responseHeaders = null;
+        // is xml
+        boolean xmlType = XmlUtils.isXmlType(httpHeaders.getContentType());
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            if (xmlType && Objects.nonNull(body)) {
+                body = XmlUtils.jsonToXml(body.toString(), XmlUtils.getXmlCharset(httpHeaders.getContentType()));
+            }
+            HttpEntity<Object> entity = new HttpEntity<>(body, httpHeaders);
+            restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+            restTemplate.getMessageConverters().add(new ExtendMappingJackson2HttpMessageConverter());
+            int timeout = HttpApiUtil.getTimeout(environment.getProperty("http_request_timeout"), environment.getProperty("custom.http_request_timeout"));
+            restTemplate.setRequestFactory(new CloudClientHttpRequestFactory(timeout, timeout));
+            ResponseEntity<byte[]> responseEntity = restTemplate.exchange(uri, method, entity, byte[].class);
+
+            code = responseEntity.getStatusCode().value();
+            responseBody = responseEntity.getBody();
+            responseHeaders = responseEntity.getHeaders();
+            if (xmlType && responseBody != null) {
+                responseBody = XmlUtils.xmlToJson(new String(responseBody)).getBytes();
+            }
+            log.info("<OwnPassThrough> ==ReturnCode== {}", code);
+            log.info("<OwnPassThrough> ==ReturnBody== {}", responseBody == null ? null : new String(responseBody, StandardCharsets.UTF_8));
+            log.info("<OwnPassThrough> ==ReturnHeader {}", responseHeaders);
+            log.info("============================ Own Pass Through Http Log End ============================");
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            log.error("own uri [" + uri + "] invoke HttpClient|ServerErrorException error", ex);
+            code = ex.getStatusCode().value();
+            msg = ex.getResponseBodyAsString();
+            if ("".equals(msg.trim())) {
+                code = INTERNAL_ERROR_CODE;
+                msg = ex.getMessage();
+            } else {
+                responseBody = ex.getResponseBodyAsString().getBytes(StandardCharsets.UTF_8);
+            }
+        } catch (Exception ex) {
+            log.error("own uri [" + uri + "] invoke Exception error", ex);
+            code = INTERNAL_ERROR_CODE;
+            msg = ex.getMessage();
+        }
+        return new ProxyResult().setCode(code).setMsg(msg).setBody(responseBody).setHttpHeaders(responseHeaders);
     }
 }

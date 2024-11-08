@@ -5,6 +5,7 @@ import java.util.List;
 public class LoadSaleOderByInventoryIdCustomizeControllerDto {
 
     public List<String> param1;
+
     public List<String> getParam1() {
         return param1;
     } 
@@ -12,6 +13,5 @@ public class LoadSaleOderByInventoryIdCustomizeControllerDto {
     public void setParam1(List<String> param1) {
         this.param1 = param1; 
     } 
-
 
 }

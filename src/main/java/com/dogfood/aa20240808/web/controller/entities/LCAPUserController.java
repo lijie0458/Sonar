@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.LCAPUser;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.LCAPUserService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.LCAPUserService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class LCAPUserController {
     @Resource
     private LCAPUserService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "44f1c0bb-4915-4bc2-9e03-cf731d9acf8a",rules = { }),@ValidationRuleGroup(value = "9c4f27f1-d320-468b-a9c7-c8e0833ef4ab",rules = { }),@ValidationRuleGroup(value = "ef9073fb0def4b7ebce3a19d26491d10",rules = { }),@ValidationRuleGroup(value = "ebca6fb1-599b-44ab-b97b-808eb3e97115",rules = { }),@ValidationRuleGroup(value = "7bab8f534d1546c698685ef7b65c6504",rules = { }),@ValidationRuleGroup(value = "25bf0e0d-daf7-470b-b64d-80439dbfcaaa",rules = { }),@ValidationRuleGroup(value = "b7cb53db-eebd-46ca-a884-42c940873159",rules = { }),@ValidationRuleGroup(value = "7623d8b1-3cd9-41ef-b18e-d4375854d262",rules = { }),@ValidationRuleGroup(value = "4c7cf51effd84e17b9d583674c2a5f7b",rules = { }),@ValidationRuleGroup(value = "4d4da81d7f0849578570a5298dc5e9f7",rules = { })})
+    @GetMapping("/api/l-c-a-p-user")
+    public ApiReturn<LCAPUser> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -95,14 +106,6 @@ public class LCAPUserController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "44f1c0bb-4915-4bc2-9e03-cf731d9acf8a",rules = { }),@ValidationRuleGroup(value = "9c4f27f1-d320-468b-a9c7-c8e0833ef4ab",rules = { }),@ValidationRuleGroup(value = "ef9073fb0def4b7ebce3a19d26491d10",rules = { }),@ValidationRuleGroup(value = "ebca6fb1-599b-44ab-b97b-808eb3e97115",rules = { }),@ValidationRuleGroup(value = "7bab8f534d1546c698685ef7b65c6504",rules = { }),@ValidationRuleGroup(value = "25bf0e0d-daf7-470b-b64d-80439dbfcaaa",rules = { }),@ValidationRuleGroup(value = "b7cb53db-eebd-46ca-a884-42c940873159",rules = { }),@ValidationRuleGroup(value = "7623d8b1-3cd9-41ef-b18e-d4375854d262",rules = { }),@ValidationRuleGroup(value = "4c7cf51effd84e17b9d583674c2a5f7b",rules = { }),@ValidationRuleGroup(value = "4d4da81d7f0849578570a5298dc5e9f7",rules = { })})
-    @GetMapping("/api/l-c-a-p-user")
-    public ApiReturn<LCAPUser> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -111,4 +114,5 @@ public class LCAPUserController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

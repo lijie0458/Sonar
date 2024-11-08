@@ -13,11 +13,11 @@ public class LoadCountGoodsReturnedNoteCustomizeController {
 
     @Autowired
     private LoadCountGoodsReturnedNoteCustomizeService loadCountGoodsReturnedNoteCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "6a9136ef7ba54d09ac3e87825dda4bcc",rules = { })})
     @PostMapping("/api/lcplogics/loadCountGoodsReturnedNote")
     public ApiReturn<String> loadCountGoodsReturnedNote() throws Exception {
         return ApiReturn.of(loadCountGoodsReturnedNoteCustomizeService.loadCountGoodsReturnedNote());
     } 
-
 
 }

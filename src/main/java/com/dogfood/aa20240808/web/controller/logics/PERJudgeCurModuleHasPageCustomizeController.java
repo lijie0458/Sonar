@@ -15,11 +15,11 @@ public class PERJudgeCurModuleHasPageCustomizeController {
 
     @Autowired
     private PERJudgeCurModuleHasPageCustomizeService pERJudgeCurModuleHasPageCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "0ecde79f-3528-440f-aa32-878acb5b1255",rules = { })})
     @PostMapping("/api/lcplogics/PERJudgeCurModuleHasPage")
     public ApiReturn<Boolean> pERJudgeCurModuleHasPage(@RequestBody PERJudgeCurModuleHasPageCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(pERJudgeCurModuleHasPageCustomizeService.pERJudgeCurModuleHasPage(body.getModuleId()));
     } 
-
 
 }

@@ -14,11 +14,11 @@ public class LCAPBatchRemoveDeptUserCustomizeController {
 
     @Autowired
     private LCAPBatchRemoveDeptUserCustomizeService lCAPBatchRemoveDeptUserCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "9b23eaff87b24970b2565fad940e2c14",rules = { }),@ValidationRuleGroup(value = "206f9f19700848e1828f2f81477adb26",rules = { })})
     @PostMapping("/api/lcplogics/LCAPBatchRemoveDeptUser")
     public void lCAPBatchRemoveDeptUser(@RequestBody LCAPBatchRemoveDeptUserCustomizeControllerDto body) throws Exception {
         lCAPBatchRemoveDeptUserCustomizeService.lCAPBatchRemoveDeptUser(body.getUserIds(), body.getDeptId());
     } 
-
 
 }

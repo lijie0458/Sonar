@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface ReceivingDetailsEntityMapper extends ReferenceHandleMapper {
 
     int insert(ReceivingDetailsEntity bean);
+
     int batchInsert(List<ReceivingDetailsEntity> beans);
-    List<ReceivingDetailsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(ReceivingDetailsEntity bean, List<String> updateFields);
-    int batchUpdate(List<ReceivingDetailsEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    ReceivingDetailsEntity selectOne(Long id);
-
-    int createOrUpdate(ReceivingDetailsEntity bean);
     int updateBy(ReceivingDetailsEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(ReceivingDetailsEntity bean);
+
+    int update(ReceivingDetailsEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<ReceivingDetailsEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    ReceivingDetailsEntity selectOne(Long id);
+
+
+    List<ReceivingDetailsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

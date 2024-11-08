@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface OtherReturnStorageEntityMapper extends ReferenceHandleMapper {
 
     int insert(OtherReturnStorageEntity bean);
+
     int batchInsert(List<OtherReturnStorageEntity> beans);
-    List<OtherReturnStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(OtherReturnStorageEntity bean, List<String> updateFields);
-    int batchUpdate(List<OtherReturnStorageEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    OtherReturnStorageEntity selectOne(String id);
-
-    int createOrUpdate(OtherReturnStorageEntity bean);
     int updateBy(OtherReturnStorageEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(OtherReturnStorageEntity bean);
+
+    int update(OtherReturnStorageEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<OtherReturnStorageEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    OtherReturnStorageEntity selectOne(String id);
+
+
+    List<OtherReturnStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

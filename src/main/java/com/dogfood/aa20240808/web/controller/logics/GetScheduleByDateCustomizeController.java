@@ -17,11 +17,11 @@ public class GetScheduleByDateCustomizeController {
 
     @Autowired
     private GetScheduleByDateCustomizeService getScheduleByDateCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "961d31b3d6c245c8a0b3dbb7dcf31698",rules = { }),@ValidationRuleGroup(value = "97e5e96324ae4dad81ee83e0054dd091",rules = { }),@ValidationRuleGroup(value = "d56a3d5db9cb4f48b74da014c0fb451c",rules = { })})
     @PostMapping("/api/lcplogics/getScheduleByDate")
     public ApiReturn<List<ScheduleEntity>> getScheduleByDate(@RequestBody GetScheduleByDateCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getScheduleByDateCustomizeService.getScheduleByDate(body.getCreateDate()));
     } 
-
 
 }

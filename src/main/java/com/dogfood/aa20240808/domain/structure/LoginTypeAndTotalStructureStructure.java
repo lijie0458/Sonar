@@ -10,13 +10,18 @@ public class LoginTypeAndTotalStructureStructure {
 
     @Label("登陆模式")
     public String type;
+
     @Label("场景")
     public String scenes;
+
     @Label("已添加个数")
     public Long total;
+
     @Label("是否开放")
     public Boolean isOpen;
+
     public IdentitySourceStateEnumEnum state;
+
     public String getType() {
         return type;
     } 
@@ -56,6 +61,5 @@ public class LoginTypeAndTotalStructureStructure {
     public void setState(IdentitySourceStateEnumEnum state) {
         this.state = state; 
     } 
-
 
 }

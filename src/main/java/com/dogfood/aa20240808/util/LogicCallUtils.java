@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 import java.util.List;
 import java.util.Map;
 import java.math.BigDecimal;
+import com.dogfood.aa20240808.domain.ui.Error;
 import com.dogfood.aa20240808.exception.*;
 
 public class LogicCallUtils {
@@ -14,7 +15,7 @@ public class LogicCallUtils {
             if (handleError) {
                 throw new LcapAbortException(e);
             } else {
-                return (T) new com.dogfood.aa20240808.domain.ui.Error(e.getClass().getName(), e.getMessage());
+                return (T) new Error(e.getClass().getName(), e.getMessage());
             }
         }
     }

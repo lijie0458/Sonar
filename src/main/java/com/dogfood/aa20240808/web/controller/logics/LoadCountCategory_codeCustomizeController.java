@@ -15,11 +15,11 @@ public class LoadCountCategory_codeCustomizeController {
 
     @Autowired
     private LoadCountCategory_codeCustomizeService loadCountCategory_codeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "12ac34a8-1e97-4a6c-abce-920311f21e9f",rules = { })})
     @PostMapping("/api/lcplogics/loadCountCategory_code")
     public ApiReturn<String> loadCountCategory_code(@RequestBody LoadCountCategory_codeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadCountCategory_codeCustomizeService.loadCountCategory_code(body.getCode()));
     } 
-
 
 }

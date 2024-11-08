@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.web.controller;
 
 import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.config.Constants;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.domain.enumeration.UserStatusEnumEnum;
 import com.netease.cloud.nuims.user.api.bean.UserQueryDTO;
 import com.netease.cloud.nuims.user.api.bean.UserResultDTO;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 * @author sys
 */
 @RestController
-@RequestMapping("api/user/system")
+@RequestMapping
 public class LCAPUserInfoController {
     private final Logger log = LoggerFactory.getLogger(LCAPUserInfoController.class);
     /**
@@ -37,8 +38,12 @@ public class LCAPUserInfoController {
     */
     @Autowired
     private IUserService userInfoService;
-    @GetMapping("/getUser")
-    public Map getUser() {
+    /**
+    * 其中 api/user/system/getUser 路径会慢慢废弃
+    * @return
+    */
+    @GetMapping({Constants.AUTH_FILTER_API_GET_USER0,Constants.AUTH_FILTER_API_GET_USER})
+    public ApiReturn<Map> getUser() {
         UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
         Map res = new HashMap<>();
         Map<String, String> map = new HashMap<>();
@@ -47,7 +52,7 @@ public class LCAPUserInfoController {
             res.put(Constants.AUTH_FILTER_CODE_STR, Constants.AUTH_FILTER_FAIL_STR);
             res.put(Constants.AUTH_FILTER_DATA_STR, map);
             map.put(Constants.AUTH_FILTER_RESULT_STR, "false");
-            return res;
+            return ApiReturn.of(res);
         }
         if (Objects.nonNull(UserContext.getIfRemoteUserCenter()) && UserContext.getIfRemoteUserCenter()) {
             res.put(Constants.AUTH_FILTER_CODE_STR, Constants.AUTH_FILTER_SUCCESS_STR);
@@ -58,7 +63,7 @@ public class LCAPUserInfoController {
             map.put(Constants.AUTH_FILTER_NICKNAME_STR, currentUserInfo.getNickName());
             map.put(Constants.AUTH_FILTER_EMAIL_STR, currentUserInfo.getEmail());
             map.put(Constants.AUTH_FILTER_RESULT_STR, "true");
-            return res;
+            return ApiReturn.of(res);
         }
         String userId = currentUserInfo.getUserId();
         UserQueryDTO queryDTO = new UserQueryDTO();
@@ -74,7 +79,7 @@ public class LCAPUserInfoController {
             map.put(Constants.AUTH_FILTER_NICKNAME_STR, currentUserInfo.getNickName());
             map.put(Constants.AUTH_FILTER_EMAIL_STR, currentUserInfo.getEmail());
             map.put(Constants.AUTH_FILTER_RESULT_STR, "true");
-            return res;
+            return ApiReturn.of(res);
         }
 
         if (!UserStatusEnumEnum.FIELD_Normal.getCode().equals(result.getStatus())) {
@@ -82,7 +87,7 @@ public class LCAPUserInfoController {
             res.put(Constants.AUTH_FILTER_CODE_STR, Constants.AUTH_FILTER_FAIL_STR);
             res.put(Constants.AUTH_FILTER_DATA_STR, map);
             map.put(Constants.AUTH_FILTER_RESULT_STR, "false");
-            return res;
+            return ApiReturn.of(res);
         }
 
         res.put(Constants.AUTH_FILTER_CODE_STR, Constants.AUTH_FILTER_SUCCESS_STR);
@@ -92,6 +97,6 @@ public class LCAPUserInfoController {
         map.put(Constants.AUTH_FILTER_PHONE_STR, result.getPhone());
         map.put(Constants.AUTH_FILTER_NICKNAME_STR, result.getDisplayName());
         map.put(Constants.AUTH_FILTER_RESULT_STR, "true");
-        return res;
+        return ApiReturn.of(res);
     }
 }

@@ -11,22 +11,39 @@ import org.slf4j.Logger;
 import com.dogfood.aa20240808.domain.entities.LCAPUserRoleMapping; 
 import java.lang.reflect.Field; 
 import org.springframework.beans.factory.annotation.Autowired; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LCAPLoadUserRoleMappingTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LCAPLoadUserRoleMappingTableViewCustomizeServiceMapper lCAPLoadUserRoleMappingTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90 lCAPLoadUserRoleMappingTableView(Long page, Long size, String sort, String order, LCAPUserRoleMapping filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90();
-        result = CommonFunctionUtil.createListPage(lCAPLoadUserRoleMappingTableViewCustomizeServiceMapper.getAnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8(filter, page, size, getTableField("AnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8", sort), order), lCAPLoadUserRoleMappingTableViewCustomizeServiceMapper.countAnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8(filter, page, size, getTableField("AnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90.class); 
+
+    public AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90 lCAPLoadUserRoleMappingTableView(Long page, Long size, String sort, String order, LCAPUserRoleMapping filter) {
+        AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90 result = new AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90();
+        result = CommonFunctionUtil.createListPage(lCAPLoadUserRoleMappingTableViewCustomizeServiceMapper.getAnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8(filter, page, size, getTableField("AnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8", sort), order), lCAPLoadUserRoleMappingTableViewCustomizeServiceMapper.countAnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8(filter, page, size, getTableField("AnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8", sort), order).intValue(), AnonymousStructure_A43B95DDE943F37E89AA74CCF8732C90.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LCAPLoadUserRoleMappingTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_99BA20F3093BB3AC3F3CA0BCA6D65EB8").put("lCAPUserRoleMapping.id", "`lcap_user_role_mapping_a6d592`.`id`");
@@ -98,6 +115,5 @@ public class LCAPLoadUserRoleMappingTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

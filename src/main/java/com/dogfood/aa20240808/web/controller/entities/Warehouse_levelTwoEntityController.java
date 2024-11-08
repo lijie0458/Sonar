@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.Warehouse_levelTwoEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.Warehouse_levelTwoEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.Warehouse_levelTwoEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class Warehouse_levelTwoEntityController {
     @Resource
     private Warehouse_levelTwoEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "4466d662c89c4db2a0cdf0f6fbffbd07",rules = { }),@ValidationRuleGroup(value = "4b16299d-d7a9-4763-aeb8-d44c9bee1064",rules = { }),@ValidationRuleGroup(value = "47d732f4dd844849844f29ae7daa9d87",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "2d84ccc9-afc5-47d6-ad3e-3f914c3e8153",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")})})
+    @GetMapping("/api/warehouse_level-two")
+    public ApiReturn<Warehouse_levelTwoEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class Warehouse_levelTwoEntityController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "4466d662c89c4db2a0cdf0f6fbffbd07",rules = { }),@ValidationRuleGroup(value = "4b16299d-d7a9-4763-aeb8-d44c9bee1064",rules = { }),@ValidationRuleGroup(value = "47d732f4dd844849844f29ae7daa9d87",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "2d84ccc9-afc5-47d6-ad3e-3f914c3e8153",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")})})
-    @GetMapping("/api/warehouse_level-two")
-    public ApiReturn<Warehouse_levelTwoEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class Warehouse_levelTwoEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

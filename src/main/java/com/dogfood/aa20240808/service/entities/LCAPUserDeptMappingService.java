@@ -2,16 +2,11 @@ package com.dogfood.aa20240808.service.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +18,22 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.apache.commons.lang3.StringUtils;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.domain.entities.LCAPUserDeptMapping;
 import com.dogfood.aa20240808.domain.enumeration.*;
 import com.dogfood.aa20240808.domain.structure.*;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.repository.entities.LCAPUserDeptMappingMapper;
-import com.dogfood.aa20240808.util.SnowflakeIdWorker;
-import com.dogfood.aa20240808.util.CommonFunctionUtil;
-import com.dogfood.aa20240808.service.entities.AbstractService;
-import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
 import com.dogfood.aa20240808.service.dto.filters.*;
 import com.dogfood.aa20240808.service.dto.filters.atomic.*;
-import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
 import com.dogfood.aa20240808.service.dto.filters.logic.binary.matching.*;
+import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
+import com.dogfood.aa20240808.service.entities.AbstractService;
+import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
+import com.dogfood.aa20240808.util.CommonFunctionUtil;
 import com.dogfood.aa20240808.util.ExcelUtil;
-import com.dogfood.aa20240808.context.UserContext;
+import com.dogfood.aa20240808.util.SnowflakeIdWorker;
+import java.time.ZonedDateTime;
 /**
 * auto generate LCAPUserDeptMappingService ServiceImpl
 *
@@ -49,37 +45,104 @@ public class LCAPUserDeptMappingService extends AbstractService {
     private LCAPUserDeptMappingMapper mapper;
     @Resource
     private RelationInnerService relationInnerService;
+    @Resource
+    private LCAPUserDeptMappingService entityService;
 
     private Map<String, String> entityFieldNameTitleMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFieldTitleNameMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFiledColumnNameMap = new LinkedHashMap<>();
 
     public LCAPUserDeptMappingService() {
-        entityFieldNameTitleMap.put("id", "主键");
         entityFieldTitleNameMap.put("主键", "id");
         entityFiledColumnNameMap.put("id", "id");
-        entityFieldNameTitleMap.put("createdTime", "创建时间");
         entityFieldTitleNameMap.put("创建时间", "createdTime");
         entityFiledColumnNameMap.put("createdTime", "created_time");
-        entityFieldNameTitleMap.put("updatedTime", "更新时间");
         entityFieldTitleNameMap.put("更新时间", "updatedTime");
         entityFiledColumnNameMap.put("updatedTime", "updated_time");
-        entityFieldNameTitleMap.put("createdBy", "创建者");
         entityFieldTitleNameMap.put("创建者", "createdBy");
         entityFiledColumnNameMap.put("createdBy", "created_by");
-        entityFieldNameTitleMap.put("updatedBy", "更新者");
         entityFieldTitleNameMap.put("更新者", "updatedBy");
         entityFiledColumnNameMap.put("updatedBy", "updated_by");
-        entityFieldNameTitleMap.put("userId", "用户ID");
         entityFieldTitleNameMap.put("用户ID", "userId");
         entityFiledColumnNameMap.put("userId", "user_id");
-        entityFieldNameTitleMap.put("deptId", "部门标识");
         entityFieldTitleNameMap.put("部门标识", "deptId");
         entityFiledColumnNameMap.put("deptId", "dept_id");
-        entityFieldNameTitleMap.put("isDeptLeader", "是否是部门主管");
         entityFieldTitleNameMap.put("是否是部门主管", "isDeptLeader");
         entityFiledColumnNameMap.put("isDeptLeader", "is_dept_leader");
+        for (String fieldName : entityFieldNameTitleMap.keySet()) {
+            String fieldTitle = entityFieldNameTitleMap.get(fieldName);
+            entityFieldNameTitleMap.put(fieldName, fieldTitle);
+        }
     }
+
+    /**
+    * auto gen list method
+    **/
+    public List<LCAPUserDeptMapping> list(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.selectList(queryFilter);
+    }
+
+    /**
+    * auto gen count method
+    **/
+    public long count(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.count(queryFilter);
+    }
+
+    /**
+    * auto gen export method
+    **/
+    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
+        try {
+            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
+            if (fields != null && !"".equals(fields.trim())) {
+                for (String filedName : fields.split(",")) {
+                    exportFieldMap = new LinkedHashMap<String, String>();
+                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
+                }
+            }
+
+            List<LCAPUserDeptMapping> data = list(queryFilter);
+            String storeFilePath = ExcelUtil.write(data, LCAPUserDeptMapping.class, exportFieldMap);
+            org.springframework.core.io.Resource resource = null;
+            String contentType = null;
+            resource = new FileUrlResource(storeFilePath);
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+            return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + LCAPUserDeptMapping.class.getSimpleName() + ".xlsx\"")
+                .body(resource);
+        } catch (Exception e) {
+            throw new HttpCodeException(500, e);
+        }
+    }
+
+        /**
+         * auto gen get method
+         **/
+        public LCAPUserDeptMapping get( Long id ) { 
+            if ( id == null ) { 
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            LCAPUserDeptMapping entity = mapper.selectOne( id ); 
+
+            if (null == entity) {
+                throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code);
+            }
+            return entity;
+        }
 
     /**
     * auto gen create method
@@ -91,8 +154,6 @@ public class LCAPUserDeptMappingService extends AbstractService {
         }
         // fill default value
         entity.setId(SnowflakeIdWorker.getInstance().nextId());
-        entity.setCreatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
-        entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
         UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
         String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
         entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
@@ -119,8 +180,6 @@ public class LCAPUserDeptMappingService extends AbstractService {
         List<LCAPUserDeptMapping> batchList = new ArrayList<>(100);
         for (LCAPUserDeptMapping entity : entities) {
             entity.setId(SnowflakeIdWorker.getInstance().nextId());
-            entity.setCreatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
-            entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
             entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
             entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
             entity.setIsDeptLeader(getOrDefault(entity.getIsDeptLeader(), 0L));
@@ -131,10 +190,19 @@ public class LCAPUserDeptMappingService extends AbstractService {
             }
             batchList.add(entity);
         }
-        if (batchList.size() >= 0) {
+        if (batchList.size() > 0) {
             mapper.batchInsert(batchList);
         }
         return entities;
+    }
+
+    public void beforeUpdate(LCAPUserDeptMapping entity) {
+        if (null == entity) {
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "LCAPUserDeptMapping");
+        }
+        if ( entity.getId() == null ) { 
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+        }
     }
 
     /**
@@ -142,12 +210,7 @@ public class LCAPUserDeptMappingService extends AbstractService {
     **/
     @Transactional
     public LCAPUserDeptMapping update(LCAPUserDeptMapping entity, List<String> updateFields) {
-        if (null == entity) {
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "LCAPUserDeptMapping");
-        }
-        if ( entity.getId() == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
+        beforeUpdate(entity);
 
         // updateFields为null时，默认全量更新
         if (null != updateFields && updateFields.size() == 1 &&  updateFields.contains("id")) {
@@ -155,8 +218,9 @@ public class LCAPUserDeptMappingService extends AbstractService {
         } else {
             UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
             String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
-            entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
-            entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
+                if (null == entity.getUpdatedBy()) {
+                    entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
+                }
             int rows = mapper.update(entity, updateFields);
             if (rows <= 0) {
                 throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code, entity.getClass().getName());
@@ -174,13 +238,33 @@ public class LCAPUserDeptMappingService extends AbstractService {
         if (null == entities || entities.isEmpty()) {
             throw new HttpCodeException(400, ErrorCodeEnum.PARAM_NOTHING_TODO.code);
         }
-        // updateFields为null时，默认全量更新
-        List<LCAPUserDeptMapping> updateEntities = new ArrayList<>(entities.size());
+
+        if (updateFields != null && updateFields.size() == 1 && updateFields.contains("id")) {
+            // 进行局部更新的字段是主键，这种情况是没意义，直接返回就好
+            return entities;
+        }
+        UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
+        String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
+        List<LCAPUserDeptMapping> batchList = new ArrayList<>(100);
         for (LCAPUserDeptMapping entity : entities) {
-            updateEntities.add(update(entity, updateFields));
+            if (entity.getId() == null ) {
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+                entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
+
+            batchList.add(entity);
+            if (batchList.size() >= 100) {
+                mapper.batchUpdate(batchList, updateFields);
+                batchList.clear();
+            }
         }
 
-        return updateEntities;
+        if (batchList.size() > 0) {
+            mapper.batchUpdate(batchList, updateFields);
+            batchList.clear();
+        }
+
+        return entities;
     }
 
     /**
@@ -222,47 +306,12 @@ public class LCAPUserDeptMappingService extends AbstractService {
     }
 
     /**
-     * auto gen get method
-     **/
-    public LCAPUserDeptMapping get( Long id ) { 
-        if ( id == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
-
-        LCAPUserDeptMapping entity = mapper.selectOne( id ); 
-
-        return entity;
-    }
-
-    /**
-    * auto gen list method
-    **/
-    public List<LCAPUserDeptMapping> list(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.selectList(queryFilter);
-    }
-
-    /**
-    * auto gen count method
-    **/
-    public long count(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.count(queryFilter);
-    }
-
-    /**
     * auto gen importFile method
     **/
     @Transactional(rollbackFor = Exception.class)
     public String importFile(MultipartFile file) {
         String type;
-        String[] items = file.getOriginalFilename().split("\\.");
+        String[] items = "\\.".split(Objects.requireNonNull(file.getOriginalFilename()));
         if (items.length > 1) {
             type = items[items.length - 1];
             if (!"xls".equalsIgnoreCase(type) && !"xlsx".equalsIgnoreCase(type)) {
@@ -274,44 +323,12 @@ public class LCAPUserDeptMappingService extends AbstractService {
 
         try {
             List<LCAPUserDeptMapping> data = ExcelUtil.read(file.getInputStream(), type, LCAPUserDeptMapping.class, entityFieldTitleNameMap);
-            batchCreate(data);
+            entityService.batchCreate(data);
             return "ok";
         } catch (Exception e) {
             throw new HttpCodeException(500, e);
         }
     }
-
-    /**
-    * auto gen export method
-    **/
-    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
-        try {
-            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
-            if (fields != null && !"".equals(fields.trim())) {
-                for (String filedName : fields.split(",")) {
-                    exportFieldMap = new LinkedHashMap<String, String>();
-                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
-                }
-            }
-
-            List<LCAPUserDeptMapping> data = list(queryFilter);
-            String storeFilePath = ExcelUtil.write(data, LCAPUserDeptMapping.class, exportFieldMap);
-            org.springframework.core.io.Resource resource = null;
-            String contentType = null;
-            resource = new FileUrlResource(storeFilePath);
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
-            return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + LCAPUserDeptMapping.class.getSimpleName() + ".xlsx\"")
-                .body(resource);
-        } catch (Exception e) {
-            throw new HttpCodeException(500, e);
-        }
-    }
-
     /**
     * auto gen createOrUpdate method
     **/
@@ -323,13 +340,11 @@ public class LCAPUserDeptMappingService extends AbstractService {
 
         if ( entity.getId() == null ) { 
             // insert
-            entity = create(entity);
+            entity = entityService.create(entity);
         }  else {
             LCAPUserDeptMapping existEntity = mapper.selectOne(entity.getId()); 
             if (null == existEntity) {
                 // insert
-                entity.setCreatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
-                entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
                 UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
                 String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
                 entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
@@ -339,7 +354,7 @@ public class LCAPUserDeptMappingService extends AbstractService {
                 mapper.createOrUpdate(entity);
             } else {
                 // updateFields为null时，默认全量更新
-                entity = update(entity, updateFields);
+                entity = entityService.update(entity, updateFields);
             }
         }
         return entity;
@@ -366,7 +381,6 @@ public class LCAPUserDeptMappingService extends AbstractService {
             UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
             String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
             CommonFunctionUtil.preHandleQueryExpression(filter, entityFiledColumnNameMap);
-            entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
             entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
             entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
             return mapper.updateBy(entity, updateFields, filter);

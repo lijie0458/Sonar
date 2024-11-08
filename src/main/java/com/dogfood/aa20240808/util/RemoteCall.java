@@ -43,9 +43,6 @@ public class RemoteCall {
     @Value("${spring.profiles.active:dev}")
     private String env;
 
-    @Value("${lcp.flowUrl:UNKNOW}")
-    private String flowUrl;
-
     @Value("${lcp.gatewayUrl:UNKNOW}")
     private String gateWayAddress;
 
@@ -68,37 +65,6 @@ public class RemoteCall {
         // delete restTemplate`s xml converter,use custom xml convert
         restTemplate.getMessageConverters().removeIf(converter->(Objects.equals(MappingJackson2XmlHttpMessageConverter.class,converter.getClass())));
         restTemplate.getMessageConverters().add(new XmlMessageConverter<>());
-    }
-
-    public void processStart(String processDefinitionKey, Object var) throws JsonProcessingException {
-        Map<String, Object> processStartBody = new HashMap<>();
-        processStartBody.put("processDefinitionKey", processDefinitionKey);
-        processStartBody.put("returnVariables", true);
-        processStartBody.put("variables", var);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("authorization", GlobalContext.getToken());
-        headers.add("domainname", GlobalContext.getDomainname());
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        String body = objectMapper.writeValueAsString(processStartBody);
-        HttpEntity<String> entity = new HttpEntity<>(body, headers);
-        String url = String.format("%s/bpms-rest/service/runtime/v2/process-instances", flowUrl);
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, entity, String.class);
-        log.info("process start ：{}", responseEntity.getBody());
-    }
-
-    public void processTaskComplete(String taskId, Object var) throws JsonProcessingException {
-        Map<String, Object> taskCompleteBody = new HashMap<>();
-        taskCompleteBody.put("action", "complete");
-        taskCompleteBody.put("variables", var);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("authorization", GlobalContext.getToken());
-        headers.add("domainname", GlobalContext.getDomainname());
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        String body = objectMapper.writeValueAsString(taskCompleteBody);
-        HttpEntity<String> entity = new HttpEntity<>(body, headers);
-        String url = String.format("%s/bpms-rest/service/runtime/v2/tasks/%s", flowUrl, taskId);
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, entity, String.class);
-        log.info("process task complete ：{}", responseEntity.getBody());
     }
 
     public <T> T call(String path, String httpMethod, ParameterizedTypeReference<T> clazz, Param... params) {

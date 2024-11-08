@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List; 
 import com.dogfood.aa20240808.domain.enumeration.IdentitySourceStateEnumEnum; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E6204F88FA3760A005F0E371750B535E; 
 import java.util.Map; 
 import com.dogfood.aa20240808.repository.IAMGetIdentitySourceByStateCustomizeServiceMapper; 
 import org.slf4j.Logger; 
@@ -15,15 +16,31 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23; 
 import org.springframework.util.ReflectionUtils; 
 
+/**
+ * IAM-通过state获取身份源信息
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class IAMGetIdentitySourceByStateCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private IAMGetIdentitySourceByStateCustomizeServiceMapper iAMGetIdentitySourceByStateCustomizeServiceMapper;
-    public List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E6204F88FA3760A005F0E371750B535E> iAMGetIdentitySourceByState(String state) {
+
+    public List<AnonymousStructure_E6204F88FA3760A005F0E371750B535E> iAMGetIdentitySourceByState(String state) {
         if (GlobalContext.notHandleValidation()) {
             if (state == null) {
                 state = null; 
@@ -32,12 +49,12 @@ public class IAMGetIdentitySourceByStateCustomizeService {
         } 
 
         IdentitySourceStateEnumEnum variable1 = null;
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E6204F88FA3760A005F0E371750B535E> result = new ArrayList<>();
+        List<AnonymousStructure_E6204F88FA3760A005F0E371750B535E> result = new ArrayList<>();
         if ((CommonFunctionUtil.equals(state, null))) {
-            result = CommonFunctionUtil.createListPage(iAMGetIdentitySourceByStateCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E(), iAMGetIdentitySourceByStateCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E().intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
+            result = CommonFunctionUtil.createListPage(iAMGetIdentitySourceByStateCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E(), iAMGetIdentitySourceByStateCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E().intValue(), AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
         } else {
             variable1 = CommonFunctionUtil.toEnumItem(state, IdentitySourceStateEnumEnum.class); 
-            result = CommonFunctionUtil.createListPage(iAMGetIdentitySourceByStateCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E1(variable1), iAMGetIdentitySourceByStateCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E1(variable1).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
+            result = CommonFunctionUtil.createListPage(iAMGetIdentitySourceByStateCustomizeServiceMapper.getAnonymousStructure_E6204F88FA3760A005F0E371750B535E1(variable1), iAMGetIdentitySourceByStateCustomizeServiceMapper.countAnonymousStructure_E6204F88FA3760A005F0E371750B535E1(variable1).intValue(), AnonymousStructure_22E188A54D4B66D541C0CA978F47CF23.class).list; 
         } 
 
         return result;
@@ -77,6 +94,5 @@ public class IAMGetIdentitySourceByStateCustomizeService {
         } 
         return elements;
     } 
-
 
 }

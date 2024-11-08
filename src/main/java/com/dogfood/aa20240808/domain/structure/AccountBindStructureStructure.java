@@ -10,8 +10,10 @@ public class AccountBindStructureStructure {
 
     @Label("身份源信息")
     public IdentitySourceConfigEntity identitySource;
+
     @Label("是否已绑定")
     public Boolean isBind;
+
     public IdentitySourceConfigEntity getIdentitySource() {
         return identitySource;
     } 
@@ -27,6 +29,5 @@ public class AccountBindStructureStructure {
     public void setIsBind(Boolean isBind) {
         this.isBind = isBind; 
     } 
-
 
 }

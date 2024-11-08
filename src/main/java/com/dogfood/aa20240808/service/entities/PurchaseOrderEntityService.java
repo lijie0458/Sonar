@@ -2,16 +2,11 @@ package com.dogfood.aa20240808.service.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +18,25 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.apache.commons.lang3.StringUtils;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.context.UserContext;
+import com.dogfood.aa20240808.domain.entities.PurchaseDetailsEntity;
 import com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
+import com.dogfood.aa20240808.domain.enumeration.ApprovalStatusEnumEnum;
+import com.dogfood.aa20240808.domain.enumeration.ExecutionStatusEnum;
 import com.dogfood.aa20240808.domain.structure.*;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.repository.entities.PurchaseOrderEntityMapper;
-import com.dogfood.aa20240808.util.SnowflakeIdWorker;
-import com.dogfood.aa20240808.util.CommonFunctionUtil;
-import com.dogfood.aa20240808.service.entities.AbstractService;
-import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
 import com.dogfood.aa20240808.service.dto.filters.*;
 import com.dogfood.aa20240808.service.dto.filters.atomic.*;
-import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
 import com.dogfood.aa20240808.service.dto.filters.logic.binary.matching.*;
+import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
+import com.dogfood.aa20240808.service.entities.AbstractService;
+import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
+import com.dogfood.aa20240808.util.CommonFunctionUtil;
 import com.dogfood.aa20240808.util.ExcelUtil;
-import com.dogfood.aa20240808.context.UserContext;
+import com.dogfood.aa20240808.util.SnowflakeIdWorker;
+import java.time.LocalDate;
 /**
 * auto generate PurchaseOrderEntityService ServiceImpl
 *
@@ -49,52 +48,114 @@ public class PurchaseOrderEntityService extends AbstractService {
     private PurchaseOrderEntityMapper mapper;
     @Resource
     private RelationInnerService relationInnerService;
+    @Resource
+    private PurchaseOrderEntityService entityService;
 
     private Map<String, String> entityFieldNameTitleMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFieldTitleNameMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFiledColumnNameMap = new LinkedHashMap<>();
 
     public PurchaseOrderEntityService() {
-        entityFieldNameTitleMap.put("purchaser", "采购员");
         entityFieldTitleNameMap.put("采购员", "purchaser");
         entityFiledColumnNameMap.put("purchaser", "purchaser");
-        entityFieldNameTitleMap.put("orderNumber", "订单号");
         entityFieldTitleNameMap.put("订单号", "orderNumber");
         entityFiledColumnNameMap.put("orderNumber", "order_number");
-        entityFieldNameTitleMap.put("supplier", "供应商");
         entityFieldTitleNameMap.put("供应商", "supplier");
         entityFiledColumnNameMap.put("supplier", "supplier");
-        entityFieldNameTitleMap.put("orderDate", "订单日期");
         entityFieldTitleNameMap.put("订单日期", "orderDate");
         entityFiledColumnNameMap.put("orderDate", "order_date");
-        entityFieldNameTitleMap.put("requiredDate", "需到货日期");
         entityFieldTitleNameMap.put("需到货日期", "requiredDate");
         entityFiledColumnNameMap.put("requiredDate", "required_date");
-        entityFieldNameTitleMap.put("approvalStatus", "审批状态");
         entityFieldTitleNameMap.put("审批状态", "approvalStatus");
         entityFiledColumnNameMap.put("approvalStatus", "approval_status");
-        entityFieldNameTitleMap.put("executionStatus", "执行状态");
         entityFieldTitleNameMap.put("执行状态", "executionStatus");
         entityFiledColumnNameMap.put("executionStatus", "execution_status");
-        entityFieldNameTitleMap.put("description", "说明");
         entityFieldTitleNameMap.put("说明", "description");
         entityFiledColumnNameMap.put("description", "description");
-        entityFieldNameTitleMap.put("remarks", "附件");
         entityFieldTitleNameMap.put("附件", "remarks");
         entityFiledColumnNameMap.put("remarks", "remarks");
-        entityFieldNameTitleMap.put("listPuchaseDetails", "订单下包含的申请单详情");
         entityFieldTitleNameMap.put("订单下包含的申请单详情", "listPuchaseDetails");
         entityFiledColumnNameMap.put("listPuchaseDetails", "list_puchase_details");
-        entityFieldNameTitleMap.put("manuAuto", "下推还是手动新增的订单");
         entityFieldTitleNameMap.put("下推还是手动新增的订单", "manuAuto");
         entityFiledColumnNameMap.put("manuAuto", "manu_auto");
-        entityFieldNameTitleMap.put("createdBy", "创建者");
         entityFieldTitleNameMap.put("创建者", "createdBy");
         entityFiledColumnNameMap.put("createdBy", "created_by");
-        entityFieldNameTitleMap.put("purchaseDetailsIdList", "采购申请明细订单号");
         entityFieldTitleNameMap.put("采购申请明细订单号", "purchaseDetailsIdList");
         entityFiledColumnNameMap.put("purchaseDetailsIdList", "purchase_details_id_list");
+        for (String fieldName : entityFieldNameTitleMap.keySet()) {
+            String fieldTitle = entityFieldNameTitleMap.get(fieldName);
+            entityFieldNameTitleMap.put(fieldName, fieldTitle);
+        }
     }
+
+    /**
+    * auto gen list method
+    **/
+    public List<PurchaseOrderEntity> list(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.selectList(queryFilter);
+    }
+
+    /**
+    * auto gen count method
+    **/
+    public long count(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.count(queryFilter);
+    }
+
+    /**
+    * auto gen export method
+    **/
+    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
+        try {
+            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
+            if (fields != null && !"".equals(fields.trim())) {
+                for (String filedName : fields.split(",")) {
+                    exportFieldMap = new LinkedHashMap<String, String>();
+                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
+                }
+            }
+
+            List<PurchaseOrderEntity> data = list(queryFilter);
+            String storeFilePath = ExcelUtil.write(data, PurchaseOrderEntity.class, exportFieldMap);
+            org.springframework.core.io.Resource resource = null;
+            String contentType = null;
+            resource = new FileUrlResource(storeFilePath);
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+            return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + PurchaseOrderEntity.class.getSimpleName() + ".xlsx\"")
+                .body(resource);
+        } catch (Exception e) {
+            throw new HttpCodeException(500, e);
+        }
+    }
+
+        /**
+         * auto gen get method
+         **/
+        public PurchaseOrderEntity get( String orderNumber ) { 
+            if ( orderNumber == null ) { 
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            PurchaseOrderEntity entity = mapper.selectOne( orderNumber ); 
+
+            if (null == entity) {
+                throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code);
+            }
+            return entity;
+        }
 
     /**
     * auto gen create method
@@ -136,10 +197,19 @@ public class PurchaseOrderEntityService extends AbstractService {
             }
             batchList.add(entity);
         }
-        if (batchList.size() >= 0) {
+        if (batchList.size() > 0) {
             mapper.batchInsert(batchList);
         }
         return entities;
+    }
+
+    public void beforeUpdate(PurchaseOrderEntity entity) {
+        if (null == entity) {
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "PurchaseOrderEntity");
+        }
+        if ( entity.getOrderNumber() == null ) { 
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+        }
     }
 
     /**
@@ -147,12 +217,7 @@ public class PurchaseOrderEntityService extends AbstractService {
     **/
     @Transactional
     public PurchaseOrderEntity update(PurchaseOrderEntity entity, List<String> updateFields) {
-        if (null == entity) {
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "PurchaseOrderEntity");
-        }
-        if ( entity.getOrderNumber() == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
+        beforeUpdate(entity);
 
         // updateFields为null时，默认全量更新
         if (null != updateFields && updateFields.size() == 1 &&  updateFields.contains("orderNumber")) {
@@ -175,13 +240,32 @@ public class PurchaseOrderEntityService extends AbstractService {
         if (null == entities || entities.isEmpty()) {
             throw new HttpCodeException(400, ErrorCodeEnum.PARAM_NOTHING_TODO.code);
         }
-        // updateFields为null时，默认全量更新
-        List<PurchaseOrderEntity> updateEntities = new ArrayList<>(entities.size());
+
+        if (updateFields != null && updateFields.size() == 1 && updateFields.contains("orderNumber")) {
+            // 进行局部更新的字段是主键，这种情况是没意义，直接返回就好
+            return entities;
+        }
+        UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
+        String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
+        List<PurchaseOrderEntity> batchList = new ArrayList<>(100);
         for (PurchaseOrderEntity entity : entities) {
-            updateEntities.add(update(entity, updateFields));
+            if (entity.getOrderNumber() == null ) {
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            batchList.add(entity);
+            if (batchList.size() >= 100) {
+                mapper.batchUpdate(batchList, updateFields);
+                batchList.clear();
+            }
         }
 
-        return updateEntities;
+        if (batchList.size() > 0) {
+            mapper.batchUpdate(batchList, updateFields);
+            batchList.clear();
+        }
+
+        return entities;
     }
 
     /**
@@ -223,47 +307,12 @@ public class PurchaseOrderEntityService extends AbstractService {
     }
 
     /**
-     * auto gen get method
-     **/
-    public PurchaseOrderEntity get( String orderNumber ) { 
-        if ( orderNumber == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
-
-        PurchaseOrderEntity entity = mapper.selectOne( orderNumber ); 
-
-        return entity;
-    }
-
-    /**
-    * auto gen list method
-    **/
-    public List<PurchaseOrderEntity> list(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.selectList(queryFilter);
-    }
-
-    /**
-    * auto gen count method
-    **/
-    public long count(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.count(queryFilter);
-    }
-
-    /**
     * auto gen importFile method
     **/
     @Transactional(rollbackFor = Exception.class)
     public String importFile(MultipartFile file) {
         String type;
-        String[] items = file.getOriginalFilename().split("\\.");
+        String[] items = "\\.".split(Objects.requireNonNull(file.getOriginalFilename()));
         if (items.length > 1) {
             type = items[items.length - 1];
             if (!"xls".equalsIgnoreCase(type) && !"xlsx".equalsIgnoreCase(type)) {
@@ -275,44 +324,12 @@ public class PurchaseOrderEntityService extends AbstractService {
 
         try {
             List<PurchaseOrderEntity> data = ExcelUtil.read(file.getInputStream(), type, PurchaseOrderEntity.class, entityFieldTitleNameMap);
-            batchCreate(data);
+            entityService.batchCreate(data);
             return "ok";
         } catch (Exception e) {
             throw new HttpCodeException(500, e);
         }
     }
-
-    /**
-    * auto gen export method
-    **/
-    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
-        try {
-            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
-            if (fields != null && !"".equals(fields.trim())) {
-                for (String filedName : fields.split(",")) {
-                    exportFieldMap = new LinkedHashMap<String, String>();
-                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
-                }
-            }
-
-            List<PurchaseOrderEntity> data = list(queryFilter);
-            String storeFilePath = ExcelUtil.write(data, PurchaseOrderEntity.class, exportFieldMap);
-            org.springframework.core.io.Resource resource = null;
-            String contentType = null;
-            resource = new FileUrlResource(storeFilePath);
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
-            return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + PurchaseOrderEntity.class.getSimpleName() + ".xlsx\"")
-                .body(resource);
-        } catch (Exception e) {
-            throw new HttpCodeException(500, e);
-        }
-    }
-
     /**
     * auto gen createOrUpdate method
     **/
@@ -324,7 +341,7 @@ public class PurchaseOrderEntityService extends AbstractService {
 
         if ( entity.getOrderNumber() == null ) { 
             // insert
-            entity = create(entity);
+            entity = entityService.create(entity);
         }  else {
             PurchaseOrderEntity existEntity = mapper.selectOne(entity.getOrderNumber()); 
             if (null == existEntity) {
@@ -336,7 +353,7 @@ public class PurchaseOrderEntityService extends AbstractService {
                 mapper.createOrUpdate(entity);
             } else {
                 // updateFields为null时，默认全量更新
-                entity = update(entity, updateFields);
+                entity = entityService.update(entity, updateFields);
             }
         }
         return entity;

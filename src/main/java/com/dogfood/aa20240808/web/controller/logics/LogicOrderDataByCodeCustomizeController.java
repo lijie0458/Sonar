@@ -15,11 +15,11 @@ public class LogicOrderDataByCodeCustomizeController {
 
     @Autowired
     private LogicOrderDataByCodeCustomizeService logicOrderDataByCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "d04f5bde3d564472a4ba95bb54b3af79",rules = { }),@ValidationRuleGroup(value = "ad63c9bc12984d9b9d6dafb3183f266f",rules = { })})
     @PostMapping("/api/lcplogics/logicOrderDataByCode")
     public ApiReturn<Boolean> logicOrderDataByCode(@RequestBody LogicOrderDataByCodeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(logicOrderDataByCodeCustomizeService.logicOrderDataByCode(body.getParam1()));
     } 
-
 
 }

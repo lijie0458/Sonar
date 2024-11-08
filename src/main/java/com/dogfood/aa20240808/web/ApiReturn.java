@@ -1,6 +1,7 @@
 package com.dogfood.aa20240808.web;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.dogfood.aa20240808.util.TraceIdHolder;
 
 public class ApiReturn<T> {
@@ -13,7 +14,7 @@ public class ApiReturn<T> {
     @JsonProperty("Message")
     private String message = "";
 
-    @JsonProperty("StackTrace")
+    @JsonIgnore
     private String stackTrace = "";
 
     @JsonProperty("Data")

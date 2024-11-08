@@ -6,29 +6,48 @@ import java.util.List;
 import com.dogfood.aa20240808.domain.entities.LCAPUserDeptMapping; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import java.util.Arrays; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2; 
 import org.slf4j.Logger; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import com.dogfood.aa20240808.repository.LCAPBatchRemoveDeptUserCustomizeServiceMapper; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FF3D47421C85AD91C2FDAE6821984202; 
 import com.dogfood.aa20240808.service.entities.LCAPUserDeptMappingService; 
 
+/**
+ * 批量从部门移除成员
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LCAPBatchRemoveDeptUserCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LCAPBatchRemoveDeptUserCustomizeServiceMapper lCAPBatchRemoveDeptUserCustomizeServiceMapper;
+
     @Autowired
     private LCAPGetDeptListCustomizeService lCAPGetDeptListCustomizeService;
+
     @Autowired
     private LCAPUserDeptMappingService lCAPUserDeptMappingService;
+
     public void lCAPBatchRemoveDeptUser(List<String> userIds, String deptId) {
         List<LCAPUserDeptMapping> removeMap = new ArrayList<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> temp = new ArrayList<>();
+        List<AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> temp = new ArrayList<>();
         String rootDeptId = "";
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FF3D47421C85AD91C2FDAE6821984202> temp2 = new ArrayList<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> userRootList = new ArrayList<>();
+        List<AnonymousStructure_FF3D47421C85AD91C2FDAE6821984202> temp2 = new ArrayList<>();
+        List<AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> userRootList = new ArrayList<>();
         List<LCAPUserDeptMapping> removeEntity = new ArrayList<>();
         List<Long> removeDeptMap = new ArrayList<>();
         List<String> userIdList = new ArrayList<>();
@@ -84,6 +103,5 @@ public class LCAPBatchRemoveDeptUserCustomizeService {
 
         return ;
     } 
-
 
 }

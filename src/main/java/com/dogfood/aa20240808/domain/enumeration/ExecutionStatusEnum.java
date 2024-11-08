@@ -14,7 +14,9 @@ public enum ExecutionStatusEnum implements BaseEnum<ExecutionStatusEnum, String>
     FIELD_1("1", "已关闭"),; 
 
     public final String code;
+
     public final String desc;
+
 ExecutionStatusEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -36,7 +38,6 @@ ExecutionStatusEnum(String code, String desc) {
     } 
 
 
-
     public static class ExecutionStatusEnumDeserializer extends JsonDeserializer<ExecutionStatusEnum>{
 
             @Override
@@ -55,7 +56,6 @@ ExecutionStatusEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

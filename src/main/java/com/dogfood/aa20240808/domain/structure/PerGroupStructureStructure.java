@@ -13,8 +13,10 @@ public class PerGroupStructureStructure {
 
     @Label("权限组")
     public PermissionGroupEntity perGroup;
+
     @Label("权限")
     public List<LCAPPermission> permissionList = new ArrayList<>();
+
     public PermissionGroupEntity getPerGroup() {
         return perGroup;
     } 
@@ -30,6 +32,5 @@ public class PerGroupStructureStructure {
     public void setPermissionList(List<LCAPPermission> permissionList) {
         this.permissionList = permissionList; 
     } 
-
 
 }

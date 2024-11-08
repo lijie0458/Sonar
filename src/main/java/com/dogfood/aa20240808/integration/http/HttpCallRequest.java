@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.function.Function;
 import com.netease.cloud.RemoteCallRequest;
 import com.dogfood.aa20240808.util.XmlUtils;
 
@@ -54,6 +55,26 @@ public class HttpCallRequest<T, R> implements RemoteCallRequest<T, R>{
      * 集合类型的返回值类型
      */
     private ParameterizedTypeReference<R> collectionReturnClazz;
+
+    /**
+     * 微服务名
+     */
+    private String microserviceName;
+
+    /**
+      * 协议
+     */
+    private String protocol;
+
+    /**
+     * 连接器调用函数
+     */
+    private Function<T, R> connectorFunction;
+
+    /**
+     * 是否开启https ssl认证
+     */
+    private Boolean openSsl;
 
     public HttpCallRequest<T, R> addHeader(final String key, final Object value) {
         if (null == value) {
@@ -116,7 +137,7 @@ public class HttpCallRequest<T, R> implements RemoteCallRequest<T, R>{
      *
      * @return xml type param
      */
-    private String buildXmlDataParam() {
+    public String buildXmlDataParam() {
         if (null == this.body) {
             return "";
         }
@@ -124,7 +145,7 @@ public class HttpCallRequest<T, R> implements RemoteCallRequest<T, R>{
         return XmlUtils.beanToXmlWithCharset(body, charset);
     }
 
-    private MultiValueMap<String, Object> buildFormDataParam() throws InvocationTargetException, IllegalAccessException {
+    public MultiValueMap<String, Object> buildFormDataParam() throws InvocationTargetException, IllegalAccessException {
         if (null == this.body) {
             return new LinkedMultiValueMap<>();
         }
@@ -220,5 +241,54 @@ public class HttpCallRequest<T, R> implements RemoteCallRequest<T, R>{
         } else if (contentType.contains("text/xml") || contentType.contains("application/xml")) {
             this.hasXmlHeader = true;
         }
+    }
+
+    public String getMicroserviceName() {
+        return microserviceName;
+    }
+
+    public HttpCallRequest<T, R> setMicroserviceName(String microserviceName) {
+        if (microserviceName != null) {
+            // 去掉协议头，获取微服务名，"^https?://" 用于匹配字符串的开始部分是否是以"http://" 或 "https://" 开头。
+            microserviceName = microserviceName.replaceAll("^https?://", "");
+        }
+        this.microserviceName = microserviceName;
+        return this;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public HttpCallRequest<T, R> setProtocol(String protocol) {
+        this.protocol = protocol;
+        return this;
+    }
+
+    public Function<T, R> getConnectorFunction() {
+        return this.connectorFunction;
+    }
+
+    public HttpCallRequest<T, R> setConnectorFunction(Function<T, R> connectorFunction) {
+        this.connectorFunction = connectorFunction;
+        return this;
+    }
+
+    public Boolean getOpenSsl() {
+        return openSsl;
+    }
+
+    public HttpCallRequest<T, R> setOpenSsl(Boolean openSsl) {
+        this.openSsl = openSsl;
+        return this;
+    }
+
+    public HttpCallRequest<T, R> setOpenSsl(String openSsl) {
+        if (StringUtils.isEmpty(openSsl)) {
+            this.openSsl = true;
+        } else {
+            this.openSsl = Boolean.parseBoolean(openSsl);
+        }
+        return this;
     }
 }

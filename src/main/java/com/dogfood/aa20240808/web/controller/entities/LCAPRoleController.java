@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.LCAPRole;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.LCAPRoleService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.LCAPRoleService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class LCAPRoleController {
     @Resource
     private LCAPRoleService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "8ca6393c14ab479b8369d2b3bf7f149b",rules = { }),@ValidationRuleGroup(value = "8ed4ddf0c32c4355a8707856387afae8",rules = { }),@ValidationRuleGroup(value = "ee8e9f86b33242d78a7ecd08ac860223",rules = { }),@ValidationRuleGroup(value = "c53ccc78-3452-455e-868f-5f26c8f01c55",rules = { })})
+    @GetMapping("/api/l-c-a-p-role")
+    public ApiReturn<LCAPRole> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class LCAPRoleController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "8ca6393c14ab479b8369d2b3bf7f149b",rules = { }),@ValidationRuleGroup(value = "8ed4ddf0c32c4355a8707856387afae8",rules = { }),@ValidationRuleGroup(value = "ee8e9f86b33242d78a7ecd08ac860223",rules = { }),@ValidationRuleGroup(value = "c53ccc78-3452-455e-868f-5f26c8f01c55",rules = { })})
-    @GetMapping("/api/l-c-a-p-role")
-    public ApiReturn<LCAPRole> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -109,4 +112,5 @@ public class LCAPRoleController {
         List<String> updateFields = filter.getProperties();
         return ApiReturn.of(service.createOrUpdate(entity, updateFields));
     }
+
 }

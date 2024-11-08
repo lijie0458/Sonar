@@ -12,15 +12,22 @@ import com.dogfood.aa20240808.domain.entities.BePutInStorageDetailsEntity;
 public class BePutInStorageStructureStructure {
 
     public MaterialDetailsEntity material;
+
     @Label("单位名称")
     public String unitName;
+
     public BePutInStorageDetailsEntity bePutInStorageDetails;
+
     public ReceivingDetailsEntity receivingDetails;
+
     public GoodsReturnedNoteDetailsEntity goodsReturnedNoteDetails;
+
     @Label("累计入库")
     public Long cumulativeStorage;
+
     @Label("累计退货")
     public Long cumulativeReturns;
+
     public MaterialDetailsEntity getMaterial() {
         return material;
     } 
@@ -76,6 +83,5 @@ public class BePutInStorageStructureStructure {
     public void setCumulativeReturns(Long cumulativeReturns) {
         this.cumulativeReturns = cumulativeReturns; 
     } 
-
 
 }

@@ -101,22 +101,84 @@
         where `id` = #{bean.id}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.AppConfigEntity" >
         UPDATE `AppConfig`
         <set>
-            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('loginRoleId')">`login_role_id` = #{bean.loginRoleId, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('loginIdentityType')">`login_identity_type` = #{bean.loginIdentityType, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('settingSwitch')">`setting_switch` = #{bean.settingSwitch, jdbcType= TINYINT},</if>
-            <if test="updateFields == null or updateFields.contains('loginPageConfig')">`login_page_config` = #{bean.loginPageConfig, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('customizeLoginUrl')">`customize_login_url` = #{bean.customizeLoginUrl, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('showPhotoUrl')">`show_photo_url` = #{bean.showPhotoUrl, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdTime')">
+                `created_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.createdTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">
+                `updated_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.updatedTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">
+                `updated_by` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.updatedBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('loginRoleId')">
+                `login_role_id` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.loginRoleId, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('loginIdentityType')">
+                `login_identity_type` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.loginIdentityType, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('settingSwitch')">
+                `setting_switch` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.settingSwitch, jdbcType=TINYINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('loginPageConfig')">
+                `login_page_config` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.loginPageConfig, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('customizeLoginUrl')">
+                `customize_login_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.customizeLoginUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('showPhotoUrl')">
+                `show_photo_url` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.showPhotoUrl, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `id` = #{bean.id}
+        where `id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.id}
+        </foreach>
     </update>
 
 
@@ -228,21 +290,6 @@
         where `id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `AppConfig`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `AppConfig`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.AppConfigEntity">
         INSERT INTO `AppConfig` (
             `id`
@@ -295,4 +342,18 @@
         DELETE FROM `AppConfig`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `AppConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `AppConfig`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

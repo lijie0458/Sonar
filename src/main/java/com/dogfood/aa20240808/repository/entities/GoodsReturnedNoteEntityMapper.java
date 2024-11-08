@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface GoodsReturnedNoteEntityMapper extends ReferenceHandleMapper {
 
     int insert(GoodsReturnedNoteEntity bean);
+
     int batchInsert(List<GoodsReturnedNoteEntity> beans);
-    List<GoodsReturnedNoteEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(GoodsReturnedNoteEntity bean, List<String> updateFields);
-    int batchUpdate(List<GoodsReturnedNoteEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    GoodsReturnedNoteEntity selectOne(String id);
-
-    int createOrUpdate(GoodsReturnedNoteEntity bean);
     int updateBy(GoodsReturnedNoteEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(GoodsReturnedNoteEntity bean);
+
+    int update(GoodsReturnedNoteEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<GoodsReturnedNoteEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    GoodsReturnedNoteEntity selectOne(String id);
+
+
+    List<GoodsReturnedNoteEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

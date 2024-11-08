@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface PageEntityMapper extends ReferenceHandleMapper {
 
     int insert(PageEntity bean);
+
     int batchInsert(List<PageEntity> beans);
-    List<PageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(PageEntity bean, List<String> updateFields);
-    int batchUpdate(List<PageEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    PageEntity selectOne(Long id);
-
-    int createOrUpdate(PageEntity bean);
     int updateBy(PageEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(PageEntity bean);
+
+    int update(PageEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<PageEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    PageEntity selectOne(Long id);
+
+
+    List<PageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

@@ -15,11 +15,11 @@ public class LCAPSetDeptLeaderCustomizeController {
 
     @Autowired
     private LCAPSetDeptLeaderCustomizeService lCAPSetDeptLeaderCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "ba6e8520be7f4affb7c0e7281cbd2abe",rules = { }),@ValidationRuleGroup(value = "a24f1f27de8346eba954087fba200853",rules = { @ValidationRule(value = "filled",targetName = "body.userId",argvs = "",errorMsg = "部门主管不能为空")})})
     @PostMapping("/api/lcplogics/LCAPSetDeptLeader")
     public void lCAPSetDeptLeader(@RequestBody LCAPSetDeptLeaderCustomizeControllerDto body) throws Exception {
         lCAPSetDeptLeaderCustomizeService.lCAPSetDeptLeader(body.getDeptId(), body.getUserId());
     } 
-
 
 }

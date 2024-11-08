@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.ZonedDateTime; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,32 +14,44 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Warehouse_levelTwoEntity {
 
     @Label("主键")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("二级仓库编码")
     public String warehouse_code;
+
     @Label("二级仓库名称")
     public String warehouse_name;
+
     @Label("关联一级仓库")
     public Long parent_warehouse_Id;
+
     @Label("地址")
     public String address;
+
     @Label("备注")
     public String remark;
+
     @Label("仓库管理员")
     public Long warehouse_manager;
+
     @Label("详细地址")
     public String detailedAddress;
+
     public Long getId() {
         return id;
     } 
@@ -46,19 +60,19 @@ public class Warehouse_levelTwoEntity {
         this.id = id; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -133,6 +147,5 @@ public class Warehouse_levelTwoEntity {
     public void setDetailedAddress(String detailedAddress) {
         this.detailedAddress = detailedAddress; 
     } 
-
 
 }

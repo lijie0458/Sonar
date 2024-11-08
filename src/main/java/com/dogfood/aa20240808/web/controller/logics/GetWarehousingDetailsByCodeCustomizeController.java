@@ -17,11 +17,11 @@ public class GetWarehousingDetailsByCodeCustomizeController {
 
     @Autowired
     private GetWarehousingDetailsByCodeCustomizeService getWarehousingDetailsByCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "6df20b3c54b44206b3e84e4fcf14c7bd",rules = { })})
     @PostMapping("/api/lcplogics/getWarehousingDetailsByCode")
     public ApiReturn<List<OutsourceInStorageDetailsStrutureStructure>> getWarehousingDetailsByCode(@RequestBody GetWarehousingDetailsByCodeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getWarehousingDetailsByCodeCustomizeService.getWarehousingDetailsByCode(body.getCode()));
     } 
-
 
 }

@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface FunctionTableEntityMapper extends ReferenceHandleMapper {
 
     int insert(FunctionTableEntity bean);
+
     int batchInsert(List<FunctionTableEntity> beans);
-    List<FunctionTableEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(FunctionTableEntity bean, List<String> updateFields);
-    int batchUpdate(List<FunctionTableEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    FunctionTableEntity selectOne(Long id);
-
-    int createOrUpdate(FunctionTableEntity bean);
     int updateBy(FunctionTableEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(FunctionTableEntity bean);
+
+    int update(FunctionTableEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<FunctionTableEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    FunctionTableEntity selectOne(Long id);
+
+
+    List<FunctionTableEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

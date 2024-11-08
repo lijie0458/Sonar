@@ -9,8 +9,10 @@ public class ResponseResultStructure {
 
     @Label("响应码，0为请求失败，1为请求成功")
     public Long code;
+
     @Label("响应信息")
     public String msg;
+
     public Long getCode() {
         return code;
     } 
@@ -26,6 +28,5 @@ public class ResponseResultStructure {
     public void setMsg(String msg) {
         this.msg = msg; 
     } 
-
 
 }

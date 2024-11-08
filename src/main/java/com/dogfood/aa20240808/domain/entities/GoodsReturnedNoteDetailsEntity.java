@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 import java.math.BigDecimal; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -11,18 +12,24 @@ import java.math.BigDecimal;
 public class GoodsReturnedNoteDetailsEntity {
 
     @Label("id")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("退货单号")
     public String goodsReturnedNote;
+
     @Label("退货数量")
     public BigDecimal bePutInStorageQuantity;
+
     @Label("物料编码")
     public String materialNumber;
+
     @Label("批号")
     public String batchNumber;
+
     @Label("关联的收货单明细")
     public Long bePutInStorageDetailsId;
+
     public Long getId() {
         return id;
     } 
@@ -70,6 +77,5 @@ public class GoodsReturnedNoteDetailsEntity {
     public void setBePutInStorageDetailsId(Long bePutInStorageDetailsId) {
         this.bePutInStorageDetailsId = bePutInStorageDetailsId; 
     } 
-
 
 }

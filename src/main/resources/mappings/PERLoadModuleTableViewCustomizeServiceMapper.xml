@@ -15,13 +15,15 @@
 </resultMap>
 
 <select id="getAnonymousStructure_53BF8AB25D5E58D9DF5D7A7FBC87B28D" resultMap="AnonymousStructure_53BF8AB25D5E58D9DF5D7A7FBC87B28D">
-SELECT `ModuleTable`.`id` `T1_C1`,`ModuleTable`.`created_time` `T1_C2`,`ModuleTable`.`updated_time` `T1_C3`,`ModuleTable`.`created_by` `T1_C4`,`ModuleTable`.`updated_by` `T1_C5`,`ModuleTable`.`name` `T1_C6` FROM `ModuleTable` 
+<bind name="paramValues" value="@com.dogfood.aa20240808.util.SqlAspectUtils@listParamValues('defaultDS.ModuleTable')" />
+SELECT ${@com.dogfood.aa20240808.util.SqlAspectUtils@buildSelectExpr('defaultDS','ModuleTable','id','`ModuleTable`.`id` `T1_C1`')},${@com.dogfood.aa20240808.util.SqlAspectUtils@buildSelectExpr('defaultDS','ModuleTable','createdTime','`ModuleTable`.`created_time` `T1_C2`')},${@com.dogfood.aa20240808.util.SqlAspectUtils@buildSelectExpr('defaultDS','ModuleTable','updatedTime','`ModuleTable`.`updated_time` `T1_C3`')},${@com.dogfood.aa20240808.util.SqlAspectUtils@buildSelectExpr('defaultDS','ModuleTable','createdBy','`ModuleTable`.`created_by` `T1_C4`')},${@com.dogfood.aa20240808.util.SqlAspectUtils@buildSelectExpr('defaultDS','ModuleTable','updatedBy','`ModuleTable`.`updated_by` `T1_C5`')},${@com.dogfood.aa20240808.util.SqlAspectUtils@buildSelectExpr('defaultDS','ModuleTable','name','`ModuleTable`.`name` `T1_C6`')} FROM `ModuleTable`   WHERE ${@com.dogfood.aa20240808.util.SqlAspectUtils@buildWhereCondition('defaultDS','ModuleTable','`ModuleTable`','whereClause')} 
 <if test=" 1==1 ">
  LIMIT ${( 1000 * ( 1 - 1 ) )}, ${1000} 
 </if>
 </select>
 
 <select id="countAnonymousStructure_53BF8AB25D5E58D9DF5D7A7FBC87B28D" resultType="java.lang.Long">
-SELECT COUNT(*) FROM `ModuleTable`
+<bind name="paramValues" value="@com.dogfood.aa20240808.util.SqlAspectUtils@listParamValues('defaultDS.ModuleTable')" />
+SELECT COUNT(*) FROM `ModuleTable`   WHERE ${@com.dogfood.aa20240808.util.SqlAspectUtils@buildWhereCondition('defaultDS','ModuleTable','`ModuleTable`','whereClause')}
 </select>
 </mapper>

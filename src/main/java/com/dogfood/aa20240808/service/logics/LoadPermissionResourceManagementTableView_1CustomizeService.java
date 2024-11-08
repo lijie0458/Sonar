@@ -12,21 +12,38 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA; 
 import com.dogfood.aa20240808.domain.entities.LCAPPermission; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadPermissionResourceManagementTableView_1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadPermissionResourceManagementTableView_1CustomizeServiceMapper loadPermissionResourceManagementTableView_1CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA loadPermissionResourceManagementTableView_1(Long page, Long size, String sort, String order, LCAPPermission filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA();
-        result = CommonFunctionUtil.createListPage(loadPermissionResourceManagementTableView_1CustomizeServiceMapper.getAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(filter, page, size, getTableField("AnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD", sort), order), loadPermissionResourceManagementTableView_1CustomizeServiceMapper.countAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(filter, page, size, getTableField("AnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA.class); 
+
+    public AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA loadPermissionResourceManagementTableView_1(Long page, Long size, String sort, String order, LCAPPermission filter) {
+        AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA result = new AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA();
+        result = CommonFunctionUtil.createListPage(loadPermissionResourceManagementTableView_1CustomizeServiceMapper.getAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(filter, page, size, getTableField("AnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD", sort), order), loadPermissionResourceManagementTableView_1CustomizeServiceMapper.countAnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD(filter, page, size, getTableField("AnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD", sort), order).intValue(), AnonymousStructure_D5C9C5DD94C4E7386BEED9E75D0F06FA.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadPermissionResourceManagementTableView_1CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_92F2372792A8A12DF53175B7AD25D2FD").put("lCAPPermission.id", "`lcap_permission_a6d592`.`id`");
@@ -77,6 +94,5 @@ public class LoadPermissionResourceManagementTableView_1CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

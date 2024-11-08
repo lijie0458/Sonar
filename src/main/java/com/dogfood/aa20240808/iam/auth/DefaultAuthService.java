@@ -3,6 +3,8 @@ package com.dogfood.aa20240808.iam.auth;
 import com.dogfood.aa20240808.config.Constants;
 import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.service.system.UserServiceFactory;
+import com.netease.cloud.nuims.auth.domain.authen.TokenService;
+import com.netease.cloud.nuims.auth.domain.authen.NormalAuthService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -28,7 +30,7 @@ public class DefaultAuthService implements AuthService {
     @Resource
     private com.netease.cloud.nuims.auth.domain.authen.AuthService pluginAuthService;
     @Resource
-    private  com.netease.cloud.nuims.auth.domain.authen.TokenService tokenService;
+    private TokenService tokenService;
     @Override
     public Map<String, String> getSession(HttpServletRequest request) {
         Map<String,String> sessionMap = new HashMap<>();
@@ -102,7 +104,7 @@ public class DefaultAuthService implements AuthService {
             //兼容原有的插件方式
             if (StringUtils.isNotEmpty(authorization)) {
                 String authType = tokenService.getTokenValue(authorization, com.netease.cloud.nuims.auth.common.constants.Constants.AUTH_TYPE_KEY);
-                if(com.netease.cloud.nuims.auth.domain.authen.NormalAuthService.NAME.equals(authType) || pluginAuthService.containService(authType)){
+                if(NormalAuthService.NAME.equals(authType) || pluginAuthService.containService(authType)){
                     String authParam = tokenService.getTokenValue(authorization, Constants.THIRD_PARTY_COOKIE_BODY_KEY);
                     pluginAuthService.logout(request, authType, authParam);
                 }

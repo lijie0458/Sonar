@@ -6,5 +6,4 @@ public interface LoadTotalQuantity1CustomizeServiceMapper {
 
 Long getStructure1(@Param("code") String code, @Param("id") Long id); 
 
-
 }

@@ -6,5 +6,4 @@ public interface LoadCountByorderNumberCustomizeServiceMapper {
 
 Long getSql1(@Param("orderNumber") String orderNumber); 
 
-
 }

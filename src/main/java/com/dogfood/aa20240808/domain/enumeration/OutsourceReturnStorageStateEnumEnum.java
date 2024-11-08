@@ -16,7 +16,9 @@ public enum OutsourceReturnStorageStateEnumEnum implements BaseEnum<OutsourceRet
     FIELD_2("2", "已审批"),; 
 
     public final String code;
+
     public final String desc;
+
 OutsourceReturnStorageStateEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ OutsourceReturnStorageStateEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class OutsourceReturnStorageStateEnumEnumDeserializer extends JsonDeserializer<OutsourceReturnStorageStateEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ OutsourceReturnStorageStateEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

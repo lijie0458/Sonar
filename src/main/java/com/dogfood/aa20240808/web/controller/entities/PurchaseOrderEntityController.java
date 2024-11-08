@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.PurchaseOrderEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.PurchaseOrderEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class PurchaseOrderEntityController {
     @Resource
     private PurchaseOrderEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "1643f3b61cd64f74a8e9c63e2d340447",rules = { }),@ValidationRuleGroup(value = "632b13bfb91849f3924ec77d6ac092ac",rules = { }),@ValidationRuleGroup(value = "4387216ef4df4907b2a59c441fcf1a7d",rules = { })})
+    @GetMapping("/api/purchase-order")
+    public ApiReturn<PurchaseOrderEntity> get( @RequestParam(required = true) String orderNumber ) { 
+        return ApiReturn.of(service.get( orderNumber )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class PurchaseOrderEntityController {
         return ApiReturn.of(service.delete( orderNumber )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "1643f3b61cd64f74a8e9c63e2d340447",rules = { }),@ValidationRuleGroup(value = "632b13bfb91849f3924ec77d6ac092ac",rules = { }),@ValidationRuleGroup(value = "4387216ef4df4907b2a59c441fcf1a7d",rules = { })})
-    @GetMapping("/api/purchase-order")
-    public ApiReturn<PurchaseOrderEntity> get( @RequestParam(required = true) String orderNumber ) { 
-        return ApiReturn.of(service.get( orderNumber )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class PurchaseOrderEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

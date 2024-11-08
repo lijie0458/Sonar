@@ -7,12 +7,19 @@ import com.dogfood.aa20240808.domain.entities.TransferSlipEntity;
 public class LoadTransferSlipTableView_1CustomizeControllerDto {
 
     public TransferSlipEntity filter;
+
     public List<String> dataViewAuthorityUserNameList;
+
     public Long size;
+
     public TimeHorizonStructure TimeHorizon;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public TransferSlipEntity getFilter() {
         return filter;
     } 
@@ -68,6 +75,5 @@ public class LoadTransferSlipTableView_1CustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

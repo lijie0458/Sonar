@@ -6,5 +6,4 @@ public interface PERJudgeCurPageHasFunctionCustomizeServiceMapper {
 
 Long getStructure1(@Param("pageId") Long pageId); 
 
-
 }

@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.ArrayList; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import org.slf4j.Logger; 
@@ -10,17 +11,32 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.repository.LoadCountBePutInStorageCustomizeServiceMapper; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 查询当前入库条数，创建外购入库用作单号
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCountBePutInStorageCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCountBePutInStorageCustomizeServiceMapper loadCountBePutInStorageCustomizeServiceMapper;
+
     public String loadCountBePutInStorage() {
         String StringNum = "";
         String DateTime = "";
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B> variable1 = new ArrayList<>();
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B variable2 = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B();
+        List<AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B> variable1 = new ArrayList<>();
+        AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B variable2 = new AnonymousStructure_4CEE0E97896F6CC84687108D2DB0952B();
         String result = "";
         DateTime = new StringBuilder().append(CommonFunctionUtil.toString("WIN")).append(CommonFunctionUtil.toString(CommonFunctionUtil.formatDate(CommonFunctionUtil.currDate("global"), "yyyyMMdd"))).toString(); 
         variable1 = loadCountBePutInStorageCustomizeServiceMapper.getSql1(DateTime); 
@@ -44,6 +60,5 @@ public class LoadCountBePutInStorageCustomizeService {
 
         return result;
     } 
-
 
 }

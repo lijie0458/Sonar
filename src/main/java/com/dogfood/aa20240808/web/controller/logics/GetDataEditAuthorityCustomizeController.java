@@ -14,11 +14,11 @@ public class GetDataEditAuthorityCustomizeController {
 
     @Autowired
     private GetDataEditAuthorityCustomizeService getDataEditAuthorityCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "70ef0414887243f9be0d8bdec2bc47cf",rules = { })})
     @PostMapping("/api/lcplogics/getDataEditAuthority")
     public ApiReturn<List<String>> getDataEditAuthority() throws Exception {
         return ApiReturn.of(getDataEditAuthorityCustomizeService.getDataEditAuthority());
     } 
-
 
 }

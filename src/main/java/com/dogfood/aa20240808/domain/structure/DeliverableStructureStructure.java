@@ -10,10 +10,13 @@ public class DeliverableStructureStructure {
 
     @Label("可发货数量")
     public BigDecimal deliverableQuantity;
+
     @Label("物料编码")
     public String name;
+
     @Label("本次数量")
     public BigDecimal thisQuantity;
+
     public BigDecimal getDeliverableQuantity() {
         return deliverableQuantity;
     } 
@@ -37,6 +40,5 @@ public class DeliverableStructureStructure {
     public void setThisQuantity(BigDecimal thisQuantity) {
         this.thisQuantity = thisQuantity; 
     } 
-
 
 }

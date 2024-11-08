@@ -101,22 +101,84 @@
         where `id` = #{bean.id}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.InventoryEntity" >
         UPDATE `inventory`
         <set>
-            <if test="updateFields == null or updateFields.contains('materialCode')">`material_code` = #{bean.materialCode, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('lotNumber')">`lot_number` = #{bean.lotNumber, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('stockQuantity')">`stock_quantity` = #{bean.stockQuantity, jdbcType= DECIMAL},</if>
-            <if test="updateFields == null or updateFields.contains('occupiedQuantity')">`occupied_quantity` = #{bean.occupiedQuantity, jdbcType= DECIMAL},</if>
-            <if test="updateFields == null or updateFields.contains('availableQuantity')">`available_quantity` = #{bean.availableQuantity, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('createdAt')">`created_at` = #{bean.createdAt, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedAt')">`updated_at` = #{bean.updatedAt, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('location')">`location` = #{bean.location, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('materialCode')">
+                `material_code` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.materialCode, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('lotNumber')">
+                `lot_number` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.lotNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('unit')">
+                `unit` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.unit, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">
+                `warehouse` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.warehouse, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('stockQuantity')">
+                `stock_quantity` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.stockQuantity, jdbcType=DECIMAL}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('occupiedQuantity')">
+                `occupied_quantity` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.occupiedQuantity, jdbcType=DECIMAL}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('availableQuantity')">
+                `available_quantity` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.availableQuantity, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdAt')">
+                `created_at` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.createdAt, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedAt')">
+                `updated_at` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.updatedAt, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('location')">
+                `location` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.location, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `id` = #{bean.id}
+        where `id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.id}
+        </foreach>
     </update>
 
 
@@ -228,21 +290,6 @@
         where `id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `inventory`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `inventory`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.InventoryEntity">
         INSERT INTO `inventory` (
             `id`
@@ -295,4 +342,18 @@
         DELETE FROM `inventory`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `inventory`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `inventory`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

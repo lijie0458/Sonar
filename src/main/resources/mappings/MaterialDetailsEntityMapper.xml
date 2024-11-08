@@ -77,18 +77,56 @@
         where `material_code` = #{bean.materialCode}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity" >
         UPDATE `material_details`
         <set>
-            <if test="updateFields == null or updateFields.contains('material_name')">`material_name` = #{bean.material_name, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('category_id')">`category_id` = #{bean.category_id, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('specification')">`specification` = #{bean.specification, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('unit')">`unit` = #{bean.unit, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('is_batch_enabled')">`is_batch_enabled` = #{bean.is_batch_enabled, jdbcType= TINYINT},</if>
+            <if test="updateFields == null or updateFields.contains('material_name')">
+                `material_name` = CASE `material_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.materialCode} THEN #{bean.material_name, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('category_id')">
+                `category_id` = CASE `material_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.materialCode} THEN #{bean.category_id, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('specification')">
+                `specification` = CASE `material_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.materialCode} THEN #{bean.specification, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('unit')">
+                `unit` = CASE `material_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.materialCode} THEN #{bean.unit, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('description')">
+                `description` = CASE `material_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.materialCode} THEN #{bean.description, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('is_batch_enabled')">
+                `is_batch_enabled` = CASE `material_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.materialCode} THEN #{bean.is_batch_enabled, jdbcType=TINYINT}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `material_code` = #{bean.materialCode}
+        where `material_code` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.materialCode}
+        </foreach>
     </update>
 
 
@@ -176,21 +214,6 @@
         where `material_code`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `material_details`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `material_details`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity">
         INSERT INTO `material_details` (
             `material_code`
@@ -231,4 +254,18 @@
         DELETE FROM `material_details`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `material_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `material_details`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

@@ -12,6 +12,10 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -251,14 +255,14 @@ public class HttpRequest<T> {
                 return (T) Boolean.valueOf(requestBody);
             } else if (clazz.isAssignableFrom(String.class)){
                 return (T) requestBody;
-            } else if (clazz.isAssignableFrom(java.math.BigDecimal.class)){
-                return (T) new java.math.BigDecimal(requestBody);
-            } else if (clazz.isAssignableFrom(java.time.LocalDate.class)){
-                return (T) java.time.LocalDate.parse(requestBody);
-            } else if (clazz.isAssignableFrom(java.time.LocalTime.class)){
-                return (T) java.time.LocalTime.parse(requestBody);
-            } else if (clazz.isAssignableFrom(java.time.ZonedDateTime.class)){
-                return (T) java.time.ZonedDateTime.parse(requestBody);
+            } else if (clazz.isAssignableFrom(BigDecimal.class)){
+                return (T) new BigDecimal(requestBody);
+            } else if (clazz.isAssignableFrom(LocalDate.class)){
+                return (T) LocalDate.parse(requestBody);
+            } else if (clazz.isAssignableFrom(LocalTime.class)){
+                return (T) LocalTime.parse(requestBody);
+            } else if (clazz.isAssignableFrom(ZonedDateTime.class)){
+                return (T) ZonedDateTime.parse(requestBody);
             } else{
                 logger.error("不支持的body类型,{}",clazz);
             }

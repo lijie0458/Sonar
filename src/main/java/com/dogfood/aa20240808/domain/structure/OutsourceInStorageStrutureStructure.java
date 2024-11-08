@@ -12,10 +12,13 @@ public class OutsourceInStorageStrutureStructure {
 
     @Label("委外加工入库")
     public OutsourceInStorageEntity outsourceInStorage;
+
     @Label("供应商信息")
     public SupplierDetailsEntity supplier;
+
     @Label("保管员信息")
     public LCAPUser user;
+
     public OutsourceInStorageEntity getOutsourceInStorage() {
         return outsourceInStorage;
     } 
@@ -39,6 +42,5 @@ public class OutsourceInStorageStrutureStructure {
     public void setUser(LCAPUser user) {
         this.user = user; 
     } 
-
 
 }

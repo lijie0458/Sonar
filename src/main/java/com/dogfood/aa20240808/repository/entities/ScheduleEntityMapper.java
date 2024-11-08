@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface ScheduleEntityMapper extends ReferenceHandleMapper {
 
     int insert(ScheduleEntity bean);
+
     int batchInsert(List<ScheduleEntity> beans);
-    List<ScheduleEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(ScheduleEntity bean, List<String> updateFields);
-    int batchUpdate(List<ScheduleEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    ScheduleEntity selectOne(Long id);
-
-    int createOrUpdate(ScheduleEntity bean);
     int updateBy(ScheduleEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(ScheduleEntity bean);
+
+    int update(ScheduleEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<ScheduleEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    ScheduleEntity selectOne(Long id);
+
+
+    List<ScheduleEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

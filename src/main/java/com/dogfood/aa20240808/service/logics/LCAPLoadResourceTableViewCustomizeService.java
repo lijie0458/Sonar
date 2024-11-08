@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92; 
 import com.dogfood.aa20240808.repository.LCAPLoadResourceTableViewCustomizeServiceMapper; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
@@ -13,19 +14,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LCAPLoadResourceTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LCAPLoadResourceTableViewCustomizeServiceMapper lCAPLoadResourceTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92 lCAPLoadResourceTableView(Long page, Long size, String sort, String order) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92();
-        result = CommonFunctionUtil.createListPage(lCAPLoadResourceTableViewCustomizeServiceMapper.getAnonymousStructure_EA050579F163467B7D2FD3E8C15362AF(page, size, getTableField("AnonymousStructure_EA050579F163467B7D2FD3E8C15362AF", sort), order), lCAPLoadResourceTableViewCustomizeServiceMapper.countAnonymousStructure_EA050579F163467B7D2FD3E8C15362AF(page, size, getTableField("AnonymousStructure_EA050579F163467B7D2FD3E8C15362AF", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92.class); 
+
+    public AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92 lCAPLoadResourceTableView(Long page, Long size, String sort, String order) {
+        AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92 result = new AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92();
+        result = CommonFunctionUtil.createListPage(lCAPLoadResourceTableViewCustomizeServiceMapper.getAnonymousStructure_EA050579F163467B7D2FD3E8C15362AF(page, size, getTableField("AnonymousStructure_EA050579F163467B7D2FD3E8C15362AF", sort), order), lCAPLoadResourceTableViewCustomizeServiceMapper.countAnonymousStructure_EA050579F163467B7D2FD3E8C15362AF(page, size, getTableField("AnonymousStructure_EA050579F163467B7D2FD3E8C15362AF", sort), order).intValue(), AnonymousStructure_D8CB63E646D19A8E127BF2A118560F92.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LCAPLoadResourceTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_EA050579F163467B7D2FD3E8C15362AF", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_EA050579F163467B7D2FD3E8C15362AF").put("lCAPResource.id", "`lcap_resource_a6d592`.`id`");
@@ -80,6 +97,5 @@ public class LCAPLoadResourceTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 public class LCAPGetResourceResultStructure {
 
     public String resourceValue;
+
     public String resourceType;
+
     public String getResourceValue() {
         return resourceValue;
     } 
@@ -23,6 +25,5 @@ public class LCAPGetResourceResultStructure {
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType; 
     } 
-
 
 }

@@ -71,17 +71,49 @@
         where `id` = #{bean.id}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping" >
         UPDATE `lcap_logic_view_mapping_a6d592`
         <set>
-            <if test="updateFields == null or updateFields.contains('logicIdentifier')">`logic_identifier` = #{bean.logicIdentifier, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('resourceName')">`resource_name` = #{bean.resourceName, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('resourceType')">`resource_type` = #{bean.resourceType, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('group')">`group` = #{bean.group, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('changeTime')">`change_time` = #{bean.changeTime, jdbcType= BIGINT},</if>
+            <if test="updateFields == null or updateFields.contains('logicIdentifier')">
+                `logic_identifier` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.logicIdentifier, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('resourceName')">
+                `resource_name` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.resourceName, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('resourceType')">
+                `resource_type` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.resourceType, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('group')">
+                `group` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.group, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('changeTime')">
+                `change_time` = CASE `id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.id} THEN #{bean.changeTime, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `id` = #{bean.id}
+        where `id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.id}
+        </foreach>
     </update>
 
 
@@ -163,21 +195,6 @@
         where `id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `lcap_logic_view_mapping_a6d592`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `lcap_logic_view_mapping_a6d592`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.LCAPLogicViewMapping">
         INSERT INTO `lcap_logic_view_mapping_a6d592` (
             `id`
@@ -215,4 +232,18 @@
         DELETE FROM `lcap_logic_view_mapping_a6d592`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `lcap_logic_view_mapping_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `lcap_logic_view_mapping_a6d592`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

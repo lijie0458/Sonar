@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 import java.math.BigDecimal; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -11,18 +12,24 @@ import java.math.BigDecimal;
 public class ReceivingDetailsEntity {
 
     @Label("id")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("收货单号")
     public String receiptNumber;
+
     @Label("本次收货数量")
     public Long receivedQuantity;
+
     @Label("物料编码")
     public String materialNumber;
+
     @Label("关联明细Id")
     public Long orderDetailId;
+
     @Label("应收数量")
     public BigDecimal receivableQuantity;
+
     public Long getId() {
         return id;
     } 
@@ -70,6 +77,5 @@ public class ReceivingDetailsEntity {
     public void setReceivableQuantity(BigDecimal receivableQuantity) {
         this.receivableQuantity = receivableQuantity; 
     } 
-
 
 }

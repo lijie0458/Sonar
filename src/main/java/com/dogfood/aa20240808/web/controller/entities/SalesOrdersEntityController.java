@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.SalesOrdersEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.SalesOrdersEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.SalesOrdersEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class SalesOrdersEntityController {
     @Resource
     private SalesOrdersEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "714dd69faf3a4f098cf30a5f38fc3024",rules = { }),@ValidationRuleGroup(value = "85d8cc5c9bab434e8fcadb9227b863c5",rules = { }),@ValidationRuleGroup(value = "09f8395e-7a12-4248-9725-ba3ffe1c78ff",rules = { }),@ValidationRuleGroup(value = "864a4dfba60c4521ab3bdcc827d3b997",rules = { }),@ValidationRuleGroup(value = "11b23cde-549e-4748-9bad-6412bea3d28e",rules = { @ValidationRule(value = "required",targetName = "orderNumber",argvs = "")}),@ValidationRuleGroup(value = "131a5694-4306-4dae-856f-1364408b7ebd",rules = { }),@ValidationRuleGroup(value = "62be541a-cb67-4b4c-9135-dd65e18997c7",rules = { })})
+    @GetMapping("/api/sales-orders")
+    public ApiReturn<SalesOrdersEntity> get( @RequestParam(required = true) String orderNumber ) { 
+        return ApiReturn.of(service.get( orderNumber )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class SalesOrdersEntityController {
         return ApiReturn.of(service.delete( orderNumber )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "714dd69faf3a4f098cf30a5f38fc3024",rules = { }),@ValidationRuleGroup(value = "85d8cc5c9bab434e8fcadb9227b863c5",rules = { }),@ValidationRuleGroup(value = "09f8395e-7a12-4248-9725-ba3ffe1c78ff",rules = { }),@ValidationRuleGroup(value = "864a4dfba60c4521ab3bdcc827d3b997",rules = { }),@ValidationRuleGroup(value = "11b23cde-549e-4748-9bad-6412bea3d28e",rules = { @ValidationRule(value = "required",targetName = "orderNumber",argvs = "")}),@ValidationRuleGroup(value = "131a5694-4306-4dae-856f-1364408b7ebd",rules = { }),@ValidationRuleGroup(value = "62be541a-cb67-4b4c-9135-dd65e18997c7",rules = { })})
-    @GetMapping("/api/sales-orders")
-    public ApiReturn<SalesOrdersEntity> get( @RequestParam(required = true) String orderNumber ) { 
-        return ApiReturn.of(service.get( orderNumber )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class SalesOrdersEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

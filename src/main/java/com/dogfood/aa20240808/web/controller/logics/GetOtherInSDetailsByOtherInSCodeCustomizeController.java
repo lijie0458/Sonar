@@ -17,11 +17,11 @@ public class GetOtherInSDetailsByOtherInSCodeCustomizeController {
 
     @Autowired
     private GetOtherInSDetailsByOtherInSCodeCustomizeService getOtherInSDetailsByOtherInSCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "fd9564ef-ed2a-4512-ad88-466725838f14",rules = { })})
     @PostMapping("/api/lcplogics/getOtherInSDetailsByOtherInSCode")
     public ApiReturn<List<OtherInStorageDetailsStrutureStructure>> getOtherInSDetailsByOtherInSCode(@RequestBody GetOtherInSDetailsByOtherInSCodeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getOtherInSDetailsByOtherInSCodeCustomizeService.getOtherInSDetailsByOtherInSCode(body.getOtherInSCode()));
     } 
-
 
 }

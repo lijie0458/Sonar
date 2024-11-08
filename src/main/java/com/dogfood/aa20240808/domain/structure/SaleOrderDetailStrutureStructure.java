@@ -16,23 +16,33 @@ public class SaleOrderDetailStrutureStructure {
 
     @Label("基本信息")
     public SalesOrderDetailsEntity saleOrderDetails;
+
     @Label("库存")
     public BigDecimal inventory;
+
     @Label("物料")
     public MaterialDetailsEntity name;
+
     @Label("物料规格")
     public String sp;
+
     @Label("单位名称")
     public String unitname;
+
     public Long id;
+
     @Label("库位")
     public String location;
+
     @Label("仓库")
     public List<Warehouse_levelTwoEntity> warehouseList = new ArrayList<>();
+
     @Label("批号列表")
     public List<InventoryEntity> inventoryList = new ArrayList<>();
+
     @Label("已出库数量/已退货数量")
     public BigDecimal unshippedQuantity;
+
     public SalesOrderDetailsEntity getSaleOrderDetails() {
         return saleOrderDetails;
     } 
@@ -112,6 +122,5 @@ public class SaleOrderDetailStrutureStructure {
     public void setUnshippedQuantity(BigDecimal unshippedQuantity) {
         this.unshippedQuantity = unshippedQuantity; 
     } 
-
 
 }

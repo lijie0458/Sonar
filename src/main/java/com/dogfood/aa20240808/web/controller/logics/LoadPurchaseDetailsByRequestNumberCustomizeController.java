@@ -17,11 +17,11 @@ public class LoadPurchaseDetailsByRequestNumberCustomizeController {
 
     @Autowired
     private LoadPurchaseDetailsByRequestNumberCustomizeService loadPurchaseDetailsByRequestNumberCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "d736ebf963d84c4c95e2792f814a403c",rules = { })})
     @PostMapping("/api/lcplogics/loadPurchaseDetailsByRequestNumber")
     public ApiReturn<List<PurchaseDetailStructureStructure>> loadPurchaseDetailsByRequestNumber(@RequestBody LoadPurchaseDetailsByRequestNumberCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadPurchaseDetailsByRequestNumberCustomizeService.loadPurchaseDetailsByRequestNumber(body.getRequest_number()));
     } 
-
 
 }

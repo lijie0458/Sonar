@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface ProductReturnStorageEntityMapper extends ReferenceHandleMapper {
 
     int insert(ProductReturnStorageEntity bean);
+
     int batchInsert(List<ProductReturnStorageEntity> beans);
-    List<ProductReturnStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(ProductReturnStorageEntity bean, List<String> updateFields);
-    int batchUpdate(List<ProductReturnStorageEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    ProductReturnStorageEntity selectOne(String id);
-
-    int createOrUpdate(ProductReturnStorageEntity bean);
     int updateBy(ProductReturnStorageEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(ProductReturnStorageEntity bean);
+
+    int update(ProductReturnStorageEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<ProductReturnStorageEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    ProductReturnStorageEntity selectOne(String id);
+
+
+    List<ProductReturnStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

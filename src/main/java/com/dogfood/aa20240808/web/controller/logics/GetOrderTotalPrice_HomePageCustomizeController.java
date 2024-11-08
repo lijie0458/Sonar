@@ -14,11 +14,11 @@ public class GetOrderTotalPrice_HomePageCustomizeController {
 
     @Autowired
     private GetOrderTotalPrice_HomePageCustomizeService getOrderTotalPrice_HomePageCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "5bad826fdbc94036bc64f76e818d09c7",rules = { })})
     @PostMapping("/api/lcplogics/getOrderTotalPrice_HomePage")
     public ApiReturn<BigDecimal> getOrderTotalPrice_HomePage() throws Exception {
         return ApiReturn.of(getOrderTotalPrice_HomePageCustomizeService.getOrderTotalPrice_HomePage());
     } 
-
 
 }

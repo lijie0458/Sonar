@@ -16,11 +16,11 @@ public class IAMGetUserByUserIdCustomizeController {
 
     @Autowired
     private IAMGetUserByUserIdCustomizeService iAMGetUserByUserIdCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "5480a9d9-d911-4177-8481-ddb16349a292",rules = { })})
     @PostMapping("/api/lcplogics/IAMGetUserByUserId")
     public ApiReturn<LCAPUser> iAMGetUserByUserId(@RequestBody IAMGetUserByUserIdCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(iAMGetUserByUserIdCustomizeService.iAMGetUserByUserId(body.getUserId()));
     } 
-
 
 }

@@ -9,8 +9,10 @@ public class ParmeStructureStructure {
 
     @Label("参数名")
     public String key;
+
     @Label("参数值")
     public String value;
+
     public String getKey() {
         return key;
     } 
@@ -26,6 +28,5 @@ public class ParmeStructureStructure {
     public void setValue(String value) {
         this.value = value; 
     } 
-
 
 }

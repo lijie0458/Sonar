@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface LCAPRolePerMappingMapper extends ReferenceHandleMapper {
 
     int insert(LCAPRolePerMapping bean);
+
     int batchInsert(List<LCAPRolePerMapping> beans);
-    List<LCAPRolePerMapping> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(LCAPRolePerMapping bean, List<String> updateFields);
-    int batchUpdate(List<LCAPRolePerMapping> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    LCAPRolePerMapping selectOne(Long id);
-
-    int createOrUpdate(LCAPRolePerMapping bean);
     int updateBy(LCAPRolePerMapping bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(LCAPRolePerMapping bean);
+
+    int update(LCAPRolePerMapping bean, List<String> updateFields);
+
+    int batchUpdate(List<LCAPRolePerMapping> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    LCAPRolePerMapping selectOne(Long id);
+
+
+    List<LCAPRolePerMapping> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

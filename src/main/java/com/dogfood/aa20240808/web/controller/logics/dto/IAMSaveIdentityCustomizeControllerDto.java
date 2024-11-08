@@ -5,6 +5,7 @@ import com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity;
 public class IAMSaveIdentityCustomizeControllerDto {
 
     public IdentitySourceConfigEntity sourceDto;
+
     public IdentitySourceConfigEntity getSourceDto() {
         return sourceDto;
     } 
@@ -12,6 +13,5 @@ public class IAMSaveIdentityCustomizeControllerDto {
     public void setSourceDto(IdentitySourceConfigEntity sourceDto) {
         this.sourceDto = sourceDto; 
     } 
-
 
 }

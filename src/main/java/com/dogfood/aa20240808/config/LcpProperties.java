@@ -17,7 +17,6 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "lcp", ignoreInvalidFields=true)
 public class LcpProperties {
     private AuthCenter authCenter;
-    private String flowUrl;
     private String gatewayUrl;
     private Audit audit;
     private String uiResourceAddress;
@@ -42,14 +41,6 @@ public class LcpProperties {
 
     public void setAuthCenter(AuthCenter authCenter) {
         this.authCenter = authCenter;
-    }
-
-    public String getFlowUrl() {
-        return flowUrl;
-    }
-
-    public void setFlowUrl(String flowUrl) {
-        this.flowUrl = flowUrl;
     }
 
     public String getGatewayUrl() {
@@ -173,10 +164,57 @@ public class LcpProperties {
         this.wechat = wechat;
     }
 
+    public static class Security {
+        private Long lockMilliseconds;
+        private Integer maxFailureTimes;
+
+        public Long getLockMilliseconds() {
+            return lockMilliseconds;
+        }
+
+        public void setLockMilliseconds(Long lockMilliseconds) {
+            this.lockMilliseconds = lockMilliseconds;
+        }
+
+        public Integer getMaxFailureTimes() {
+            return maxFailureTimes;
+        }
+
+        public void setMaxFailureTimes(Integer maxFailureTimes) {
+            this.maxFailureTimes = maxFailureTimes;
+        }
+    }
     public static class AuthCenter {
         private Boolean enable;
         private String address;
         private String host;
+        private Security security;
+        private Boolean taskEnable;
+        private List<String> noAuthPaths;
+
+
+        public List<String> getNoAuthPaths() {
+            return noAuthPaths;
+        }
+        public void setNoAuthPaths(List<String> noAuthPaths) {
+            this.noAuthPaths = noAuthPaths;
+        }
+
+        public Security getSecurity() {
+            return security;
+        }
+
+        public void setSecurity(Security security) {
+            this.security = security;
+        }
+
+        public void setTaskEnable(Boolean taskEnable) {
+            this.taskEnable = taskEnable;
+        }
+
+        public Boolean getTaskEnable() {
+            return taskEnable;
+        }
 
         public Boolean getEnable() {
             return enable;

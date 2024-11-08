@@ -4,7 +4,9 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class LoadDepartmentSelect_6CustomizeControllerDto {
 
     public Long size;
+
     public Long page;
+
     public Long getSize() {
         return size;
     } 
@@ -20,6 +22,5 @@ public class LoadDepartmentSelect_6CustomizeControllerDto {
     public void setPage(Long page) {
         this.page = page; 
     } 
-
 
 }

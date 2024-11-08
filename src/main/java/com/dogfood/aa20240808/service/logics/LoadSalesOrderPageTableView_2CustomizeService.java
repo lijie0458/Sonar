@@ -3,6 +3,7 @@ package com.dogfood.aa20240808.service.logics;
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
 import java.util.ArrayList; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3D26FC4B14C7240A937FF824EB2C8626; 
 import com.dogfood.aa20240808.domain.structure.SaleOrderListStructure; 
 import java.util.List; 
 import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure; 
@@ -18,24 +19,42 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.domain.entities.SalesOrdersEntity; 
 import com.dogfood.aa20240808.config.Constants; 
 import java.math.BigDecimal; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_89F444DCB36F3A425473660EC2B0814E; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadSalesOrderPageTableView_2CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadquantityShippedByDetailsIdCustomizeService loadquantityShippedByDetailsIdCustomizeService;
+
     @Autowired
     private LoadoutboundQuantityByDetailsId1CustomizeService loadoutboundQuantityByDetailsId1CustomizeService;
+
     @Autowired
     private LoadSalesOrderPageTableView_2CustomizeServiceMapper loadSalesOrderPageTableView_2CustomizeServiceMapper;
+
     public List<SaleOrderListStructure> loadSalesOrderPageTableView_2(Long page, Long size, String sort, String order, SalesOrdersEntity filter, DistinctionEnumEnum DistinctionEnum, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
         SaleOrderListStructure salesOrderList = new SaleOrderListStructure();
         List<SaleOrderListStructure> salesOrderLists = new ArrayList<>();
         Map<Long, BigDecimal> Map = new HashMap<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_3D26FC4B14C7240A937FF824EB2C8626> ListDetailsId = new ArrayList<>();
+        List<AnonymousStructure_3D26FC4B14C7240A937FF824EB2C8626> ListDetailsId = new ArrayList<>();
         Map<Long, BigDecimal> Map2 = new HashMap<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_89F444DCB36F3A425473660EC2B0814E> variable1 = new ArrayList<>();
+        List<AnonymousStructure_89F444DCB36F3A425473660EC2B0814E> variable1 = new ArrayList<>();
         List<SaleOrderListStructure> result = new ArrayList<>();
         Map = CommonFunctionUtil.listToMap(loadquantityShippedByDetailsIdCustomizeService.loadquantityShippedByDetailsId(), (item) -> item.salesOrderDetailsId, (item) -> item.sum); 
         ListDetailsId = loadoutboundQuantityByDetailsId1CustomizeService.loadoutboundQuantityByDetailsId1(); 
@@ -46,7 +65,7 @@ public class LoadSalesOrderPageTableView_2CustomizeService {
 
         variable1 = loadSalesOrderPageTableView_2CustomizeServiceMapper.getAnonymousStructure_89F444DCB36F3A425473660EC2B0814E(filter, DistinctionEnum, dataViewAuthorityUserNameList, TimeHorizon, getTableField("AnonymousStructure_89F444DCB36F3A425473660EC2B0814E", sort), order); 
         for (Long index = 0L; index < variable1.size(); index++) {
-            com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_89F444DCB36F3A425473660EC2B0814E item = variable1.get(index.intValue());
+            AnonymousStructure_89F444DCB36F3A425473660EC2B0814E item = variable1.get(index.intValue());
             salesOrderList.salesOrders = item.salesOrders; 
             salesOrderList.customerManagement = item.customerManagement; 
             salesOrderList.user = item.lCAPUser; 
@@ -55,7 +74,7 @@ public class LoadSalesOrderPageTableView_2CustomizeService {
             salesOrderList.materialDetails = item.materialDetails; 
             salesOrderList.measuringUnit = item.measuringUnit; 
             if ((CommonFunctionUtil.equals(CommonFunctionUtil.mapGet(Map2, item.salesOrderDetails.id), null))) {
-                salesOrderList.unshippedQuantity = new BigDecimal(0L); 
+                salesOrderList.unshippedQuantity = BigDecimal.valueOf(0L); 
             } else {
                 salesOrderList.unshippedQuantity = CommonFunctionUtil.mapGet(Map2, item.salesOrderDetails.id); 
             } 
@@ -68,6 +87,7 @@ public class LoadSalesOrderPageTableView_2CustomizeService {
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadSalesOrderPageTableView_2CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_89F444DCB36F3A425473660EC2B0814E", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_89F444DCB36F3A425473660EC2B0814E").put("salesOrders.orderNumber", "`sales_orders`.`order_number`");
@@ -233,6 +253,5 @@ public class LoadSalesOrderPageTableView_2CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

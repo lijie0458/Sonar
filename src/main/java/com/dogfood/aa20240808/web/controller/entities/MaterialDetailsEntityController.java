@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.MaterialDetailsEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.MaterialDetailsEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class MaterialDetailsEntityController {
     @Resource
     private MaterialDetailsEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "a79c705a-4e2c-4ec7-852e-06a01f690a2a",rules = { }),@ValidationRuleGroup(value = "de97ebd0-cbd4-4579-ae19-8612fc6d68f7",rules = { }),@ValidationRuleGroup(value = "720d7383-6af6-4901-b51f-02b30e8fd7d8",rules = { }),@ValidationRuleGroup(value = "0676776648f044e08520a9367fa555e7",rules = { }),@ValidationRuleGroup(value = "604baccc-766d-4938-9d08-fe27713f981b",rules = { }),@ValidationRuleGroup(value = "105ad009-103c-405b-9928-05537e40cbb6",rules = { }),@ValidationRuleGroup(value = "5b4f27e7-1d76-459d-9c12-3b6c72901f5e",rules = { }),@ValidationRuleGroup(value = "8e49c4c1-5d46-4ae4-ad58-bf6ff71b82ea",rules = { }),@ValidationRuleGroup(value = "3f5b3aeb71ec4fcd90931fbcad93bff2",rules = { }),@ValidationRuleGroup(value = "b47ed945d5db40838e0de8da8c33e984",rules = { }),@ValidationRuleGroup(value = "46fab36d-ed93-4dc7-acb6-b2f75d7cf86f",rules = { }),@ValidationRuleGroup(value = "45a12b49-5352-4174-8ab3-dfd13114810f",rules = { }),@ValidationRuleGroup(value = "5bf183c0-3d0c-4025-9ecb-f9ab74b3da90",rules = { }),@ValidationRuleGroup(value = "4eeac257-cfe4-42b1-abd5-ace63f234a62",rules = { })})
+    @GetMapping("/api/material-details")
+    public ApiReturn<MaterialDetailsEntity> get( @RequestParam(required = true) String materialCode ) { 
+        return ApiReturn.of(service.get( materialCode )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class MaterialDetailsEntityController {
         return ApiReturn.of(service.delete( materialCode )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "a79c705a-4e2c-4ec7-852e-06a01f690a2a",rules = { }),@ValidationRuleGroup(value = "de97ebd0-cbd4-4579-ae19-8612fc6d68f7",rules = { }),@ValidationRuleGroup(value = "720d7383-6af6-4901-b51f-02b30e8fd7d8",rules = { }),@ValidationRuleGroup(value = "0676776648f044e08520a9367fa555e7",rules = { }),@ValidationRuleGroup(value = "604baccc-766d-4938-9d08-fe27713f981b",rules = { }),@ValidationRuleGroup(value = "105ad009-103c-405b-9928-05537e40cbb6",rules = { }),@ValidationRuleGroup(value = "5b4f27e7-1d76-459d-9c12-3b6c72901f5e",rules = { }),@ValidationRuleGroup(value = "8e49c4c1-5d46-4ae4-ad58-bf6ff71b82ea",rules = { }),@ValidationRuleGroup(value = "3f5b3aeb71ec4fcd90931fbcad93bff2",rules = { }),@ValidationRuleGroup(value = "b47ed945d5db40838e0de8da8c33e984",rules = { }),@ValidationRuleGroup(value = "46fab36d-ed93-4dc7-acb6-b2f75d7cf86f",rules = { }),@ValidationRuleGroup(value = "45a12b49-5352-4174-8ab3-dfd13114810f",rules = { }),@ValidationRuleGroup(value = "5bf183c0-3d0c-4025-9ecb-f9ab74b3da90",rules = { }),@ValidationRuleGroup(value = "4eeac257-cfe4-42b1-abd5-ace63f234a62",rules = { })})
-    @GetMapping("/api/material-details")
-    public ApiReturn<MaterialDetailsEntity> get( @RequestParam(required = true) String materialCode ) { 
-        return ApiReturn.of(service.get( materialCode )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class MaterialDetailsEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

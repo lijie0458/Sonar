@@ -1,5 +1,6 @@
 package com.dogfood.aa20240808.integration.http;
 
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.springframework.http.HttpMethod;
@@ -34,6 +35,14 @@ public class HttpComponentsClientRestfulHttpRequestFactory extends HttpComponent
             return HttpMethod.GET.name();
 
         }
+    }
+
+    public HttpComponentsClientRestfulHttpRequestFactory() {
+        super();
+    }
+
+    public HttpComponentsClientRestfulHttpRequestFactory(HttpClient httpClient) {
+        super(httpClient);
     }
 }
 

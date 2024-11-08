@@ -14,7 +14,9 @@ public enum LoginIdentityTypeEnumEnum implements BaseEnum<LoginIdentityTypeEnumE
     FIELD_Multiple("Multiple", "多身份源"),; 
 
     public final String code;
+
     public final String desc;
+
 LoginIdentityTypeEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -36,7 +38,6 @@ LoginIdentityTypeEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class LoginIdentityTypeEnumEnumDeserializer extends JsonDeserializer<LoginIdentityTypeEnumEnum>{
 
             @Override
@@ -55,7 +56,6 @@ LoginIdentityTypeEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

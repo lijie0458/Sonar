@@ -1,6 +1,5 @@
 package com.dogfood.aa20240808.datasource.dynamic;
 
-import com.dogfood.aa20240808.util.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -36,9 +35,7 @@ public class InitDatabaseConfig {
             log.info("env variable not true, skip init database");
             return;
         }
-        String join = String.join(File.separator, System.getProperty("user.home"), "low-code");
-        ExcelUtil.uploadPathFilter(join);
-        File dir = new File(join);
+        File dir = new File(String.join(File.separator, System.getProperty("user.home"), "low-code"));
         File file = new File(dir, "initDatabase.txt");
         if (file.exists()) {
             log.info("initDatabase.txt exists, skip init database");

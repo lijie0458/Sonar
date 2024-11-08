@@ -4,9 +4,13 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class IAMUpdatePasswordCustomizeControllerDto {
 
     public String confirmNewPwd;
+
     public String newPwd;
+
     public String oldPwd;
+
     public String userId;
+
     public String getConfirmNewPwd() {
         return confirmNewPwd;
     } 
@@ -38,6 +42,5 @@ public class IAMUpdatePasswordCustomizeControllerDto {
     public void setUserId(String userId) {
         this.userId = userId; 
     } 
-
 
 }

@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface PerGroupPerMappingEntityMapper extends ReferenceHandleMapper {
 
     int insert(PerGroupPerMappingEntity bean);
+
     int batchInsert(List<PerGroupPerMappingEntity> beans);
-    List<PerGroupPerMappingEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(PerGroupPerMappingEntity bean, List<String> updateFields);
-    int batchUpdate(List<PerGroupPerMappingEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    PerGroupPerMappingEntity selectOne(Long id);
-
-    int createOrUpdate(PerGroupPerMappingEntity bean);
     int updateBy(PerGroupPerMappingEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(PerGroupPerMappingEntity bean);
+
+    int update(PerGroupPerMappingEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<PerGroupPerMappingEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    PerGroupPerMappingEntity selectOne(Long id);
+
+
+    List<PerGroupPerMappingEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

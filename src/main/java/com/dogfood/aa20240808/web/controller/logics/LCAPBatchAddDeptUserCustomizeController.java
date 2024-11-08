@@ -14,11 +14,11 @@ public class LCAPBatchAddDeptUserCustomizeController {
 
     @Autowired
     private LCAPBatchAddDeptUserCustomizeService lCAPBatchAddDeptUserCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "f4b74d8142314883b71670ba8b657775",rules = { })})
     @PostMapping("/api/lcplogics/LCAPBatchAddDeptUser")
     public void lCAPBatchAddDeptUser(@RequestBody LCAPBatchAddDeptUserCustomizeControllerDto body) throws Exception {
         lCAPBatchAddDeptUserCustomizeService.lCAPBatchAddDeptUser(body.getUserIds(), body.getDeptId());
     } 
-
 
 }

@@ -25,7 +25,6 @@ public class MybatisConfiguration implements ConfigurationCustomizer {
     private final static String MYSQL_DRIVER_CLASS2 = "com.mysql.cj.jdbc.Driver";
     @Value("${lcp.process.database.table.prefix:}")
     private String processTablePrefix;
-
     @Override
     public void customize(Configuration configuration) {
         configuration.getVariables().setProperty("process_table_prefix",processTablePrefix);
@@ -48,7 +47,8 @@ public class MybatisConfiguration implements ConfigurationCustomizer {
 
     @Bean
     public QueryFilterInterceptor queryFilterInterceptor() {
-
         return new QueryFilterInterceptor();
     }
+
+
 }

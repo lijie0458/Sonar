@@ -18,20 +18,28 @@ public class ProductInStorageDetailsStrutureStructure {
 
     @Label("产品入库详情")
     public ProductInStorageDetailsEntity productInStorageDetails;
+
     @Label("物料信息")
     public MaterialDetailsEntity materialDetails;
+
     @Label("计量单位信息")
     public MeasuringUnitEntity measuringUnit;
+
     @Label("库存信息")
     public InventoryEntity inventory;
+
     @Label("库位信息")
     public Storage_locationEntity storagelocation;
+
     @Label("仓库信息")
     public Warehouse_levelTwoEntity warehouse;
+
     @Label("库位列表信息")
     public List<Storage_locationEntity> storagelocationList = new ArrayList<>();
+
     @Label("即时库存")
     public BigDecimal sum;
+
     public ProductInStorageDetailsEntity getProductInStorageDetails() {
         return productInStorageDetails;
     } 
@@ -95,6 +103,5 @@ public class ProductInStorageDetailsStrutureStructure {
     public void setSum(BigDecimal sum) {
         this.sum = sum; 
     } 
-
 
 }

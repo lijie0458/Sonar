@@ -13,12 +13,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 处理仓库模块的库存加减-cmk
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadWarehouseInventoryCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private InventoryEntityService inventoryEntityService;
+
     public List<InventoryEntity> loadWarehouseInventory(List<WarehouseinventoryStructure> Warehouseinventory, DistinctionEnumEnum DistinctionEnum) {
         InventoryEntity inventory = new InventoryEntity();
         List<InventoryEntity> List = new ArrayList<>();
@@ -44,6 +59,5 @@ public class LoadWarehouseInventoryCustomizeService {
         result = inventoryEntityService.batchUpdate(List, null); 
         return result;
     } 
-
 
 }

@@ -14,11 +14,11 @@ public class LoadAduitSelectByOrderNumberCustomizeController {
 
     @Autowired
     private LoadAduitSelectByOrderNumberCustomizeService loadAduitSelectByOrderNumberCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "a89e7d94-eaba-4444-a1dc-d0a0ad706d96",rules = { }),@ValidationRuleGroup(value = "1a8839c9-c010-4714-9774-99141f7ae87f",rules = { })})
     @PostMapping("/api/lcplogics/loadAduitSelectByOrderNumber")
     public void loadAduitSelectByOrderNumber(@RequestBody LoadAduitSelectByOrderNumberCustomizeControllerDto body) throws Exception {
         loadAduitSelectByOrderNumberCustomizeService.loadAduitSelectByOrderNumber(body.getOrderNumber());
     } 
-
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 public class LoadidListChildCustomizeControllerDto {
 
     public List<Long> param1;
+
     public List<Long> getParam1() {
         return param1;
     } 
@@ -12,6 +13,5 @@ public class LoadidListChildCustomizeControllerDto {
     public void setParam1(List<Long> param1) {
         this.param1 = param1; 
     } 
-
 
 }

@@ -17,11 +17,11 @@ public class LoadTransferSlipDetailsByCodeCustomizeController {
 
     @Autowired
     private LoadTransferSlipDetailsByCodeCustomizeService loadTransferSlipDetailsByCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "45c3c938-ccc2-49d5-bdf8-56011b6188cc",rules = { })})
     @PostMapping("/api/lcplogics/loadTransferSlipDetailsByCode")
     public ApiReturn<List<TransferSlipDetailsStructure>> loadTransferSlipDetailsByCode(@RequestBody LoadTransferSlipDetailsByCodeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadTransferSlipDetailsByCodeCustomizeService.loadTransferSlipDetailsByCode(body.getInventoryList(), body.getOutWareHouse(), body.getInWareHouse()));
     } 
-
 
 }

@@ -6,5 +6,4 @@ public interface LoadCountGoodsReturnedNoteCustomizeServiceMapper {
 
 Long getSql1(@Param("DateTime") String DateTime); 
 
-
 }

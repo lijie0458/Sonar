@@ -7,5 +7,4 @@ public interface LoadUnshippedQuantityCustomizeServiceMapper {
 
 BigDecimal getStructure1(@Param("id") Long id, @Param("notid") Long notid); 
 
-
 }

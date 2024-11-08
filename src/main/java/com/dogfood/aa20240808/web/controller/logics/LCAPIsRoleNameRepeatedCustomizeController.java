@@ -15,11 +15,11 @@ public class LCAPIsRoleNameRepeatedCustomizeController {
 
     @Autowired
     private LCAPIsRoleNameRepeatedCustomizeService lCAPIsRoleNameRepeatedCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "c32baaca823943f68d51aa3d5c325bce",rules = { })})
     @PostMapping("/api/lcplogics/LCAPIsRoleNameRepeated")
     public ApiReturn<Boolean> lCAPIsRoleNameRepeated(@RequestBody LCAPIsRoleNameRepeatedCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(lCAPIsRoleNameRepeatedCustomizeService.lCAPIsRoleNameRepeated(body.getRoleName()));
     } 
-
 
 }

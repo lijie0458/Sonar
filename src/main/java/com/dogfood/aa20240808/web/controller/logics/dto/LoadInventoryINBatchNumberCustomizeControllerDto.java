@@ -5,6 +5,7 @@ import java.util.List;
 public class LoadInventoryINBatchNumberCustomizeControllerDto {
 
     public List<Long> BatchNumber;
+
     public List<Long> getBatchNumber() {
         return BatchNumber;
     } 
@@ -12,6 +13,5 @@ public class LoadInventoryINBatchNumberCustomizeControllerDto {
     public void setBatchNumber(List<Long> BatchNumber) {
         this.BatchNumber = BatchNumber; 
     } 
-
 
 }

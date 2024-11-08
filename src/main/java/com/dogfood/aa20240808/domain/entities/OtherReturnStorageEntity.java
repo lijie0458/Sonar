@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.ZonedDateTime; 
 import com.dogfood.aa20240808.domain.enumeration.OtherReturnStorageStateEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -13,22 +15,29 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class OtherReturnStorageEntity {
 
     @Label("其他入库退回单号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String returnCode;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("状态")
     public OtherReturnStorageStateEnumEnum state;
+
     @Label("其他入库单号")
     public String otherInSCode;
+
     public String getReturnCode() {
         return returnCode;
     } 
@@ -37,11 +46,11 @@ public class OtherReturnStorageEntity {
         this.returnCode = returnCode; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
@@ -53,11 +62,11 @@ public class OtherReturnStorageEntity {
         this.createdBy = createdBy; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -84,6 +93,5 @@ public class OtherReturnStorageEntity {
     public void setOtherInSCode(String otherInSCode) {
         this.otherInSCode = otherInSCode; 
     } 
-
 
 }

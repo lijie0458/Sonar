@@ -5,7 +5,9 @@ import com.dogfood.aa20240808.domain.enumeration.IdentitySourceStateEnumEnum;
 public class IAMGetConfigCustomizeControllerDto {
 
     public IdentitySourceStateEnumEnum state;
+
     public String type;
+
     public IdentitySourceStateEnumEnum getState() {
         return state;
     } 
@@ -21,6 +23,5 @@ public class IAMGetConfigCustomizeControllerDto {
     public void setType(String type) {
         this.type = type; 
     } 
-
 
 }

@@ -8,12 +8,27 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.repository.LoadCountGoodsReturnedNoteCustomizeServiceMapper; 
 
+/**
+ * 查询当前t退货单条数，创建退货入库用作单号
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCountGoodsReturnedNoteCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCountGoodsReturnedNoteCustomizeServiceMapper loadCountGoodsReturnedNoteCustomizeServiceMapper;
+
     public String loadCountGoodsReturnedNote() {
         String StringNum = "";
         String DateTime = "";
@@ -32,6 +47,5 @@ public class LoadCountGoodsReturnedNoteCustomizeService {
 
         return result;
     } 
-
 
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 public class Auth_library_templateEncryptTempMapControllerDto {
 
     public Map<String, String> map;
+
     public Map<String, String> getMap() {
         return map;
     } 
@@ -12,6 +13,5 @@ public class Auth_library_templateEncryptTempMapControllerDto {
     public void setMap(Map<String, String> map) {
         this.map = map; 
     } 
-
 
 }

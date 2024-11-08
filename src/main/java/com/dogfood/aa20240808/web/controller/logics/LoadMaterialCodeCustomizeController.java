@@ -16,11 +16,11 @@ public class LoadMaterialCodeCustomizeController {
 
     @Autowired
     private LoadMaterialCodeCustomizeService loadMaterialCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "aeebb48f6d6246048f8128452332456e",rules = { @ValidationRule(value = "required",targetName = "body.code",argvs = "",errorMsg = "分类编码不能为空"),@ValidationRule(value = "^az09-$",targetName = "body.code",argvs = "",errorMsg = "")})})
     @PostMapping("/api/lcplogics/loadMaterialCode")
     public ApiReturn<Boolean> loadMaterialCode(@RequestBody LoadMaterialCodeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadMaterialCodeCustomizeService.loadMaterialCode(body.getCode()));
     } 
-
 
 }

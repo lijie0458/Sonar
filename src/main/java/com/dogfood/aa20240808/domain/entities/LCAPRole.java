@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
 import com.dogfood.aa20240808.domain.enumeration.ViewEditPermissionEnumEnum; 
+import java.time.ZonedDateTime; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,31 +16,43 @@ public class LCAPRole {
 
     @Label("主键")
     public Long id;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("唯一标识")
     public String uuid;
+
     @Label("角色名称")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String name;
+
     @Label("角色描述")
     public String description;
+
     @Label("角色状态")
     public Boolean roleStatus = true;
+
     @Label("是否可编辑")
     public Boolean editable = true;
+
     @Label("查看数据权限")
     public ViewEditPermissionEnumEnum viewDataPermission;
+
     @Label("编辑数据权限")
     public ViewEditPermissionEnumEnum editDataPermission;
+
     public Long getId() {
         return id;
     } 
@@ -47,19 +61,19 @@ public class LCAPRole {
         this.id = id; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -134,6 +148,5 @@ public class LCAPRole {
     public void setEditDataPermission(ViewEditPermissionEnumEnum editDataPermission) {
         this.editDataPermission = editDataPermission; 
     } 
-
 
 }

@@ -5,8 +5,11 @@ import java.util.List;
 public class LCAPBatchUpdateDeptUserCustomizeControllerDto {
 
     public String oldDeptId;
+
     public List<String> userIds;
+
     public String deptId;
+
     public String getOldDeptId() {
         return oldDeptId;
     } 
@@ -30,6 +33,5 @@ public class LCAPBatchUpdateDeptUserCustomizeControllerDto {
     public void setDeptId(String deptId) {
         this.deptId = deptId; 
     } 
-
 
 }

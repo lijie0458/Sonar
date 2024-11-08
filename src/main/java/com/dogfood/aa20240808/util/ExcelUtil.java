@@ -1,14 +1,20 @@
 package com.dogfood.aa20240808.util;
 
-import com.dogfood.aa20240808.config.DateTimeFormatConfiguration;
-import com.dogfood.aa20240808.domain.enumeration.ErrorCodeEnum;
-import com.dogfood.aa20240808.exception.HttpCodeException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.owasp.encoder.Encode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -16,15 +22,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.dogfood.aa20240808.config.DateTimeFormatConfiguration;
+import com.dogfood.aa20240808.exception.HttpCodeException;
+
 import java.beans.PropertyDescriptor;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * TODO change to EasyExcel
@@ -40,12 +60,9 @@ public class ExcelUtil {
     private static final DateTimeFormatter dateFormatter2 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     private static String enumPrefix = "FIELD_";
 
-    private ExcelUtil() {
-    }
-
+    private ExcelUtil() {}
     /**
      * register pd, for easy read or write
-     *
      * @param domainClass
      */
     public static Map<String, PropertyDescriptor> registerDomainClass(Class domainClass) {
@@ -144,42 +161,11 @@ public class ExcelUtil {
             String tempDir = System.getProperty("java.io.tmpdir");
             String uniqueId = UUID.randomUUID().toString();
             String storeFileName = tempDir + /* File.separator +*/uniqueId + ".XLSX";
-
-            uploadPathFilter(storeFileName);
             workbook.write(new FileOutputStream(storeFileName));
             return storeFileName;
         }
     }
-    //文件路径安全过滤
-    public static void uploadPathFilter(String uploadPath) {
-        if(!StringUtils.isEmpty(uploadPath)) {
-            // 文件路径 安全处理 (防止XSS攻击)
-            uploadPath = Encode.forHtml(uploadPath);
 
-            Pattern pattern = Pattern.compile("^[a-zA-Z0-9_/-]*$");
-            Matcher matcher = pattern.matcher(uploadPath);
-            if (!matcher.matches()) {
-                // 路径不合法，抛出异常或返回错误提示
-                throw new HttpCodeException(HttpStatus.NOT_FOUND.value(), ErrorCodeEnum.FILEPATH_NOT_ALLOWED.desc);
-            }
-
-            // 对上传路径进行合法性校验
-            String[] pathSegs = uploadPath.split("/");
-            for (String seg : pathSegs) {
-                if (seg.equals("..")) {
-                    throw new HttpCodeException(ErrorCodeEnum.FILEPATH_NOT_ALLOWED.desc);
-                }
-                if (seg.equals(".")) {
-                    throw new HttpCodeException(ErrorCodeEnum.FILEPATH_NOT_ALLOWED.desc);
-                }
-            }
-
-            // 限制上传路径的长度
-            if (pathSegs.length > 255) {
-                throw new HttpCodeException(ErrorCodeEnum.FILEPATH_TOO_LONG.desc);
-            }
-        }
-    }
     private static <T> void convertDataToRow(T data, Row row, List<PropertyDescriptor> propertyDescriptors) {
         int cellNum = 0;
         for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
@@ -269,7 +255,7 @@ public class ExcelUtil {
         int cellNum = firstRow.getLastCellNum();
         for (int i = 0; i < cellNum; i++) {
             String titleName = firstRow.getCell(i).getStringCellValue().trim();
-            String field = (entityTitleNameMap == null ? "" : entityTitleNameMap.get(titleName));
+            String field = ( entityTitleNameMap == null ? "" : entityTitleNameMap.get(titleName) );
             if (!StringUtils.isEmpty(field)) {
                 fields.add(field);
             } else {
@@ -374,7 +360,7 @@ public class ExcelUtil {
         for (int i = 0; i < fields.size(); i++) {
             Cell cell = row.getCell(i);
             String fileName = fields.get(i);
-            PropertyDescriptor propertyDescriptor = propertyDescriptorMap.get(fileName) == null ? propertyDescriptorMap.get(StringUtils.capitalize(fileName)) : propertyDescriptorMap.get(fileName);
+            PropertyDescriptor propertyDescriptor = propertyDescriptorMap.get(fileName) == null ? propertyDescriptorMap.get(StringUtils.capitalize(fileName)): propertyDescriptorMap.get(fileName);
             if (null == propertyDescriptor) {
                 continue;
             }

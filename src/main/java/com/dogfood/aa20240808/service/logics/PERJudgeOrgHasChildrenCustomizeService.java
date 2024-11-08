@@ -9,12 +9,27 @@ import com.dogfood.aa20240808.repository.PERJudgeOrgHasChildrenCustomizeServiceM
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * PER-判断组织是否有子组织
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class PERJudgeOrgHasChildrenCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private PERJudgeOrgHasChildrenCustomizeServiceMapper pERJudgeOrgHasChildrenCustomizeServiceMapper;
+
     public Boolean pERJudgeOrgHasChildren(Long id) {
         Long childrenNum = 0L;
         Boolean result = false;
@@ -34,6 +49,5 @@ public class PERJudgeOrgHasChildrenCustomizeService {
 
         return result;
     } 
-
 
 }

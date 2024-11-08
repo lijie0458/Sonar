@@ -14,11 +14,11 @@ public class PERSaveUserAndAddOrgCustomizeController {
 
     @Autowired
     private PERSaveUserAndAddOrgCustomizeService pERSaveUserAndAddOrgCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "3d6f1853-e94f-455e-a9ad-d2c23d116812",rules = { }),@ValidationRuleGroup(value = "aff521fe-576f-4f7c-bad2-97a6a3675035",rules = { })})
     @PostMapping("/api/lcplogics/PERSaveUserAndAddOrg")
     public void pERSaveUserAndAddOrg(@RequestBody PERSaveUserAndAddOrgCustomizeControllerDto body) throws Exception {
         pERSaveUserAndAddOrgCustomizeService.pERSaveUserAndAddOrg(body.getUser(), body.getUserOrgMapping(), body.getIsUpdate(), body.getRoleIdList());
     } 
-
 
 }

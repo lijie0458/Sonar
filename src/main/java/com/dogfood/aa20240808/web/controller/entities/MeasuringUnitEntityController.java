@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.MeasuringUnitEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.MeasuringUnitEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class MeasuringUnitEntityController {
     @Resource
     private MeasuringUnitEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "1154b596-5e39-4ee4-a66b-5a8f22b312e5",rules = { }),@ValidationRuleGroup(value = "8d35ed813df44b6d8816cbd5af647419",rules = { }),@ValidationRuleGroup(value = "a46743e7-7b12-4f10-ab6e-ed42f64687d5",rules = { }),@ValidationRuleGroup(value = "711ce533-4067-452a-b929-b05e08cf76ed",rules = { }),@ValidationRuleGroup(value = "01870b16-8560-46a6-a367-a611d4112be3",rules = { }),@ValidationRuleGroup(value = "984bd96a-1121-40c9-9312-6ca2903a992d",rules = { }),@ValidationRuleGroup(value = "903c81a71dd54c3d940bd7781800e03a",rules = { }),@ValidationRuleGroup(value = "72c40efc-9237-4f0c-b686-56d8bc1aa848",rules = { }),@ValidationRuleGroup(value = "1555d80b-8cd4-4be7-a16d-0173e895bdc2",rules = { }),@ValidationRuleGroup(value = "689fd06f-a7c7-45b3-8a06-3318362fe426",rules = { }),@ValidationRuleGroup(value = "59a08c927ad0486d8b75dd7cc04ad55d",rules = { }),@ValidationRuleGroup(value = "657eceb9-2cfb-4183-930e-67cca3ba8e4f",rules = { }),@ValidationRuleGroup(value = "0f195294-c925-40e9-805a-20b83326c124",rules = { }),@ValidationRuleGroup(value = "e5704775-380f-4143-9ac0-103fe4ff722b",rules = { })})
+    @GetMapping("/api/measuring-unit")
+    public ApiReturn<MeasuringUnitEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class MeasuringUnitEntityController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "1154b596-5e39-4ee4-a66b-5a8f22b312e5",rules = { }),@ValidationRuleGroup(value = "8d35ed813df44b6d8816cbd5af647419",rules = { }),@ValidationRuleGroup(value = "a46743e7-7b12-4f10-ab6e-ed42f64687d5",rules = { }),@ValidationRuleGroup(value = "711ce533-4067-452a-b929-b05e08cf76ed",rules = { }),@ValidationRuleGroup(value = "01870b16-8560-46a6-a367-a611d4112be3",rules = { }),@ValidationRuleGroup(value = "984bd96a-1121-40c9-9312-6ca2903a992d",rules = { }),@ValidationRuleGroup(value = "903c81a71dd54c3d940bd7781800e03a",rules = { }),@ValidationRuleGroup(value = "72c40efc-9237-4f0c-b686-56d8bc1aa848",rules = { }),@ValidationRuleGroup(value = "1555d80b-8cd4-4be7-a16d-0173e895bdc2",rules = { }),@ValidationRuleGroup(value = "689fd06f-a7c7-45b3-8a06-3318362fe426",rules = { }),@ValidationRuleGroup(value = "59a08c927ad0486d8b75dd7cc04ad55d",rules = { }),@ValidationRuleGroup(value = "657eceb9-2cfb-4183-930e-67cca3ba8e4f",rules = { }),@ValidationRuleGroup(value = "0f195294-c925-40e9-805a-20b83326c124",rules = { }),@ValidationRuleGroup(value = "e5704775-380f-4143-9ac0-103fe4ff722b",rules = { })})
-    @GetMapping("/api/measuring-unit")
-    public ApiReturn<MeasuringUnitEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class MeasuringUnitEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

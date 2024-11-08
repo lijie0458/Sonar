@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
 import com.dogfood.aa20240808.domain.enumeration.UserStatusEnumEnum; 
+import java.time.ZonedDateTime; 
 import com.dogfood.aa20240808.domain.enumeration.UserSourceEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,38 +16,52 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class LCAPUser {
 
     @Label("主键")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("用户id")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String userId;
+
     @Label("用户名")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String userName;
+
     @Label("登录密码")
     public String password;
+
     @Label("手机号")
     public String phone;
+
     @Label("邮箱")
     public String email;
+
     @Label("昵称")
     public String displayName;
+
     @Label("状态")
     public UserStatusEnumEnum status = UserStatusEnumEnum.FIELD_Normal;
+
     @Label("用户来源")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public UserSourceEnumEnum source = UserSourceEnumEnum.FIELD_Normal;
+
     @Label("组织id")
     public Long department_Id;
+
     @Label("上级领导")
     public String directLeaderId;
+
     public Boolean isFirstLogin = true;
+
     public Long getId() {
         return id;
     } 
@@ -54,19 +70,19 @@ public class LCAPUser {
         this.id = id; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -157,6 +173,5 @@ public class LCAPUser {
     public void setIsFirstLogin(Boolean isFirstLogin) {
         this.isFirstLogin = isFirstLogin; 
     } 
-
 
 }

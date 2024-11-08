@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface LCAPDepartmentMapper extends ReferenceHandleMapper {
 
     int insert(LCAPDepartment bean);
+
     int batchInsert(List<LCAPDepartment> beans);
-    List<LCAPDepartment> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(LCAPDepartment bean, List<String> updateFields);
-    int batchUpdate(List<LCAPDepartment> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    LCAPDepartment selectOne(Long id);
-
-    int createOrUpdate(LCAPDepartment bean);
     int updateBy(LCAPDepartment bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(LCAPDepartment bean);
+
+    int update(LCAPDepartment bean, List<String> updateFields);
+
+    int batchUpdate(List<LCAPDepartment> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    LCAPDepartment selectOne(Long id);
+
+
+    List<LCAPDepartment> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

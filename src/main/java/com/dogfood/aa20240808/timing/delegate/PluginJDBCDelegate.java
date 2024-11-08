@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.*;
 
 import static org.quartz.JobKey.jobKey;
@@ -2150,11 +2151,11 @@ public class PluginJDBCDelegate extends StdJDBCDelegate {
     protected void setBytes(PreparedStatement ps, int index, ByteArrayOutputStream baos) throws SQLException {
         byte[] data = (baos == null) ? null : baos.toByteArray();
         try {
-            // 默认使用setBytes方法，可能有序驱动不支持这个方法，则再次尝试使用setObject(index, data, java.sql.Types.BLOB);
+            // 默认使用setBytes方法，可能有序驱动不支持这个方法，则再次尝试使用setObject(index, data, Types.BLOB);
             ps.setBytes(index, data);
         } catch (SQLException e) {
             // 如果上面的默认方法出错则使用这个方法尝试
-            ps.setObject(index, data, java.sql.Types.BLOB);
+            ps.setObject(index, data, Types.BLOB);
         }
     }
 

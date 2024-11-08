@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5DA3D583870666F723936098E7C05C85; 
 import java.util.List; 
 import com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
@@ -14,19 +15,35 @@ import com.dogfood.aa20240808.repository.LoadMeasuringUnitTableViewCustomizeServ
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadMeasuringUnitTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadMeasuringUnitTableViewCustomizeServiceMapper loadMeasuringUnitTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5DA3D583870666F723936098E7C05C85 loadMeasuringUnitTableView(Long page, Long size, String sort, String order, MeasuringUnitEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5DA3D583870666F723936098E7C05C85 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5DA3D583870666F723936098E7C05C85();
-        result = CommonFunctionUtil.createListPage(loadMeasuringUnitTableViewCustomizeServiceMapper.getAnonymousStructure_E4D66C6B00115C2619796053521EA8C0(filter, page, size, getTableField("AnonymousStructure_E4D66C6B00115C2619796053521EA8C0", sort), order), loadMeasuringUnitTableViewCustomizeServiceMapper.countAnonymousStructure_E4D66C6B00115C2619796053521EA8C0(filter, page, size, getTableField("AnonymousStructure_E4D66C6B00115C2619796053521EA8C0", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5DA3D583870666F723936098E7C05C85.class); 
+
+    public AnonymousStructure_5DA3D583870666F723936098E7C05C85 loadMeasuringUnitTableView(Long page, Long size, String sort, String order, MeasuringUnitEntity filter) {
+        AnonymousStructure_5DA3D583870666F723936098E7C05C85 result = new AnonymousStructure_5DA3D583870666F723936098E7C05C85();
+        result = CommonFunctionUtil.createListPage(loadMeasuringUnitTableViewCustomizeServiceMapper.getAnonymousStructure_E4D66C6B00115C2619796053521EA8C0(filter, page, size, getTableField("AnonymousStructure_E4D66C6B00115C2619796053521EA8C0", sort), order), loadMeasuringUnitTableViewCustomizeServiceMapper.countAnonymousStructure_E4D66C6B00115C2619796053521EA8C0(filter, page, size, getTableField("AnonymousStructure_E4D66C6B00115C2619796053521EA8C0", sort), order).intValue(), AnonymousStructure_5DA3D583870666F723936098E7C05C85.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadMeasuringUnitTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_E4D66C6B00115C2619796053521EA8C0", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_E4D66C6B00115C2619796053521EA8C0").put("measuringUnit.id", "`measuring_unit`.`id`");
@@ -75,6 +92,5 @@ public class LoadMeasuringUnitTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

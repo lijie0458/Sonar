@@ -4,6 +4,7 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class GetOtherInSDetailsByCodeCustomizeControllerDto {
 
     public String code;
+
     public String getCode() {
         return code;
     } 
@@ -11,6 +12,5 @@ public class GetOtherInSDetailsByCodeCustomizeControllerDto {
     public void setCode(String code) {
         this.code = code; 
     } 
-
 
 }

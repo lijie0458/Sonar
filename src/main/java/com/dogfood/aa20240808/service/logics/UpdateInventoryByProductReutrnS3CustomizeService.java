@@ -11,23 +11,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.repository.UpdateInventoryByProductReutrnS3CustomizeServiceMapper; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7; 
 
+/**
+ * 更新库存在采购退货退回
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class UpdateInventoryByProductReutrnS3CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private UpdateInventoryByProductReutrnS3CustomizeServiceMapper updateInventoryByProductReutrnS3CustomizeServiceMapper;
+
     @Autowired
     private InventoryEntityService inventoryEntityService;
+
     public void updateInventoryByProductReutrnS3(String goodsReturnCode, Boolean addOrReduce) {
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7> variable1 = new ArrayList<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7> variable2 = new ArrayList<>();
+        List<AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7> variable1 = new ArrayList<>();
+        List<AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7> variable2 = new ArrayList<>();
         Boolean variable3 = false;
         variable1 = updateInventoryByProductReutrnS3CustomizeServiceMapper.getAnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7(goodsReturnCode); 
-        CommonFunctionUtil.clear(variable2);
+        CommonFunctionUtil.clear(variable2, "shallow");
         for (Long index = 0L; index < variable1.size(); index++) {
-            com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7 item = variable1.get(index.intValue());
+            AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7 item = variable1.get(index.intValue());
             variable3 = false; 
             if (CommonFunctionUtil.hasValue(item.inventory.lotNumber, item.bePutInStorageDetails.batchNumber)) {
             } else {
@@ -51,7 +68,7 @@ public class UpdateInventoryByProductReutrnS3CustomizeService {
 
         if ((CommonFunctionUtil.length(variable2).compareTo(0L) > 0)) {
             for (Long index = 0L; index < variable2.size(); index++) {
-                com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7 item = variable2.get(index.intValue());
+                AnonymousStructure_FD131DC799F7188AD2865421C2FAC4D7 item = variable2.get(index.intValue());
                 if (addOrReduce) {
                     item.inventory.stockQuantity = (item.inventory.stockQuantity.add(item.goodsReturnedNoteDetails.bePutInStorageQuantity)); 
                 } else {
@@ -66,6 +83,5 @@ public class UpdateInventoryByProductReutrnS3CustomizeService {
 
         return ;
     } 
-
 
 }

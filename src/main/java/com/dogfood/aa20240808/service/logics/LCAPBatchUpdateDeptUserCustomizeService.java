@@ -7,24 +7,41 @@ import com.dogfood.aa20240808.domain.entities.LCAPUserDeptMapping;
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.repository.LCAPBatchUpdateDeptUserCustomizeServiceMapper; 
 import java.util.Arrays; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2; 
 import org.slf4j.Logger; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.service.entities.LCAPUserDeptMappingService; 
 
+/**
+ * 批量从部门调整成员
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LCAPBatchUpdateDeptUserCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LCAPBatchUpdateDeptUserCustomizeServiceMapper lCAPBatchUpdateDeptUserCustomizeServiceMapper;
+
     @Autowired
     private LCAPUserDeptMappingService lCAPUserDeptMappingService;
+
     public void lCAPBatchUpdateDeptUser(List<String> userIds, String deptId, String oldDeptId) {
         List<LCAPUserDeptMapping> userDeptMapList = new ArrayList<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> userDeptMapListTemp = new ArrayList<>();
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> newUserDeptMapList = new ArrayList<>();
+        List<AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> userDeptMapListTemp = new ArrayList<>();
+        List<AnonymousStructure_AEEB828FDE3AE90342EE6479C9466DF2> newUserDeptMapList = new ArrayList<>();
         List<LCAPUserDeptMapping> updateMapList = new ArrayList<>();
         List<Long> removeDeptMap = new ArrayList<>();
         List<String> userIdList = new ArrayList<>();
@@ -74,6 +91,5 @@ public class LCAPBatchUpdateDeptUserCustomizeService {
 
         return ;
     } 
-
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 public class LoadPurchaseRequestcountCustomizeControllerDto {
 
     public List<Long> Code;
+
     public List<Long> getCode() {
         return Code;
     } 
@@ -12,6 +13,5 @@ public class LoadPurchaseRequestcountCustomizeControllerDto {
     public void setCode(List<Long> Code) {
         this.Code = Code; 
     } 
-
 
 }

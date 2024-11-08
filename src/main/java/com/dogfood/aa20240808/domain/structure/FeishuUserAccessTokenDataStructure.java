@@ -9,16 +9,22 @@ public class FeishuUserAccessTokenDataStructure {
 
     @Label("字段access_token即user_access_token，用于获取用户资源和访问某些open api")
     public String access_token;
+
     @Label("刷新user_access_token时使用的 refresh_token")
     public String refresh_token;
+
     @Label("token 类型，固定值")
     public String token_type;
+
     @Label("user_access_token有效期，单位: 秒，有效时间两个小时左右，需要以返回结果为准")
     public Long expires_in;
+
     @Label("refresh_token有效期，单位: 秒，一般是30天左右，需要以返回结果为准")
     public Long refresh_expires_in;
+
     @Label("用户授予app的权限全集")
     public String scope;
+
     public String getAccess_token() {
         return access_token;
     } 
@@ -66,6 +72,5 @@ public class FeishuUserAccessTokenDataStructure {
     public void setScope(String scope) {
         this.scope = scope; 
     } 
-
 
 }

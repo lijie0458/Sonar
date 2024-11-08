@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_90BB04F104917B26166C550B4A1B0632; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
@@ -14,19 +15,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LCAPGetUserTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LCAPGetUserTableViewCustomizeServiceMapper lCAPGetUserTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_90BB04F104917B26166C550B4A1B0632 lCAPGetUserTableView(Long page, Long size, String sort, String order, LCAPUser filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_90BB04F104917B26166C550B4A1B0632 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_90BB04F104917B26166C550B4A1B0632();
-        result = CommonFunctionUtil.createListPage(lCAPGetUserTableViewCustomizeServiceMapper.getAnonymousStructure_47C167E7217746A55100F50A57F637C0(filter, page, size, getTableField("AnonymousStructure_47C167E7217746A55100F50A57F637C0", sort), order), lCAPGetUserTableViewCustomizeServiceMapper.countAnonymousStructure_47C167E7217746A55100F50A57F637C0(filter, page, size, getTableField("AnonymousStructure_47C167E7217746A55100F50A57F637C0", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_90BB04F104917B26166C550B4A1B0632.class); 
+
+    public AnonymousStructure_90BB04F104917B26166C550B4A1B0632 lCAPGetUserTableView(Long page, Long size, String sort, String order, LCAPUser filter) {
+        AnonymousStructure_90BB04F104917B26166C550B4A1B0632 result = new AnonymousStructure_90BB04F104917B26166C550B4A1B0632();
+        result = CommonFunctionUtil.createListPage(lCAPGetUserTableViewCustomizeServiceMapper.getAnonymousStructure_47C167E7217746A55100F50A57F637C0(filter, page, size, getTableField("AnonymousStructure_47C167E7217746A55100F50A57F637C0", sort), order), lCAPGetUserTableViewCustomizeServiceMapper.countAnonymousStructure_47C167E7217746A55100F50A57F637C0(filter, page, size, getTableField("AnonymousStructure_47C167E7217746A55100F50A57F637C0", sort), order).intValue(), AnonymousStructure_90BB04F104917B26166C550B4A1B0632.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LCAPGetUserTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_47C167E7217746A55100F50A57F637C0", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_47C167E7217746A55100F50A57F637C0").put("lCAPUser.id", "`lcap_user_a6d592`.`id`");
@@ -89,6 +106,5 @@ public class LCAPGetUserTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

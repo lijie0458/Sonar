@@ -5,11 +5,17 @@ import com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity;
 public class LoadSupplierTableView1CustomizeControllerDto {
 
     public SupplierDetailsEntity filter;
+
     public Long SupplierId;
+
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public SupplierDetailsEntity getFilter() {
         return filter;
     } 
@@ -57,6 +63,5 @@ public class LoadSupplierTableView1CustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

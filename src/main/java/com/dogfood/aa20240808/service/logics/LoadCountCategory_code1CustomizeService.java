@@ -8,12 +8,27 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.repository.LoadCountCategory_code1CustomizeServiceMapper; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 查询当前分类编码下面有多少条数据
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCountCategory_code1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCountCategory_code1CustomizeServiceMapper loadCountCategory_code1CustomizeServiceMapper;
+
     public String loadCountCategory_code1(String code) {
         Long num = 0L;
         String StringNum = "";
@@ -32,6 +47,5 @@ public class LoadCountCategory_code1CustomizeService {
 
         return result;
     } 
-
 
 }

@@ -16,7 +16,9 @@ public enum OtherInStorageStateEnumEnum implements BaseEnum<OtherInStorageStateE
     FIELD_2("2", "已审核"),; 
 
     public final String code;
+
     public final String desc;
+
 OtherInStorageStateEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ OtherInStorageStateEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class OtherInStorageStateEnumEnumDeserializer extends JsonDeserializer<OtherInStorageStateEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ OtherInStorageStateEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

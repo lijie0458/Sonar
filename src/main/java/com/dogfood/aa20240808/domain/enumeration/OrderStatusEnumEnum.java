@@ -16,7 +16,9 @@ public enum OrderStatusEnumEnum implements BaseEnum<OrderStatusEnumEnum, String>
     FIELD_2("2", "待下单"),; 
 
     public final String code;
+
     public final String desc;
+
 OrderStatusEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ OrderStatusEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class OrderStatusEnumEnumDeserializer extends JsonDeserializer<OrderStatusEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ OrderStatusEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

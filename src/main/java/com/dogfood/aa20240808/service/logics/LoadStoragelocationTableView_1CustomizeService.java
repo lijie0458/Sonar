@@ -7,6 +7,7 @@ import java.util.List;
 import com.dogfood.aa20240808.domain.entities.Storage_locationEntity; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48; 
 import java.util.Map; 
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
@@ -14,19 +15,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadStoragelocationTableView_1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadStoragelocationTableView_1CustomizeServiceMapper loadStoragelocationTableView_1CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48 loadStoragelocationTableView_1(Long page, Long size, String sort, String order, Storage_locationEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48();
-        result = CommonFunctionUtil.createListPage(loadStoragelocationTableView_1CustomizeServiceMapper.getAnonymousStructure_B88F011A8230B3D8558EA571687E646A(filter, page, size, getTableField("AnonymousStructure_B88F011A8230B3D8558EA571687E646A", sort), order), loadStoragelocationTableView_1CustomizeServiceMapper.countAnonymousStructure_B88F011A8230B3D8558EA571687E646A(filter, page, size, getTableField("AnonymousStructure_B88F011A8230B3D8558EA571687E646A", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48.class); 
+
+    public AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48 loadStoragelocationTableView_1(Long page, Long size, String sort, String order, Storage_locationEntity filter) {
+        AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48 result = new AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48();
+        result = CommonFunctionUtil.createListPage(loadStoragelocationTableView_1CustomizeServiceMapper.getAnonymousStructure_B88F011A8230B3D8558EA571687E646A(filter, page, size, getTableField("AnonymousStructure_B88F011A8230B3D8558EA571687E646A", sort), order), loadStoragelocationTableView_1CustomizeServiceMapper.countAnonymousStructure_B88F011A8230B3D8558EA571687E646A(filter, page, size, getTableField("AnonymousStructure_B88F011A8230B3D8558EA571687E646A", sort), order).intValue(), AnonymousStructure_5F3DE1F8D6FB3D900CB2B28F2CDD8E48.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadStoragelocationTableView_1CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_B88F011A8230B3D8558EA571687E646A", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_B88F011A8230B3D8558EA571687E646A").put("storage_location.id", "`storage_location`.`id`");
@@ -98,6 +115,5 @@ public class LoadStoragelocationTableView_1CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

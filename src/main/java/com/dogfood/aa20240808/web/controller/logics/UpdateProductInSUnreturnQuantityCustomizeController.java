@@ -14,11 +14,11 @@ public class UpdateProductInSUnreturnQuantityCustomizeController {
 
     @Autowired
     private UpdateProductInSUnreturnQuantityCustomizeService updateProductInSUnreturnQuantityCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "5dccdc76-8112-44c5-9787-31c1ebe0c47c",rules = { })})
     @PostMapping("/api/lcplogics/updateProductInSUnreturnQuantity")
     public void updateProductInSUnreturnQuantity(@RequestBody UpdateProductInSUnreturnQuantityCustomizeControllerDto body) throws Exception {
         updateProductInSUnreturnQuantityCustomizeService.updateProductInSUnreturnQuantity(body.getProductReturnCode(), body.getAddOrReduce());
     } 
-
 
 }

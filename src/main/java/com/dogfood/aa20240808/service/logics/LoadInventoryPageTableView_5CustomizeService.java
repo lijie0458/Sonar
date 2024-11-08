@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.ArrayList; 
 import com.dogfood.aa20240808.domain.entities.InventoryEntity; 
 import java.util.List; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
 import com.dogfood.aa20240808.repository.LoadInventoryPageTableView_5CustomizeServiceMapper; 
@@ -15,30 +17,47 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6CB10721F5792DE379A9BB7841F3A2C2; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadInventoryPageTableView_5CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadInventoryPageTableView_5CustomizeServiceMapper loadInventoryPageTableView_5CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109 loadInventoryPageTableView_5(Long page, Long size, String sort, String order, InventoryEntity filter) {
+
+    public AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109 loadInventoryPageTableView_5(Long page, Long size, String sort, String order, InventoryEntity filter) {
         Long page1 = 0L;
-        LambdaParamWrapper<List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6CB10721F5792DE379A9BB7841F3A2C2>> variable1 = new LambdaParamWrapper<>(new ArrayList<>());
-        LambdaParamWrapper<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668> variable2 = new LambdaParamWrapper<>(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668());
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109();
-        variable2.param = CommonFunctionUtil.createListPage(loadInventoryPageTableView_5CustomizeServiceMapper.getAnonymousStructure_A5883BF58719F0F4646C4980B8917913(filter, page, size, getTableField("AnonymousStructure_A5883BF58719F0F4646C4980B8917913", sort), order), loadInventoryPageTableView_5CustomizeServiceMapper.countAnonymousStructure_A5883BF58719F0F4646C4980B8917913(filter, page, size, getTableField("AnonymousStructure_A5883BF58719F0F4646C4980B8917913", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668.class); 
+        LambdaParamWrapper<List<AnonymousStructure_6CB10721F5792DE379A9BB7841F3A2C2>> variable1 = new LambdaParamWrapper<>(new ArrayList<>());
+        LambdaParamWrapper<AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668> variable2 = new LambdaParamWrapper<>(new AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668());
+        AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109 result = new AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109();
+        variable2.param = CommonFunctionUtil.createListPage(loadInventoryPageTableView_5CustomizeServiceMapper.getAnonymousStructure_A5883BF58719F0F4646C4980B8917913(filter, page, size, getTableField("AnonymousStructure_A5883BF58719F0F4646C4980B8917913", sort), order), loadInventoryPageTableView_5CustomizeServiceMapper.countAnonymousStructure_A5883BF58719F0F4646C4980B8917913(filter, page, size, getTableField("AnonymousStructure_A5883BF58719F0F4646C4980B8917913", sort), order).intValue(), AnonymousStructure_E0FACE5BA8C381D6DAE64B97C6E83668.class); 
         page1 = ((page - 1L) * size); 
         variable1.param = loadInventoryPageTableView_5CustomizeServiceMapper.getSql1(filter, size, page1); 
-        result = CommonFunctionUtil.newWithInitiation(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109(), _bean442 -> {
-    _bean442.list = variable1.param; 
-    _bean442.total = variable2.param.total; 
-    _bean442.total = _bean442.total; 
+        result = CommonFunctionUtil.newWithInitiation(new AnonymousStructure_0DA40FB2FE2E7045207FC997F338F109(), _bean1 -> {
+    _bean1.list = variable1.param; 
+    _bean1.total = variable2.param.total; 
+    _bean1.total = _bean1.total; 
 } ); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadInventoryPageTableView_5CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_A5883BF58719F0F4646C4980B8917913", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_A5883BF58719F0F4646C4980B8917913").put("inventory.id", "`inventory`.`id`");
@@ -139,6 +158,5 @@ public class LoadInventoryPageTableView_5CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

@@ -10,10 +10,13 @@ public class WarehouseinventoryStructure {
 
     @Label("批号id")
     public Long batchNumberId;
+
     @Label("数量")
     public BigDecimal number;
+
     @Label("仓库id")
     public Long warehouse;
+
     public Long getBatchNumberId() {
         return batchNumberId;
     } 
@@ -37,6 +40,5 @@ public class WarehouseinventoryStructure {
     public void setWarehouse(Long warehouse) {
         this.warehouse = warehouse; 
     } 
-
 
 }

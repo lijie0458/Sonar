@@ -1,28 +1,30 @@
 package com.dogfood.aa20240808.web.controller;
 
-import com.dogfood.aa20240808.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dogfood.aa20240808.config.Constants;
 import com.dogfood.aa20240808.config.LcpProperties;
 import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.domain.enumeration.ErrorCodeEnum;
 import com.dogfood.aa20240808.exception.HttpCodeException;
-import com.dogfood.aa20240808.filestorage.FileStorageClient;
-import com.dogfood.aa20240808.filestorage.FileStorageClientManager;
-import com.dogfood.aa20240808.util.DomainUtil;
-import com.dogfood.aa20240808.util.FileUploadUtils;
-import com.dogfood.aa20240808.util.NetWorkUtils;
+import com.dogfood.aa20240808.fileframwork.FileFrameworkComponent;
+import com.dogfood.aa20240808.fileframwork.FileUploadParam;
+import com.dogfood.aa20240808.util.*;
 import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.interceptor.RateLimiterSimpleWindow;
+import com.netease.cloud.codewave.file.connector.CodeWaveFileConstants;
+import com.netease.cloud.codewave.file.connector.FileConnectionManager;
+import com.netease.cloud.codewave.file.connector.FileDownloadResult;
+import com.netease.cloud.codewave.file.connector.utils.CodeWaveFileUrl;
+import com.netease.cloud.codewave.file.connector.utils.CodeWaveFileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.owasp.encoder.Encode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -30,8 +32,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -51,7 +51,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
 
 /**
  * 文件上传controller
@@ -70,14 +69,13 @@ import java.util.zip.ZipOutputStream;
  */
 @RestController
 public class FileUploadController {
+    private final static String SINGLE_DOWNLOAD = "singleDownload";
     @Resource
     private LcpProperties lcpProperties;
     @Resource
     private ProxyController proxyController;
     @Resource
     private ObjectMapper objectMapper;
-    @Resource
-    private FileStorageClientManager spiManager;
 
     @Resource
     private MessageSource messageSource;
@@ -101,18 +99,22 @@ public class FileUploadController {
     @Value("${spring.application.id}")
     private String appId;
 
+    @Autowired
+    private FileFrameworkComponent fileFrameworkComponent;
+
     private final Logger log = LoggerFactory.getLogger(FileUploadController.class);
 
     @PostMapping(value = {FileUploadUtils.UPLOAD_API_PATH_PREFIX + "/**", "/gateway/{service}/api/v1/app/upload"})
     public void upload(@RequestBody(required = false) String body,
-                            @RequestParam List<MultipartFile> file,
-                            @PathVariable(value = "service", required = false) String service,
-                            HttpServletRequest request,
-                            HttpServletResponse response) throws Exception {
+                       @RequestParam List<MultipartFile> file,
+                       @PathVariable(value = "service", required = false) String service,
+                       @RequestHeader(value = "file-connection-group", required = false) String fileConnectionGroup,
+                       HttpServletRequest request,
+                       HttpServletResponse response) throws Exception {
 
         // 获取上传文件的存储类型
-        String fsType = request.getParameter(Constants.UPLOAD_PARAMETER_FS_TYPE);
-        fsType = ObjectUtils.defaultIfNull(fsType, lcpProperties.getUpload().getSinkType());
+//        String fsType = request.getParameter(Constants.UPLOAD_PARAMETER_FS_TYPE);
+//        fsType = ObjectUtils.defaultIfNull(fsType, lcpProperties.getUpload().getSinkType());
 
         // 获取上传文件的访问权限
         String access = StringUtils.defaultString(request.getHeader(Constants.UPLOAD_HEADER_ACCESS), Constants.UPLOAD_ACCESS_PUBLIC);
@@ -144,59 +146,77 @@ public class FileUploadController {
         Boolean isCompress = Boolean.parseBoolean(request.getParameter(Constants.UPLOAD_PARAMETER_FS_IS_COMPRESS));
 
         // 获取文件存储客户端
-        FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
+//        FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
 
         // 请求参数中获取 请求路径
         String path = StringUtils.defaultIfBlank(request.getParameter(Constants.UPLOAD_PARAMETER_PATH), "");
 
-        if (null != fileSystemSpi) {
-            List<String> filePaths = new ArrayList<>(file.size());
-            for (MultipartFile multipartFile : file) {
-                try (InputStream inputStream = multipartFile.getInputStream()) {
+        List<String> filePaths = new ArrayList<>(file.size());
+        for (MultipartFile multipartFile : file) {
+            String contentType = multipartFile.getContentType();
+            try (InputStream inputStream = multipartFile.getInputStream()) {
 
-                    // 获取上传文件名
-                    String originalFilename = multipartFile.getOriginalFilename();
+                // 获取上传文件名
+                String originalFilename = multipartFile.getOriginalFilename();
 
-                    // 对上传的文件名进行安全校验
-                    fileNameFilter(originalFilename);
+                // 对上传的文件名进行安全校验
+                fileNameFilter(originalFilename);
 
-                    // 文件名安全处理 （防止XSS攻击）
-                    String safeFilename = Encode.forHtml(originalFilename);
+                // 文件名安全处理 （防止XSS攻击）
+                String safeFilename = Encode.forHtml(originalFilename);
 
-                    // 文件路径 安全处理 (防止XSS攻击)
-                    uploadPath = Encode.forHtml(uploadPath);
+                // 文件路径 安全处理 (防止XSS攻击)
+                uploadPath = Encode.forHtml(uploadPath);
 
+                //要进行拼接的文件路径前缀 优先选取上传路径 ,如果没有则选取配置文件路径 @since 3.11 目录前缀由连接器维护
+//                String prefixFilePath = StringUtils.isNotBlank(uploadPath) ? FilenameUtils.concat(lcpProperties.getUpload().getSinkPath(), uploadPath) : lcpProperties.getUpload().getSinkPath();
+
+                //@since 3.11 需要使用文件连接器
+                if (StringUtils.isNotBlank(fileConnectionGroup)) {
+                    //先处理下特殊符号
+                    safeFilename = safeFilename.replaceAll("[^\\w\\u4E00-\\u9FA5.-]", "");
+                    if (hashFileName) {
+                        safeFilename = FileUploadUtils.hashFileName(safeFilename);
+                    }
+                    FileUploadParam fileUploadParam = new FileUploadParam()
+                            .setFileAccess(access).setFileName(safeFilename).setFileConnectionGroup(fileConnectionGroup)
+                            .setCdnEnabled(viaOriginUrl).setTtl(ttl).setCompressEnabled(isCompress).setStoragePath(uploadPath)
+                            .setPayloads(formatRequestParameters(request, contentType)).setAppId(this.appId);
+                    if (StringUtils.isNotBlank(uploadPath)) {
+                        fileUploadParam.setFilePathPrefix(uploadPath);
+                    }
+                    //这里走文件框架了
+                    CodeWaveFileUrl fileUrl = this.fileFrameworkComponent.upload(inputStream, fileUploadParam);
+                    filePaths.add(fileUrl.toUrl());
+                } else {
                     //对象存储中的文件名需要和返回的不一致
                     Triple<String/*原始文件名称*/, String/*处理过后的文件名*/, String/*处理过后的文件名 + 后缀*/> fileNameTriple =
                             FileUploadUtils.handlerFileName(originalFilename, this.hashFileName, appId, this.encryptFileName);
                     safeFilename = fileNameTriple.getRight();
 
-                    //要进行拼接的文件路径前缀 优先选取上传路径 ,如果没有则选取配置文件路径
-                    String prefixFilePath = StringUtils.isNotBlank(uploadPath)? FilenameUtils.concat(lcpProperties.getUpload().getSinkPath(),uploadPath) : lcpProperties.getUpload().getSinkPath();
-
                     //@since 3.9 默认需要加一级制品的目录
-                    prefixFilePath = FilenameUtils.concat(prefixFilePath + File.separator, this.appId);
+                    uploadPath = StringUtils.isNotBlank(uploadPath) ? FilenameUtils.concat(uploadPath + File.separator, this.appId) : this.appId;
 
                     //生成最终存储的文件路径
-                    String savePath = FileUploadUtils.generateSavePath(safeFilename, prefixFilePath, access, ttl,viaOriginUrl);
+                    String savePath = FileUploadUtils.generateSavePath(safeFilename, uploadPath, access, ttl, viaOriginUrl);
 
                     // 开启文件压缩功能
                     if (Boolean.TRUE.equals(isCompress) && StringUtils.isNotBlank(compressArchiveType)) {
-                        String filePath = compress(inputStream, savePath, fileSystemSpi, request, fsType);
+                        String filePath = compress(inputStream, savePath, request);
                         filePath = FileUploadUtils.replaceTargetFileSeg(filePath, fileNameTriple.getMiddle(), fileNameTriple.getLeft(), this.encryptFileName);
                         filePaths.add(filePath);
                     } else {
                         // 不开启文件压缩功能
-                        String filePath = fileSystemSpi.upload(inputStream, savePath, formatRequestParameters(request));
+                        CodeWaveFileUrl fileUrl = new CodeWaveFileUrl(savePath);
+                        CodeWaveFileUrl result = FileConnectionManager.getDefaultFileConnector().upload(inputStream, fileUrl, formatRequestParameters(request, contentType));
+                        String filePath = result.toUrl();
                         filePath = FileUploadUtils.replaceTargetFileSeg(filePath, fileNameTriple.getMiddle(), fileNameTriple.getLeft(), this.encryptFileName);
                         filePaths.add(filePath);
                     }
                 }
             }
-            uploadLocalResponse(filePaths, request, response);
-        } else {
-            throw new HttpCodeException(ErrorCodeEnum.FILESYSTEM_NOT_SUPPORT.code);
         }
+        uploadLocalResponse(filePaths, request, response);
     }
 
 
@@ -204,13 +224,11 @@ public class FileUploadController {
      将输入流压缩为指定格式的文件并上传到文件存储系统。
      @param inputStream 要压缩的输入流。
      @param savePath 文件在文件系统中的保存路径。
-     @param fileSystemSpi 文件存储系统客户端。
      @param request HTTP请求对象，包含上传文件相关的参数。
-     @param fsType 文件存储类型，用于判断是否需要删除临时文件。
      @return 上传后的文件在文件存储系统中的路径。
      @throws Exception 压缩或上传过程中出现的异常。
      */
-    private String compress(InputStream inputStream,String savePath,FileStorageClient fileSystemSpi,HttpServletRequest request,String fsType) throws Exception {
+    private String compress(InputStream inputStream,String savePath,HttpServletRequest request) throws Exception {
         // 生成临时文件
         File tempFile = inputStreamToFile(inputStream,savePath);
         // 获取到压缩文件
@@ -221,11 +239,12 @@ public class FileUploadController {
             if (!savePath.contains(compressedFile.getName())) {
                 uploadFilePath += '.' + compressArchiveType;
             }
-            String filePath = fileSystemSpi.upload(compressedInputStream, uploadFilePath, formatRequestParameters(request));
-            return filePath;
+            CodeWaveFileUrl fileUrl = new CodeWaveFileUrl(uploadFilePath);
+            CodeWaveFileUrl result = FileConnectionManager.getDefaultFileConnector().upload(compressedInputStream, fileUrl, formatRequestParameters(request, CodeWaveFileUtils.getFileMimeType(tempFile)));
+            return result.toUrl();
         }
         finally {
-            if (compressedFile != null && compressedFile.isFile() && !Constants.UPLOAD_TYPE_LOCAL.equalsIgnoreCase(fsType)) {
+            if (compressedFile != null && compressedFile.isFile()) {
                 compressedFile.delete();
             }
             // 关闭临时文件的流和删除临时文件
@@ -375,7 +394,7 @@ public class FileUploadController {
         }
     }
 
-    private Map<String, String> formatRequestParameters(HttpServletRequest request) {
+    private Map<String, String> formatRequestParameters(HttpServletRequest request, String contentType) {
         if (CollectionUtils.isEmpty(request.getParameterMap())) {
             return new HashMap<>();
         }
@@ -389,6 +408,8 @@ public class FileUploadController {
             }
         }
 
+        result.putAll(this.fileFrameworkComponent.buildPayloadsFromRequest(request));
+        result.put(CodeWaveFileConstants.CONTENT_TYPE, contentType);
         return result;
     }
 
@@ -449,6 +470,8 @@ public class FileUploadController {
             log.info("制品: {}, 用户: {}, 上传文件: {}", this.appId, userId, JacksonUtils.toJson(((BatchUploadResult)result).getResult()));
         }
 
+
+
         response.setContentType("application/json;charset=UTF-8");
         IOUtils.write(objectMapper.writeValueAsBytes(result), response.getOutputStream());
     }
@@ -486,24 +509,31 @@ public class FileUploadController {
     public void download(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        // 获取上传文件的存储类型
-        String fsType = request.getParameter(Constants.UPLOAD_PARAMETER_FS_TYPE);
-        fsType = StringUtils.defaultIfBlank(fsType, lcpProperties.getUpload().getSinkType());
-
-        // 获取文件存储客户端
-        FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
-
-        if (null == fileSystemSpi) {
-            response.setStatus(HttpStatus.NOT_FOUND.value());
-            return;
+        CodeWaveFileUrl codeWaveFileUrl;
+        if (StringUtils.isNotBlank(request.getQueryString())) {
+            codeWaveFileUrl = CodeWaveFileUrl.fromUri(request.getRequestURI() + "?" + request.getQueryString());
+        } else {
+            codeWaveFileUrl = CodeWaveFileUrl.fromUri(request.getRequestURI());
         }
+        boolean newDownload = codeWaveFileUrl.contains(CodeWaveFileConstants.FILE_CONNECTION);
+
+        // 获取上传文件的存储类型
+//        String fsType = request.getParameter(Constants.UPLOAD_PARAMETER_FS_TYPE);
+//        fsType = StringUtils.defaultIfBlank(fsType, lcpProperties.getUpload().getSinkType());
+//
+//        // 获取文件存储客户端
+//        FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
 
         // 获取文件下载路径
         String path = getPathByRequest(request);
 
         // 获取文件名并进行安全处理
         String fileName = request.getParameter(Constants.UPLOAD_PARAMETER_FILENAME);
-        fileName = StringUtils.defaultIfBlank(fileName, FilenameUtils.getName(path));
+        if (newDownload) {
+            fileName = codeWaveFileUrl.getFileName();
+        } else {
+            fileName = StringUtils.defaultIfBlank(fileName, FilenameUtils.getName(path));
+        }
 
         // 判断文件名是否为空或包含 ".."，如果是，则返回错误
         if (StringUtils.isBlank(fileName) || fileName.contains("..")) {
@@ -517,34 +547,57 @@ public class FileUploadController {
             throw new HttpCodeException(ErrorCodeEnum.FILEPATH_NOT_ALLOWED.desc);
         }
 
-        // 判断文件路径是否在白名单内
-        String basePathStr = lcpProperties.getUpload().getSinkPath();
-        if (StringUtils.isNotBlank(basePathStr)) {
-            while (basePathStr.startsWith("/")) {
-                basePathStr =  basePathStr.substring(1);
-            }
-
-            Path basePath = Paths.get(basePathStr).normalize().toAbsolutePath();
-            Path otherPath = Paths.get(safePath).normalize().toAbsolutePath();
-
-            Path relativePath = basePath.relativize(otherPath);
-            if (relativePath.isAbsolute() || relativePath.toString().startsWith("..")) {
-                throw new HttpCodeException("非法的文件路径");
-            }
-        }
-
+        // 判断文件路径是否在白名单内 @since 3.11 由连接器自主判断 lcp.upload废弃
         // 设置响应头
-        response.setContentType(FileUploadUtils.getFileMimeType(fileName));
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION,"filename=" +
                 URLEncoder.encode(fileName, request.getCharacterEncoding()));
 
+        Map<String, String> urlParams = formatRequestParameters(request, null);
         try {
-            // 下载文件 采用安全文件路径
-            Map<String, String> urlParams = formatRequestParameters(request);
-            urlParams.put(FileStorageClient.SINGLE_DOWNLOAD, String.valueOf(true));
-            //处理一下加密过后的文件名
-            safePath = FileUploadUtils.handlerEncryptFilePath(safePath, urlParams);
-            fileSystemSpi.download(response.getOutputStream(), safePath, urlParams);
+            if (codeWaveFileUrl.contains(CodeWaveFileConstants.FILE_CONNECTION)) {
+                //从文件连接器中下载文件
+                if (codeWaveFileUrl.contains(CodeWaveFileConstants.CDN_TAG)) {
+                    response.setStatus(HttpStatus.FOUND.value());
+                    response.setContentType(CodeWaveFileUtils.getFileMimeType(fileName));
+                    response.setHeader("Location", FileConnectionManager
+                            .getFileConnector(codeWaveFileUrl.getQueryStringValue(CodeWaveFileConstants.FILE_CONNECTION))
+                            .getCdnAddress(codeWaveFileUrl, urlParams));
+                    return;
+                }
+                //直接下载
+                FileDownloadResult fileDownloadResult = FileConnectionManager.getFileConnector(codeWaveFileUrl.getQueryStringValue(CodeWaveFileConstants.FILE_CONNECTION))
+                        .download(codeWaveFileUrl, urlParams);
+                response.setHeader(HttpHeaders.CONTENT_LENGTH, String.valueOf(fileDownloadResult.getContentLength()));
+                if (StringUtils.isNotBlank(fileDownloadResult.getContentType())) {
+                    response.setContentType(fileDownloadResult.getContentType());
+                } else {    // 未指定文件类型时，根据文件名获取文件类型
+                    response.setContentType(FileUploadUtils.getFileMimeType(fileName));
+                }
+                IOUtils.copyLarge(fileDownloadResult.getInputStream(), response.getOutputStream());
+            } else {
+                // 下载文件 采用安全文件路径
+                urlParams.put(SINGLE_DOWNLOAD, String.valueOf(true));
+                //处理一下加密过后的文件名
+                safePath = FileUploadUtils.handlerEncryptFilePath(safePath, urlParams);
+
+                if (safePath.contains("_ori")) {
+                    //这里要处理cdn的问题
+                    response.setStatus(HttpStatus.FOUND.value());
+                    response.setContentType(CodeWaveFileUtils.getFileMimeType(fileName));
+                    response.setHeader("Location", FileConnectionManager.getDefaultFileConnector()
+                            .getCdnAddress(new CodeWaveFileUrl(safePath), urlParams));
+                    return;
+                }
+
+                FileDownloadResult fileDownloadResult = FileConnectionManager.getDefaultFileConnector().download(new CodeWaveFileUrl(safePath), urlParams);
+                response.setHeader(HttpHeaders.CONTENT_LENGTH, String.valueOf(fileDownloadResult.getContentLength()));
+                if (StringUtils.isNotBlank(fileDownloadResult.getContentType())) {
+                    response.setContentType(fileDownloadResult.getContentType());
+                } else {    // 未指定文件类型时，根据文件名获取文件类型
+                    response.setContentType(FileUploadUtils.getFileMimeType(fileName));
+                }
+                IOUtils.copyLarge(fileDownloadResult.getInputStream(), response.getOutputStream());
+            }
         } catch (Exception e) {
             throw new HttpCodeException(HttpStatus.INTERNAL_SERVER_ERROR.value(), e);
         }
@@ -564,33 +617,35 @@ public class FileUploadController {
 
     /**
      * request for deleting upload file
+     * 应该是没有应用使用的
      * @param response
      */
-    @DeleteMapping(value = {FileUploadUtils.UPLOAD_API_PATH_PREFIX + "/**"})
-    public ApiReturn<Boolean> delete(HttpServletRequest request, HttpServletResponse response) {
-
-        String fsType = request.getParameter(Constants.UPLOAD_PARAMETER_FS_TYPE);
-        fsType = StringUtils.defaultIfBlank(fsType, lcpProperties.getUpload().getSinkType());
-        FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
-
-        if (null == fileSystemSpi) {
-            response.setStatus(HttpStatus.NOT_FOUND.value());
-            return ApiReturn.of(false);
-        }
-
-        String path = request.getServletPath().substring(FileUploadUtils.UPLOAD_API_PATH_PREFIX.length());
-        try {
-            fileSystemSpi.delete(path, formatRequestParameters(request));
-            return ApiReturn.of(true);
-        } catch (IOException e) {
-            throw new HttpCodeException(HttpStatus.INTERNAL_SERVER_ERROR.value(), e);
-        }
-    }
+//    @DeleteMapping(value = {FileUploadUtils.UPLOAD_API_PATH_PREFIX + "/**"})
+//    public ApiReturn<Boolean> delete(HttpServletRequest request, HttpServletResponse response) {
+//
+//        String fsType = request.getParameter(Constants.UPLOAD_PARAMETER_FS_TYPE);
+//        fsType = StringUtils.defaultIfBlank(fsType, lcpProperties.getUpload().getSinkType());
+//        FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
+//
+//        if (null == fileSystemSpi) {
+//            response.setStatus(HttpStatus.NOT_FOUND.value());
+//            return ApiReturn.of(false);
+//        }
+//
+//        String path = request.getServletPath().substring(FileUploadUtils.UPLOAD_API_PATH_PREFIX.length());
+//        try {
+//            fileSystemSpi.delete(path, formatRequestParameters(request));
+//            return ApiReturn.of(true);
+//        } catch (IOException e) {
+//            throw new HttpCodeException(HttpStatus.INTERNAL_SERVER_ERROR.value(), e);
+//        }
+//    }
 
 
     /**
      * 单文件下载、或多文件打包压缩下载
      * @param downloadFile
+     * @Since 3.11 支持传入相对路径, 使用相对路径就是直接从当前服务下载文件, 否则统一走网络下载
      */
     @PostMapping("/upload/download_files")
     public void downloadFiles(@RequestBody DownloadFile downloadFile,
@@ -605,6 +660,7 @@ public class FileUploadController {
         }
         List<String> urls = downloadFile.getUrls();
         for (String url : urls) {
+            //这里需要加上连接器的限制
             boolean isLocalDomainUrl = DomainUtil.isLocalDomain(url, request);
             if (isLocalDomainUrl && hasNoDownloadPermission(url)) {
                 processNotLoginResponse(response);
@@ -618,12 +674,21 @@ public class FileUploadController {
             if (StringUtils.isBlank(urls.get(0))) {
                 return;
             }
-            attachmentName = FileUploadUtils.getFileName(urls.get(0), downloadFile.getFileName());
+            CodeWaveFileUrl localFileUrl = CodeWaveFileUrl.fromUri(urls.get(0));
+            if (localFileUrl.contains(CodeWaveFileConstants.FILE_CONNECTION)) {
+                if (StringUtils.isNotBlank(downloadFile.getFileName())) {
+                    attachmentName = downloadFile.getFileName() + "." + localFileUrl.getExtension();
+                } else {
+                    attachmentName = localFileUrl.getFileName();
+                }
+            } else {
+                attachmentName = FileUploadUtils.getFileName(urls.get(0), downloadFile.getFileName());
+            }
             // solved the problem of whitespace being converted to +
             String encodeName = URLEncoder.encode(attachmentName, request.getCharacterEncoding()).replace("+", "%20");
             response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + encodeName);
             Map<String, String> urlParams = new HashMap<>();
-            urlParams.put(FileStorageClient.SINGLE_DOWNLOAD, String.valueOf(true));
+            urlParams.put(SINGLE_DOWNLOAD, String.valueOf(true));
             downloadUrl(urls.get(0), response.getOutputStream(), urlParams);
         } else {
             // 多文件处理
@@ -638,7 +703,13 @@ public class FileUploadController {
                         // 不处理空的url
                         continue;
                     }
-                    String compressEntryName = FileUploadUtils.getCompressEntryName(url, compressEntryNameMap);
+                    String compressEntryName;
+                    CodeWaveFileUrl localFileUrl = CodeWaveFileUrl.fromUri(url);
+                    if (localFileUrl.contains(CodeWaveFileConstants.FILE_CONNECTION)) {
+                        compressEntryName = localFileUrl.getFileName();
+                    } else {
+                        compressEntryName = FileUploadUtils.getCompressEntryName(url, compressEntryNameMap);
+                    }
                     zipOutputStream.putNextEntry(new ZipEntry(compressEntryName));
                     downloadUrl(url, zipOutputStream, new HashMap<>());
                     zipOutputStream.closeEntry();
@@ -748,24 +819,43 @@ public class FileUploadController {
 
     private void downloadUrl(String url, OutputStream outputStream, Map<String, String> urlParams) throws Exception {
         url = convertToUnifiedPath(url);
+        URI targetUri = URI.create(url);
+        //使用了相对路径进行下载 3.11开始支持
+        if (targetUri.getScheme() == null && downloadFromTargetConnection(CodeWaveFileUrl.fromUri(url), outputStream, urlParams)) {
+            return;
+        }
+        //绝对路径下载
         URL urlFile = new URL(url);
         boolean isLocalDomain = DomainUtil.isLocalDomain(url);
         if (isLocalDomain && FileUploadUtils.isUploadApiPath(urlFile.getPath(), "GET")) {
             urlParams.putAll(DomainUtil.getUrlQueryAsMap(url));
-            String fsType = urlParams.get(Constants.UPLOAD_PARAMETER_FS_TYPE);
-            fsType = StringUtils.defaultIfBlank(fsType, lcpProperties.getUpload().getSinkType());
-            FileStorageClient fileSystemSpi = spiManager.getFileSystemSpi(fsType);
-
+            //3.11 从目标连接获取文件
+            if (downloadFromTargetConnection(CodeWaveFileUrl.fromUri(url), outputStream, urlParams)) {
+                return;
+            }
             String path = urlFile.getPath();
             path = dealPath(path);
             //处理一下加密过后的文件名
             path = FileUploadUtils.handlerEncryptFilePath(path, urlParams);
-            fileSystemSpi.download(outputStream, path, urlParams);
+            IOUtils.copyLarge(FileConnectionManager.getDefaultFileConnector()
+                    .download(new CodeWaveFileUrl(path), urlParams).getInputStream(), outputStream);
         } else {
             try (InputStream inputStream = urlFile.openStream()) {
                 IOUtils.copy(inputStream, outputStream);
             }
         }
+    }
+
+    private boolean downloadFromTargetConnection(CodeWaveFileUrl codeWaveFileUrl, OutputStream outputStream, Map<String, String> urlParams) throws Exception {
+        if (codeWaveFileUrl.contains(CodeWaveFileConstants.FILE_CONNECTION)) {
+            //使用目标连接器下载
+            FileDownloadResult fileDownloadResult = FileConnectionManager
+                    .getFileConnector(codeWaveFileUrl.getQueryStringValue(CodeWaveFileConstants.FILE_CONNECTION))
+                    .download(codeWaveFileUrl, urlParams);
+            IOUtils.copyLarge(fileDownloadResult.getInputStream(), outputStream);
+            return true;
+        }
+        return false;
     }
 
     public static String convertToUnifiedPath(String url) {

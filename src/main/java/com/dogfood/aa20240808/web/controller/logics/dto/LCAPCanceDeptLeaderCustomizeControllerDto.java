@@ -4,7 +4,9 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class LCAPCanceDeptLeaderCustomizeControllerDto {
 
     public String deptId;
+
     public String userId;
+
     public String getDeptId() {
         return deptId;
     } 
@@ -20,6 +22,5 @@ public class LCAPCanceDeptLeaderCustomizeControllerDto {
     public void setUserId(String userId) {
         this.userId = userId; 
     } 
-
 
 }

@@ -12,15 +12,22 @@ import com.dogfood.aa20240808.domain.entities.PurchaseOrderDetailEntity;
 public class ReceivingDetailsStructureStructure {
 
     public MaterialDetailsEntity material;
+
     @Label("单位名称")
     public String unitName;
+
     public ReceivingDetailsEntity receivingDetails;
+
     @Label("累计收货数量")
     public Long total;
+
     public PurchaseOrderDetailEntity purchaseOrderDetails;
+
     public ReceivingNotificationsEntity receivingNotifications;
+
     @Label("累计入库数量")
     public Long cumulativeStorage = 0L;
+
     public MaterialDetailsEntity getMaterial() {
         return material;
     } 
@@ -76,6 +83,5 @@ public class ReceivingDetailsStructureStructure {
     public void setCumulativeStorage(Long cumulativeStorage) {
         this.cumulativeStorage = cumulativeStorage; 
     } 
-
 
 }

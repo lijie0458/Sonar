@@ -5,6 +5,7 @@ import java.util.List;
 public class LoadProductionDetailByCodeCustomizeControllerDto {
 
     public List<String> InventoryList;
+
     public List<String> getInventoryList() {
         return InventoryList;
     } 
@@ -12,6 +13,5 @@ public class LoadProductionDetailByCodeCustomizeControllerDto {
     public void setInventoryList(List<String> InventoryList) {
         this.InventoryList = InventoryList; 
     } 
-
 
 }

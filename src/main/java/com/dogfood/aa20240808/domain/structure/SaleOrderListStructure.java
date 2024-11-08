@@ -17,17 +17,27 @@ import java.math.BigDecimal;
 public class SaleOrderListStructure {
 
     public SalesOrdersEntity salesOrders;
+
     public CustomerManagementEntity customerManagement;
+
     public LCAPUser user;
+
     public DepartmentEntity department;
+
     public SalesOrderDetailsEntity salesOrderDetails;
+
     public MaterialDetailsEntity materialDetails;
+
     public MeasuringUnitEntity measuringUnit;
+
     @Label("已发货数量")
     public BigDecimal unshippedQuantity;
+
     @Label("已出库数量")
     public BigDecimal quantityShipped;
+
     public InventoryEntity property1;
+
     public SalesOrdersEntity getSalesOrders() {
         return salesOrders;
     } 
@@ -107,6 +117,5 @@ public class SaleOrderListStructure {
     public void setProperty1(InventoryEntity property1) {
         this.property1 = property1; 
     } 
-
 
 }

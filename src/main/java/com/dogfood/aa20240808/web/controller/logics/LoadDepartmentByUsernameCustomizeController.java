@@ -16,11 +16,11 @@ public class LoadDepartmentByUsernameCustomizeController {
 
     @Autowired
     private LoadDepartmentByUsernameCustomizeService loadDepartmentByUsernameCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "6c53066590f749e38efc59754574754e",rules = { })})
     @PostMapping("/api/lcplogics/loadDepartmentByUsername")
     public ApiReturn<DepartmentEntity> loadDepartmentByUsername(@RequestBody LoadDepartmentByUsernameCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadDepartmentByUsernameCustomizeService.loadDepartmentByUsername(body.getUserName()));
     } 
-
 
 }

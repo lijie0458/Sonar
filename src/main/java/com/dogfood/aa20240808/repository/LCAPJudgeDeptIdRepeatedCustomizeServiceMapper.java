@@ -6,5 +6,4 @@ public interface LCAPJudgeDeptIdRepeatedCustomizeServiceMapper {
 
 List<String> getString(); 
 
-
 }

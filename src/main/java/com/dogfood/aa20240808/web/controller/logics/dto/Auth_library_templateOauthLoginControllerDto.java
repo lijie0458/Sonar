@@ -4,7 +4,9 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class Auth_library_templateOauthLoginControllerDto {
 
     public String code;
+
     public String oauthFunction;
+
     public String getCode() {
         return code;
     } 
@@ -20,6 +22,5 @@ public class Auth_library_templateOauthLoginControllerDto {
     public void setOauthFunction(String oauthFunction) {
         this.oauthFunction = oauthFunction; 
     } 
-
 
 }

@@ -16,6 +16,8 @@ import com.dogfood.aa20240808.web.interceptor.AccessLogFilter;
 import com.dogfood.aa20240808.web.interceptor.BasePathFilter;
 import com.dogfood.aa20240808.web.interceptor.GlobalContextFilter;
 import com.dogfood.aa20240808.web.interceptor.TraceIdFilter;
+import com.dogfood.aa20240808.iam.auth.AuthManager;
+import com.dogfood.aa20240808.web.interceptor.UserContextFilter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -82,7 +84,15 @@ public class WebConfiguration implements ServletContextInitializer {
         registration.setOrder(1);
         return registration;
     }
-
+    @Bean
+    public FilterRegistrationBean userContextFilterReg(AuthManager authManager) {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new UserContextFilter(authManager));
+        registration.addUrlPatterns("/*");
+        registration.setName(UserContextFilter.class.getSimpleName());
+        registration.setOrder(0);
+        return registration;
+    }
     @Bean
     public DataSourceHealthIndicator databaseHealthIndicator(DataSource dataSource) {
         return new DataSourceHealthIndicator(dataSource);

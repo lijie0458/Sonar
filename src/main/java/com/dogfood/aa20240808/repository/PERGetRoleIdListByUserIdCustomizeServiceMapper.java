@@ -7,5 +7,4 @@ public interface PERGetRoleIdListByUserIdCustomizeServiceMapper {
 
 List<Long> getSql1(@Param("userId") String userId); 
 
-
 }

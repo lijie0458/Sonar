@@ -13,11 +13,11 @@ public class LoadTransferSlipCustomizeController {
 
     @Autowired
     private LoadTransferSlipCustomizeService loadTransferSlipCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "2e08a8da-6c14-4828-8069-e70d92ead6e5",rules = { })})
     @PostMapping("/api/lcplogics/loadTransferSlip")
     public ApiReturn<String> loadTransferSlip() throws Exception {
         return ApiReturn.of(loadTransferSlipCustomizeService.loadTransferSlip());
     } 
-
 
 }

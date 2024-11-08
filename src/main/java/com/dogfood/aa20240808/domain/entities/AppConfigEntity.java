@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.ZonedDateTime; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 import com.dogfood.aa20240808.domain.enumeration.LoginPageConfigEnumEnum; 
 import com.dogfood.aa20240808.domain.enumeration.LoginIdentityTypeEnumEnum; 
@@ -14,33 +16,44 @@ import com.dogfood.aa20240808.domain.enumeration.LoginIdentityTypeEnumEnum;
 public class AppConfigEntity {
 
     @Label("主键")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("登录默认角色")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long loginRoleId;
+
     @Label("单身份源/多身份源")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public LoginIdentityTypeEnumEnum loginIdentityType = LoginIdentityTypeEnumEnum.FIELD_Single;
+
     @Label("身份源开关")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Boolean settingSwitch = false;
+
     @Label("登录页配置")
     public LoginPageConfigEnumEnum loginPageConfig = LoginPageConfigEnumEnum.FIELD_Default;
+
     @Label("自定义登录地址")
     public String customizeLoginUrl;
+
     @Label("展示图片地址")
     public String showPhotoUrl;
+
     public Long getId() {
         return id;
     } 
@@ -49,19 +62,19 @@ public class AppConfigEntity {
         this.id = id; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -128,6 +141,5 @@ public class AppConfigEntity {
     public void setShowPhotoUrl(String showPhotoUrl) {
         this.showPhotoUrl = showPhotoUrl; 
     } 
-
 
 }

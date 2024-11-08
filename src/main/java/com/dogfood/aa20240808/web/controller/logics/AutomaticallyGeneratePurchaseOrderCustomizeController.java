@@ -13,11 +13,11 @@ public class AutomaticallyGeneratePurchaseOrderCustomizeController {
 
     @Autowired
     private AutomaticallyGeneratePurchaseOrderCustomizeService automaticallyGeneratePurchaseOrderCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "aef4a0736c9d47dfb4fd992c447534ea",rules = { })})
     @PostMapping("/api/lcplogics/automaticallyGeneratePurchaseOrder")
     public ApiReturn<String> automaticallyGeneratePurchaseOrder() throws Exception {
         return ApiReturn.of(automaticallyGeneratePurchaseOrderCustomizeService.automaticallyGeneratePurchaseOrder());
     } 
-
 
 }

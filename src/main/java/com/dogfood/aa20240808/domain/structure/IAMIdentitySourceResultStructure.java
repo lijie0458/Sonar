@@ -10,8 +10,10 @@ public class IAMIdentitySourceResultStructure {
 
     @Label("身份源类型")
     public IdentitySourceStateEnumEnum state;
+
     @Label("授权url")
     public String authUrl;
+
     public IdentitySourceStateEnumEnum getState() {
         return state;
     } 
@@ -27,6 +29,5 @@ public class IAMIdentitySourceResultStructure {
     public void setAuthUrl(String authUrl) {
         this.authUrl = authUrl; 
     } 
-
 
 }

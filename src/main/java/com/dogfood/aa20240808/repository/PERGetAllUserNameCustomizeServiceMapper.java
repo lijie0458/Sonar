@@ -6,5 +6,4 @@ public interface PERGetAllUserNameCustomizeServiceMapper {
 
 List<String> getSql1(); 
 
-
 }

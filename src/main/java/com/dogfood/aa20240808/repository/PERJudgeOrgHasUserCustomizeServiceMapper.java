@@ -6,5 +6,4 @@ public interface PERJudgeOrgHasUserCustomizeServiceMapper {
 
 Long getSql1(@Param("orgId") Long orgId); 
 
-
 }

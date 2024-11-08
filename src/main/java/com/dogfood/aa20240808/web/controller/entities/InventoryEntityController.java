@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.InventoryEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.InventoryEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.InventoryEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class InventoryEntityController {
     @Resource
     private InventoryEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "cddbc797-e73f-4c54-a0f3-ee878610765c",rules = { }),@ValidationRuleGroup(value = "28306f265d914f21972a09945db1a2a0",rules = { }),@ValidationRuleGroup(value = "6ed23241a50240599f77138fde1e0854",rules = { }),@ValidationRuleGroup(value = "34117b97-3dd9-4de9-a13f-a1b055d3c517",rules = { }),@ValidationRuleGroup(value = "fc724964-dd45-4e7d-a3cc-241724650a43",rules = { }),@ValidationRuleGroup(value = "9f1744a9-8bb3-44d6-aefb-1967266cceaf",rules = { }),@ValidationRuleGroup(value = "33bce120-93a3-41f3-afd2-ceea143a9009",rules = { }),@ValidationRuleGroup(value = "f046a5dc-1e52-4e18-935b-9b058a1ae7bf",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "bbd3719131ca437ebfc85e7c51797745",rules = { })})
+    @GetMapping("/api/inventory")
+    public ApiReturn<InventoryEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen batch create method
@@ -86,14 +97,6 @@ public class InventoryEntityController {
         return ApiReturn.of(service.batchUpdate(entities, updateFields));
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "cddbc797-e73f-4c54-a0f3-ee878610765c",rules = { }),@ValidationRuleGroup(value = "28306f265d914f21972a09945db1a2a0",rules = { }),@ValidationRuleGroup(value = "6ed23241a50240599f77138fde1e0854",rules = { }),@ValidationRuleGroup(value = "34117b97-3dd9-4de9-a13f-a1b055d3c517",rules = { }),@ValidationRuleGroup(value = "fc724964-dd45-4e7d-a3cc-241724650a43",rules = { }),@ValidationRuleGroup(value = "9f1744a9-8bb3-44d6-aefb-1967266cceaf",rules = { }),@ValidationRuleGroup(value = "33bce120-93a3-41f3-afd2-ceea143a9009",rules = { }),@ValidationRuleGroup(value = "f046a5dc-1e52-4e18-935b-9b058a1ae7bf",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "bbd3719131ca437ebfc85e7c51797745",rules = { })})
-    @GetMapping("/api/inventory")
-    public ApiReturn<InventoryEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -114,4 +117,5 @@ public class InventoryEntityController {
         }
         return ApiReturn.of(service.deleteBy(wrapper.getReturnExpression()));
     }
+
 }

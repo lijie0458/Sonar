@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
@@ -14,19 +15,35 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.domain.entities.DepartmentEntity; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadDepartmentTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadDepartmentTableViewCustomizeServiceMapper loadDepartmentTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258 loadDepartmentTableView(Long page, Long size, String sort, String order, DepartmentEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258();
-        result = CommonFunctionUtil.createListPage(loadDepartmentTableViewCustomizeServiceMapper.getAnonymousStructure_3421ED028B001C489CD794910A15D0C0(filter, page, size, getTableField("AnonymousStructure_3421ED028B001C489CD794910A15D0C0", sort), order), loadDepartmentTableViewCustomizeServiceMapper.countAnonymousStructure_3421ED028B001C489CD794910A15D0C0(filter, page, size, getTableField("AnonymousStructure_3421ED028B001C489CD794910A15D0C0", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258.class); 
+
+    public AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258 loadDepartmentTableView(Long page, Long size, String sort, String order, DepartmentEntity filter) {
+        AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258 result = new AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258();
+        result = CommonFunctionUtil.createListPage(loadDepartmentTableViewCustomizeServiceMapper.getAnonymousStructure_3421ED028B001C489CD794910A15D0C0(filter, page, size, getTableField("AnonymousStructure_3421ED028B001C489CD794910A15D0C0", sort), order), loadDepartmentTableViewCustomizeServiceMapper.countAnonymousStructure_3421ED028B001C489CD794910A15D0C0(filter, page, size, getTableField("AnonymousStructure_3421ED028B001C489CD794910A15D0C0", sort), order).intValue(), AnonymousStructure_239C4CA8D6FC913CFC0B92C26D945258.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadDepartmentTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_3421ED028B001C489CD794910A15D0C0", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_3421ED028B001C489CD794910A15D0C0").put("department.id", "`department`.`id`");
@@ -75,6 +92,5 @@ public class LoadDepartmentTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

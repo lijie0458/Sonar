@@ -4,22 +4,38 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList; 
 import java.util.List; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2; 
 import org.slf4j.Logger; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.repository.LoadCountPurchaseRequestCustomizeServiceMapper; 
 
+/**
+ * 查询当前申请条数，创建采购申请用作单号
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCountPurchaseRequestCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCountPurchaseRequestCustomizeServiceMapper loadCountPurchaseRequestCustomizeServiceMapper;
+
     public String loadCountPurchaseRequest() {
         String StringNum = "";
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2> variable1 = new ArrayList<>();
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2 variable2 = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2();
+        List<AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2> variable1 = new ArrayList<>();
+        AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2 variable2 = new AnonymousStructure_BB14D95BB26BC710AFD64F83A782A0B2();
         String result = "";
         variable1 = loadCountPurchaseRequestCustomizeServiceMapper.getSql1(); 
         if ((CommonFunctionUtil.equals(CommonFunctionUtil.length(variable1), 0L))) {
@@ -41,6 +57,5 @@ public class LoadCountPurchaseRequestCustomizeService {
 
         return result;
     } 
-
 
 }

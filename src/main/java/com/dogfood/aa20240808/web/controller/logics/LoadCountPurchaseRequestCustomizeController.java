@@ -13,11 +13,11 @@ public class LoadCountPurchaseRequestCustomizeController {
 
     @Autowired
     private LoadCountPurchaseRequestCustomizeService loadCountPurchaseRequestCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "bf9c36dd-3ddc-4a1a-8584-23c30474c491",rules = { })})
     @PostMapping("/api/lcplogics/loadCountPurchaseRequest")
     public ApiReturn<String> loadCountPurchaseRequest() throws Exception {
         return ApiReturn.of(loadCountPurchaseRequestCustomizeService.loadCountPurchaseRequest());
     } 
-
 
 }

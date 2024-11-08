@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.IdentitySourceConfigEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.IdentitySourceConfigEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.IdentitySourceConfigEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class IdentitySourceConfigEntityController {
     @Resource
     private IdentitySourceConfigEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "4c974c68-d45a-4f23-a068-6235d4bc6f2d",rules = { }),@ValidationRuleGroup(value = "29f6d981-ded4-4ad0-96c5-76b2caea57c5",rules = { }),@ValidationRuleGroup(value = "fbf47601-8133-461e-a32c-52e9359c91eb",rules = { }),@ValidationRuleGroup(value = "f78c0078-3c0c-4309-aeba-d1d43b288983",rules = { })})
+    @GetMapping("/api/identity-source-config")
+    public ApiReturn<IdentitySourceConfigEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen batch update method
@@ -71,14 +82,6 @@ public class IdentitySourceConfigEntityController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "4c974c68-d45a-4f23-a068-6235d4bc6f2d",rules = { }),@ValidationRuleGroup(value = "29f6d981-ded4-4ad0-96c5-76b2caea57c5",rules = { }),@ValidationRuleGroup(value = "fbf47601-8133-461e-a32c-52e9359c91eb",rules = { }),@ValidationRuleGroup(value = "f78c0078-3c0c-4309-aeba-d1d43b288983",rules = { })})
-    @GetMapping("/api/identity-source-config")
-    public ApiReturn<IdentitySourceConfigEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -87,4 +90,5 @@ public class IdentitySourceConfigEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

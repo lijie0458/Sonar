@@ -16,11 +16,11 @@ public class LoadlocationIdByWareHouseCustomizeController {
 
     @Autowired
     private LoadlocationIdByWareHouseCustomizeService loadlocationIdByWareHouseCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "b3d8961b-085c-46a3-b3e4-41cfc85edc03",rules = { @ValidationRule(value = "required",targetName = "body.id",argvs = "",errorMsg = "")})})
     @PostMapping("/api/lcplogics/loadlocationIdByWareHouse")
     public ApiReturn<Long> loadlocationIdByWareHouse(@RequestBody LoadlocationIdByWareHouseCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadlocationIdByWareHouseCustomizeService.loadlocationIdByWareHouse(body.getId()));
     } 
-
 
 }

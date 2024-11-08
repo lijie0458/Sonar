@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface LCAPLogicViewMappingMapper extends ReferenceHandleMapper {
 
     int insert(LCAPLogicViewMapping bean);
+
     int batchInsert(List<LCAPLogicViewMapping> beans);
-    List<LCAPLogicViewMapping> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(LCAPLogicViewMapping bean, List<String> updateFields);
-    int batchUpdate(List<LCAPLogicViewMapping> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    LCAPLogicViewMapping selectOne(Long id);
-
-    int createOrUpdate(LCAPLogicViewMapping bean);
     int updateBy(LCAPLogicViewMapping bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(LCAPLogicViewMapping bean);
+
+    int update(LCAPLogicViewMapping bean, List<String> updateFields);
+
+    int batchUpdate(List<LCAPLogicViewMapping> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    LCAPLogicViewMapping selectOne(Long id);
+
+
+    List<LCAPLogicViewMapping> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

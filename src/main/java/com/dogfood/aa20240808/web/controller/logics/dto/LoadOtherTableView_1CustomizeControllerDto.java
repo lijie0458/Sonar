@@ -7,12 +7,19 @@ import com.dogfood.aa20240808.domain.entities.OtherInStorageEntity;
 public class LoadOtherTableView_1CustomizeControllerDto {
 
     public OtherInStorageEntity filter;
+
     public TimeHorizonStructure timeHorizon;
+
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public List<String> dataViewAuthority;
+
     public String order;
+
     public OtherInStorageEntity getFilter() {
         return filter;
     } 
@@ -68,6 +75,5 @@ public class LoadOtherTableView_1CustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

@@ -14,16 +14,22 @@ public class PurchaseOrderDetailsListStructure {
 
     @Label("物料")
     public MaterialDetailsEntity materialDetails;
+
     @Label("订单")
     public PurchaseOrderEntity purchaseOrder;
+
     @Label("订单详情")
     public PurchaseOrderDetailEntity purchaseOrderDetail;
+
     @Label("供应商")
     public SupplierDetailsEntity supplierDetails;
+
     @Label("单位")
     public MeasuringUnitEntity measuringUnit;
+
     @Label("累计收货数量")
     public Long cumulativeQWuantity;
+
     public MaterialDetailsEntity getMaterialDetails() {
         return materialDetails;
     } 
@@ -71,6 +77,5 @@ public class PurchaseOrderDetailsListStructure {
     public void setCumulativeQWuantity(Long cumulativeQWuantity) {
         this.cumulativeQWuantity = cumulativeQWuantity; 
     } 
-
 
 }

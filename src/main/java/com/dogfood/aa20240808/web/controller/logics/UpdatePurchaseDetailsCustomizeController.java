@@ -15,11 +15,11 @@ public class UpdatePurchaseDetailsCustomizeController {
 
     @Autowired
     private UpdatePurchaseDetailsCustomizeService updatePurchaseDetailsCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "1aa4e6639226402bb76a59ad9291d7c8",rules = { })})
     @PostMapping("/api/lcplogics/updatePurchaseDetails")
     public ApiReturn<Boolean> updatePurchaseDetails(@RequestBody UpdatePurchaseDetailsCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(updatePurchaseDetailsCustomizeService.updatePurchaseDetails(body.getPurchaseDetailsIdList()));
     } 
-
 
 }

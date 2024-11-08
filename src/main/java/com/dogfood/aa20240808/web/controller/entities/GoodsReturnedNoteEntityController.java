@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.GoodsReturnedNoteEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.GoodsReturnedNoteEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.GoodsReturnedNoteEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class GoodsReturnedNoteEntityController {
     @Resource
     private GoodsReturnedNoteEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "aa7183f5f0e24e4eb3cad43ba84ad4eb",rules = { }),@ValidationRuleGroup(value = "aae56b69-c7bc-422f-9c0a-efb4ff99a9df",rules = { })})
+    @GetMapping("/api/goods-returned-note")
+    public ApiReturn<GoodsReturnedNoteEntity> get( @RequestParam(required = true) String goodsReturnedNote ) { 
+        return ApiReturn.of(service.get( goodsReturnedNote )); 
+    }
+
 
     /**
     * auto gen create method
@@ -69,14 +80,6 @@ public class GoodsReturnedNoteEntityController {
         return ApiReturn.of(service.update(entity, updateFields));
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "aa7183f5f0e24e4eb3cad43ba84ad4eb",rules = { }),@ValidationRuleGroup(value = "aae56b69-c7bc-422f-9c0a-efb4ff99a9df",rules = { })})
-    @GetMapping("/api/goods-returned-note")
-    public ApiReturn<GoodsReturnedNoteEntity> get( @RequestParam(required = true) String goodsReturnedNote ) { 
-        return ApiReturn.of(service.get( goodsReturnedNote )); 
-    }
 
     /**
     * auto gen import method
@@ -85,4 +88,5 @@ public class GoodsReturnedNoteEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

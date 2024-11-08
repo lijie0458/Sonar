@@ -1,17 +1,18 @@
 package com.dogfood.aa20240808.repository; 
 
 import java.util.List; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_77A91D1F4D3302BA86978D8B97972F3D; 
 import org.apache.ibatis.annotations.Param; 
 
 public interface GetWarehousingDetailsByCodeCustomizeServiceMapper {
 
-List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_77A91D1F4D3302BA86978D8B97972F3D> getAnonymousStructure_77A91D1F4D3302BA86978D8B97972F3D(@Param("Code") String Code); 
+List<AnonymousStructure_77A91D1F4D3302BA86978D8B97972F3D> getAnonymousStructure_77A91D1F4D3302BA86978D8B97972F3D(@Param("Code") String Code); 
 
 Long countAnonymousStructure_77A91D1F4D3302BA86978D8B97972F3D(@Param("Code") String Code); 
 
-List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB> getAnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB(@Param("variable2") List<Long> variable2); 
+List<AnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB> getAnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB(@Param("variable2") List<Long> variable2); 
 
 Long countAnonymousStructure_D8ABCE1399E60C92DC80402C8BAAD8EB(@Param("variable2") List<Long> variable2); 
-
 
 }

@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.OtherInStorageEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.OtherInStorageEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.OtherInStorageEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class OtherInStorageEntityController {
     @Resource
     private OtherInStorageEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "004f0589-31cf-4b63-802f-708a61b35ec8",rules = { })})
+    @GetMapping("/api/other-in-storage")
+    public ApiReturn<OtherInStorageEntity> get( @RequestParam(required = true) String code ) { 
+        return ApiReturn.of(service.get( code )); 
+    }
+
 
     /**
     * auto gen create method
@@ -57,7 +68,7 @@ public class OtherInStorageEntityController {
     /**
     * auto gen update method
     **/
-    @Validation(value = { @ValidationRuleGroup(value = "5e527ac8-f749-424c-b122-21dec76fb591",rules = { @ValidationRule(value = "filled",targetName = "filter.entity.applyDate",argvs = "")}),@ValidationRuleGroup(value = "c6e14645-728b-4ca6-adeb-5eedf0e53655",rules = { }),@ValidationRuleGroup(value = "b53cbe621de54a5bb64fdd1df4f8aab4",rules = { })})
+    @Validation(value = { @ValidationRuleGroup(value = "5e527ac8-f749-424c-b122-21dec76fb591",rules = { @ValidationRule(value = "filled",targetName = "filter.entity.applyDate",argvs = "")}),@ValidationRuleGroup(value = "b53cbe621de54a5bb64fdd1df4f8aab4",rules = { }),@ValidationRuleGroup(value = "c6e14645-728b-4ca6-adeb-5eedf0e53655",rules = { })})
     @PutMapping("/api/other-in-storage")
     public ApiReturn<OtherInStorageEntity> update(@RequestBody EntityFilter filter) {
         if (filter == null || filter.getEntity() == null) {
@@ -78,14 +89,6 @@ public class OtherInStorageEntityController {
         return ApiReturn.of(service.delete( code )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "004f0589-31cf-4b63-802f-708a61b35ec8",rules = { })})
-    @GetMapping("/api/other-in-storage")
-    public ApiReturn<OtherInStorageEntity> get( @RequestParam(required = true) String code ) { 
-        return ApiReturn.of(service.get( code )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class OtherInStorageEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

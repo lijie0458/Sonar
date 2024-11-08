@@ -5,10 +5,15 @@ import com.dogfood.aa20240808.domain.entities.MeasuringUnitEntity;
 public class LoadMeasuringUnitTableViewCustomizeControllerDto {
 
     public MeasuringUnitEntity filter;
+
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public MeasuringUnitEntity getFilter() {
         return filter;
     } 
@@ -48,6 +53,5 @@ public class LoadMeasuringUnitTableViewCustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7; 
 import java.util.Map; 
 import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum; 
 import org.slf4j.Logger; 
@@ -16,19 +17,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 生产领料列表
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadProductionPageTableView_1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadProductionPageTableView_1CustomizeServiceMapper loadProductionPageTableView_1CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7 loadProductionPageTableView_1(Long page, Long size, String sort, String order, ProductionMaterialRequisitionEntity filter, DistinctionEnumEnum DistinctionEnum, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7();
-        result = CommonFunctionUtil.createListPage(loadProductionPageTableView_1CustomizeServiceMapper.getAnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8(filter, DistinctionEnum, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8", sort), order), loadProductionPageTableView_1CustomizeServiceMapper.countAnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8(filter, DistinctionEnum, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7.class); 
+
+    public AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7 loadProductionPageTableView_1(Long page, Long size, String sort, String order, ProductionMaterialRequisitionEntity filter, DistinctionEnumEnum DistinctionEnum, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
+        AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7 result = new AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7();
+        result = CommonFunctionUtil.createListPage(loadProductionPageTableView_1CustomizeServiceMapper.getAnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8(filter, DistinctionEnum, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8", sort), order), loadProductionPageTableView_1CustomizeServiceMapper.countAnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8(filter, DistinctionEnum, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8", sort), order).intValue(), AnonymousStructure_70E8AA8AF66CC8BFB9F26E5BE1360EC7.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadProductionPageTableView_1CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_3AADBE44CDFD897DFEE5FB9CA2CE17F8").put("productionMaterialRequisition.documentNumber", "`production_material_requisition`.`document_number`");
@@ -172,6 +189,5 @@ public class LoadProductionPageTableView_1CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

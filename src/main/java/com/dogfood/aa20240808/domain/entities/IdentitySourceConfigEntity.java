@@ -6,9 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashMap; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.ZonedDateTime; 
 import com.dogfood.aa20240808.domain.enumeration.IdentitySourceTypeEnumEnum; 
 import com.dogfood.aa20240808.domain.enumeration.IdentitySourceStateEnumEnum; 
 import java.util.Map; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 import com.dogfood.aa20240808.domain.enumeration.EncryptAndDecryptEnumEnum; 
 
@@ -17,86 +19,121 @@ import com.dogfood.aa20240808.domain.enumeration.EncryptAndDecryptEnumEnum;
 public class IdentitySourceConfigEntity {
 
     @Label("主键")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("身份源")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public IdentitySourceStateEnumEnum state;
+
     @Label("身份源图标")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String icon;
+
     @Label("身份源名称")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String name;
+
     @Label("客户端id")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String appId;
+
     @Label("客户端密钥")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String appSecret;
+
     @Label("登陆成功回调地址")
     public String successUrl;
+
     @Label("身份源类型")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public IdentitySourceTypeEnumEnum type;
+
     @Label("是否开启身份源")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Boolean loginEnable = false;
+
     @Label("认证中心登陆地址")
     public String centerLoginUrl;
+
     @Label("获取token的地址")
     public String tokenUrl;
+
     @Label("获取token的请求方法")
     public String tokenMethod;
+
     @Label("获取用户信息的地址")
     public String userUrl;
+
     @Label("获取用户的请求方式")
     public String userMethod;
+
     @Label("认证中心注销地址")
     public String centerLogoutUrl;
+
     @Label("注销后跳转的地址")
     public String logoutCallbackUrl;
+
     @Label("cas服务端ticket校验地址")
     public String casTicketUrl;
+
     @Label("过期时间")
     public Long expire = 86400L;
+
     @Label("跳转回调的地址")
     public String redirectUrl;
+
     @Label("客户端id")
     public String agentId;
+
     @Label("token请求头")
     public Map<String, String> tokenHeaderMap = new HashMap<>();
+
     @Label("token请求体")
     public Map<String, String> tokenBodyMap = new HashMap<>();
+
     @Label("user请求头")
     public Map<String, String> userHeaderMap = new HashMap<>();
+
     @Label("user请求体")
     public Map<String, String> userBodyMap = new HashMap<>();
+
     @Label("oauth的userid返回格式")
     public String userIdRes;
+
     @Label("oauth的userName返回格式")
     public String userNameRes;
+
     @Label("身份源的唯一标识")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String code;
+
     @Label("sso免登登录地址")
     public String ssoUrl;
+
     @Label("令牌")
     public String wechatToken;
+
     @Label("消息加解密方式")
     public EncryptAndDecryptEnumEnum wechatMsgMethod;
+
     @Label("消息加解密密钥")
     public String wechatMsgSecret = "";
+
     public Long getId() {
         return id;
     } 
@@ -105,19 +142,19 @@ public class IdentitySourceConfigEntity {
         this.id = id; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -376,6 +413,5 @@ public class IdentitySourceConfigEntity {
     public void setWechatMsgSecret(String wechatMsgSecret) {
         this.wechatMsgSecret = wechatMsgSecret; 
     } 
-
 
 }

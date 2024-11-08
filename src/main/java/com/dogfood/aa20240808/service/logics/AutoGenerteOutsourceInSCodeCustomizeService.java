@@ -2,26 +2,42 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import com.dogfood.aa20240808.repository.AutoGenerteOutsourceInSCodeCustomizeServiceMapper; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CFD50F605260F493CE058FD3BD746735; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import org.slf4j.Logger; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 自动生成委外加工入库单号-ljl
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class AutoGenerteOutsourceInSCodeCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private AutoGenerteOutsourceInSCodeCustomizeServiceMapper autoGenerteOutsourceInSCodeCustomizeServiceMapper;
+
     public String autoGenerteOutsourceInSCode() {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CFD50F605260F493CE058FD3BD746735 variable1 = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CFD50F605260F493CE058FD3BD746735();
+        AnonymousStructure_CFD50F605260F493CE058FD3BD746735 variable1 = new AnonymousStructure_CFD50F605260F493CE058FD3BD746735();
         Long num = 0L;
         String variable2 = "";
         String numString = "";
         String prefix = "";
         String result = "";
-        variable1 = CommonFunctionUtil.createListPage(autoGenerteOutsourceInSCodeCustomizeServiceMapper.getAnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF(), autoGenerteOutsourceInSCodeCustomizeServiceMapper.countAnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF().intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_CFD50F605260F493CE058FD3BD746735.class); 
+        variable1 = CommonFunctionUtil.createListPage(autoGenerteOutsourceInSCodeCustomizeServiceMapper.getAnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF(), autoGenerteOutsourceInSCodeCustomizeServiceMapper.countAnonymousStructure_6FC111F7C7EC90E00099159DA034D7FF().intValue(), AnonymousStructure_CFD50F605260F493CE058FD3BD746735.class); 
         if ((variable1.total.compareTo(0L) > 0)) {
             variable2 = CommonFunctionUtil.get(variable1.list, 0L).outsourceInStorage.code; 
             num = CommonFunctionUtil.convert(CommonFunctionUtil.subString(variable2, (CommonFunctionUtil.length(variable2) - 7L), 7L), Long.class); 
@@ -52,6 +68,5 @@ public class AutoGenerteOutsourceInSCodeCustomizeService {
 
         return result;
     } 
-
 
 }

@@ -4,28 +4,36 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class MaterialDetailsEntity {
 
     @Label("物料编号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String materialCode;
+
     @Label("物料名称")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String material_name;
+
     @Label("物料分类")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long category_id;
+
     @Label("规格型号")
     public String specification;
+
     @Label("单位")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long unit;
+
     public String description;
-    @javax.validation.constraints.NotNull
+
+    @NotNull
     public Boolean is_batch_enabled = true;
+
     public String getMaterialCode() {
         return materialCode;
     } 
@@ -81,6 +89,5 @@ public class MaterialDetailsEntity {
     public void setIs_batch_enabled(Boolean is_batch_enabled) {
         this.is_batch_enabled = is_batch_enabled; 
     } 
-
 
 }

@@ -15,12 +15,27 @@ import com.dogfood.aa20240808.service.dto.filters.atomic.IdentifierQueryFilter;
 import com.dogfood.aa20240808.service.dto.filters.atomic.ColumnQueryFilter.Property; 
 import com.dogfood.aa20240808.service.dto.filters.logic.binary.matching.InQueryFilter; 
 
+/**
+ * 批量从部门添加成员
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LCAPBatchAddDeptUserCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LCAPUserDeptMappingService lCAPUserDeptMappingService;
+
     public void lCAPBatchAddDeptUser(List<String> userIds, String deptId) {
         List<LCAPUserDeptMapping> userDeptMapList = new ArrayList<>();
         LCAPUserDeptMapping userDeptMap = new LCAPUserDeptMapping();
@@ -40,6 +55,5 @@ public class LCAPBatchAddDeptUserCustomizeService {
 
         return ;
     } 
-
 
 }

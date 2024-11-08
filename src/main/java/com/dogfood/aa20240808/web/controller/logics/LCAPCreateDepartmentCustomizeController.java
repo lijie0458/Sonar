@@ -15,11 +15,11 @@ public class LCAPCreateDepartmentCustomizeController {
 
     @Autowired
     private LCAPCreateDepartmentCustomizeService lCAPCreateDepartmentCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "2236bed3f519402ab283454a16cd9c48",rules = { @ValidationRule(value = "filled",targetName = "body.department.name",argvs = "",errorMsg = "部门名称不得为空")})})
     @PostMapping("/api/lcplogics/LCAPCreateDepartment")
     public void lCAPCreateDepartment(@RequestBody LCAPCreateDepartmentCustomizeControllerDto body) throws Exception {
         lCAPCreateDepartmentCustomizeService.lCAPCreateDepartment(body.getDepartment());
     } 
-
 
 }

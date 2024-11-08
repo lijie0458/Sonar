@@ -5,7 +5,9 @@ import java.util.List;
 public class LCAPBatchAddDeptUserCustomizeControllerDto {
 
     public List<String> userIds;
+
     public String deptId;
+
     public List<String> getUserIds() {
         return userIds;
     } 
@@ -21,6 +23,5 @@ public class LCAPBatchAddDeptUserCustomizeControllerDto {
     public void setDeptId(String deptId) {
         this.deptId = deptId; 
     } 
-
 
 }

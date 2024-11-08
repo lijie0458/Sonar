@@ -7,8 +7,11 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 public class BaseResultStructure {
 
     public Long code;
+
     public String msg;
+
     public ConfigResStructure data;
+
     public Long getCode() {
         return code;
     } 
@@ -32,6 +35,5 @@ public class BaseResultStructure {
     public void setData(ConfigResStructure data) {
         this.data = data; 
     } 
-
 
 }

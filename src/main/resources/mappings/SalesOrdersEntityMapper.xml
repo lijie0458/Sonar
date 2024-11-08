@@ -119,25 +119,105 @@
         where `order_number` = #{bean.orderNumber}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity" >
         UPDATE `sales_orders`
         <set>
-            <if test="updateFields == null or updateFields.contains('customer')">`customer` = #{bean.customer, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('salesperson')">`salesperson` = #{bean.salesperson, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
-            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('distinction')">`distinction` = #{bean.distinction, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('manuAuto')">`manu_auto` = #{bean.manuAuto, jdbcType= TINYINT},</if>
-            <if test="updateFields == null or updateFields.contains('sourceNumber')">`source_number` = #{bean.sourceNumber, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('salesman')">`salesman` = #{bean.salesman, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('customer')">
+                `customer` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.customer, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('salesperson')">
+                `salesperson` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.salesperson, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('department')">
+                `department` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.department, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">
+                `request_date` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.requestDate, jdbcType=DATE}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('summary')">
+                `summary` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.summary, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('attachment')">
+                `attachment` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.attachment, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">
+                `approval_status` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.approvalStatus, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('distinction')">
+                `distinction` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.distinction, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">
+                `warehouse` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.warehouse, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('manuAuto')">
+                `manu_auto` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.manuAuto, jdbcType=TINYINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('sourceNumber')">
+                `source_number` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.sourceNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('salesman')">
+                `salesman` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.salesman, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `order_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.orderNumber} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `order_number` = #{bean.orderNumber}
+        where `order_number` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.orderNumber}
+        </foreach>
     </update>
 
 
@@ -267,21 +347,6 @@
         where `order_number`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `sales_orders`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `sales_orders`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.SalesOrdersEntity">
         INSERT INTO `sales_orders` (
             `order_number`
@@ -343,4 +408,18 @@
         DELETE FROM `sales_orders`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `sales_orders`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `sales_orders`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

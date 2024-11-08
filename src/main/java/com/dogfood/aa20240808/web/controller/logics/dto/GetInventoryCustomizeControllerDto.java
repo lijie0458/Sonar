@@ -4,9 +4,13 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class GetInventoryCustomizeControllerDto {
 
     public String materialCode;
+
     public Long storageLocationId;
+
     public String lotNumber;
+
     public Long warehouse;
+
     public String getMaterialCode() {
         return materialCode;
     } 
@@ -38,6 +42,5 @@ public class GetInventoryCustomizeControllerDto {
     public void setWarehouse(Long warehouse) {
         this.warehouse = warehouse; 
     } 
-
 
 }

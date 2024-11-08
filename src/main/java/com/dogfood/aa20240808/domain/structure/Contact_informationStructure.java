@@ -9,12 +9,16 @@ public class Contact_informationStructure {
 
     @Label("姓名")
     public String contact_name;
+
     @Label("电话")
     public String contact_phone;
+
     @Label("职务")
     public String contact_title;
+
     @Label("邮箱")
     public String contact_email;
+
     public String getContact_name() {
         return contact_name;
     } 
@@ -46,6 +50,5 @@ public class Contact_informationStructure {
     public void setContact_email(String contact_email) {
         this.contact_email = contact_email; 
     } 
-
 
 }

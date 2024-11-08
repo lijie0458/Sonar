@@ -16,7 +16,9 @@ public enum EncryptAndDecryptEnumEnum implements BaseEnum<EncryptAndDecryptEnumE
     FIELD_Saft("Saft", "安全模式（推荐）"),; 
 
     public final String code;
+
     public final String desc;
+
 EncryptAndDecryptEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ EncryptAndDecryptEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class EncryptAndDecryptEnumEnumDeserializer extends JsonDeserializer<EncryptAndDecryptEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ EncryptAndDecryptEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

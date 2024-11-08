@@ -15,11 +15,11 @@ public class GetInventoryByMaterialDetailsCustomizeController {
 
     @Autowired
     private GetInventoryByMaterialDetailsCustomizeService getInventoryByMaterialDetailsCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "c688c5d53fba46db807eb9264893534d",rules = { }),@ValidationRuleGroup(value = "cf9da4a5-cdb9-43d8-91e2-deb5dfd483f2",rules = { }),@ValidationRuleGroup(value = "7efc939f-9b60-44ee-88d1-bd6cbf496a39",rules = { })})
     @PostMapping("/api/lcplogics/getInventoryByMaterialDetails")
     public ApiReturn<Long> getInventoryByMaterialDetails(@RequestBody GetInventoryByMaterialDetailsCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getInventoryByMaterialDetailsCustomizeService.getInventoryByMaterialDetails(body.getMaterialCode(), body.getWarehouseId(), body.getLocationId()));
     } 
-
 
 }

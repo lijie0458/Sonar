@@ -9,9 +9,12 @@ public class FeishuUserAccessTokenRespStructure {
 
     @Label("错误码，非 0 表示失败")
     public Long code;
+
     @Label("错误描述")
     public String msg;
+
     public FeishuUserAccessTokenDataStructure data;
+
     public Long getCode() {
         return code;
     } 
@@ -35,6 +38,5 @@ public class FeishuUserAccessTokenRespStructure {
     public void setData(FeishuUserAccessTokenDataStructure data) {
         this.data = data; 
     } 
-
 
 }

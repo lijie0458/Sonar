@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.DepartmentEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.DepartmentEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.DepartmentEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class DepartmentEntityController {
     @Resource
     private DepartmentEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "1b02de3d-c962-4b11-b7a0-65c8b4c773cb",rules = { }),@ValidationRuleGroup(value = "0546fd9a-8628-470f-addb-155e16be0be0",rules = { }),@ValidationRuleGroup(value = "20ad773596c047d2a3afe64cba63dc75",rules = { }),@ValidationRuleGroup(value = "10d9bb5e-f8f8-4e7c-9b20-9630350a8658",rules = { }),@ValidationRuleGroup(value = "f9015418487a4a109f58e052d6892bb6",rules = { }),@ValidationRuleGroup(value = "5bb61c898b7a4678b8dcf7421a446e69",rules = { }),@ValidationRuleGroup(value = "e9164017-39f8-4d71-9ece-1dc4abcdf153",rules = { }),@ValidationRuleGroup(value = "d1b87bfbcb654dd78c2f382917605593",rules = { }),@ValidationRuleGroup(value = "f50dec4c916845858e4a70f2d7874f43",rules = { }),@ValidationRuleGroup(value = "77e21adf-cb82-4103-8980-58f5cc80a721",rules = { })})
+    @GetMapping("/api/department")
+    public ApiReturn<DepartmentEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -87,14 +98,6 @@ public class DepartmentEntityController {
         return ApiReturn.of(service.batchDelete(ids));
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "1b02de3d-c962-4b11-b7a0-65c8b4c773cb",rules = { }),@ValidationRuleGroup(value = "0546fd9a-8628-470f-addb-155e16be0be0",rules = { }),@ValidationRuleGroup(value = "20ad773596c047d2a3afe64cba63dc75",rules = { }),@ValidationRuleGroup(value = "10d9bb5e-f8f8-4e7c-9b20-9630350a8658",rules = { }),@ValidationRuleGroup(value = "f9015418487a4a109f58e052d6892bb6",rules = { }),@ValidationRuleGroup(value = "5bb61c898b7a4678b8dcf7421a446e69",rules = { }),@ValidationRuleGroup(value = "e9164017-39f8-4d71-9ece-1dc4abcdf153",rules = { }),@ValidationRuleGroup(value = "d1b87bfbcb654dd78c2f382917605593",rules = { }),@ValidationRuleGroup(value = "f50dec4c916845858e4a70f2d7874f43",rules = { }),@ValidationRuleGroup(value = "77e21adf-cb82-4103-8980-58f5cc80a721",rules = { })})
-    @GetMapping("/api/department")
-    public ApiReturn<DepartmentEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -103,4 +106,5 @@ public class DepartmentEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

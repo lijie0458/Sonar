@@ -9,8 +9,10 @@ public class MultipleTabStructure {
 
     @Label("页面名称")
     public String path;
+
     @Label("页面地址")
     public String fullPath;
+
     public String getPath() {
         return path;
     } 
@@ -26,6 +28,5 @@ public class MultipleTabStructure {
     public void setFullPath(String fullPath) {
         this.fullPath = fullPath; 
     } 
-
 
 }

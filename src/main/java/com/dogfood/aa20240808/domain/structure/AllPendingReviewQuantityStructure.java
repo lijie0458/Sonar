@@ -9,24 +9,34 @@ public class AllPendingReviewQuantityStructure {
 
     @Label("入出库总待审核数量")
     public Long inOutTotalQuantity;
+
     @Label("销售出库待审核数量")
     public Long saleOutWarehouseQuantity;
+
     @Label("产品入库待审核数量")
     public Long productInStorageQuantity;
+
     @Label("委外加工入库待审核数量")
     public Long outsourceInStorageQuantity;
+
     @Label("委外加工出库待审核数量")
     public Long outsourceOutStorageQuantity;
+
     @Label("生产领料待审核数量")
     public Long productionQuantity;
+
     @Label("其他入库待审核数量")
     public Long otherInStorageQuantity;
+
     @Label("其他出库待审核数量")
     public Long otherOutStorageQuantity;
+
     @Label("销售订单待审核数量")
     public Long saleOrderQuantity;
+
     @Label("采购订单待审核数量")
     public Long purchaseOrderQuantity;
+
     public Long getInOutTotalQuantity() {
         return inOutTotalQuantity;
     } 
@@ -106,6 +116,5 @@ public class AllPendingReviewQuantityStructure {
     public void setPurchaseOrderQuantity(Long purchaseOrderQuantity) {
         this.purchaseOrderQuantity = purchaseOrderQuantity; 
     } 
-
 
 }

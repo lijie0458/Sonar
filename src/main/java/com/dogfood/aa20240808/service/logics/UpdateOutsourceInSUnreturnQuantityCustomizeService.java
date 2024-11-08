@@ -5,26 +5,43 @@ import com.dogfood.aa20240808.util.CommonFunctionUtil;
 import com.dogfood.aa20240808.repository.UpdateOutsourceInSUnreturnQuantityCustomizeServiceMapper; 
 import com.dogfood.aa20240808.service.entities.OutsourceInStorageDetailsEntityService; 
 import java.util.Arrays; 
-import com.dogfood.aa20240808.util.LambdaParamWrapper; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71; 
 import org.slf4j.Logger; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_20B4E731A2B2CCA994851294FA572B07; 
 
+/**
+ * 更新委外加工入库详情的未退回数量-ljl
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class UpdateOutsourceInSUnreturnQuantityCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private UpdateOutsourceInSUnreturnQuantityCustomizeServiceMapper updateOutsourceInSUnreturnQuantityCustomizeServiceMapper;
+
     @Autowired
     private OutsourceInStorageDetailsEntityService outsourceInStorageDetailsEntityService;
+
     public void updateOutsourceInSUnreturnQuantity(String outsourceReturnCode, Boolean addOrReduce) {
-        LambdaParamWrapper<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_20B4E731A2B2CCA994851294FA572B07> variable1 = new LambdaParamWrapper<>(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_20B4E731A2B2CCA994851294FA572B07());
-        variable1.param = CommonFunctionUtil.createListPage(updateOutsourceInSUnreturnQuantityCustomizeServiceMapper.getAnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71(outsourceReturnCode), updateOutsourceInSUnreturnQuantityCustomizeServiceMapper.countAnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71(outsourceReturnCode).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_20B4E731A2B2CCA994851294FA572B07.class); 
-        if ((variable1.param.total.compareTo(0L) > 0)) {
-            for (Long index = 0L; index < variable1.param.list.size(); index++) {
-                com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71 item = variable1.param.list.get(index.intValue());
+        AnonymousStructure_20B4E731A2B2CCA994851294FA572B07 variable1 = new AnonymousStructure_20B4E731A2B2CCA994851294FA572B07();
+        variable1 = CommonFunctionUtil.createListPage(updateOutsourceInSUnreturnQuantityCustomizeServiceMapper.getAnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71(outsourceReturnCode), updateOutsourceInSUnreturnQuantityCustomizeServiceMapper.countAnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71(outsourceReturnCode).intValue(), AnonymousStructure_20B4E731A2B2CCA994851294FA572B07.class); 
+        if ((variable1.total.compareTo(0L) > 0)) {
+            for (Long index = 0L; index < variable1.list.size(); index++) {
+                AnonymousStructure_6A9D82433468B40EA67F827BB6DB2E71 item = variable1.list.get(index.intValue());
                 if (addOrReduce) {
                     item.outsourceInStorageDetails.unreturnQuantity = (item.outsourceInStorageDetails.unreturnQuantity.add(item.outsourceReturnStorageDetails.quantity)); 
                 } else {
@@ -33,12 +50,11 @@ public class UpdateOutsourceInSUnreturnQuantityCustomizeService {
 
             } 
 
-            outsourceInStorageDetailsEntityService.batchUpdate(CommonFunctionUtil.listTransform(variable1.param.list, (item) -> item.outsourceInStorageDetails), Arrays.asList("id", "unreturnQuantity"));
+            outsourceInStorageDetailsEntityService.batchUpdate(CommonFunctionUtil.listTransform(variable1.list, (item) -> item.outsourceInStorageDetails), Arrays.asList("id", "unreturnQuantity"));
         } else {
         } 
 
         return ;
     } 
-
 
 }

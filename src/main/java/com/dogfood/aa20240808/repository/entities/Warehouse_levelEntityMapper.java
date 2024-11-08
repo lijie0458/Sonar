@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface Warehouse_levelEntityMapper extends ReferenceHandleMapper {
 
     int insert(Warehouse_levelEntity bean);
+
     int batchInsert(List<Warehouse_levelEntity> beans);
-    List<Warehouse_levelEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(Warehouse_levelEntity bean, List<String> updateFields);
-    int batchUpdate(List<Warehouse_levelEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    Warehouse_levelEntity selectOne(Long id);
-
-    int createOrUpdate(Warehouse_levelEntity bean);
     int updateBy(Warehouse_levelEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(Warehouse_levelEntity bean);
+
+    int update(Warehouse_levelEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<Warehouse_levelEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    Warehouse_levelEntity selectOne(Long id);
+
+
+    List<Warehouse_levelEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

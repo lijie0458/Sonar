@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface SalesOrderDetailsEntityMapper extends ReferenceHandleMapper {
 
     int insert(SalesOrderDetailsEntity bean);
+
     int batchInsert(List<SalesOrderDetailsEntity> beans);
-    List<SalesOrderDetailsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(SalesOrderDetailsEntity bean, List<String> updateFields);
-    int batchUpdate(List<SalesOrderDetailsEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    SalesOrderDetailsEntity selectOne(Long id);
-
-    int createOrUpdate(SalesOrderDetailsEntity bean);
     int updateBy(SalesOrderDetailsEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(SalesOrderDetailsEntity bean);
+
+    int update(SalesOrderDetailsEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<SalesOrderDetailsEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    SalesOrderDetailsEntity selectOne(Long id);
+
+
+    List<SalesOrderDetailsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

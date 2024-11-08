@@ -5,5 +5,4 @@ public interface LoadCountPurchaseorderCustomizeServiceMapper {
 
 Long getSql1(); 
 
-
 }

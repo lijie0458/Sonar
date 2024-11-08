@@ -35,14 +35,14 @@ public class Validator {
         ALL_VALIDATION_RULES.put("min", new ValidationRuleDeclare("{target} == nil || {target}>=min", "{target}不能小于min"));
         ALL_VALIDATION_RULES.put("range", new ValidationRuleDeclare("{target} == nil || ({target}>=min && {target}<=max)", "{target}必须在min和max之间"));
         ALL_VALIDATION_RULES.put("maxLength", new ValidationRuleDeclare("{target} == nil " +
-            "|| ((is_a({target}, java.util.List) || is_a({target}, java.util.Map) || is_a({target}, String)) && count({target}) <= max) " +
-            "|| count(str({target})) <= max", "{target}的长度不能超过max"));
+                "|| ((is_a({target}, java.util.List) || is_a({target}, java.util.Map) || is_a({target}, String)) && count({target}) <= max) " +
+                "|| count(str({target})) <= max", "{target}的长度不能超过max"));
         ALL_VALIDATION_RULES.put("minLength", new ValidationRuleDeclare("{target} == nil " +
-            "|| ((is_a({target}, java.util.List) || is_a({target}, java.util.Map) || is_a({target}, String)) && count({target}) >= min) " +
-            "|| count(str({target})) >= min", "{target}的长度不能小于min"));
+                "|| ((is_a({target}, java.util.List) || is_a({target}, java.util.Map) || is_a({target}, String)) && count({target}) >= min) " +
+                "|| count(str({target})) >= min", "{target}的长度不能小于min"));
         ALL_VALIDATION_RULES.put("rangeLength", new ValidationRuleDeclare("{target} == nil " +
-            "|| ((is_a({target}, java.util.List) || is_a({target}, java.util.Map) || is_a({target}, String)) && count({target}) <= max && count({target}) >= min) " +
-            "|| (count(str({target})) <= max && count(str({target})) >= min)", "{target}的长度必须在min和max之间"));
+                "|| ((is_a({target}, java.util.List) || is_a({target}, java.util.Map) || is_a({target}, String)) && count({target}) <= max && count({target}) >= min) " +
+                "|| (count(str({target})) <= max && count(str({target})) >= min)", "{target}的长度必须在min和max之间"));
 
         // is是浅层比较(引用比较)  equals是深层比较(值比较) confirmed和equals一样
         ALL_VALIDATION_RULES.put("is", new ValidationRuleDeclare("{target} == nil || {target} == arg", "{target}必须等于arg"));

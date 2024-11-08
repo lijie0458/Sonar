@@ -16,11 +16,11 @@ public class PERGetRoleIdListByUserIdCustomizeController {
 
     @Autowired
     private PERGetRoleIdListByUserIdCustomizeService pERGetRoleIdListByUserIdCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "0b912c0e-9c0e-443f-b496-716ca431495b",rules = { })})
     @PostMapping("/api/lcplogics/PERGetRoleIdListByUserId")
     public ApiReturn<List<Long>> pERGetRoleIdListByUserId(@RequestBody PERGetRoleIdListByUserIdCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(pERGetRoleIdListByUserIdCustomizeService.pERGetRoleIdListByUserId(body.getUserId()));
     } 
-
 
 }

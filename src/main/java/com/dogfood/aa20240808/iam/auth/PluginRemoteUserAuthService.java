@@ -3,6 +3,7 @@ package com.dogfood.aa20240808.iam.auth;
 import com.netease.cloud.nuims.auth.api.bean.AuthInfo;
 import com.netease.cloud.nuims.plugin.starter.PluginConfigProperties;
 import com.dogfood.aa20240808.context.UserContext;
+import com.netease.cloud.nuims.auth.api.exception.AuthException;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
@@ -55,7 +56,7 @@ public class PluginRemoteUserAuthService implements AuthService {
                     UserContext.setCurrentUserInfo(userInfo);
                 }
             }
-        } catch (com.netease.cloud.nuims.auth.api.exception.AuthException e) {
+        } catch (AuthException e) {
             LOGGER.error("Error: {}", e.getMessage());
         }
         return sessionMap;
@@ -79,7 +80,7 @@ public class PluginRemoteUserAuthService implements AuthService {
     public void clearSession(HttpServletRequest request, HttpServletResponse response) {
         try {
             pluginAuthService.logout(request, authType, null);
-        } catch (com.netease.cloud.nuims.auth.api.exception.AuthException e) {
+        } catch (AuthException e) {
            LOGGER.error("Error: {}", e.getMessage());
         }
     }

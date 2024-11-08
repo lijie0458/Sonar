@@ -24,7 +24,9 @@ public enum IdentitySourceStateEnumEnum implements BaseEnum<IdentitySourceStateE
     FIELD_wechat("wechat", "微信"),; 
 
     public final String code;
+
     public final String desc;
+
 IdentitySourceStateEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -46,7 +48,6 @@ IdentitySourceStateEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class IdentitySourceStateEnumEnumDeserializer extends JsonDeserializer<IdentitySourceStateEnumEnum>{
 
             @Override
@@ -65,7 +66,6 @@ IdentitySourceStateEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

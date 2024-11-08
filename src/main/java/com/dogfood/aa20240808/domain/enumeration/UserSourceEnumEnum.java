@@ -28,7 +28,9 @@ public enum UserSourceEnumEnum implements BaseEnum<UserSourceEnumEnum, String>{
     FIELD_wechat("wechat", "微信"),; 
 
     public final String code;
+
     public final String desc;
+
 UserSourceEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -50,7 +52,6 @@ UserSourceEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class UserSourceEnumEnumDeserializer extends JsonDeserializer<UserSourceEnumEnum>{
 
             @Override
@@ -69,7 +70,6 @@ UserSourceEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

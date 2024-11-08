@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
 import com.dogfood.aa20240808.domain.enumeration.ApprovalStatusEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,22 +16,30 @@ public class PurchaseRequestEntity {
 
     @Label("标题")
     public String title;
+
     @Label("单号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String requestNumber;
+
     @Label("部门")
     public Long department;
+
     @Label("申请原因")
     public String requestReason;
+
     @Label("附件")
     public String annex;
+
     @Label("申请人")
     public String createdBy;
+
     @Label("审批状态")
     public ApprovalStatusEnumEnum approvalStatus;
+
     @Label("申请日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate applicationDate;
+    public LocalDate applicationDate;
+
     public String getTitle() {
         return title;
     } 
@@ -86,13 +96,12 @@ public class PurchaseRequestEntity {
         this.approvalStatus = approvalStatus; 
     } 
 
-    public java.time.LocalDate getApplicationDate() {
+    public LocalDate getApplicationDate() {
         return applicationDate;
     } 
 
-    public void setApplicationDate(java.time.LocalDate applicationDate) {
+    public void setApplicationDate(LocalDate applicationDate) {
         this.applicationDate = applicationDate; 
     } 
-
 
 }

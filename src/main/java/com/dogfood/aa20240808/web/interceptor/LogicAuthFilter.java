@@ -12,6 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.core.annotation.Order;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.core.io.ClassPathResource;
@@ -40,11 +41,9 @@ import org.slf4j.LoggerFactory;
  */
 @Order(5)
 @WebFilter(filterName = "logicAuthFilter", urlPatterns = {"/api/*","/upload/*"})
+@ConditionalOnProperty(value = {"lcp.authCenter.enable","logicAuthFlag"}, havingValue = "true")
 public class LogicAuthFilter implements Filter {
     private final Logger log = LoggerFactory.getLogger(LogicAuthFilter.class);
-
-    @Value("${logicAuthFlag:true}")
-    private Boolean logicAuthFlag;
 
     public static final String LOGIC_IDENTIFIER_SEPARATOR = ":";
 
@@ -71,21 +70,15 @@ public class LogicAuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if(!logicAuthFlag) {
-            log.debug("逻辑鉴权开关关闭");
-            filterChain.doFilter(servletRequest, servletResponse);
-            return;
-        }
-
         // 1. 识别到当前的请求路径
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         String requestURI = httpRequest.getRequestURI();
         String method = httpRequest.getMethod();
         String logicIdentifier = requestURI + LOGIC_IDENTIFIER_SEPARATOR + method;
-        log.info("当前请求的逻辑标识: {}", logicIdentifier);
+        log.info("the logicIdentifier of current request : {}", logicIdentifier);
 
         if(isUploadRequest(requestURI, method)) {
-            log.info("upload 非POST逻辑{} 无需鉴权", logicIdentifier);
+            log.debug("upload operations {} using non POST methods do not require authentication", logicIdentifier);
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
@@ -93,7 +86,7 @@ public class LogicAuthFilter implements Filter {
         // 2. 判断是否为白名单接口（认证、登录、流程相关系统逻辑接口）
         for (String allAuthApi : apiWhiteList()) {
             if (logicIdentifier.startsWith(allAuthApi)) {
-                log.warn("白名单逻辑{} 无需鉴权", logicIdentifier);
+                log.warn("whitelist logic {} does not require authentication", logicIdentifier);
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }
@@ -109,13 +102,13 @@ public class LogicAuthFilter implements Filter {
         // 3. 查询应用的逻辑和资源绑定关系（优化可放入缓存）
         if (isContainsLogicIdentifier(logicIdentifier)) {
             // 表示这个逻辑创建出来 未与页面资源进行关联
-            log.warn("未查询到逻辑页面资源关联关系 逻辑{}鉴权不通过", logicIdentifier);
-            handleReturn(httpResponse, "逻辑鉴权不通过");
+            log.warn("no logic-page resource association found, authorization failed for logic: {}", logicIdentifier);
+            handleReturn(httpResponse, "未查询到逻辑页面资源关联关系，逻辑鉴权不通过");
             return;
         }
         // 3.1 如果当前逻辑关联的页面资源是 空数组则表示该逻辑关联了无需登录即可访问的页面，所以直接放行
         if(isShouldNotAuth(logicIdentifier)){
-            log.debug("逻辑{} 无需鉴权", logicIdentifier);
+            log.debug("no authentication required for logic: {}", logicIdentifier);
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
@@ -123,15 +116,15 @@ public class LogicAuthFilter implements Filter {
         // 4. 判断当前用户是否登录，如果3.1没有放行 则说明逻辑没有关联无需鉴权的页面，所以用户需要登录才能访问这个逻辑
         UserContext.UserInfo currentUser = UserContext.getCurrentUser();
         if (Objects.isNull(currentUser)) {
-            log.warn("当前用户未登录 逻辑{} 鉴权不通过", logicIdentifier);
-            handleReturn(httpResponse, "逻辑鉴权不通过");
+            log.warn("current user is not logged in, authorization failed for logic: {}", logicIdentifier);
+            handleReturn(httpResponse, "当前用户未登录，逻辑鉴权不通过");
             return;
         }
 
         // 5. 调用系统默认逻辑鉴权策略检查是否有权限访问
         List<String> currentUserResNames = getUserResourceList(currentUser.userId);
         if (CollectionUtils.isEmpty(currentUserResNames)) {
-            log.warn("当前用户关联资源为空 逻辑{} 鉴权不通过", logicIdentifier);
+            log.warn("current user's associated resources are empty, authorization failed for logic: {}", logicIdentifier);
             handleReturn(httpResponse, "用户关联资源为空，逻辑鉴权不通过");
             return;
         }
@@ -183,10 +176,7 @@ public class LogicAuthFilter implements Filter {
     }
 
     private static List<String> apiWhiteList() {
-        List<String> verifyApis = Arrays.asList("/api/user");
-        List<String> systemApis = Arrays.asList("/api/system");
-        List<String> processV2Apis = Arrays.asList("/api/processV2");
-        return Stream.concat(Stream.concat(verifyApis.stream(), systemApis.stream()), processV2Apis.stream()).collect(Collectors.toList());
+        return Arrays.asList("/api/user","/api/system","/api/processV2");
     }
 
     private <T> T readFileToCollect(String filePath, TypeReference<T> typeReference) {
@@ -195,14 +185,14 @@ public class LogicAuthFilter implements Filter {
         try {
             inputStream = classPathResource.getInputStream();
         } catch (IOException e) {
-            log.error("应用启动时权限数据 {} 读取失败 {}", filePath, e);
+            log.error("read permission.json file failed, path={}  when app start ,error= {}", filePath, e);
             return null;
         }
         T readValue = null;
         try {
             readValue = objectMapper.readValue(inputStream, typeReference);
         } catch (IOException e) {
-            log.error("应用启动时权限数据 {} 转换失败 {}", filePath, e);
+            log.error("format permission.json file failed , path={}  when app start ,error= {}", filePath, e);
             return null;
         }
         return readValue;

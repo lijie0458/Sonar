@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D; 
 import java.util.ArrayList; 
 import com.dogfood.aa20240808.domain.entities.InventoryEntity; 
 import java.util.List; 
@@ -14,24 +15,41 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_503318C7290063AC40A854F703B69D2C; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadInventoryPageTableView_4CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadInventoryPageTableView_4CustomizeServiceMapper loadInventoryPageTableView_4CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_503318C7290063AC40A854F703B69D2C loadInventoryPageTableView_4(Long page, Long size, String sort, String order, InventoryEntity filter) {
+
+    public AnonymousStructure_503318C7290063AC40A854F703B69D2C loadInventoryPageTableView_4(Long page, Long size, String sort, String order, InventoryEntity filter) {
         Long page1 = 0L;
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D> variable2 = new ArrayList<>();
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_503318C7290063AC40A854F703B69D2C result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_503318C7290063AC40A854F703B69D2C();
+        List<AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D> variable2 = new ArrayList<>();
+        AnonymousStructure_503318C7290063AC40A854F703B69D2C result = new AnonymousStructure_503318C7290063AC40A854F703B69D2C();
         variable2 = loadInventoryPageTableView_4CustomizeServiceMapper.getAnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D(filter, getTableField("AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D", sort), order); 
         page1 = (page - 1L); 
-        result = CommonFunctionUtil.createListPage(loadInventoryPageTableView_4CustomizeServiceMapper.getSql1(filter, getLimit(size), getOffset(page, size)), loadInventoryPageTableView_4CustomizeServiceMapper.countSql1(filter, getLimit(size), getOffset(page, size)).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_503318C7290063AC40A854F703B69D2C.class); 
+        result = CommonFunctionUtil.createListPage(loadInventoryPageTableView_4CustomizeServiceMapper.getSql1(filter, getLimit(size), getOffset(page, size)), loadInventoryPageTableView_4CustomizeServiceMapper.countSql1(filter, getLimit(size), getOffset(page, size)).intValue(), AnonymousStructure_503318C7290063AC40A854F703B69D2C.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadInventoryPageTableView_4CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_9195440D3385CF4C1A29F6E904E75D4D").put("materialCode", "`materialCode`");
@@ -88,6 +106,5 @@ public class LoadInventoryPageTableView_4CustomizeService {
 
         return size == null ? 20L : size;
     } 
-
 
 }

@@ -11,22 +11,39 @@ import java.util.Map;
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
 import org.springframework.beans.factory.annotation.Autowired; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadWarehouseTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadWarehouseTableViewCustomizeServiceMapper loadWarehouseTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13 loadWarehouseTableView(Long page, Long size, String sort, String order, Warehouse_levelEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13();
-        result = CommonFunctionUtil.createListPage(loadWarehouseTableViewCustomizeServiceMapper.getAnonymousStructure_6CA25F63D4A24168C85048D927F1049F(filter, page, size, getTableField("AnonymousStructure_6CA25F63D4A24168C85048D927F1049F", sort), order), loadWarehouseTableViewCustomizeServiceMapper.countAnonymousStructure_6CA25F63D4A24168C85048D927F1049F(filter, page, size, getTableField("AnonymousStructure_6CA25F63D4A24168C85048D927F1049F", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13.class); 
+
+    public AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13 loadWarehouseTableView(Long page, Long size, String sort, String order, Warehouse_levelEntity filter) {
+        AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13 result = new AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13();
+        result = CommonFunctionUtil.createListPage(loadWarehouseTableViewCustomizeServiceMapper.getAnonymousStructure_6CA25F63D4A24168C85048D927F1049F(filter, page, size, getTableField("AnonymousStructure_6CA25F63D4A24168C85048D927F1049F", sort), order), loadWarehouseTableViewCustomizeServiceMapper.countAnonymousStructure_6CA25F63D4A24168C85048D927F1049F(filter, page, size, getTableField("AnonymousStructure_6CA25F63D4A24168C85048D927F1049F", sort), order).intValue(), AnonymousStructure_4E11050E3F5E4102B0FBA92E2D111E13.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadWarehouseTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_6CA25F63D4A24168C85048D927F1049F", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_6CA25F63D4A24168C85048D927F1049F").put("warehouse_level.id", "`warehouse_level`.`id`");
@@ -102,6 +119,5 @@ public class LoadWarehouseTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

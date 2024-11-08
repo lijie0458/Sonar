@@ -14,9 +14,7 @@ import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
 import com.dogfood.aa20240808.service.dto.filters.atomic.ColumnQueryFilter;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -29,7 +27,6 @@ import java.beans.PropertyDescriptor;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -43,6 +40,7 @@ import java.util.stream.Collectors;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.stream.Stream;
+import java.security.SecureRandom;
 
 import static com.dogfood.aa20240808.config.Constants.USER_APP_PROPERTY_KEY_PREFIX;
 
@@ -73,7 +71,10 @@ public class CommonFunctionUtil {
     private static final String DATETIME_FORMAT_YYYYMMDD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
     private static final String DATETIME_FORMAT_YYYYMMDD2_HHMMSS = "yyyy/MM/dd HH:mm:ss";
     private static final String DATETIME_FORMAT_YYYYMMDD3_HHMMSS = "yyyy.MM.dd HH:mm:ss";
+    private static final List<String> DATETIME_FORMAT_WITH_ZONE = Arrays.asList("yyyy-MM-dd HH:mm:ss.SSSxxx", "yyyy/MM/dd HH:mm:ss.SSSxxx",
+            "yyyy.MM.dd HH:mm:ss.SSSxxx", "yyyy-MM-dd'T'HH:mm:ss.SSSz", "yyyy-MM-dd HH:mm:ss.xxx", "yyyy/MM/dd HH:mm:ss.xxx", "yyyy.MM.dd HH:mm:ss.xxx");
     private static final String DATETIME_FORMAT_HHMMSS = "HH:mm:ss";
+    private static final String DATETIME_FORMAT_HHMMSS2 = "HH:mm:ss.SSS";
     private static final BigDecimal TWO = BigDecimal.valueOf(2);
 
     // 2022-10-04T16:00:00.000Z
@@ -156,8 +157,16 @@ public class CommonFunctionUtil {
         return (T) temporal.plus(amount, chronoUnit);
     }
 
+    public static Long getDateCountOld(TemporalAccessor temporalAccessor, String type) {
+        return getDateCount(temporalAccessor, type);
+    }
+
     public static Long getDateCount(TemporalAccessor temporalAccessor, String type) {
         return getDateCount(temporalAccessor, type, null);
+    }
+
+    public static Long getDateCountOld(TemporalAccessor temporalAccessor, String type, String zoneIdStr) {
+        return getDateCount(temporalAccessor, type, zoneIdStr);
     }
 
     public static Long getDateCount(TemporalAccessor temporalAccessor, String type, String zoneIdStr) {
@@ -651,6 +660,10 @@ public class CommonFunctionUtil {
     }
 
     public static List<String> split(String str, String separator) {
+        return split(str, separator, false);
+    }
+
+    public static List<String> split(String str, String separator, Boolean saveLast) {
         if (str == null) {
             return Collections.emptyList();
         }
@@ -660,7 +673,8 @@ public class CommonFunctionUtil {
                 break;
             }
         }
-        return new ArrayList<>(Arrays.asList(str.split(separator)));
+        int splitLimit = Boolean.TRUE.equals(saveLast) ? -1 : 0;
+        return new ArrayList<>(Arrays.asList(str.split(separator, splitLimit)));
     }
 
     //*********** 运算 **************
@@ -967,20 +981,115 @@ public class CommonFunctionUtil {
         }
     }
 
-    //----------- 枚举 -----------
-    public static String enumValueToText(BaseEnum tEnum, Class<? extends BaseEnum> tClass) {
-        if (null == tEnum || null == tClass) {
-            return "";
+    public static <T> T clear(T o, String mode) {
+        if (o == null || isCollectionThenClear(o) || isPlatformPrimitiveType(o.getClass())) {
+            return o;
         }
 
-        BaseEnum[] baseEnums = tClass.getEnumConstants();
-        for (BaseEnum baseEnum : baseEnums) {
-            if (tEnum.getCode().equals(baseEnum.getCode())) {
-                return baseEnum.getDesc();
+        if ("deep".equals(mode)) {
+            clearObjectDeep(o, new HashSet<>());
+        } else {
+            clearObjectShallow(o);
+        }
+
+        return o;
+    }
+
+    public static <T> T clearMember(T o, String fileName) {
+        if (isPlatformPrimitiveType(o.getClass())) {
+            return o;
+        }
+        Field[] fields = o.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                if (field.getName().equals(fileName)) {
+                    field.set(o, null);
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
         }
+        return o;
+    }
 
-        return "";
+    private static boolean isCollectionThenClear(Object o) {
+        if (o instanceof List) {
+            ((List<?>) o).clear();
+            return true;
+        } else if (o instanceof Set) {
+            ((Set<?>) o).clear();
+            return true;
+        } else if (o.getClass().isArray()) {
+            clearArray(o);
+            return true;
+        } else if (o instanceof Map) {
+            ((Map<?, ?>) o).clear();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 支持平台的类型就行，不属于平台类型的对象可能会报错
+     * @param o
+     * @param visited
+     */
+    private static void clearObjectDeep(Object o, Set<Object> visited) {
+        // 基础类型、数组类型、集合类型不会加入到visited中
+        if (o == null || isCollectionThenClear(o) || !visited.add(o) || isPlatformPrimitiveType(o.getClass())) {
+            return ;
+        }
+
+        Field[] fields = o.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                if (isPlatformPrimitiveType(field.getType()) || field.getType().isEnum()) {
+                    field.set(o, null);
+                    continue;
+                }
+                clearObjectDeep(field.get(o), visited);
+            } catch (IllegalAccessException e) {
+                // todo 改成http
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private static void clearObjectShallow(Object o) {
+        Field[] fields = o.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                field.set(o, null);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /**
+     * 这里只判断了平台基础类型，还有Short、Byte、Float、Character等类型没有判断，依赖库中是否会存在这些类型
+     *
+     * @param type
+     * @return
+     */
+    private static boolean isPlatformPrimitiveType(Class<?> type) {
+        return String.class.equals(type) || Long.class.equals(type) || BigDecimal.class.equals(type)
+                || Boolean.class.equals(type) || LocalDate.class.equals(type) || LocalTime.class.equals(type)
+                || ZonedDateTime.class.equals(type) || Integer.class.equals(type)
+                || Double.class.equals(type) || Float.class.equals(type) || Byte.class.equals(type);
+    }
+
+
+    //----------- 枚举 -----------
+    public static String enumItemToText(BaseEnum tEnum) {
+        if (null == tEnum) {
+            return "";
+        }
+        return tEnum.getDesc();
     }
 
     public static <T extends BaseEnum> T toEnumItem(String str, Class<T> enumClass) {
@@ -1051,6 +1160,26 @@ public class CommonFunctionUtil {
         return Collections.emptyList();
     }
 
+    public static <E extends Enum<E>> AnonymousEnumStructure enumItemToStructure(BaseEnum<E, String> tEnum) {
+        if (tEnum == null) {
+            return null;
+        }
+        AnonymousEnumStructure enumStructure = new AnonymousEnumStructure();
+        enumStructure.setText(tEnum.getDesc());
+        enumStructure.setValue(tEnum.getCode());
+        return enumStructure;
+    }
+
+    public static <E extends Enum<E>> AnonymousLongEnumStructure longEnumItemToStructure(BaseEnum<E, Long> tEnum) {
+        if (tEnum == null) {
+            return null;
+        }
+        AnonymousLongEnumStructure enumStructure = new AnonymousLongEnumStructure();
+        enumStructure.setText(tEnum.getDesc());
+        enumStructure.setValue(tEnum.getCode());
+        return enumStructure;
+    }
+
     //----------- 类型转换 -----------
 
     @SuppressWarnings("unchecked")
@@ -1115,7 +1244,7 @@ public class CommonFunctionUtil {
             result = Integer.valueOf(((Long) o).intValue());
         } else if (o instanceof String) {
             // StringToInteger
-            result = Integer.valueOf(Integer.parseInt((String)o));
+            result = new BigDecimal((String) o).setScale(0, RoundingMode.HALF_UP).intValue();
         } else if (o instanceof BigDecimal) {
             // BigDecimalToInteger
             result = Integer.valueOf(((BigDecimal) o).intValue());
@@ -1140,7 +1269,7 @@ public class CommonFunctionUtil {
             result = Long.valueOf(((BigDecimal) o).longValue());
         } else if (o instanceof String) {
             // StringToLong
-            result = Long.valueOf(Long.parseLong((String) o));
+            result = new BigDecimal((String) o).setScale(0, RoundingMode.HALF_UP).longValue();
         } else if (o instanceof Integer) {
             // IntegerToLong
             result = Long.valueOf(((Integer) o).longValue());
@@ -1241,15 +1370,22 @@ public class CommonFunctionUtil {
             // StringToZonedDateTime
             String s = o.toString();
             String pattern;
-            if (s.contains("-")) {
-                pattern = DATETIME_FORMAT_YYYYMMDD_HHMMSS;
-            } else if (s.contains("/")) {
-                pattern = DATETIME_FORMAT_YYYYMMDD2_HHMMSS;
-            } else if (s.contains(".")) {
-                pattern = DATETIME_FORMAT_YYYYMMDD3_HHMMSS;
+            if (s.length() == 19) {
+                if (s.contains("-")) {
+                    pattern = DATETIME_FORMAT_YYYYMMDD_HHMMSS;
+                } else if (s.contains("/")) {
+                    pattern = DATETIME_FORMAT_YYYYMMDD2_HHMMSS;
+                } else if (s.contains(".")) {
+                    pattern = DATETIME_FORMAT_YYYYMMDD3_HHMMSS;
+                } else {
+                    throw new HttpCodeException(400, ErrorCodeEnum.ILLEGAL_DATETIME.code, s);
+                }
+            } else if (s.length() == 10) {
+                return convertZonedDateTimeStringUseDate(s);
             } else {
-                throw new HttpCodeException(400, ErrorCodeEnum.ILLEGAL_DATETIME.code, s);
+                return convertZonedDateTimeStringWithZone(s);
             }
+
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern).withZone(ZoneId.systemDefault());
             result = ZonedDateTime.parse(s, formatter);
 
@@ -1266,14 +1402,36 @@ public class CommonFunctionUtil {
         return result;
     }
 
+    private static ZonedDateTime convertZonedDateTimeStringUseDate(String s) {
+        LocalDate localDate = convertLocalDate(s);
+        if (localDate == null) {
+            throw new HttpCodeException(400, ErrorCodeEnum.ILLEGAL_DATETIME.code, s);
+        }
+        return localDate.atStartOfDay(getZoneFromGlobalOrDefault());
+    }
+
+    private static ZonedDateTime convertZonedDateTimeStringWithZone(String s) {
+        for (String format : DATETIME_FORMAT_WITH_ZONE) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+                return ZonedDateTime.parse(s, formatter);
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        throw new HttpCodeException(400, ErrorCodeEnum.ILLEGAL_DATETIME.code, s);
+    }
+
     private static LocalTime convertLocalTime(Object o) {
         LocalTime result = null;
         if (o instanceof String) {
             // StringToLocalDate
             String s = o.toString();
             String pattern;
-            if (s.contains(":")) {
+            if (s.contains(":") && s.length() == 8) {
                 pattern = DATETIME_FORMAT_HHMMSS;
+            } else if (s.contains(".") && s.length() == 12) {
+                pattern = DATETIME_FORMAT_HHMMSS2;
             } else {
                 throw new HttpCodeException(400, ErrorCodeEnum.ILLEGAL_DATETIME.code, s);
             }
@@ -2220,8 +2378,11 @@ public class CommonFunctionUtil {
         }
     }
 
-    public static Long randomInt(Long start, Long end) {
-        return RandomUtils.nextLong(start, end);
+    public static long randomInt(long start, long end) {
+        SecureRandom secureRandom = new SecureRandom();
+        long range = end - start;
+        long fraction = (long)(range * secureRandom.nextDouble());
+        return fraction + start;
     }
 
     public static Long round(BigDecimal value, RoundingMode mode) {
@@ -2394,6 +2555,7 @@ public class CommonFunctionUtil {
             return new BigDecimal(number.toString());
         }
     }
+
     public static <T> Boolean notEquals(T left, T right) {
         return !equals(left, right);
     }

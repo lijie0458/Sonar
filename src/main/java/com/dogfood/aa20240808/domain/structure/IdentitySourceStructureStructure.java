@@ -10,12 +10,16 @@ public class IdentitySourceStructureStructure {
 
     @Label("身份源图标")
     public String icon;
+
     @Label("身份源名字")
     public String name;
+
     @Label("身份源描述")
     public String description;
+
     @Label("身份源标识")
     public IdentitySourceStateEnumEnum state;
+
     public String getIcon() {
         return icon;
     } 
@@ -47,6 +51,5 @@ public class IdentitySourceStructureStructure {
     public void setState(IdentitySourceStateEnumEnum state) {
         this.state = state; 
     } 
-
 
 }

@@ -77,18 +77,56 @@
         where `return_code` = #{bean.returnCode}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity" >
         UPDATE `outsource_return_storage`
         <set>
-            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('outsourceInSCode')">`outsource_in_s_code` = #{bean.outsourceInSCode, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdTime')">
+                `created_time` = CASE `return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.returnCode} THEN #{bean.createdTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.returnCode} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">
+                `updated_time` = CASE `return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.returnCode} THEN #{bean.updatedTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">
+                `updated_by` = CASE `return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.returnCode} THEN #{bean.updatedBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('state')">
+                `state` = CASE `return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.returnCode} THEN #{bean.state, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('outsourceInSCode')">
+                `outsource_in_s_code` = CASE `return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.returnCode} THEN #{bean.outsourceInSCode, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `return_code` = #{bean.returnCode}
+        where `return_code` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.returnCode}
+        </foreach>
     </update>
 
 
@@ -176,21 +214,6 @@
         where `return_code`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `outsource_return_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `outsource_return_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceReturnStorageEntity">
         INSERT INTO `outsource_return_storage` (
             `return_code`
@@ -231,4 +254,18 @@
         DELETE FROM `outsource_return_storage`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `outsource_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `outsource_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
 import com.dogfood.aa20240808.domain.enumeration.ApprovalStatusEnumEnum; 
 import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,29 +16,40 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class ProductionMaterialRequisitionEntity {
 
     @Label("单据编号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String documentNumber;
+
     @Label("领料部门")
     public Long department;
+
     @Label("领料员")
     public Long employee;
+
     @Label("申请日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate requestDate;
+    public LocalDate requestDate;
+
     @Label("摘要")
     public String summary;
+
     @Label("附件")
     public String attachment;
+
     @Label("审批状态")
     public ApprovalStatusEnumEnum approvalStatus;
+
     @Label("区别字段（领料/退料）")
     public DistinctionEnumEnum issueReturnDistinction;
+
     @Label("保管员")
     public Long guardian;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("领料单号")
     public String sourceDocumentNumber;
+
     public String getDocumentNumber() {
         return documentNumber;
     } 
@@ -61,11 +74,11 @@ public class ProductionMaterialRequisitionEntity {
         this.employee = employee; 
     } 
 
-    public java.time.LocalDate getRequestDate() {
+    public LocalDate getRequestDate() {
         return requestDate;
     } 
 
-    public void setRequestDate(java.time.LocalDate requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate; 
     } 
 
@@ -124,6 +137,5 @@ public class ProductionMaterialRequisitionEntity {
     public void setSourceDocumentNumber(String sourceDocumentNumber) {
         this.sourceDocumentNumber = sourceDocumentNumber; 
     } 
-
 
 }

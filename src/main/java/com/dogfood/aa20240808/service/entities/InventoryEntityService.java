@@ -2,16 +2,11 @@ package com.dogfood.aa20240808.service.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +18,23 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.apache.commons.lang3.StringUtils;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.domain.entities.InventoryEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
 import com.dogfood.aa20240808.domain.structure.*;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.repository.entities.InventoryEntityMapper;
-import com.dogfood.aa20240808.util.SnowflakeIdWorker;
-import com.dogfood.aa20240808.util.CommonFunctionUtil;
-import com.dogfood.aa20240808.service.entities.AbstractService;
-import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
 import com.dogfood.aa20240808.service.dto.filters.*;
 import com.dogfood.aa20240808.service.dto.filters.atomic.*;
-import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
 import com.dogfood.aa20240808.service.dto.filters.logic.binary.matching.*;
+import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
+import com.dogfood.aa20240808.service.entities.AbstractService;
+import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
+import com.dogfood.aa20240808.util.CommonFunctionUtil;
 import com.dogfood.aa20240808.util.ExcelUtil;
-import com.dogfood.aa20240808.context.UserContext;
+import com.dogfood.aa20240808.util.SnowflakeIdWorker;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 /**
 * auto generate InventoryEntityService ServiceImpl
 *
@@ -49,6 +46,8 @@ public class InventoryEntityService extends AbstractService {
     private InventoryEntityMapper mapper;
     @Resource
     private RelationInnerService relationInnerService;
+    @Resource
+    private InventoryEntityService entityService;
 
     private Map<String, String> entityFieldNameTitleMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFieldTitleNameMap = new LinkedHashMap<String, String>();
@@ -57,34 +56,100 @@ public class InventoryEntityService extends AbstractService {
     public InventoryEntityService() {
         entityFieldTitleNameMap.put("id", "id");
         entityFiledColumnNameMap.put("id", "id");
-        entityFieldNameTitleMap.put("materialCode", "物料");
         entityFieldTitleNameMap.put("物料", "materialCode");
         entityFiledColumnNameMap.put("materialCode", "material_code");
-        entityFieldNameTitleMap.put("lotNumber", "批号");
         entityFieldTitleNameMap.put("批号", "lotNumber");
         entityFiledColumnNameMap.put("lotNumber", "lot_number");
         entityFieldTitleNameMap.put("unit", "unit");
         entityFiledColumnNameMap.put("unit", "unit");
-        entityFieldNameTitleMap.put("warehouse", "仓库");
         entityFieldTitleNameMap.put("仓库", "warehouse");
         entityFiledColumnNameMap.put("warehouse", "warehouse");
-        entityFieldNameTitleMap.put("stockQuantity", "库存数量");
         entityFieldTitleNameMap.put("库存数量", "stockQuantity");
         entityFiledColumnNameMap.put("stockQuantity", "stock_quantity");
-        entityFieldNameTitleMap.put("occupiedQuantity", "暂用数量");
         entityFieldTitleNameMap.put("暂用数量", "occupiedQuantity");
         entityFiledColumnNameMap.put("occupiedQuantity", "occupied_quantity");
-        entityFieldNameTitleMap.put("availableQuantity", "可用数量");
         entityFieldTitleNameMap.put("可用数量", "availableQuantity");
         entityFiledColumnNameMap.put("availableQuantity", "available_quantity");
         entityFieldTitleNameMap.put("createdAt", "createdAt");
         entityFiledColumnNameMap.put("createdAt", "created_at");
         entityFieldTitleNameMap.put("updatedAt", "updatedAt");
         entityFiledColumnNameMap.put("updatedAt", "updated_at");
-        entityFieldNameTitleMap.put("location", "库位");
         entityFieldTitleNameMap.put("库位", "location");
         entityFiledColumnNameMap.put("location", "location");
+        for (String fieldName : entityFieldNameTitleMap.keySet()) {
+            String fieldTitle = entityFieldNameTitleMap.get(fieldName);
+            entityFieldNameTitleMap.put(fieldName, fieldTitle);
+        }
     }
+
+    /**
+    * auto gen list method
+    **/
+    public List<InventoryEntity> list(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.selectList(queryFilter);
+    }
+
+    /**
+    * auto gen count method
+    **/
+    public long count(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.count(queryFilter);
+    }
+
+    /**
+    * auto gen export method
+    **/
+    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
+        try {
+            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
+            if (fields != null && !"".equals(fields.trim())) {
+                for (String filedName : fields.split(",")) {
+                    exportFieldMap = new LinkedHashMap<String, String>();
+                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
+                }
+            }
+
+            List<InventoryEntity> data = list(queryFilter);
+            String storeFilePath = ExcelUtil.write(data, InventoryEntity.class, exportFieldMap);
+            org.springframework.core.io.Resource resource = null;
+            String contentType = null;
+            resource = new FileUrlResource(storeFilePath);
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+            return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + InventoryEntity.class.getSimpleName() + ".xlsx\"")
+                .body(resource);
+        } catch (Exception e) {
+            throw new HttpCodeException(500, e);
+        }
+    }
+
+        /**
+         * auto gen get method
+         **/
+        public InventoryEntity get( Long id ) { 
+            if ( id == null ) { 
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            InventoryEntity entity = mapper.selectOne( id ); 
+
+            if (null == entity) {
+                throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code);
+            }
+            return entity;
+        }
 
     /**
     * auto gen create method
@@ -134,10 +199,19 @@ public class InventoryEntityService extends AbstractService {
             }
             batchList.add(entity);
         }
-        if (batchList.size() >= 0) {
+        if (batchList.size() > 0) {
             mapper.batchInsert(batchList);
         }
         return entities;
+    }
+
+    public void beforeUpdate(InventoryEntity entity) {
+        if (null == entity) {
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "InventoryEntity");
+        }
+        if ( entity.getId() == null ) { 
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+        }
     }
 
     /**
@@ -145,12 +219,7 @@ public class InventoryEntityService extends AbstractService {
     **/
     @Transactional
     public InventoryEntity update(InventoryEntity entity, List<String> updateFields) {
-        if (null == entity) {
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "InventoryEntity");
-        }
-        if ( entity.getId() == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
+        beforeUpdate(entity);
 
         // updateFields为null时，默认全量更新
         if (null != updateFields && updateFields.size() == 1 &&  updateFields.contains("id")) {
@@ -173,13 +242,32 @@ public class InventoryEntityService extends AbstractService {
         if (null == entities || entities.isEmpty()) {
             throw new HttpCodeException(400, ErrorCodeEnum.PARAM_NOTHING_TODO.code);
         }
-        // updateFields为null时，默认全量更新
-        List<InventoryEntity> updateEntities = new ArrayList<>(entities.size());
+
+        if (updateFields != null && updateFields.size() == 1 && updateFields.contains("id")) {
+            // 进行局部更新的字段是主键，这种情况是没意义，直接返回就好
+            return entities;
+        }
+        UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
+        String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
+        List<InventoryEntity> batchList = new ArrayList<>(100);
         for (InventoryEntity entity : entities) {
-            updateEntities.add(update(entity, updateFields));
+            if (entity.getId() == null ) {
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            batchList.add(entity);
+            if (batchList.size() >= 100) {
+                mapper.batchUpdate(batchList, updateFields);
+                batchList.clear();
+            }
         }
 
-        return updateEntities;
+        if (batchList.size() > 0) {
+            mapper.batchUpdate(batchList, updateFields);
+            batchList.clear();
+        }
+
+        return entities;
     }
 
     /**
@@ -221,47 +309,12 @@ public class InventoryEntityService extends AbstractService {
     }
 
     /**
-     * auto gen get method
-     **/
-    public InventoryEntity get( Long id ) { 
-        if ( id == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
-
-        InventoryEntity entity = mapper.selectOne( id ); 
-
-        return entity;
-    }
-
-    /**
-    * auto gen list method
-    **/
-    public List<InventoryEntity> list(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.selectList(queryFilter);
-    }
-
-    /**
-    * auto gen count method
-    **/
-    public long count(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.count(queryFilter);
-    }
-
-    /**
     * auto gen importFile method
     **/
     @Transactional(rollbackFor = Exception.class)
     public String importFile(MultipartFile file) {
         String type;
-        String[] items = file.getOriginalFilename().split("\\.");
+        String[] items = "\\.".split(Objects.requireNonNull(file.getOriginalFilename()));
         if (items.length > 1) {
             type = items[items.length - 1];
             if (!"xls".equalsIgnoreCase(type) && !"xlsx".equalsIgnoreCase(type)) {
@@ -273,44 +326,12 @@ public class InventoryEntityService extends AbstractService {
 
         try {
             List<InventoryEntity> data = ExcelUtil.read(file.getInputStream(), type, InventoryEntity.class, entityFieldTitleNameMap);
-            batchCreate(data);
+            entityService.batchCreate(data);
             return "ok";
         } catch (Exception e) {
             throw new HttpCodeException(500, e);
         }
     }
-
-    /**
-    * auto gen export method
-    **/
-    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
-        try {
-            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
-            if (fields != null && !"".equals(fields.trim())) {
-                for (String filedName : fields.split(",")) {
-                    exportFieldMap = new LinkedHashMap<String, String>();
-                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
-                }
-            }
-
-            List<InventoryEntity> data = list(queryFilter);
-            String storeFilePath = ExcelUtil.write(data, InventoryEntity.class, exportFieldMap);
-            org.springframework.core.io.Resource resource = null;
-            String contentType = null;
-            resource = new FileUrlResource(storeFilePath);
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
-            return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + InventoryEntity.class.getSimpleName() + ".xlsx\"")
-                .body(resource);
-        } catch (Exception e) {
-            throw new HttpCodeException(500, e);
-        }
-    }
-
     /**
     * auto gen createOrUpdate method
     **/
@@ -322,7 +343,7 @@ public class InventoryEntityService extends AbstractService {
 
         if ( entity.getId() == null ) { 
             // insert
-            entity = create(entity);
+            entity = entityService.create(entity);
         }  else {
             InventoryEntity existEntity = mapper.selectOne(entity.getId()); 
             if (null == existEntity) {
@@ -337,7 +358,7 @@ public class InventoryEntityService extends AbstractService {
                 mapper.createOrUpdate(entity);
             } else {
                 // updateFields为null时，默认全量更新
-                entity = update(entity, updateFields);
+                entity = entityService.update(entity, updateFields);
             }
         }
         return entity;

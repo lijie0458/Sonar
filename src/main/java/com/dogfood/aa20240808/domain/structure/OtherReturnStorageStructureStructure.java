@@ -10,8 +10,10 @@ public class OtherReturnStorageStructureStructure {
 
     @Label("其他入库详情数据结构")
     public OtherInStorageDetailsStrutureStructure otherInStorageDetailsStructure;
+
     @Label("其他入库退回详情")
     public OtherReturnStorageDetailsEntity otherReturnStorageDetails;
+
     public OtherInStorageDetailsStrutureStructure getOtherInStorageDetailsStructure() {
         return otherInStorageDetailsStructure;
     } 
@@ -27,6 +29,5 @@ public class OtherReturnStorageStructureStructure {
     public void setOtherReturnStorageDetails(OtherReturnStorageDetailsEntity otherReturnStorageDetails) {
         this.otherReturnStorageDetails = otherReturnStorageDetails; 
     } 
-
 
 }

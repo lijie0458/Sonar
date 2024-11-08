@@ -11,22 +11,39 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF; 
 
+/**
+ * 更新库存在调拨单审核-出库库存
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class UpdateInventoryByTransferSlipCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private UpdateInventoryByTransferSlipCustomizeServiceMapper updateInventoryByTransferSlipCustomizeServiceMapper;
+
     @Autowired
     private InventoryEntityService inventoryEntityService;
+
     public void updateInventoryByTransferSlip(String documentNumber) {
         Boolean variable1 = false;
         List<InventoryEntity> variable2 = new ArrayList<>();
-        CommonFunctionUtil.clear(variable2);
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF> currentLcpEachName_1 = updateInventoryByTransferSlipCustomizeServiceMapper.getAnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF(documentNumber);
+        CommonFunctionUtil.clear(variable2, "shallow");
+        List<AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF> currentLcpEachName_1 = updateInventoryByTransferSlipCustomizeServiceMapper.getAnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF(documentNumber);
         for (Long index = 0L; index < currentLcpEachName_1.size(); index++) {
-            com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF item = currentLcpEachName_1.get(index.intValue());
+            AnonymousStructure_1D2DC7F55959D3D5C236424A345BEABF item = currentLcpEachName_1.get(index.intValue());
             variable1 = false; 
             if (CommonFunctionUtil.hasValue(item.inventory.lotNumber, item.transferSlipDetails.lotNumber)) {
             } else {
@@ -57,6 +74,5 @@ public class UpdateInventoryByTransferSlipCustomizeService {
 
         return ;
     } 
-
 
 }

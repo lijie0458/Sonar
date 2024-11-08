@@ -83,19 +83,63 @@
         where `be_put_in_storage_id` = #{bean.bePutInStorageId}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity" >
         UPDATE `be_put_in_storage`
         <set>
-            <if test="updateFields == null or updateFields.contains('bePutInStorageDate')">`be_put_in_storage_date` = #{bean.bePutInStorageDate, jdbcType= DATE},</if>
-            <if test="updateFields == null or updateFields.contains('orderNumber')">`order_number` = #{bean.orderNumber, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('supplierName')">`supplier_name` = #{bean.supplierName, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('description')">`description` = #{bean.description, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('annex')">`annex` = #{bean.annex, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('warehouse')">`warehouse` = #{bean.warehouse, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('bePutInStorageDate')">
+                `be_put_in_storage_date` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.bePutInStorageDate, jdbcType=DATE}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('orderNumber')">
+                `order_number` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.orderNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('supplierName')">
+                `supplier_name` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.supplierName, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('description')">
+                `description` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.description, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('annex')">
+                `annex` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.annex, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('warehouse')">
+                `warehouse` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.warehouse, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `be_put_in_storage_id`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.bePutInStorageId} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `be_put_in_storage_id` = #{bean.bePutInStorageId}
+        where `be_put_in_storage_id` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.bePutInStorageId}
+        </foreach>
     </update>
 
 
@@ -189,21 +233,6 @@
         where `be_put_in_storage_id`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `be_put_in_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `be_put_in_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.BePutInStorageEntity">
         INSERT INTO `be_put_in_storage` (
             `be_put_in_storage_id`
@@ -247,4 +276,18 @@
         DELETE FROM `be_put_in_storage`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `be_put_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `be_put_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

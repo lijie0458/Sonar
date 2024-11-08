@@ -6,7 +6,9 @@ import com.dogfood.aa20240808.domain.enumeration.OtherInStorageStateEnumEnum;
 public class BatchChangeOtherInSStateCustomizeControllerDto {
 
     public OtherInStorageStateEnumEnum otherInSState;
+
     public List<String> codeList;
+
     public OtherInStorageStateEnumEnum getOtherInSState() {
         return otherInSState;
     } 
@@ -22,6 +24,5 @@ public class BatchChangeOtherInSStateCustomizeControllerDto {
     public void setCodeList(List<String> codeList) {
         this.codeList = codeList; 
     } 
-
 
 }

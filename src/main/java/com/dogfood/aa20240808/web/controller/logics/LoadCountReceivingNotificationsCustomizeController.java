@@ -13,11 +13,11 @@ public class LoadCountReceivingNotificationsCustomizeController {
 
     @Autowired
     private LoadCountReceivingNotificationsCustomizeService loadCountReceivingNotificationsCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "501e247d-e0dd-4f9d-8f03-05ad545230b0",rules = { })})
     @PostMapping("/api/lcplogics/loadCountReceivingNotifications")
     public ApiReturn<String> loadCountReceivingNotifications() throws Exception {
         return ApiReturn.of(loadCountReceivingNotificationsCustomizeService.loadCountReceivingNotifications());
     } 
-
 
 }

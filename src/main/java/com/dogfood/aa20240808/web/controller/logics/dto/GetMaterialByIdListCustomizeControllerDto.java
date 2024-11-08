@@ -5,6 +5,7 @@ import java.util.List;
 public class GetMaterialByIdListCustomizeControllerDto {
 
     public List<Long> idList;
+
     public List<Long> getIdList() {
         return idList;
     } 
@@ -12,6 +13,5 @@ public class GetMaterialByIdListCustomizeControllerDto {
     public void setIdList(List<Long> idList) {
         this.idList = idList; 
     } 
-
 
 }

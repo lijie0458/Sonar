@@ -11,6 +11,7 @@ public class ExtendMappingJackson2HttpMessageConverter extends MappingJackson2Ht
         List<MediaType> mediaTypes = new ArrayList<>();
         mediaTypes.add(MediaType.TEXT_PLAIN);
         mediaTypes.add(MediaType.TEXT_HTML);
+        mediaTypes.add(MediaType.valueOf("text/json"));
         setSupportedMediaTypes(mediaTypes);
     }
 }

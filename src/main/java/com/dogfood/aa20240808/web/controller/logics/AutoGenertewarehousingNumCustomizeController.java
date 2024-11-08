@@ -13,11 +13,11 @@ public class AutoGenertewarehousingNumCustomizeController {
 
     @Autowired
     private AutoGenertewarehousingNumCustomizeService autoGenertewarehousingNumCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "a87a020374b94530b74e83e19a75f051",rules = { })})
     @PostMapping("/api/lcplogics/autoGenertewarehousingNum")
     public ApiReturn<String> autoGenertewarehousingNum() throws Exception {
         return ApiReturn.of(autoGenertewarehousingNumCustomizeService.autoGenertewarehousingNum());
     } 
-
 
 }

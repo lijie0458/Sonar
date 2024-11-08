@@ -17,11 +17,11 @@ public class GetInventoryByMaterialDetails2CustomizeController {
 
     @Autowired
     private GetInventoryByMaterialDetails2CustomizeService getInventoryByMaterialDetails2CustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "ef678628dd5042d0b70d87e44e2a85fe",rules = { }),@ValidationRuleGroup(value = "634d1349595c4908b9272601ad88faf6",rules = { @ValidationRule(value = "required",targetName = "body.warehouseId",argvs = "",errorMsg = "调出仓库不能为空")})})
     @PostMapping("/api/lcplogics/getInventoryByMaterialDetails2")
     public ApiReturn<InventoryEntity> getInventoryByMaterialDetails2(@RequestBody GetInventoryByMaterialDetails2CustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getInventoryByMaterialDetails2CustomizeService.getInventoryByMaterialDetails2(body.getMaterialCode(), body.getWarehouseId(), body.getLotNumber()));
     } 
-
 
 }

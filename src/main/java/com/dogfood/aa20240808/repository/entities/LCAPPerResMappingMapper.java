@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface LCAPPerResMappingMapper extends ReferenceHandleMapper {
 
     int insert(LCAPPerResMapping bean);
+
     int batchInsert(List<LCAPPerResMapping> beans);
-    List<LCAPPerResMapping> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(LCAPPerResMapping bean, List<String> updateFields);
-    int batchUpdate(List<LCAPPerResMapping> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    LCAPPerResMapping selectOne(Long id);
-
-    int createOrUpdate(LCAPPerResMapping bean);
     int updateBy(LCAPPerResMapping bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(LCAPPerResMapping bean);
+
+    int update(LCAPPerResMapping bean, List<String> updateFields);
+
+    int batchUpdate(List<LCAPPerResMapping> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    LCAPPerResMapping selectOne(Long id);
+
+
+    List<LCAPPerResMapping> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

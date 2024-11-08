@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface PurchaseOrderDetailEntityMapper extends ReferenceHandleMapper {
 
     int insert(PurchaseOrderDetailEntity bean);
+
     int batchInsert(List<PurchaseOrderDetailEntity> beans);
-    List<PurchaseOrderDetailEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(PurchaseOrderDetailEntity bean, List<String> updateFields);
-    int batchUpdate(List<PurchaseOrderDetailEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    PurchaseOrderDetailEntity selectOne(Long id);
-
-    int createOrUpdate(PurchaseOrderDetailEntity bean);
     int updateBy(PurchaseOrderDetailEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(PurchaseOrderDetailEntity bean);
+
+    int update(PurchaseOrderDetailEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<PurchaseOrderDetailEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    PurchaseOrderDetailEntity selectOne(Long id);
+
+
+    List<PurchaseOrderDetailEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

@@ -2,16 +2,11 @@ package com.dogfood.aa20240808.service.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +18,23 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.apache.commons.lang3.StringUtils;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.domain.entities.OtherReturnStorageEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
+import com.dogfood.aa20240808.domain.enumeration.OtherReturnStorageStateEnumEnum;
 import com.dogfood.aa20240808.domain.structure.*;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.repository.entities.OtherReturnStorageEntityMapper;
-import com.dogfood.aa20240808.util.SnowflakeIdWorker;
-import com.dogfood.aa20240808.util.CommonFunctionUtil;
-import com.dogfood.aa20240808.service.entities.AbstractService;
-import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
 import com.dogfood.aa20240808.service.dto.filters.*;
 import com.dogfood.aa20240808.service.dto.filters.atomic.*;
-import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
 import com.dogfood.aa20240808.service.dto.filters.logic.binary.matching.*;
+import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
+import com.dogfood.aa20240808.service.entities.AbstractService;
+import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
+import com.dogfood.aa20240808.util.CommonFunctionUtil;
 import com.dogfood.aa20240808.util.ExcelUtil;
-import com.dogfood.aa20240808.context.UserContext;
+import com.dogfood.aa20240808.util.SnowflakeIdWorker;
+import java.time.ZonedDateTime;
 /**
 * auto generate OtherReturnStorageEntityService ServiceImpl
 *
@@ -49,34 +46,102 @@ public class OtherReturnStorageEntityService extends AbstractService {
     private OtherReturnStorageEntityMapper mapper;
     @Resource
     private RelationInnerService relationInnerService;
+    @Resource
+    private OtherReturnStorageEntityService entityService;
 
     private Map<String, String> entityFieldNameTitleMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFieldTitleNameMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFiledColumnNameMap = new LinkedHashMap<>();
 
     public OtherReturnStorageEntityService() {
-        entityFieldNameTitleMap.put("returnCode", "其他入库退回单号");
         entityFieldTitleNameMap.put("其他入库退回单号", "returnCode");
         entityFiledColumnNameMap.put("returnCode", "return_code");
-        entityFieldNameTitleMap.put("createdTime", "创建时间");
         entityFieldTitleNameMap.put("创建时间", "createdTime");
         entityFiledColumnNameMap.put("createdTime", "created_time");
-        entityFieldNameTitleMap.put("createdBy", "创建者");
         entityFieldTitleNameMap.put("创建者", "createdBy");
         entityFiledColumnNameMap.put("createdBy", "created_by");
-        entityFieldNameTitleMap.put("updatedTime", "更新时间");
         entityFieldTitleNameMap.put("更新时间", "updatedTime");
         entityFiledColumnNameMap.put("updatedTime", "updated_time");
-        entityFieldNameTitleMap.put("updatedBy", "更新者");
         entityFieldTitleNameMap.put("更新者", "updatedBy");
         entityFiledColumnNameMap.put("updatedBy", "updated_by");
-        entityFieldNameTitleMap.put("state", "状态");
         entityFieldTitleNameMap.put("状态", "state");
         entityFiledColumnNameMap.put("state", "state");
-        entityFieldNameTitleMap.put("otherInSCode", "其他入库单号");
         entityFieldTitleNameMap.put("其他入库单号", "otherInSCode");
         entityFiledColumnNameMap.put("otherInSCode", "other_in_s_code");
+        for (String fieldName : entityFieldNameTitleMap.keySet()) {
+            String fieldTitle = entityFieldNameTitleMap.get(fieldName);
+            entityFieldNameTitleMap.put(fieldName, fieldTitle);
+        }
     }
+
+    /**
+    * auto gen list method
+    **/
+    public List<OtherReturnStorageEntity> list(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.selectList(queryFilter);
+    }
+
+    /**
+    * auto gen count method
+    **/
+    public long count(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.count(queryFilter);
+    }
+
+    /**
+    * auto gen export method
+    **/
+    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
+        try {
+            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
+            if (fields != null && !"".equals(fields.trim())) {
+                for (String filedName : fields.split(",")) {
+                    exportFieldMap = new LinkedHashMap<String, String>();
+                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
+                }
+            }
+
+            List<OtherReturnStorageEntity> data = list(queryFilter);
+            String storeFilePath = ExcelUtil.write(data, OtherReturnStorageEntity.class, exportFieldMap);
+            org.springframework.core.io.Resource resource = null;
+            String contentType = null;
+            resource = new FileUrlResource(storeFilePath);
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+            return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + OtherReturnStorageEntity.class.getSimpleName() + ".xlsx\"")
+                .body(resource);
+        } catch (Exception e) {
+            throw new HttpCodeException(500, e);
+        }
+    }
+
+        /**
+         * auto gen get method
+         **/
+        public OtherReturnStorageEntity get( String returnCode ) { 
+            if ( returnCode == null ) { 
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            OtherReturnStorageEntity entity = mapper.selectOne( returnCode ); 
+
+            if (null == entity) {
+                throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code);
+            }
+            return entity;
+        }
 
     /**
     * auto gen create method
@@ -87,11 +152,9 @@ public class OtherReturnStorageEntityService extends AbstractService {
             throw new HttpCodeException(400, "create param is required");
         }
         // fill default value
-        entity.setCreatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
         UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
         String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
         entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
-        entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
         entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
         paramValidate(entity);
         mapper.insert(entity);
@@ -113,9 +176,7 @@ public class OtherReturnStorageEntityService extends AbstractService {
         // fill default value
         List<OtherReturnStorageEntity> batchList = new ArrayList<>(100);
         for (OtherReturnStorageEntity entity : entities) {
-            entity.setCreatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
             entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
-            entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
             entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
             paramValidate(entity);
             if (batchList.size() >= 100) {
@@ -124,10 +185,19 @@ public class OtherReturnStorageEntityService extends AbstractService {
             }
             batchList.add(entity);
         }
-        if (batchList.size() >= 0) {
+        if (batchList.size() > 0) {
             mapper.batchInsert(batchList);
         }
         return entities;
+    }
+
+    public void beforeUpdate(OtherReturnStorageEntity entity) {
+        if (null == entity) {
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "OtherReturnStorageEntity");
+        }
+        if ( entity.getReturnCode() == null ) { 
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+        }
     }
 
     /**
@@ -135,12 +205,7 @@ public class OtherReturnStorageEntityService extends AbstractService {
     **/
     @Transactional
     public OtherReturnStorageEntity update(OtherReturnStorageEntity entity, List<String> updateFields) {
-        if (null == entity) {
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "OtherReturnStorageEntity");
-        }
-        if ( entity.getReturnCode() == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
+        beforeUpdate(entity);
 
         // updateFields为null时，默认全量更新
         if (null != updateFields && updateFields.size() == 1 &&  updateFields.contains("returnCode")) {
@@ -148,8 +213,9 @@ public class OtherReturnStorageEntityService extends AbstractService {
         } else {
             UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
             String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
-            entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
-            entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
+                if (null == entity.getUpdatedBy()) {
+                    entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
+                }
             int rows = mapper.update(entity, updateFields);
             if (rows <= 0) {
                 throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code, entity.getClass().getName());
@@ -167,13 +233,33 @@ public class OtherReturnStorageEntityService extends AbstractService {
         if (null == entities || entities.isEmpty()) {
             throw new HttpCodeException(400, ErrorCodeEnum.PARAM_NOTHING_TODO.code);
         }
-        // updateFields为null时，默认全量更新
-        List<OtherReturnStorageEntity> updateEntities = new ArrayList<>(entities.size());
+
+        if (updateFields != null && updateFields.size() == 1 && updateFields.contains("returnCode")) {
+            // 进行局部更新的字段是主键，这种情况是没意义，直接返回就好
+            return entities;
+        }
+        UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
+        String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
+        List<OtherReturnStorageEntity> batchList = new ArrayList<>(100);
         for (OtherReturnStorageEntity entity : entities) {
-            updateEntities.add(update(entity, updateFields));
+            if (entity.getReturnCode() == null ) {
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+                entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
+
+            batchList.add(entity);
+            if (batchList.size() >= 100) {
+                mapper.batchUpdate(batchList, updateFields);
+                batchList.clear();
+            }
         }
 
-        return updateEntities;
+        if (batchList.size() > 0) {
+            mapper.batchUpdate(batchList, updateFields);
+            batchList.clear();
+        }
+
+        return entities;
     }
 
     /**
@@ -215,47 +301,12 @@ public class OtherReturnStorageEntityService extends AbstractService {
     }
 
     /**
-     * auto gen get method
-     **/
-    public OtherReturnStorageEntity get( String returnCode ) { 
-        if ( returnCode == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
-
-        OtherReturnStorageEntity entity = mapper.selectOne( returnCode ); 
-
-        return entity;
-    }
-
-    /**
-    * auto gen list method
-    **/
-    public List<OtherReturnStorageEntity> list(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.selectList(queryFilter);
-    }
-
-    /**
-    * auto gen count method
-    **/
-    public long count(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.count(queryFilter);
-    }
-
-    /**
     * auto gen importFile method
     **/
     @Transactional(rollbackFor = Exception.class)
     public String importFile(MultipartFile file) {
         String type;
-        String[] items = file.getOriginalFilename().split("\\.");
+        String[] items = "\\.".split(Objects.requireNonNull(file.getOriginalFilename()));
         if (items.length > 1) {
             type = items[items.length - 1];
             if (!"xls".equalsIgnoreCase(type) && !"xlsx".equalsIgnoreCase(type)) {
@@ -267,44 +318,12 @@ public class OtherReturnStorageEntityService extends AbstractService {
 
         try {
             List<OtherReturnStorageEntity> data = ExcelUtil.read(file.getInputStream(), type, OtherReturnStorageEntity.class, entityFieldTitleNameMap);
-            batchCreate(data);
+            entityService.batchCreate(data);
             return "ok";
         } catch (Exception e) {
             throw new HttpCodeException(500, e);
         }
     }
-
-    /**
-    * auto gen export method
-    **/
-    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
-        try {
-            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
-            if (fields != null && !"".equals(fields.trim())) {
-                for (String filedName : fields.split(",")) {
-                    exportFieldMap = new LinkedHashMap<String, String>();
-                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
-                }
-            }
-
-            List<OtherReturnStorageEntity> data = list(queryFilter);
-            String storeFilePath = ExcelUtil.write(data, OtherReturnStorageEntity.class, exportFieldMap);
-            org.springframework.core.io.Resource resource = null;
-            String contentType = null;
-            resource = new FileUrlResource(storeFilePath);
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
-            return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + OtherReturnStorageEntity.class.getSimpleName() + ".xlsx\"")
-                .body(resource);
-        } catch (Exception e) {
-            throw new HttpCodeException(500, e);
-        }
-    }
-
     /**
     * auto gen createOrUpdate method
     **/
@@ -316,22 +335,20 @@ public class OtherReturnStorageEntityService extends AbstractService {
 
         if ( entity.getReturnCode() == null ) { 
             // insert
-            entity = create(entity);
+            entity = entityService.create(entity);
         }  else {
             OtherReturnStorageEntity existEntity = mapper.selectOne(entity.getReturnCode()); 
             if (null == existEntity) {
                 // insert
-                entity.setCreatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
                 UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
                 String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
                 entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
-                entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
                 entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
                 paramValidate(entity);
                 mapper.createOrUpdate(entity);
             } else {
                 // updateFields为null时，默认全量更新
-                entity = update(entity, updateFields);
+                entity = entityService.update(entity, updateFields);
             }
         }
         return entity;
@@ -359,7 +376,6 @@ public class OtherReturnStorageEntityService extends AbstractService {
             String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
             CommonFunctionUtil.preHandleQueryExpression(filter, entityFiledColumnNameMap);
             entity.setCreatedBy(StringUtils.isBlank(entity.getCreatedBy()) ? currentUserName : entity.getCreatedBy());
-            entity.setUpdatedTime(ZonedDateTime.now(ZoneId.of("UTC")));
             entity.setUpdatedBy(StringUtils.isBlank(entity.getUpdatedBy()) ? currentUserName : entity.getUpdatedBy());
             return mapper.updateBy(entity, updateFields, filter);
         }

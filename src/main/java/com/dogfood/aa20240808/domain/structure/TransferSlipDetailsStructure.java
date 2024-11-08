@@ -17,18 +17,25 @@ public class TransferSlipDetailsStructure {
 
     @Label("基本信息")
     public TransferSlipDetailsEntity transferSlip;
+
     @Label("仓库")
     public List<Warehouse_levelTwoEntity> warehouseList = new ArrayList<>();
+
     @Label("批号列表")
     public List<InventoryEntity> inventoryList = new ArrayList<>();
+
     @Label("物料信息")
     public MaterialDetailsEntity material;
+
     @Label("单位")
     public MeasuringUnitEntity unitName;
+
     @Label("即时库存")
     public BigDecimal inventory;
+
     @Label("调入仓库")
     public List<Warehouse_levelTwoEntity> inwarehouseList = new ArrayList<>();
+
     public TransferSlipDetailsEntity getTransferSlip() {
         return transferSlip;
     } 
@@ -84,6 +91,5 @@ public class TransferSlipDetailsStructure {
     public void setInwarehouseList(List<Warehouse_levelTwoEntity> inwarehouseList) {
         this.inwarehouseList = inwarehouseList; 
     } 
-
 
 }

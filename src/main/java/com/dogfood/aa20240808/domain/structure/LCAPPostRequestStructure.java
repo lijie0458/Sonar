@@ -4,18 +4,22 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import java.util.HashMap; 
 import java.util.Map; 
+import com.dogfood.aa20240808.domain.http.HttpResponse; 
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class LCAPPostRequestStructure {
 
-    public com.dogfood.aa20240808.domain.http.HttpResponse<String> response = new com.dogfood.aa20240808.domain.http.HttpResponse<>();
+    public HttpResponse<String> response = new HttpResponse<>();
+
     public String status;
+
     public Map<String, String> requestInfo = new HashMap<>();
-    public com.dogfood.aa20240808.domain.http.HttpResponse<String> getResponse() {
+
+    public HttpResponse<String> getResponse() {
         return response;
     } 
 
-    public void setResponse(com.dogfood.aa20240808.domain.http.HttpResponse<String> response) {
+    public void setResponse(HttpResponse<String> response) {
         this.response = response; 
     } 
 
@@ -34,6 +38,5 @@ public class LCAPPostRequestStructure {
     public void setRequestInfo(Map<String, String> requestInfo) {
         this.requestInfo = requestInfo; 
     } 
-
 
 }

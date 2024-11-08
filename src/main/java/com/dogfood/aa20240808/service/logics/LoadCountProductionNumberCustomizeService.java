@@ -1,6 +1,7 @@
 package com.dogfood.aa20240808.service.logics; 
 
 import org.springframework.stereotype.Service; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.repository.LoadCountProductionNumberCustomizeServiceMapper; 
 import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum; 
@@ -9,19 +10,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 创建生产领退料逻辑
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCountProductionNumberCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCountProductionNumberCustomizeServiceMapper loadCountProductionNumberCustomizeServiceMapper;
+
     public String loadCountProductionNumber(DistinctionEnumEnum DistinctionEnum) {
         String StringNum = "";
         String DateTime = "";
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A variable1 = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A();
+        AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A variable1 = new AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A();
         String variable2 = "";
         String result = "";
-        variable1 = CommonFunctionUtil.createListPage(loadCountProductionNumberCustomizeServiceMapper.getAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6(DistinctionEnum), loadCountProductionNumberCustomizeServiceMapper.countAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6(DistinctionEnum).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A.class); 
+        variable1 = CommonFunctionUtil.createListPage(loadCountProductionNumberCustomizeServiceMapper.getAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6(DistinctionEnum), loadCountProductionNumberCustomizeServiceMapper.countAnonymousStructure_8D252D77749A0BEDEA2B044CEC48E3E6(DistinctionEnum).intValue(), AnonymousStructure_14674722B95CA8C649EB3355ECF3BA6A.class); 
         if ((CommonFunctionUtil.equals(variable1.total, 0L))) {
             StringNum = "1"; 
         } else {
@@ -47,6 +63,5 @@ public class LoadCountProductionNumberCustomizeService {
 
         return result;
     } 
-
 
 }

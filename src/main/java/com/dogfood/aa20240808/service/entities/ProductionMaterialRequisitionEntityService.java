@@ -2,16 +2,11 @@ package com.dogfood.aa20240808.service.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +18,24 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.apache.commons.lang3.StringUtils;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
+import com.dogfood.aa20240808.domain.enumeration.ApprovalStatusEnumEnum;
+import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum;
 import com.dogfood.aa20240808.domain.structure.*;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.repository.entities.ProductionMaterialRequisitionEntityMapper;
-import com.dogfood.aa20240808.util.SnowflakeIdWorker;
-import com.dogfood.aa20240808.util.CommonFunctionUtil;
-import com.dogfood.aa20240808.service.entities.AbstractService;
-import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
 import com.dogfood.aa20240808.service.dto.filters.*;
 import com.dogfood.aa20240808.service.dto.filters.atomic.*;
-import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
 import com.dogfood.aa20240808.service.dto.filters.logic.binary.matching.*;
+import com.dogfood.aa20240808.service.dto.filters.logic.unary.*;
+import com.dogfood.aa20240808.service.entities.AbstractService;
+import com.dogfood.aa20240808.service.entities.inner.RelationInnerService;
+import com.dogfood.aa20240808.util.CommonFunctionUtil;
 import com.dogfood.aa20240808.util.ExcelUtil;
-import com.dogfood.aa20240808.context.UserContext;
+import com.dogfood.aa20240808.util.SnowflakeIdWorker;
+import java.time.LocalDate;
 /**
 * auto generate ProductionMaterialRequisitionEntityService ServiceImpl
 *
@@ -49,46 +47,110 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
     private ProductionMaterialRequisitionEntityMapper mapper;
     @Resource
     private RelationInnerService relationInnerService;
+    @Resource
+    private ProductionMaterialRequisitionEntityService entityService;
 
     private Map<String, String> entityFieldNameTitleMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFieldTitleNameMap = new LinkedHashMap<String, String>();
     private Map<String, String> entityFiledColumnNameMap = new LinkedHashMap<>();
 
     public ProductionMaterialRequisitionEntityService() {
-        entityFieldNameTitleMap.put("documentNumber", "单据编号");
         entityFieldTitleNameMap.put("单据编号", "documentNumber");
         entityFiledColumnNameMap.put("documentNumber", "document_number");
-        entityFieldNameTitleMap.put("department", "领料部门");
         entityFieldTitleNameMap.put("领料部门", "department");
         entityFiledColumnNameMap.put("department", "department");
-        entityFieldNameTitleMap.put("employee", "领料员");
         entityFieldTitleNameMap.put("领料员", "employee");
         entityFiledColumnNameMap.put("employee", "employee");
-        entityFieldNameTitleMap.put("requestDate", "申请日期");
         entityFieldTitleNameMap.put("申请日期", "requestDate");
         entityFiledColumnNameMap.put("requestDate", "request_date");
-        entityFieldNameTitleMap.put("summary", "摘要");
         entityFieldTitleNameMap.put("摘要", "summary");
         entityFiledColumnNameMap.put("summary", "summary");
-        entityFieldNameTitleMap.put("attachment", "附件");
         entityFieldTitleNameMap.put("附件", "attachment");
         entityFiledColumnNameMap.put("attachment", "attachment");
-        entityFieldNameTitleMap.put("approvalStatus", "审批状态");
         entityFieldTitleNameMap.put("审批状态", "approvalStatus");
         entityFiledColumnNameMap.put("approvalStatus", "approval_status");
-        entityFieldNameTitleMap.put("issueReturnDistinction", "区别字段（领料/退料）");
         entityFieldTitleNameMap.put("区别字段（领料/退料）", "issueReturnDistinction");
         entityFiledColumnNameMap.put("issueReturnDistinction", "issue_return_distinction");
-        entityFieldNameTitleMap.put("guardian", "保管员");
         entityFieldTitleNameMap.put("保管员", "guardian");
         entityFiledColumnNameMap.put("guardian", "guardian");
-        entityFieldNameTitleMap.put("createdBy", "创建者");
         entityFieldTitleNameMap.put("创建者", "createdBy");
         entityFiledColumnNameMap.put("createdBy", "created_by");
-        entityFieldNameTitleMap.put("sourceDocumentNumber", "领料单号");
         entityFieldTitleNameMap.put("领料单号", "sourceDocumentNumber");
         entityFiledColumnNameMap.put("sourceDocumentNumber", "source_document_number");
+        for (String fieldName : entityFieldNameTitleMap.keySet()) {
+            String fieldTitle = entityFieldNameTitleMap.get(fieldName);
+            entityFieldNameTitleMap.put(fieldName, fieldTitle);
+        }
     }
+
+    /**
+    * auto gen list method
+    **/
+    public List<ProductionMaterialRequisitionEntity> list(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.selectList(queryFilter);
+    }
+
+    /**
+    * auto gen count method
+    **/
+    public long count(AbstractQueryFilter queryFilter) {
+        if (null == queryFilter) {
+            queryFilter = new UnaryExpressionFilter();
+        }
+        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
+        return mapper.count(queryFilter);
+    }
+
+    /**
+    * auto gen export method
+    **/
+    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
+        try {
+            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
+            if (fields != null && !"".equals(fields.trim())) {
+                for (String filedName : fields.split(",")) {
+                    exportFieldMap = new LinkedHashMap<String, String>();
+                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
+                }
+            }
+
+            List<ProductionMaterialRequisitionEntity> data = list(queryFilter);
+            String storeFilePath = ExcelUtil.write(data, ProductionMaterialRequisitionEntity.class, exportFieldMap);
+            org.springframework.core.io.Resource resource = null;
+            String contentType = null;
+            resource = new FileUrlResource(storeFilePath);
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+            if (contentType == null) {
+                contentType = "application/octet-stream";
+            }
+            return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + ProductionMaterialRequisitionEntity.class.getSimpleName() + ".xlsx\"")
+                .body(resource);
+        } catch (Exception e) {
+            throw new HttpCodeException(500, e);
+        }
+    }
+
+        /**
+         * auto gen get method
+         **/
+        public ProductionMaterialRequisitionEntity get( String documentNumber ) { 
+            if ( documentNumber == null ) { 
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            ProductionMaterialRequisitionEntity entity = mapper.selectOne( documentNumber ); 
+
+            if (null == entity) {
+                throw new HttpCodeException(404, ErrorCodeEnum.DATA_NOT_EXIST.code);
+            }
+            return entity;
+        }
 
     /**
     * auto gen create method
@@ -130,10 +192,19 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
             }
             batchList.add(entity);
         }
-        if (batchList.size() >= 0) {
+        if (batchList.size() > 0) {
             mapper.batchInsert(batchList);
         }
         return entities;
+    }
+
+    public void beforeUpdate(ProductionMaterialRequisitionEntity entity) {
+        if (null == entity) {
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "ProductionMaterialRequisitionEntity");
+        }
+        if ( entity.getDocumentNumber() == null ) { 
+            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+        }
     }
 
     /**
@@ -141,12 +212,7 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
     **/
     @Transactional
     public ProductionMaterialRequisitionEntity update(ProductionMaterialRequisitionEntity entity, List<String> updateFields) {
-        if (null == entity) {
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_REQUIRED.code, "ProductionMaterialRequisitionEntity");
-        }
-        if ( entity.getDocumentNumber() == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
+        beforeUpdate(entity);
 
         // updateFields为null时，默认全量更新
         if (null != updateFields && updateFields.size() == 1 &&  updateFields.contains("documentNumber")) {
@@ -169,13 +235,32 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
         if (null == entities || entities.isEmpty()) {
             throw new HttpCodeException(400, ErrorCodeEnum.PARAM_NOTHING_TODO.code);
         }
-        // updateFields为null时，默认全量更新
-        List<ProductionMaterialRequisitionEntity> updateEntities = new ArrayList<>(entities.size());
+
+        if (updateFields != null && updateFields.size() == 1 && updateFields.contains("documentNumber")) {
+            // 进行局部更新的字段是主键，这种情况是没意义，直接返回就好
+            return entities;
+        }
+        UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
+        String currentUserName = null == currentUserInfo ? null : currentUserInfo.getUserName();
+        List<ProductionMaterialRequisitionEntity> batchList = new ArrayList<>(100);
         for (ProductionMaterialRequisitionEntity entity : entities) {
-            updateEntities.add(update(entity, updateFields));
+            if (entity.getDocumentNumber() == null ) {
+                throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
+            }
+
+            batchList.add(entity);
+            if (batchList.size() >= 100) {
+                mapper.batchUpdate(batchList, updateFields);
+                batchList.clear();
+            }
         }
 
-        return updateEntities;
+        if (batchList.size() > 0) {
+            mapper.batchUpdate(batchList, updateFields);
+            batchList.clear();
+        }
+
+        return entities;
     }
 
     /**
@@ -217,47 +302,12 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
     }
 
     /**
-     * auto gen get method
-     **/
-    public ProductionMaterialRequisitionEntity get( String documentNumber ) { 
-        if ( documentNumber == null ) { 
-            throw new HttpCodeException(400, ErrorCodeEnum.PARAM_PRIMARY_KEY_REQUIRED.code);
-        }
-
-        ProductionMaterialRequisitionEntity entity = mapper.selectOne( documentNumber ); 
-
-        return entity;
-    }
-
-    /**
-    * auto gen list method
-    **/
-    public List<ProductionMaterialRequisitionEntity> list(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.selectList(queryFilter);
-    }
-
-    /**
-    * auto gen count method
-    **/
-    public long count(AbstractQueryFilter queryFilter) {
-        if (null == queryFilter) {
-            queryFilter = new UnaryExpressionFilter();
-        }
-        CommonFunctionUtil.preHandleQueryExpression(queryFilter, entityFiledColumnNameMap);
-        return mapper.count(queryFilter);
-    }
-
-    /**
     * auto gen importFile method
     **/
     @Transactional(rollbackFor = Exception.class)
     public String importFile(MultipartFile file) {
         String type;
-        String[] items = file.getOriginalFilename().split("\\.");
+        String[] items = "\\.".split(Objects.requireNonNull(file.getOriginalFilename()));
         if (items.length > 1) {
             type = items[items.length - 1];
             if (!"xls".equalsIgnoreCase(type) && !"xlsx".equalsIgnoreCase(type)) {
@@ -269,44 +319,12 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
 
         try {
             List<ProductionMaterialRequisitionEntity> data = ExcelUtil.read(file.getInputStream(), type, ProductionMaterialRequisitionEntity.class, entityFieldTitleNameMap);
-            batchCreate(data);
+            entityService.batchCreate(data);
             return "ok";
         } catch (Exception e) {
             throw new HttpCodeException(500, e);
         }
     }
-
-    /**
-    * auto gen export method
-    **/
-    public ResponseEntity<org.springframework.core.io.Resource> export(AbstractQueryFilter queryFilter, String fields, HttpServletRequest request) {
-        try {
-            Map<String, String> exportFieldMap = entityFieldNameTitleMap;
-            if (fields != null && !"".equals(fields.trim())) {
-                for (String filedName : fields.split(",")) {
-                    exportFieldMap = new LinkedHashMap<String, String>();
-                    exportFieldMap.put(filedName, entityFieldNameTitleMap.get(filedName));
-                }
-            }
-
-            List<ProductionMaterialRequisitionEntity> data = list(queryFilter);
-            String storeFilePath = ExcelUtil.write(data, ProductionMaterialRequisitionEntity.class, exportFieldMap);
-            org.springframework.core.io.Resource resource = null;
-            String contentType = null;
-            resource = new FileUrlResource(storeFilePath);
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-            if (contentType == null) {
-                contentType = "application/octet-stream";
-            }
-            return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + ProductionMaterialRequisitionEntity.class.getSimpleName() + ".xlsx\"")
-                .body(resource);
-        } catch (Exception e) {
-            throw new HttpCodeException(500, e);
-        }
-    }
-
     /**
     * auto gen createOrUpdate method
     **/
@@ -318,7 +336,7 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
 
         if ( entity.getDocumentNumber() == null ) { 
             // insert
-            entity = create(entity);
+            entity = entityService.create(entity);
         }  else {
             ProductionMaterialRequisitionEntity existEntity = mapper.selectOne(entity.getDocumentNumber()); 
             if (null == existEntity) {
@@ -330,7 +348,7 @@ public class ProductionMaterialRequisitionEntityService extends AbstractService 
                 mapper.createOrUpdate(entity);
             } else {
                 // updateFields为null时，默认全量更新
-                entity = update(entity, updateFields);
+                entity = entityService.update(entity, updateFields);
             }
         }
         return entity;

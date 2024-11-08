@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 public class LCAPPermissionAndResourceStructure {
 
     public String text;
+
     public Long value;
+
     public String getText() {
         return text;
     } 
@@ -23,6 +25,5 @@ public class LCAPPermissionAndResourceStructure {
     public void setValue(Long value) {
         this.value = value; 
     } 
-
 
 }

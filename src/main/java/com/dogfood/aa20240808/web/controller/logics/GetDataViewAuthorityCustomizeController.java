@@ -14,11 +14,11 @@ public class GetDataViewAuthorityCustomizeController {
 
     @Autowired
     private GetDataViewAuthorityCustomizeService getDataViewAuthorityCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "f93a3398a4cb4dbdaaab5bdb05265535",rules = { })})
     @PostMapping("/api/lcplogics/getDataViewAuthority")
     public ApiReturn<List<String>> getDataViewAuthority() throws Exception {
         return ApiReturn.of(getDataViewAuthorityCustomizeService.getDataViewAuthority());
     } 
-
 
 }

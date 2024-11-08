@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
 import com.dogfood.aa20240808.domain.enumeration.ApprovalStatusEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -13,29 +15,40 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class TransferSlipEntity {
 
     @Label("单据编号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String documentNumber;
+
     @Label("验收员")
     public Long inspector;
+
     @Label("源单单号")
     public String sourceDocumentNumber;
+
     @Label("申请日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate requestDate;
+    public LocalDate requestDate;
+
     @Label("摘要")
     public String summary;
+
     @Label("附件")
     public String attachment;
+
     @Label("审批状态")
     public ApprovalStatusEnumEnum approvalStatus;
+
     @Label("发货员")
     public Long shippingClerk;
+
     @Label("调出仓库")
     public Long outWarehouse;
+
     @Label("调入仓库")
     public Long inWarehouse;
+
     @Label("创建者")
     public String createdBy;
+
     public String getDocumentNumber() {
         return documentNumber;
     } 
@@ -60,11 +73,11 @@ public class TransferSlipEntity {
         this.sourceDocumentNumber = sourceDocumentNumber; 
     } 
 
-    public java.time.LocalDate getRequestDate() {
+    public LocalDate getRequestDate() {
         return requestDate;
     } 
 
-    public void setRequestDate(java.time.LocalDate requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate; 
     } 
 
@@ -123,6 +136,5 @@ public class TransferSlipEntity {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy; 
     } 
-
 
 }

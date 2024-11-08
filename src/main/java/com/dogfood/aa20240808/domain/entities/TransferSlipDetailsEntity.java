@@ -4,34 +4,46 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 import java.math.BigDecimal; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class TransferSlipDetailsEntity {
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("物料编码")
     public String materialCode;
+
     @Label("数量")
     public BigDecimal quantity;
+
     @Label("备注")
     public String notes;
+
     @Label("关联单号")
     public String productionMaterialRequisition;
+
     @Label("调出仓库")
     public Long outWarehouse;
+
     @Label("调出批号")
     public Long batchNumber;
+
     @Label("库位")
     public String outStorageLocation;
+
     @Label("调入仓库")
     public Long inWarehouse;
+
     @Label("调入库位")
     public String inStorageLocation;
+
     @Label("批号")
     public String lotNumber;
+
     public Long getId() {
         return id;
     } 
@@ -119,6 +131,5 @@ public class TransferSlipDetailsEntity {
     public void setLotNumber(String lotNumber) {
         this.lotNumber = lotNumber; 
     } 
-
 
 }

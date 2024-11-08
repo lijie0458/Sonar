@@ -13,20 +13,37 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_408B350FFFE2F80F289FABE4F7451137; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadSupplierTableView1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadSupplierTableView1CustomizeServiceMapper loadSupplierTableView1CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_408B350FFFE2F80F289FABE4F7451137 loadSupplierTableView1(Long page, Long size, String sort, String order, SupplierDetailsEntity filter, Long SupplierId) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_408B350FFFE2F80F289FABE4F7451137 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_408B350FFFE2F80F289FABE4F7451137();
-        result = CommonFunctionUtil.createListPage(loadSupplierTableView1CustomizeServiceMapper.getAnonymousStructure_DBA0A9D85716CA3769232B481797F39F(filter, SupplierId, page, size, getTableField("AnonymousStructure_DBA0A9D85716CA3769232B481797F39F", sort), order), loadSupplierTableView1CustomizeServiceMapper.countAnonymousStructure_DBA0A9D85716CA3769232B481797F39F(filter, SupplierId, page, size, getTableField("AnonymousStructure_DBA0A9D85716CA3769232B481797F39F", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_408B350FFFE2F80F289FABE4F7451137.class); 
+
+    public AnonymousStructure_408B350FFFE2F80F289FABE4F7451137 loadSupplierTableView1(Long page, Long size, String sort, String order, SupplierDetailsEntity filter, Long SupplierId) {
+        AnonymousStructure_408B350FFFE2F80F289FABE4F7451137 result = new AnonymousStructure_408B350FFFE2F80F289FABE4F7451137();
+        result = CommonFunctionUtil.createListPage(loadSupplierTableView1CustomizeServiceMapper.getAnonymousStructure_DBA0A9D85716CA3769232B481797F39F(filter, SupplierId, page, size, getTableField("AnonymousStructure_DBA0A9D85716CA3769232B481797F39F", sort), order), loadSupplierTableView1CustomizeServiceMapper.countAnonymousStructure_DBA0A9D85716CA3769232B481797F39F(filter, SupplierId, page, size, getTableField("AnonymousStructure_DBA0A9D85716CA3769232B481797F39F", sort), order).intValue(), AnonymousStructure_408B350FFFE2F80F289FABE4F7451137.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadSupplierTableView1CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_DBA0A9D85716CA3769232B481797F39F", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_DBA0A9D85716CA3769232B481797F39F").put("supplierDetails.id", "`supplier_details`.`id`");
@@ -102,6 +119,5 @@ public class LoadSupplierTableView1CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

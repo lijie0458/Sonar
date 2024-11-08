@@ -113,24 +113,98 @@
         where `code` = #{bean.code}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity" >
         UPDATE `outsource_in_storage`
         <set>
-            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('userId')">`user_id` = #{bean.userId, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('sourceCode')">`source_code` = #{bean.sourceCode, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('desc')">`desc` = #{bean.desc, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('applyDate')">`apply_date` = #{bean.applyDate, jdbcType= DATE},</if>
-            <if test="updateFields == null or updateFields.contains('deliveryDate')">`delivery_date` = #{bean.deliveryDate, jdbcType= DATE},</if>
-            <if test="updateFields == null or updateFields.contains('supplierId')">`supplier_id` = #{bean.supplierId, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('accessory')">`accessory` = #{bean.accessory, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdTime')">
+                `created_time` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.createdTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">
+                `updated_time` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.updatedTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">
+                `updated_by` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.updatedBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('userId')">
+                `user_id` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.userId, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('sourceCode')">
+                `source_code` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.sourceCode, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('desc')">
+                `desc` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.desc, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('state')">
+                `state` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.state, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('applyDate')">
+                `apply_date` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.applyDate, jdbcType=DATE}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('deliveryDate')">
+                `delivery_date` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.deliveryDate, jdbcType=DATE}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('supplierId')">
+                `supplier_id` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.supplierId, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('accessory')">
+                `accessory` = CASE `code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.code} THEN #{bean.accessory, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `code` = #{bean.code}
+        where `code` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.code}
+        </foreach>
     </update>
 
 
@@ -254,21 +328,6 @@
         where `code`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `outsource_in_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `outsource_in_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity">
         INSERT INTO `outsource_in_storage` (
             `code`
@@ -327,4 +386,18 @@
         DELETE FROM `outsource_in_storage`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `outsource_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `outsource_in_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

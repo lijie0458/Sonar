@@ -34,6 +34,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -275,7 +276,7 @@ public class AnnotationManager implements InitializingBean, ApplicationContextAw
             if (Objects.nonNull(entityContexts)) {
                 annotationHandler.report(entityContexts);
             } else {
-                log.info("processEntityAnnotationContextReport error: EntityContext not found , annotation={}", annotationHandler.consume().getSimpleName());
+                log.info("processEntityAnnotationContextReport: EntityContext not found , annotation={}", annotationHandler.consume().getSimpleName());
                 annotationHandler.report(Lists.newArrayList());
             }
         }
@@ -287,7 +288,7 @@ public class AnnotationManager implements InitializingBean, ApplicationContextAw
             if (Objects.nonNull(logicContexts)) {
                 annotationHandler.report(logicContexts);
             } else {
-                log.info("processLogicAnnotationContextReport error: LogicContext not found, annotation={}", annotationHandler.consume().getSimpleName());
+                log.info("processLogicAnnotationContextReport: LogicContext not found, annotation={}", annotationHandler.consume().getSimpleName());
                 annotationHandler.report(Lists.newArrayList());
             }
         }
@@ -325,7 +326,7 @@ public class AnnotationManager implements InitializingBean, ApplicationContextAw
                     logicContextMap.put(annotationClass.getSimpleName(), contextList);
                     log.info("annotation={},filePath={},content={}", annotationHandler.consume().getSimpleName(), filePath, contextList);
                 } else {
-                    log.error("reading LogicContext file failed because the path[{}] file not found", filePath);
+                    log.info("nothing read from file [{}]", filePath);
                 }
             } else if (annotationHandler instanceof LCAPSQLAnnotationHandler) {
                 lcapSqlAnnotationHandlers.add((LCAPSQLAnnotationHandler) annotationHandler);
@@ -342,7 +343,7 @@ public class AnnotationManager implements InitializingBean, ApplicationContextAw
                     entityContextMap.put(annotationClass.getSimpleName(), contextList);
                     log.info("annotation={},filePath={},content={}", annotationHandler.consume().getSimpleName(), filePath, contextList);
                 } else {
-                    log.error("reading EntityContext file failed because the path[{}] file not found", filePath);
+                    log.info("nothing read from file [{}]", filePath);
                 }
             }
         }
@@ -386,15 +387,18 @@ public class AnnotationManager implements InitializingBean, ApplicationContextAw
         InputStream inputStream = null;
         try {
             inputStream = classPathResource.getInputStream();
+        } catch (FileNotFoundException fnfe) {
+            log.info("file [{}] not exist", filePath);
+            return null;
         } catch (IOException e) {
-            log.error("应用启动时权限数据 {} 读取失败 {}", filePath, e);
+            log.error("fail to read file [{}]", filePath, e);
             return null;
         }
         T readValue = null;
         try {
             readValue = objectMapper.readValue(inputStream, typeReference);
         } catch (IOException e) {
-            log.error("应用启动时权限数据 {} 转换失败 {}", filePath, e);
+            log.error("fail to deserialize file content [{}]", filePath, e);
             return null;
         }
         return readValue;

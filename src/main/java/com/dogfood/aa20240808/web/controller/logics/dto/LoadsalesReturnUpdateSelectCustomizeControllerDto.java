@@ -5,9 +5,13 @@ import java.util.List;
 public class LoadsalesReturnUpdateSelectCustomizeControllerDto {
 
     public String orderNumber;
+
     public List<String> ListMaterialDetailsCode;
+
     public Long size;
+
     public Long page;
+
     public String getOrderNumber() {
         return orderNumber;
     } 
@@ -39,6 +43,5 @@ public class LoadsalesReturnUpdateSelectCustomizeControllerDto {
     public void setPage(Long page) {
         this.page = page; 
     } 
-
 
 }

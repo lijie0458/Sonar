@@ -9,12 +9,27 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.repository.PERJudgeCurPageHasFunctionCustomizeServiceMapper; 
 
+/**
+ * PER-判断当前页面是否有功能
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class PERJudgeCurPageHasFunctionCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private PERJudgeCurPageHasFunctionCustomizeServiceMapper pERJudgeCurPageHasFunctionCustomizeServiceMapper;
+
     public Boolean pERJudgeCurPageHasFunction(Long pageId) {
         Long tmp = 0L;
         Boolean result = false;
@@ -34,6 +49,5 @@ public class PERJudgeCurPageHasFunctionCustomizeService {
 
         return result;
     } 
-
 
 }

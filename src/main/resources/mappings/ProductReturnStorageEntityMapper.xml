@@ -77,18 +77,56 @@
         where `product_return_code` = #{bean.productReturnCode}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity" >
         UPDATE `product_return_storage`
         <set>
-            <if test="updateFields == null or updateFields.contains('createdTime')">`created_time` = #{bean.createdTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('updatedTime')">`updated_time` = #{bean.updatedTime, jdbcType= TIMESTAMP},</if>
-            <if test="updateFields == null or updateFields.contains('updatedBy')">`updated_by` = #{bean.updatedBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('state')">`state` = #{bean.state, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('productInStorageNum')">`product_in_storage_num` = #{bean.productInStorageNum, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('createdTime')">
+                `created_time` = CASE `product_return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.productReturnCode} THEN #{bean.createdTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `product_return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.productReturnCode} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedTime')">
+                `updated_time` = CASE `product_return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.productReturnCode} THEN #{bean.updatedTime, jdbcType=TIMESTAMP}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('updatedBy')">
+                `updated_by` = CASE `product_return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.productReturnCode} THEN #{bean.updatedBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('state')">
+                `state` = CASE `product_return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.productReturnCode} THEN #{bean.state, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('productInStorageNum')">
+                `product_in_storage_num` = CASE `product_return_code`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.productReturnCode} THEN #{bean.productInStorageNum, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `product_return_code` = #{bean.productReturnCode}
+        where `product_return_code` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.productReturnCode}
+        </foreach>
     </update>
 
 
@@ -176,21 +214,6 @@
         where `product_return_code`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `product_return_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `product_return_storage`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductReturnStorageEntity">
         INSERT INTO `product_return_storage` (
             `product_return_code`
@@ -231,4 +254,18 @@
         DELETE FROM `product_return_storage`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `product_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `product_return_storage`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

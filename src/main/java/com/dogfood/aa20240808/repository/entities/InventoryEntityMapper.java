@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface InventoryEntityMapper extends ReferenceHandleMapper {
 
     int insert(InventoryEntity bean);
+
     int batchInsert(List<InventoryEntity> beans);
-    List<InventoryEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(InventoryEntity bean, List<String> updateFields);
-    int batchUpdate(List<InventoryEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    InventoryEntity selectOne(Long id);
-
-    int createOrUpdate(InventoryEntity bean);
     int updateBy(InventoryEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(InventoryEntity bean);
+
+    int update(InventoryEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<InventoryEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    InventoryEntity selectOne(Long id);
+
+
+    List<InventoryEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

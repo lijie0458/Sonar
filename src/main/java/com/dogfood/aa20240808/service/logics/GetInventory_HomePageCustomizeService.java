@@ -12,20 +12,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.dogfood.aa20240808.repository.GetInventory_HomePageCustomizeServiceMapper; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_32D78049484F37C372CC54990DCBE061; 
 
+/**
+ * 得到库存情况-首页-ljl
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class GetInventory_HomePageCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private GetInventory_HomePageCustomizeServiceMapper getInventory_HomePageCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_32D78049484F37C372CC54990DCBE061 getInventory_HomePage(String sort, String order) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_32D78049484F37C372CC54990DCBE061 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_32D78049484F37C372CC54990DCBE061();
-        result = CommonFunctionUtil.createListPage(getInventory_HomePageCustomizeServiceMapper.getAnonymousStructure_B4B1E36E87120D339E94C04920333A45(getTableField("AnonymousStructure_B4B1E36E87120D339E94C04920333A45", sort), order), getInventory_HomePageCustomizeServiceMapper.countAnonymousStructure_B4B1E36E87120D339E94C04920333A45(getTableField("AnonymousStructure_B4B1E36E87120D339E94C04920333A45", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_32D78049484F37C372CC54990DCBE061.class); 
+
+    public AnonymousStructure_32D78049484F37C372CC54990DCBE061 getInventory_HomePage(String sort, String order) {
+        AnonymousStructure_32D78049484F37C372CC54990DCBE061 result = new AnonymousStructure_32D78049484F37C372CC54990DCBE061();
+        result = CommonFunctionUtil.createListPage(getInventory_HomePageCustomizeServiceMapper.getAnonymousStructure_B4B1E36E87120D339E94C04920333A45(getTableField("AnonymousStructure_B4B1E36E87120D339E94C04920333A45", sort), order), getInventory_HomePageCustomizeServiceMapper.countAnonymousStructure_B4B1E36E87120D339E94C04920333A45(getTableField("AnonymousStructure_B4B1E36E87120D339E94C04920333A45", sort), order).intValue(), AnonymousStructure_32D78049484F37C372CC54990DCBE061.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public GetInventory_HomePageCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_B4B1E36E87120D339E94C04920333A45", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_B4B1E36E87120D339E94C04920333A45").put("material_name", "`material_name`");
@@ -63,6 +80,5 @@ public class GetInventory_HomePageCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

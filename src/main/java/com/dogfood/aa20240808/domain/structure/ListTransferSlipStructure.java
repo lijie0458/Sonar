@@ -14,14 +14,21 @@ import com.dogfood.aa20240808.domain.entities.Warehouse_levelTwoEntity;
 public class ListTransferSlipStructure {
 
     public TransferSlipEntity transferSlip;
+
     public LCAPUser user;
+
     public TransferSlipDetailsEntity transferSlipDetails;
+
     public MaterialDetailsEntity materialDetails;
+
     public MeasuringUnitEntity measuringUnit;
+
     @Label("调出仓库")
     public Warehouse_levelTwoEntity oUTwarehouse_levelTwo;
+
     @Label("调入仓库")
     public String inwarehouse_levelTwo;
+
     public TransferSlipEntity getTransferSlip() {
         return transferSlip;
     } 
@@ -77,6 +84,5 @@ public class ListTransferSlipStructure {
     public void setInwarehouse_levelTwo(String inwarehouse_levelTwo) {
         this.inwarehouse_levelTwo = inwarehouse_levelTwo; 
     } 
-
 
 }

@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface ProductionMaterialRequisitionEntityMapper extends ReferenceHandleMapper {
 
     int insert(ProductionMaterialRequisitionEntity bean);
+
     int batchInsert(List<ProductionMaterialRequisitionEntity> beans);
-    List<ProductionMaterialRequisitionEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(ProductionMaterialRequisitionEntity bean, List<String> updateFields);
-    int batchUpdate(List<ProductionMaterialRequisitionEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    ProductionMaterialRequisitionEntity selectOne(String id);
-
-    int createOrUpdate(ProductionMaterialRequisitionEntity bean);
     int updateBy(ProductionMaterialRequisitionEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(ProductionMaterialRequisitionEntity bean);
+
+    int update(ProductionMaterialRequisitionEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<ProductionMaterialRequisitionEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    ProductionMaterialRequisitionEntity selectOne(String id);
+
+
+    List<ProductionMaterialRequisitionEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

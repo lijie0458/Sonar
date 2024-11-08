@@ -15,11 +15,11 @@ public class LoadTotalQuantity2CustomizeController {
 
     @Autowired
     private LoadTotalQuantity2CustomizeService loadTotalQuantity2CustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "82ad844913e44402b7b1cdeea924ae38",rules = { })})
     @PostMapping("/api/lcplogics/loadTotalQuantity2")
     public ApiReturn<Long> loadTotalQuantity2(@RequestBody LoadTotalQuantity2CustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadTotalQuantity2CustomizeService.loadTotalQuantity2(body.getId(), body.getCode(), body.getBatchNumber()));
     } 
-
 
 }

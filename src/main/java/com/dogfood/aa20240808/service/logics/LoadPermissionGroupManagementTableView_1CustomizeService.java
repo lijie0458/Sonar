@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38; 
 import java.util.List; 
 import com.dogfood.aa20240808.domain.entities.PermissionGroupEntity; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
@@ -14,19 +15,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadPermissionGroupManagementTableView_1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadPermissionGroupManagementTableView_1CustomizeServiceMapper loadPermissionGroupManagementTableView_1CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38 loadPermissionGroupManagementTableView_1(Long page, Long size, String sort, String order, PermissionGroupEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38();
-        result = CommonFunctionUtil.createListPage(loadPermissionGroupManagementTableView_1CustomizeServiceMapper.getAnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E(page, size, getTableField("AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E", sort), order), loadPermissionGroupManagementTableView_1CustomizeServiceMapper.countAnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E(page, size, getTableField("AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38.class); 
+
+    public AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38 loadPermissionGroupManagementTableView_1(Long page, Long size, String sort, String order, PermissionGroupEntity filter) {
+        AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38 result = new AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38();
+        result = CommonFunctionUtil.createListPage(loadPermissionGroupManagementTableView_1CustomizeServiceMapper.getAnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E(page, size, getTableField("AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E", sort), order), loadPermissionGroupManagementTableView_1CustomizeServiceMapper.countAnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E(page, size, getTableField("AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E", sort), order).intValue(), AnonymousStructure_7AA66D6E2A21E3101B9C2B73B7971B38.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadPermissionGroupManagementTableView_1CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_93457CC3B0554D8A97B8F80AD527F29E").put("permissionGroup.id", "`permission_group`.`id`");
@@ -73,6 +90,5 @@ public class LoadPermissionGroupManagementTableView_1CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

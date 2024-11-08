@@ -14,11 +14,11 @@ public class FunctionalAuthoritySaveCustomizeController {
 
     @Autowired
     private FunctionalAuthoritySaveCustomizeService functionalAuthoritySaveCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "d22d72dca5a64f638edf33e5d239c869",rules = { })})
     @PostMapping("/api/lcplogics/FunctionalAuthoritySave")
     public void functionalAuthoritySave(@RequestBody FunctionalAuthoritySaveCustomizeControllerDto body) throws Exception {
         functionalAuthoritySaveCustomizeService.functionalAuthoritySave(body.getSelectedList(), body.getRoleId());
     } 
-
 
 }

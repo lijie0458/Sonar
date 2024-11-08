@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface MaterialEntityMapper extends ReferenceHandleMapper {
 
     int insert(MaterialEntity bean);
+
     int batchInsert(List<MaterialEntity> beans);
-    List<MaterialEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(MaterialEntity bean, List<String> updateFields);
-    int batchUpdate(List<MaterialEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    MaterialEntity selectOne(Long id);
-
-    int createOrUpdate(MaterialEntity bean);
     int updateBy(MaterialEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(MaterialEntity bean);
+
+    int update(MaterialEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<MaterialEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    MaterialEntity selectOne(Long id);
+
+
+    List<MaterialEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

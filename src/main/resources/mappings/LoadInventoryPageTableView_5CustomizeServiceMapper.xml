@@ -152,7 +152,7 @@ SELECT `inv`.`material_code`,`inv`.`stock_quantity`,`inv`.`occupied_quantity`,`i
 <if test=" size!=null ">
 	LIMIT 
 <if test=" page1!=null ">
-	${page1},
+	${page1} ,
 </if> ${size}
 </if>
 </select>

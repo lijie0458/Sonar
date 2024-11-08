@@ -17,11 +17,11 @@ public class LoadSalesOrderPageTableView_3CustomizeController {
 
     @Autowired
     private LoadSalesOrderPageTableView_3CustomizeService loadSalesOrderPageTableView_3CustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "0bad54ad-7234-4863-ae80-27aa33f57525",rules = { })})
     @PostMapping("/api/lcplogics/loadSalesOrderPageTableView_3")
     public ApiReturn<List<SaleOrderListStructure>> loadSalesOrderPageTableView_3(@RequestBody LoadSalesOrderPageTableView_3CustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadSalesOrderPageTableView_3CustomizeService.loadSalesOrderPageTableView_3(body.getPage(), body.getSize(), body.getSort(), body.getOrder(), body.getFilter(), body.getDistinctionEnum(), body.getTimeHorizon(), body.getDataViewAuthorityUserNameList()));
     } 
-
 
 }

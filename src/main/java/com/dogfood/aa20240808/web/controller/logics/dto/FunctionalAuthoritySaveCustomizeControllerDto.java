@@ -5,7 +5,9 @@ import java.util.List;
 public class FunctionalAuthoritySaveCustomizeControllerDto {
 
     public List<Long> selectedList;
+
     public Long roleId;
+
     public List<Long> getSelectedList() {
         return selectedList;
     } 
@@ -21,6 +23,5 @@ public class FunctionalAuthoritySaveCustomizeControllerDto {
     public void setRoleId(Long roleId) {
         this.roleId = roleId; 
     } 
-
 
 }

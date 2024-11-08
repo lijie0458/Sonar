@@ -7,12 +7,19 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 public class WxUserDetailStructure {
 
     public Long errcode;
+
     public String errmsg;
+
     public String userid;
+
     public String name;
+
     public String position;
+
     public String mobile;
+
     public String email;
+
     public Long getErrcode() {
         return errcode;
     } 
@@ -68,6 +75,5 @@ public class WxUserDetailStructure {
     public void setEmail(String email) {
         this.email = email; 
     } 
-
 
 }

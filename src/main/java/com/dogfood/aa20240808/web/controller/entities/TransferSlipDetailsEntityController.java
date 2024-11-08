@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.TransferSlipDetailsEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.TransferSlipDetailsEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.TransferSlipDetailsEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -45,6 +45,8 @@ public class TransferSlipDetailsEntityController {
     @Resource
     private TransferSlipDetailsEntityService service;
 
+
+
     /**
     * auto gen batch create method
     **/
@@ -53,6 +55,7 @@ public class TransferSlipDetailsEntityController {
     public ApiReturn<List<TransferSlipDetailsEntity>> batchCreate(@RequestBody List<TransferSlipDetailsEntity> body) {
         return ApiReturn.of(service.batchCreate(body));
     }
+
 
     /**
     * auto gen import method
@@ -73,4 +76,5 @@ public class TransferSlipDetailsEntityController {
         }
         return ApiReturn.of(service.deleteBy(wrapper.getReturnExpression()));
     }
+
 }

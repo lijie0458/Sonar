@@ -13,10 +13,10 @@ public class LCAPGetResourceResultController {
 
     @Autowired
     private LCAPGetUserResourcesCustomizeService lCAPGetUserResourcesCustomizeService;
+
     @GetMapping("/rest/getUserResources")
     public List<LCAPGetResourceResultStructure> LCAPGetResourceResult(@RequestParam(required = false) String userId) throws Exception {
         return lCAPGetUserResourcesCustomizeService.lCAPGetUserResources(userId);
     } 
-
 
 }

@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface Storage_locationEntityMapper extends ReferenceHandleMapper {
 
     int insert(Storage_locationEntity bean);
+
     int batchInsert(List<Storage_locationEntity> beans);
-    List<Storage_locationEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(Storage_locationEntity bean, List<String> updateFields);
-    int batchUpdate(List<Storage_locationEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    Storage_locationEntity selectOne(Long id);
-
-    int createOrUpdate(Storage_locationEntity bean);
     int updateBy(Storage_locationEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(Storage_locationEntity bean);
+
+    int update(Storage_locationEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<Storage_locationEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    Storage_locationEntity selectOne(Long id);
+
+
+    List<Storage_locationEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

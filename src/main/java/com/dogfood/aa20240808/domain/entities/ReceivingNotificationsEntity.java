@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,21 +14,28 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class ReceivingNotificationsEntity {
 
     @Label("收货单号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String notificationId;
+
     @Label("收货日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate notificationDate;
+    public LocalDate notificationDate;
+
     @Label("收货员")
     public String notificationSender;
+
     @Label("订单号")
     public String orderNumber;
+
     @Label("供应商")
     public String supplierName;
+
     @Label("说明")
     public String description;
+
     @Label("附件")
     public String annex;
+
     public String getNotificationId() {
         return notificationId;
     } 
@@ -35,11 +44,11 @@ public class ReceivingNotificationsEntity {
         this.notificationId = notificationId; 
     } 
 
-    public java.time.LocalDate getNotificationDate() {
+    public LocalDate getNotificationDate() {
         return notificationDate;
     } 
 
-    public void setNotificationDate(java.time.LocalDate notificationDate) {
+    public void setNotificationDate(LocalDate notificationDate) {
         this.notificationDate = notificationDate; 
     } 
 
@@ -82,6 +91,5 @@ public class ReceivingNotificationsEntity {
     public void setAnnex(String annex) {
         this.annex = annex; 
     } 
-
 
 }

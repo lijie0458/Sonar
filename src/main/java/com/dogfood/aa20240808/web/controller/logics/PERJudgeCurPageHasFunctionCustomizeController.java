@@ -15,11 +15,11 @@ public class PERJudgeCurPageHasFunctionCustomizeController {
 
     @Autowired
     private PERJudgeCurPageHasFunctionCustomizeService pERJudgeCurPageHasFunctionCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "6f91c935-7c02-40ac-85c2-fdf0b9db71b3",rules = { })})
     @PostMapping("/api/lcplogics/PERJudgeCurPageHasFunction")
     public ApiReturn<Boolean> pERJudgeCurPageHasFunction(@RequestBody PERJudgeCurPageHasFunctionCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(pERJudgeCurPageHasFunctionCustomizeService.pERJudgeCurPageHasFunction(body.getPageId()));
     } 
-
 
 }

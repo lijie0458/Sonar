@@ -3,7 +3,9 @@ package com.dogfood.aa20240808.service.logics;
 import org.springframework.stereotype.Service; 
 import java.util.HashMap; 
 import java.util.ArrayList; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26; 
 import com.dogfood.aa20240808.domain.entities.PurchaseOrderEntity; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077; 
 import java.util.List; 
 import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
@@ -16,42 +18,60 @@ import org.slf4j.Logger;
 import java.lang.reflect.Field; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadPurchaseOrderTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadPurchaseOrderTableViewCustomizeServiceMapper loadPurchaseOrderTableViewCustomizeServiceMapper;
+
     @Autowired
     private LoadTotalQuantityCustomizeService loadTotalQuantityCustomizeService;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077 loadPurchaseOrderTableView(Long page, Long size, String sort, String order, PurchaseOrderEntity filter, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
+
+    public AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077 loadPurchaseOrderTableView(Long page, Long size, String sort, String order, PurchaseOrderEntity filter, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
         PurchaseOrderDetailsListStructure PurchaseOrderDetails = new PurchaseOrderDetailsListStructure();
-        List<PurchaseOrderDetailsListStructure> PurchaseOrderDetailsList = new ArrayList<>();
-        LambdaParamWrapper<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26> variable1 = new LambdaParamWrapper<>(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26());
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077();
-        variable1.param = CommonFunctionUtil.createListPage(loadPurchaseOrderTableViewCustomizeServiceMapper.getAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order), loadPurchaseOrderTableViewCustomizeServiceMapper.countAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26.class); 
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6> currentLcpEachName_1 = CommonFunctionUtil.createListPage(loadPurchaseOrderTableViewCustomizeServiceMapper.getAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE61(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order), loadPurchaseOrderTableViewCustomizeServiceMapper.countAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE61(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26.class).list;
+        LambdaParamWrapper<List<PurchaseOrderDetailsListStructure>> PurchaseOrderDetailsList = new LambdaParamWrapper<>(new ArrayList<>());
+        LambdaParamWrapper<AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26> variable1 = new LambdaParamWrapper<>(new AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26());
+        AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077 result = new AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077();
+        variable1.param = CommonFunctionUtil.createListPage(loadPurchaseOrderTableViewCustomizeServiceMapper.getAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order), loadPurchaseOrderTableViewCustomizeServiceMapper.countAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order).intValue(), AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26.class); 
+        List<AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6> currentLcpEachName_1 = CommonFunctionUtil.createListPage(loadPurchaseOrderTableViewCustomizeServiceMapper.getAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE61(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order), loadPurchaseOrderTableViewCustomizeServiceMapper.countAnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE61(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", sort), order).intValue(), AnonymousStructure_2C94C765BE3CED1EDF981064EE5CAD26.class).list;
         for (Long index = 0L; index < currentLcpEachName_1.size(); index++) {
-            com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6 item = currentLcpEachName_1.get(index.intValue());
+            AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6 item = currentLcpEachName_1.get(index.intValue());
             PurchaseOrderDetails.materialDetails = item.materialDetails; 
             PurchaseOrderDetails.purchaseOrder = item.purchaseOrder; 
             PurchaseOrderDetails.purchaseOrderDetail = item.purchaseOrderDetail; 
             PurchaseOrderDetails.supplierDetails = item.supplierDetails; 
             PurchaseOrderDetails.measuringUnit = item.measuringUnit; 
             PurchaseOrderDetails.cumulativeQWuantity = loadTotalQuantityCustomizeService.loadTotalQuantity(item.purchaseOrderDetail.id, item.purchaseOrderDetail.material_code); 
-            CommonFunctionUtil.add(PurchaseOrderDetailsList, CommonFunctionUtil.clone(PurchaseOrderDetails));
+            CommonFunctionUtil.add(PurchaseOrderDetailsList.param, CommonFunctionUtil.clone(PurchaseOrderDetails));
         } 
 
-        result = CommonFunctionUtil.newWithInitiation(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077(), _bean954 -> {
-    _bean954.list = PurchaseOrderDetailsList; 
-    _bean954.total = variable1.param.total; 
+        result = CommonFunctionUtil.newWithInitiation(new AnonymousStructure_9BDEEC62EBFE6F3A9DF1F8D2F7DB0077(), _bean1 -> {
+    _bean1.list = PurchaseOrderDetailsList.param; 
+    _bean1.total = variable1.param.total; 
 } ); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadPurchaseOrderTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_B92E0E8F8B54057C61E4DF7EB4393DE6").put("purchaseOrder.purchaser", "`purchase_order`.`purchaser`");
@@ -175,6 +195,5 @@ public class LoadPurchaseOrderTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

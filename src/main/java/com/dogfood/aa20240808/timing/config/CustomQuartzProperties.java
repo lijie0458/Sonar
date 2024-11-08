@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.boot.autoconfigure.quartz.JobStoreType;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceInitializationMode;
 import org.springframework.context.annotation.Configuration;
@@ -57,7 +58,7 @@ public class CustomQuartzProperties {
      */
     private final Map<String, String> properties = new HashMap<>();
 
-    private final org.springframework.boot.autoconfigure.quartz.QuartzProperties.Jdbc jdbc = new org.springframework.boot.autoconfigure.quartz.QuartzProperties.Jdbc();
+    private final QuartzProperties.Jdbc jdbc = new QuartzProperties.Jdbc();
 
     public JobStoreType getJobStoreType() {
         return this.jobStoreType;
@@ -111,7 +112,7 @@ public class CustomQuartzProperties {
         return this.properties;
     }
 
-    public org.springframework.boot.autoconfigure.quartz.QuartzProperties.Jdbc getJdbc() {
+    public QuartzProperties.Jdbc getJdbc() {
         return this.jdbc;
     }
 

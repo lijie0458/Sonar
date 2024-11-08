@@ -16,7 +16,9 @@ public enum ProductInStorageStateEnumEnum implements BaseEnum<ProductInStorageSt
     FIELD_2("2", "已审批"),; 
 
     public final String code;
+
     public final String desc;
+
 ProductInStorageStateEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -38,7 +40,6 @@ ProductInStorageStateEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class ProductInStorageStateEnumEnumDeserializer extends JsonDeserializer<ProductInStorageStateEnumEnum>{
 
             @Override
@@ -57,7 +58,6 @@ ProductInStorageStateEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

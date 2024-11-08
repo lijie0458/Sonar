@@ -7,6 +7,7 @@ import java.util.List;
 import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_67EFB6835A3600D46279CAD6399BC435; 
 import java.util.Map; 
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
@@ -16,19 +17,35 @@ import com.dogfood.aa20240808.repository.LoadProductReturnStorageTableView_3Cust
 import com.dogfood.aa20240808.domain.entities.ProductInStorageEntity; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadProductReturnStorageTableView_3CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadProductReturnStorageTableView_3CustomizeServiceMapper loadProductReturnStorageTableView_3CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_67EFB6835A3600D46279CAD6399BC435 loadProductReturnStorageTableView_3(Long page, Long size, String sort, String order, ProductInStorageEntity filter, ProductReturnStorageEntity filter1, List<String> dataViewAuthority, TimeHorizonStructure timeHorizon) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_67EFB6835A3600D46279CAD6399BC435 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_67EFB6835A3600D46279CAD6399BC435();
-        result = CommonFunctionUtil.createListPage(loadProductReturnStorageTableView_3CustomizeServiceMapper.getAnonymousStructure_3AA16578BD81DFBC3A3467B39A512413(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413", sort), dataViewAuthority, order), loadProductReturnStorageTableView_3CustomizeServiceMapper.countAnonymousStructure_3AA16578BD81DFBC3A3467B39A512413(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413", sort), dataViewAuthority, order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_67EFB6835A3600D46279CAD6399BC435.class); 
+
+    public AnonymousStructure_67EFB6835A3600D46279CAD6399BC435 loadProductReturnStorageTableView_3(Long page, Long size, String sort, String order, ProductInStorageEntity filter, ProductReturnStorageEntity filter1, List<String> dataViewAuthority, TimeHorizonStructure timeHorizon) {
+        AnonymousStructure_67EFB6835A3600D46279CAD6399BC435 result = new AnonymousStructure_67EFB6835A3600D46279CAD6399BC435();
+        result = CommonFunctionUtil.createListPage(loadProductReturnStorageTableView_3CustomizeServiceMapper.getAnonymousStructure_3AA16578BD81DFBC3A3467B39A512413(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413", sort), dataViewAuthority, order), loadProductReturnStorageTableView_3CustomizeServiceMapper.countAnonymousStructure_3AA16578BD81DFBC3A3467B39A512413(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413", sort), dataViewAuthority, order).intValue(), AnonymousStructure_67EFB6835A3600D46279CAD6399BC435.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadProductReturnStorageTableView_3CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_3AA16578BD81DFBC3A3467B39A512413").put("productReturnStorage.productReturnCode", "`product_return_storage`.`product_return_code`");
@@ -204,6 +221,5 @@ public class LoadProductReturnStorageTableView_3CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

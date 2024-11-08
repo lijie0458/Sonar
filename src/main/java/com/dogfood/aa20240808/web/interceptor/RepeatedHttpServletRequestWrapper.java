@@ -7,6 +7,7 @@ import org.springframework.util.StreamUtils;
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
 import java.util.Map;
 import java.net.URLDecoder;
@@ -15,7 +16,7 @@ import java.util.*;
 /**
  * @author sys
  */
-public class RepeatedHttpServletRequestWrapper extends javax.servlet.http.HttpServletRequestWrapper {
+public class RepeatedHttpServletRequestWrapper extends HttpServletRequestWrapper {
     private static final Logger LOGGER = LoggerFactory.getLogger(RepeatedHttpServletRequestWrapper.class);
     private byte[] cachedBody;
 

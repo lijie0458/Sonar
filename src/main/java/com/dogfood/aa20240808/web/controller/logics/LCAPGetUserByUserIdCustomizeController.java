@@ -16,11 +16,11 @@ public class LCAPGetUserByUserIdCustomizeController {
 
     @Autowired
     private LCAPGetUserByUserIdCustomizeService lCAPGetUserByUserIdCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "38d3629ca7d64149bbf9e788d364b108",rules = { }),@ValidationRuleGroup(value = "ef1c5534-6c7f-4be6-b44d-417272a83adc",rules = { })})
     @PostMapping("/api/lcplogics/LCAPGetUserByUserId")
     public ApiReturn<LCAPUser> lCAPGetUserByUserId(@RequestBody LCAPGetUserByUserIdCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(lCAPGetUserByUserIdCustomizeService.lCAPGetUserByUserId(body.getUserId()));
     } 
-
 
 }

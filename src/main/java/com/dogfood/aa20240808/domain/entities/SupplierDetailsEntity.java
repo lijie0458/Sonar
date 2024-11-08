@@ -7,7 +7,9 @@ import com.dogfood.aa20240808.annotation.Label;
 import java.util.ArrayList; 
 import com.dogfood.aa20240808.domain.structure.Contact_informationStructure; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.ZonedDateTime; 
 import java.util.List; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 import com.dogfood.aa20240808.domain.structure.BankStructure; 
 
@@ -16,38 +18,53 @@ import com.dogfood.aa20240808.domain.structure.BankStructure;
 public class SupplierDetailsEntity {
 
     @Label("主键")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("供应商编码")
     public String supplier_code;
+
     @Label("供应商名称")
     public String supplier_name;
+
     @Label("统一社会信用代码")
     public String credit_code;
+
     @Label("供应商分类")
     public String supplier_category;
+
     @Label("地址")
     public String address;
+
     @Label("详细地址")
     public String detailed_address;
+
     @Label("备注")
     public String remark;
+
     @Label("联系人信息")
     public List<Contact_informationStructure> contact_information = new ArrayList<>();
+
     @Label("开户银行")
     public List<BankStructure> bank = new ArrayList<>();
+
     @Label("关联分类")
     public Long supplier;
+
     public Long getId() {
         return id;
     } 
@@ -56,19 +73,19 @@ public class SupplierDetailsEntity {
         this.id = id; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -167,6 +184,5 @@ public class SupplierDetailsEntity {
     public void setSupplier(Long supplier) {
         this.supplier = supplier; 
     } 
-
 
 }

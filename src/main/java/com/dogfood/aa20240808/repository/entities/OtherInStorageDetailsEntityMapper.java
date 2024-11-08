@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface OtherInStorageDetailsEntityMapper extends ReferenceHandleMapper {
 
     int insert(OtherInStorageDetailsEntity bean);
+
     int batchInsert(List<OtherInStorageDetailsEntity> beans);
-    List<OtherInStorageDetailsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(OtherInStorageDetailsEntity bean, List<String> updateFields);
-    int batchUpdate(List<OtherInStorageDetailsEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    OtherInStorageDetailsEntity selectOne(Long id);
-
-    int createOrUpdate(OtherInStorageDetailsEntity bean);
     int updateBy(OtherInStorageDetailsEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(OtherInStorageDetailsEntity bean);
+
+    int update(OtherInStorageDetailsEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<OtherInStorageDetailsEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    OtherInStorageDetailsEntity selectOne(Long id);
+
+
+    List<OtherInStorageDetailsEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

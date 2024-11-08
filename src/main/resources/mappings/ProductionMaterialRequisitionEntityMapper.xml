@@ -101,22 +101,84 @@
         where `document_number` = #{bean.documentNumber}
     </update>
 
-    <!-- todo -->
     <update id="batchUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity" >
         UPDATE `production_material_requisition`
         <set>
-            <if test="updateFields == null or updateFields.contains('department')">`department` = #{bean.department, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('employee')">`employee` = #{bean.employee, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('requestDate')">`request_date` = #{bean.requestDate, jdbcType= DATE},</if>
-            <if test="updateFields == null or updateFields.contains('summary')">`summary` = #{bean.summary, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('attachment')">`attachment` = #{bean.attachment, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('approvalStatus')">`approval_status` = #{bean.approvalStatus, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('issueReturnDistinction')">`issue_return_distinction` = #{bean.issueReturnDistinction, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('guardian')">`guardian` = #{bean.guardian, jdbcType= BIGINT},</if>
-            <if test="updateFields == null or updateFields.contains('createdBy')">`created_by` = #{bean.createdBy, jdbcType= VARCHAR},</if>
-            <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">`source_document_number` = #{bean.sourceDocumentNumber, jdbcType= VARCHAR},</if>
+            <if test="updateFields == null or updateFields.contains('department')">
+                `department` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.department, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('employee')">
+                `employee` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.employee, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('requestDate')">
+                `request_date` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.requestDate, jdbcType=DATE}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('summary')">
+                `summary` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.summary, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('attachment')">
+                `attachment` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.attachment, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('approvalStatus')">
+                `approval_status` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.approvalStatus, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('issueReturnDistinction')">
+                `issue_return_distinction` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.issueReturnDistinction, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('guardian')">
+                `guardian` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.guardian, jdbcType=BIGINT}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('createdBy')">
+                `created_by` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.createdBy, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
+            <if test="updateFields == null or updateFields.contains('sourceDocumentNumber')">
+                `source_document_number` = CASE `document_number`
+                <foreach collection="beans" item="bean" index="index" separator=" ">
+                    WHEN #{bean.documentNumber} THEN #{bean.sourceDocumentNumber, jdbcType=VARCHAR}
+                </foreach>
+                END,
+            </if>
         </set>
-        where `document_number` = #{bean.documentNumber}
+        where `document_number` in
+        <foreach collection="beans" item="bean" index="index" separator="," open="(" close=")">
+            #{bean.documentNumber}
+        </foreach>
     </update>
 
 
@@ -228,21 +290,6 @@
         where `document_number`=#{id}
     </select>
 
-    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
-        select *
-        from `production_material_requisition`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
-    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
-        select count(1) from `production_material_requisition`
-        <where>
-            ${filter.sql("mysql")}
-        </where>
-    </select>
-
     <insert id="createOrUpdate" parameterType="com.dogfood.aa20240808.domain.entities.ProductionMaterialRequisitionEntity">
         INSERT INTO `production_material_requisition` (
             `document_number`
@@ -295,4 +342,18 @@
         DELETE FROM `production_material_requisition`
         where ${filter.sql("mysql")} 
     </delete>
+    <select id="selectList" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultMap="BaseResultMap" >
+        select *
+        from `production_material_requisition`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
+
+    <select id="count" parameterType="com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter" resultType="java.lang.Integer" >
+        select count(1) from `production_material_requisition`
+        <where>
+            ${filter.sql("mysql")}
+        </where>
+    </select>
 </mapper>

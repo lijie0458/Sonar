@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
 import com.dogfood.aa20240808.domain.enumeration.ApprovalStatusEnumEnum; 
 import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,35 +16,49 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class SalesOrdersEntity {
 
     @Label("销售单号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String orderNumber;
+
     @Label("购货单位	")
     public Long customer;
+
     @Label("业务员")
     public Long salesperson;
+
     @Label("部门")
     public Long department;
+
     @Label("申请日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate requestDate;
+    public LocalDate requestDate;
+
     @Label("摘要	")
     public String summary;
+
     @Label("附件	")
     public String attachment;
+
     @Label("审批状态")
     public ApprovalStatusEnumEnum approvalStatus;
+
     @Label("发货通知与订单区别")
     public DistinctionEnumEnum distinction;
+
     @Label("发货仓库")
     public Long warehouse;
+
     @Label("判断是下推还是手动新增的订单")
     public Boolean manuAuto;
+
     @Label("关联源单单号")
     public String sourceNumber;
+
     @Label("退货单业务员")
     public String salesman;
+
     @Label("创建者")
     public String createdBy;
+
     public String getOrderNumber() {
         return orderNumber;
     } 
@@ -75,11 +91,11 @@ public class SalesOrdersEntity {
         this.department = department; 
     } 
 
-    public java.time.LocalDate getRequestDate() {
+    public LocalDate getRequestDate() {
         return requestDate;
     } 
 
-    public void setRequestDate(java.time.LocalDate requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate; 
     } 
 
@@ -154,6 +170,5 @@ public class SalesOrdersEntity {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy; 
     } 
-
 
 }

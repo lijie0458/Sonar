@@ -7,6 +7,7 @@ import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure;
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
 import java.util.Map; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59; 
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
 import org.springframework.beans.factory.annotation.Autowired; 
@@ -16,19 +17,35 @@ import com.dogfood.aa20240808.config.Constants;
 import com.dogfood.aa20240808.domain.entities.OtherReturnStorageEntity; 
 import com.dogfood.aa20240808.domain.entities.OtherInStorageEntity; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadOtherReturnStorageTableView_4CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadOtherReturnStorageTableView_4CustomizeServiceMapper loadOtherReturnStorageTableView_4CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59 loadOtherReturnStorageTableView_4(Long page, Long size, String sort, String order, OtherInStorageEntity filter, OtherReturnStorageEntity filter1, List<String> dataViewAuthority, TimeHorizonStructure timeHorizon) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59();
-        result = CommonFunctionUtil.createListPage(loadOtherReturnStorageTableView_4CustomizeServiceMapper.getAnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC", sort), dataViewAuthority, order), loadOtherReturnStorageTableView_4CustomizeServiceMapper.countAnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC", sort), dataViewAuthority, order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59.class); 
+
+    public AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59 loadOtherReturnStorageTableView_4(Long page, Long size, String sort, String order, OtherInStorageEntity filter, OtherReturnStorageEntity filter1, List<String> dataViewAuthority, TimeHorizonStructure timeHorizon) {
+        AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59 result = new AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59();
+        result = CommonFunctionUtil.createListPage(loadOtherReturnStorageTableView_4CustomizeServiceMapper.getAnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC", sort), dataViewAuthority, order), loadOtherReturnStorageTableView_4CustomizeServiceMapper.countAnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC(filter, timeHorizon, page, size, filter1, getTableField("AnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC", sort), dataViewAuthority, order).intValue(), AnonymousStructure_E3C613168060E6F1BC082A6B8E2A4D59.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadOtherReturnStorageTableView_4CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_1679D465C0FA8643966EC3B0EF0EDFFC").put("otherReturnStorage.returnCode", "`other_return_storage`.`return_code`");
@@ -193,6 +210,5 @@ public class LoadOtherReturnStorageTableView_4CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

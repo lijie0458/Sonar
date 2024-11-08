@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.OtherInStorageDetailsEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.OtherInStorageDetailsEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.OtherInStorageDetailsEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,8 @@ import com.dogfood.aa20240808.web.validation.*;
 public class OtherInStorageDetailsEntityController {
     @Resource
     private OtherInStorageDetailsEntityService service;
+
+
 
     /**
     * auto gen batch create method
@@ -71,6 +73,7 @@ public class OtherInStorageDetailsEntityController {
         return ApiReturn.of(service.batchUpdate(entities, updateFields));
     }
 
+
     /**
     * auto gen import method
     **/
@@ -90,4 +93,5 @@ public class OtherInStorageDetailsEntityController {
         }
         return ApiReturn.of(service.deleteBy(wrapper.getReturnExpression()));
     }
+
 }

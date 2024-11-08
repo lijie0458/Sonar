@@ -4,8 +4,11 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class LCAPLoadDeptSetLeaderSelectCustomizeControllerDto {
 
     public Long size;
+
     public String deptId;
+
     public Long page;
+
     public Long getSize() {
         return size;
     } 
@@ -29,6 +32,5 @@ public class LCAPLoadDeptSetLeaderSelectCustomizeControllerDto {
     public void setPage(Long page) {
         this.page = page; 
     } 
-
 
 }

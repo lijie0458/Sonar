@@ -10,8 +10,10 @@ public class ProductReturnStorageStrutureStructure {
 
     @Label("产品入库详情数据结构")
     public ProductInStorageDetailsStrutureStructure productInStorageDetailsStruture;
+
     @Label("产品入库退回信息")
     public ProductReturnStorageDetailsEntity productReturnStorageDetails;
+
     public ProductInStorageDetailsStrutureStructure getProductInStorageDetailsStruture() {
         return productInStorageDetailsStruture;
     } 
@@ -27,6 +29,5 @@ public class ProductReturnStorageStrutureStructure {
     public void setProductReturnStorageDetails(ProductReturnStorageDetailsEntity productReturnStorageDetails) {
         this.productReturnStorageDetails = productReturnStorageDetails; 
     } 
-
 
 }

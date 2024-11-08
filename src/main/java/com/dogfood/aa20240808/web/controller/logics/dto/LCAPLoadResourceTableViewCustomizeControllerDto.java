@@ -4,9 +4,13 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class LCAPLoadResourceTableViewCustomizeControllerDto {
 
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public Long getSize() {
         return size;
     } 
@@ -38,6 +42,5 @@ public class LCAPLoadResourceTableViewCustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

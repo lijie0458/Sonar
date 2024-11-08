@@ -15,11 +15,11 @@ public class PERJudgeOrgHasUserCustomizeController {
 
     @Autowired
     private PERJudgeOrgHasUserCustomizeService pERJudgeOrgHasUserCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "99c758bf-77ce-4f1a-9787-e3999f86cfaa",rules = { })})
     @PostMapping("/api/lcplogics/PERJudgeOrgHasUser")
     public ApiReturn<Boolean> pERJudgeOrgHasUser(@RequestBody PERJudgeOrgHasUserCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(pERJudgeOrgHasUserCustomizeService.pERJudgeOrgHasUser(body.getOrgId()));
     } 
-
 
 }

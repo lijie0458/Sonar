@@ -10,9 +10,12 @@ import com.dogfood.aa20240808.domain.entities.MaterialDetailsEntity;
 public class PurchaseDetailStructureStructure {
 
     public MaterialDetailsEntity material;
+
     @Label("单位名称")
     public String unitName;
+
     public PurchaseDetailsEntity purchaseDetails;
+
     public MaterialDetailsEntity getMaterial() {
         return material;
     } 
@@ -36,6 +39,5 @@ public class PurchaseDetailStructureStructure {
     public void setPurchaseDetails(PurchaseDetailsEntity purchaseDetails) {
         this.purchaseDetails = purchaseDetails; 
     } 
-
 
 }

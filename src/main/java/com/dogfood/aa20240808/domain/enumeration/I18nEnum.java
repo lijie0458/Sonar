@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 /**
-* auto generate I18nEnum enum
-*
-* @author sys
-*/
+ * auto generate I18nEnum enum
+ *
+ * @author sys
+ */
 
 @JsonDeserialize(using = I18nEnum.I18nEnumDeserializer.class)
 public enum I18nEnum implements BaseEnum<I18nEnum, String>{

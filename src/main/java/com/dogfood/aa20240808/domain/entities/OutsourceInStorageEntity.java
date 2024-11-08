@@ -5,43 +5,59 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
+import java.time.ZonedDateTime; 
 import com.dogfood.aa20240808.domain.enumeration.OutsourceInStorageStateEnumEnum; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class OutsourceInStorageEntity {
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String code;
+
     @Label("创建时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdTime;
+    public ZonedDateTime createdTime;
+
     @Label("创建者")
     public String createdBy;
+
     @Label("更新时间")
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedTime;
+    public ZonedDateTime updatedTime;
+
     @Label("更新者")
     public String updatedBy;
+
     @Label("保管员")
     public String userId;
+
     @Label("源单单号")
     public String sourceCode;
+
     @Label("摘要")
     public String desc;
+
     @Label("审批状态")
     public OutsourceInStorageStateEnumEnum state;
+
     @Label("申请日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate applyDate;
+    public LocalDate applyDate;
+
     @Label("交货日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate deliveryDate;
+    public LocalDate deliveryDate;
+
     @Label("加工单位(供应商)")
     public Long supplierId;
+
     @Label("附件")
     public String accessory;
+
     public String getCode() {
         return code;
     } 
@@ -50,11 +66,11 @@ public class OutsourceInStorageEntity {
         this.code = code; 
     } 
 
-    public java.time.ZonedDateTime getCreatedTime() {
+    public ZonedDateTime getCreatedTime() {
         return createdTime;
     } 
 
-    public void setCreatedTime(java.time.ZonedDateTime createdTime) {
+    public void setCreatedTime(ZonedDateTime createdTime) {
         this.createdTime = createdTime; 
     } 
 
@@ -66,11 +82,11 @@ public class OutsourceInStorageEntity {
         this.createdBy = createdBy; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedTime() {
+    public ZonedDateTime getUpdatedTime() {
         return updatedTime;
     } 
 
-    public void setUpdatedTime(java.time.ZonedDateTime updatedTime) {
+    public void setUpdatedTime(ZonedDateTime updatedTime) {
         this.updatedTime = updatedTime; 
     } 
 
@@ -114,19 +130,19 @@ public class OutsourceInStorageEntity {
         this.state = state; 
     } 
 
-    public java.time.LocalDate getApplyDate() {
+    public LocalDate getApplyDate() {
         return applyDate;
     } 
 
-    public void setApplyDate(java.time.LocalDate applyDate) {
+    public void setApplyDate(LocalDate applyDate) {
         this.applyDate = applyDate; 
     } 
 
-    public java.time.LocalDate getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     } 
 
-    public void setDeliveryDate(java.time.LocalDate deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate; 
     } 
 
@@ -145,6 +161,5 @@ public class OutsourceInStorageEntity {
     public void setAccessory(String accessory) {
         this.accessory = accessory; 
     } 
-
 
 }

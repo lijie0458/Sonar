@@ -44,9 +44,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.98.102.217:3306/77?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true&zeroDateTimeBehavior=CONVERT_TO_NULL
-    username: root
-    password: 123456
+    url: jdbc:mysql://192.168.36.11:3306/dogfood-dev-aa20240808-fgwhKW?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: dogfo_fYm2t_user
+    password: ''
     connection-timeout: 3000
     hikari:
       poolName: Hikari
@@ -62,15 +62,14 @@ spring:
       max-request-size: 50MB
   messages:
     basename: i18n/messages
-  profiles:
-    include: auth
 mybatis:
   mapper-locations: classpath*:mappings/**/*Mapper.xml
   type-handlers-package: com.dogfood.aa20240808.repository.handler
   configuration:
     database-id: mysql
     default-enum-type-handler: com.dogfood.aa20240808.repository.handler.AutoEnumTypeHandler
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+    call-setters-on-nulls: true
 server:
   port: 8080
   compression:
@@ -81,25 +80,25 @@ lcp:
   snowflakeNodeId: null
   authCenter:
     enable: true
-    address: http://nuims.gray-low-code:8081/nuims
-    host: nuims.gray-low-code
+    address: http://nuims.low-code:8081/nuims
+    host: nuims.low-code
     security:
       lockMilliseconds: 900000
       maxFailureTimes: 5
-  flowUrl: http://api.gateway.lowcode/gateway/bpms
+    taskEnable: true
+    noAuthPaths: /api/lcplogics/logic1:POST,/api/auth_library_template/oauthLogin:POST,/api/lcplogics/IAMFunctionLogic:POST,/api/auth_library_template/casLogin:POST,/api/auth_library_template/getWxQRCodeParam:POST,/api/lcplogics/IAMGetConfig:POST,/api/lcplogics/IAMGetIdentitySourceByState:POST,/api/auth_library_template/wxLogin:POST,/upload:POST,/upload/download_files:POST,/api/logics/downloadFile:POST,/api/logics/downloadFile:GET
   gatewayUrl: ''
-  audit:
-    enable: true
-    address: http://platform-audit.service.163.org
   uiResourceAddress: /client.js
   gatewayType: light
   upload:
     sinkType: nos
     sinkPath: /app
-    s3Address: oss-cn-hangzhou.aliyuncs.com
-    s3Bucket: suberchen
-    access: public
-    ttl: 7.0
+    s3Address: nos-eastchina1.126.net
+    s3AccessKey: ''
+    s3SecretKey: ''
+    s3Bucket: lcpapp-static-fork
+    access: private
+    ttl: -1.0
     cdnAddress: ''
   logResponse: false
   logRequest: true
@@ -110,8 +109,14 @@ lcp:
     projectId: null
     reportIdMap: {}
     componentIdMap: {}
-  nuims: http://nuims.gray-low-code:8081
+  nuims: http://nuims.low-code:8081
   private: null
+  process:
+    database:
+      schema: ''
+      table:
+        prefix: PA6D592C_
+      isPlugin: false
   frontends:
     pc:
       name: pc
@@ -143,14 +148,8 @@ extensions:
   cw_oauth_library:
     custom:
       REDIRECT_URI: /page_config/callback
-  interface_encrypt:
-    custom:
-      rsaPublicKey: "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAILxLkw91qVRcID_sDpbVSkK1B7mnBpE_eOkU6bK3t-BH7iWgByvsmmwgrIDU2B1m1v7pNJYu4mljHzpDj0XYNECAwEAAQ"
-      rsaPrivateKey: "MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAgvEuTD3WpVFwgP-wOltVKQrUHuacGkT946RTpsre34EfuJaAHK-yabCCsgNTYHWbW_uk0li7iaWMfOkOPRdg0QIDAQABAkASlVIBxgDxg2ZZGHCVR6MFaSEDpazf2YzCwu6QTFhnFcMK3z-VXOziZhMw0KYUFMzwQEQu4cKK7olcFFN8poRBAiEAyXi3bI91gkVM3zdbk_8fu5QrEI6kLrj0ydWY6MtHeJkCIQCmYbfCehWMAhFoja3AL5NVovRgNnC4LIISX5gpKTQ0-QIgKxse86VGGRdGuUOY3nNpkLLE_Afo7O45wa1nx_cmVZECIQCRghY2Q5TCfDCDUpyo3jKpCzlTR2ku-OXMccPeA4X_6QIgOl1a5cIxSvXyBnuYGx5ZKS-Yst_BoyMQxMVRgr4bmv4"
 logicAuthFlag: true
 auth:
-  pass:
-    salt: $2a!@#$%^&*()_+
   token:
     secret: dd6b515fbe8ce73
     expire: 86400
@@ -160,14 +159,31 @@ auth:
         category: main
   types: Normal
   Normal: '{"category":"main"}'
+connector:
+  default_fileStorage_connection:
+    accessKey: ''
+    secretKey: ''
+    bucket: lcpapp-static-fork
+    privateBucket: 'true'
+    endpoint: nos-eastchina1.126.net
+    pathStyleAccessEnabled: 'false'
+    cdnAddress: null
+  rabb1:
+    host: 47.98.102.217
+    port: '5672'
+    userName: zsr
+    password: '123456'
 gw:
   app:
     addr:
+      codewave2024-OpenSSL: true
+      codewave2024: http://dogfood.lcap.163yun.com/
       lowcode: http://lcap.low-code:22988
-      nuims: http://nuims.gray-low-code:8081
-      platform: http://121.43.53.91:8081
+      nuims: http://nuims.low-code:8081
 custom:
   api:
     context-path: /
   system:
     time-zone: user
+fileStorage:
+  lcap_default_connection: '{"refConnection":"","defaultConnection":true,"title":"系统文件存储"}'

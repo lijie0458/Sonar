@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface MeasuringUnitEntityMapper extends ReferenceHandleMapper {
 
     int insert(MeasuringUnitEntity bean);
+
     int batchInsert(List<MeasuringUnitEntity> beans);
-    List<MeasuringUnitEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(MeasuringUnitEntity bean, List<String> updateFields);
-    int batchUpdate(List<MeasuringUnitEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    MeasuringUnitEntity selectOne(Long id);
-
-    int createOrUpdate(MeasuringUnitEntity bean);
     int updateBy(MeasuringUnitEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(MeasuringUnitEntity bean);
+
+    int update(MeasuringUnitEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<MeasuringUnitEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    MeasuringUnitEntity selectOne(Long id);
+
+
+    List<MeasuringUnitEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

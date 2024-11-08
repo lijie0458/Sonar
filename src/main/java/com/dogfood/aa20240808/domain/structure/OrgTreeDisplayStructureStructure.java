@@ -10,8 +10,10 @@ public class OrgTreeDisplayStructureStructure {
 
     @Label("实体")
     public OrganisationEntity organisation;
+
     @Label("树形结构是否默认展开")
     public Boolean treeExpanded;
+
     public OrganisationEntity getOrganisation() {
         return organisation;
     } 
@@ -27,6 +29,5 @@ public class OrgTreeDisplayStructureStructure {
     public void setTreeExpanded(Boolean treeExpanded) {
         this.treeExpanded = treeExpanded; 
     } 
-
 
 }

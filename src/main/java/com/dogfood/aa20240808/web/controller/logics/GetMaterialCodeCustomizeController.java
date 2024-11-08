@@ -15,11 +15,11 @@ public class GetMaterialCodeCustomizeController {
 
     @Autowired
     private GetMaterialCodeCustomizeService getMaterialCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "f78ec9c016dc4752b1abfd44b01939c8",rules = { })})
     @PostMapping("/api/lcplogics/getMaterialCode")
     public ApiReturn<Boolean> getMaterialCode(@RequestBody GetMaterialCodeCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getMaterialCodeCustomizeService.getMaterialCode(body.getMaterialCode()));
     } 
-
 
 }

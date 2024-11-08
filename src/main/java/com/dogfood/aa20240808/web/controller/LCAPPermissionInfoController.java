@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.web.controller;
 
 import com.dogfood.aa20240808.context.UserContext;
 import com.dogfood.aa20240808.config.Constants;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.service.UserResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,21 +26,20 @@ import org.springframework.web.bind.annotation.RestController;
 * @author sys
 */
 @RestController
-@RequestMapping("api/user/system")
+@RequestMapping
 public class LCAPPermissionInfoController {
 
 
     @Resource
     private UserResourceService userResourceService;
 
-    @GetMapping("/getUserResources")
-    public List<Map<String,String>> getUserResources() {
+    @GetMapping({"api/user/system/getUserResources","api/system/user/getUserResources"})
+    public ApiReturn<List<Map<String,String>>> getUserResources() {
         UserContext.UserInfo currentUserInfo = UserContext.getCurrentUserInfo();
         if(Objects.isNull(currentUserInfo)){
-            return null;
+            return ApiReturn.of(null);
         }
         List<Map<String,String>> uiResourceList = new ArrayList<>();
-        //TODO: 兼容3.0版本以下，模板中LCAPGetUserResources的自定义逻辑实现
         List<String> list = userResourceService.getUserResourceList(currentUserInfo.userId);
         if(!CollectionUtils.isEmpty(list)){
             list.stream().forEach(resValue->{
@@ -50,7 +50,7 @@ public class LCAPPermissionInfoController {
                 uiResourceList.add(item);
             });
         }
-       return uiResourceList;
+        return ApiReturn.of(uiResourceList);
    }
 
 

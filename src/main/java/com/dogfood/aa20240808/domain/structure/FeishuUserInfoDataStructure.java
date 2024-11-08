@@ -9,32 +9,46 @@ public class FeishuUserInfoDataStructure {
 
     @Label("用户姓名")
     public String name;
+
     @Label("用户英文名称")
     public String en_name;
+
     @Label("用户头像")
     public String avatar_url;
+
     @Label("用户头像 72x72")
     public String avatar_thumb;
+
     @Label("用户头像 240x240")
     public String avatar_middle;
+
     @Label("用户头像 640x640")
     public String avatar_big;
+
     @Label("用户在应用内的唯一标识")
     public String open_id;
+
     @Label("用户对ISV的唯一标识，对于同一个ISV，用户在其名下所有应用的union_id相同")
     public String union_id;
+
     @Label("用户邮箱")
     public String email;
+
     @Label("	 企业邮箱，请先确保已在管理后台启用飞书邮箱服务")
     public String enterprise_email;
+
     @Label("用户 user_id")
     public String user_id;
+
     @Label("用户手机号")
     public String mobile;
+
     @Label("当前企业标识")
     public String tenant_key;
+
     @Label("用户工号")
     public String employee_no;
+
     public String getName() {
         return name;
     } 
@@ -146,6 +160,5 @@ public class FeishuUserInfoDataStructure {
     public void setEmployee_no(String employee_no) {
         this.employee_no = employee_no; 
     } 
-
 
 }

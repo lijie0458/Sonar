@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.ProductInStorageEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.ProductInStorageEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.ProductInStorageEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class ProductInStorageEntityController {
     @Resource
     private ProductInStorageEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "205b62c525844ca68ff6f4e1d8f051cf",rules = { })})
+    @GetMapping("/api/product-in-storage")
+    public ApiReturn<ProductInStorageEntity> get( @RequestParam(required = true) String num ) { 
+        return ApiReturn.of(service.get( num )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class ProductInStorageEntityController {
         return ApiReturn.of(service.delete( num )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "205b62c525844ca68ff6f4e1d8f051cf",rules = { })})
-    @GetMapping("/api/product-in-storage")
-    public ApiReturn<ProductInStorageEntity> get( @RequestParam(required = true) String num ) { 
-        return ApiReturn.of(service.get( num )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class ProductInStorageEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

@@ -5,11 +5,17 @@ import com.dogfood.aa20240808.domain.entities.LCAPUser;
 public class LoadDepartmentTableView_1CustomizeControllerDto {
 
     public LCAPUser filter;
+
     public Long size;
+
     public Long departmentId;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public LCAPUser getFilter() {
         return filter;
     } 
@@ -57,6 +63,5 @@ public class LoadDepartmentTableView_1CustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface PermissionGroupEntityMapper extends ReferenceHandleMapper {
 
     int insert(PermissionGroupEntity bean);
+
     int batchInsert(List<PermissionGroupEntity> beans);
-    List<PermissionGroupEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(PermissionGroupEntity bean, List<String> updateFields);
-    int batchUpdate(List<PermissionGroupEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    PermissionGroupEntity selectOne(Long id);
-
-    int createOrUpdate(PermissionGroupEntity bean);
     int updateBy(PermissionGroupEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(PermissionGroupEntity bean);
+
+    int update(PermissionGroupEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<PermissionGroupEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    PermissionGroupEntity selectOne(Long id);
+
+
+    List<PermissionGroupEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

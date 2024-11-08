@@ -7,21 +7,37 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 public class IdentityConfigStructure {
 
     public String appId;
+
     public String name;
+
     public String icon;
+
     public String type;
+
     public Boolean loginEnable;
+
     public String centerLoginUrl;
+
     public String centerTokenUrl;
+
     public String centerUserUrl;
+
     public String casServiceUrl;
+
     public String state;
+
     public String centerLogoutUrl;
+
     public Long expire;
+
     public String callbackUrl;
+
     public String redirectUrl;
+
     public String logoutCallbackUrl;
+
     public String agentId;
+
     public String getAppId() {
         return appId;
     } 
@@ -149,6 +165,5 @@ public class IdentityConfigStructure {
     public void setAgentId(String agentId) {
         this.agentId = agentId; 
     } 
-
 
 }

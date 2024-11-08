@@ -7,9 +7,13 @@ import com.dogfood.aa20240808.domain.entities.LCAPUser;
 public class PERSaveUserAndAddOrgCustomizeControllerDto {
 
     public UserOrgMappingEntity userOrgMapping;
+
     public List<Long> roleIdList;
+
     public LCAPUser user;
+
     public Boolean isUpdate;
+
     public UserOrgMappingEntity getUserOrgMapping() {
         return userOrgMapping;
     } 
@@ -41,6 +45,5 @@ public class PERSaveUserAndAddOrgCustomizeControllerDto {
     public void setIsUpdate(Boolean isUpdate) {
         this.isUpdate = isUpdate; 
     } 
-
 
 }

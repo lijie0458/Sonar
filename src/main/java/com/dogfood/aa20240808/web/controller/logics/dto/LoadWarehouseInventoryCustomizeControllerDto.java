@@ -7,7 +7,9 @@ import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum;
 public class LoadWarehouseInventoryCustomizeControllerDto {
 
     public DistinctionEnumEnum DistinctionEnum;
+
     public List<WarehouseinventoryStructure> Warehouseinventory;
+
     public DistinctionEnumEnum getDistinctionEnum() {
         return DistinctionEnum;
     } 
@@ -23,6 +25,5 @@ public class LoadWarehouseInventoryCustomizeControllerDto {
     public void setWarehouseinventory(List<WarehouseinventoryStructure> Warehouseinventory) {
         this.Warehouseinventory = Warehouseinventory; 
     } 
-
 
 }

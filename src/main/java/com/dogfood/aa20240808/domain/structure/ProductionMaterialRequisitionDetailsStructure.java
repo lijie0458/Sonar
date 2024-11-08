@@ -17,20 +17,28 @@ public class ProductionMaterialRequisitionDetailsStructure {
 
     @Label("基本信息")
     public ProductionMaterialRequisitionDetailsEntity productionMaterialRequisitionDetails;
+
     @Label("仓库")
     public List<Warehouse_levelTwoEntity> warehouseList = new ArrayList<>();
+
     @Label("批号列表")
     public List<InventoryEntity> inventoryList = new ArrayList<>();
+
     @Label("物料信息")
     public MaterialDetailsEntity material;
+
     @Label("单位")
     public MeasuringUnitEntity unitName;
+
     @Label("即时库存")
     public BigDecimal inventory;
+
     @Label("已退货数量")
     public BigDecimal retrunQuerty;
+
     @Label("序号/功能 显隐（默认显示序号/隐藏功能）")
     public Boolean show = false;
+
     public ProductionMaterialRequisitionDetailsEntity getProductionMaterialRequisitionDetails() {
         return productionMaterialRequisitionDetails;
     } 
@@ -94,6 +102,5 @@ public class ProductionMaterialRequisitionDetailsStructure {
     public void setShow(Boolean show) {
         this.show = show; 
     } 
-
 
 }

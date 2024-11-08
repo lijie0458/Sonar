@@ -5,10 +5,15 @@ import com.dogfood.aa20240808.domain.entities.DepartmentEntity;
 public class LoadDepartmentTableViewCustomizeControllerDto {
 
     public DepartmentEntity filter;
+
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public DepartmentEntity getFilter() {
         return filter;
     } 
@@ -48,6 +53,5 @@ public class LoadDepartmentTableViewCustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

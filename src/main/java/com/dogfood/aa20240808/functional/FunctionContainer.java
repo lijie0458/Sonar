@@ -3,7 +3,7 @@ package com.dogfood.aa20240808.functional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import com.dogfood.aa20240808.functional.CallbackFunction;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class FunctionContainer {
         );
 
         mapper.put(fullPathLogicName -> {
-                    Pattern libraryLogic = Pattern.compile("^extensions.\\S+.logics.\\S+$");
+                    Pattern libraryLogic = Pattern.compile("^extensions.\\S+?\\.logics.\\S+?$");
                     return libraryLogic.matcher(fullPathLogicName).find();
                 },
                 fullPathLogicName -> StringUtils.replaceEach(fullPathLogicName, new String[]{"extensions.", ".logics.", "-"},

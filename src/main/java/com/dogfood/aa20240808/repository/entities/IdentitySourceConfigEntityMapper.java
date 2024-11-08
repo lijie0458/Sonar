@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface IdentitySourceConfigEntityMapper extends ReferenceHandleMapper {
 
     int insert(IdentitySourceConfigEntity bean);
+
     int batchInsert(List<IdentitySourceConfigEntity> beans);
-    List<IdentitySourceConfigEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(IdentitySourceConfigEntity bean, List<String> updateFields);
-    int batchUpdate(List<IdentitySourceConfigEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    IdentitySourceConfigEntity selectOne(Long id);
-
-    int createOrUpdate(IdentitySourceConfigEntity bean);
     int updateBy(IdentitySourceConfigEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(IdentitySourceConfigEntity bean);
+
+    int update(IdentitySourceConfigEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<IdentitySourceConfigEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    IdentitySourceConfigEntity selectOne(Long id);
+
+
+    List<IdentitySourceConfigEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

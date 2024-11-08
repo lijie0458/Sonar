@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.OrganisationEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.OrganisationEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.OrganisationEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class OrganisationEntityController {
     @Resource
     private OrganisationEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "e17f854c-84c3-4473-a168-61a9f2296fa2",rules = { }),@ValidationRuleGroup(value = "332f045e-314f-425c-915c-27a32f8ba018",rules = { }),@ValidationRuleGroup(value = "253106d7-2883-4d8e-bb27-e04b88f21ea3",rules = { }),@ValidationRuleGroup(value = "1ce352b4-ef16-464a-80d8-74c44c4ee1c5",rules = { }),@ValidationRuleGroup(value = "5c10f345-c605-4633-96e8-c1621ec70ced",rules = { })})
+    @GetMapping("/api/organisation")
+    public ApiReturn<OrganisationEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class OrganisationEntityController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "e17f854c-84c3-4473-a168-61a9f2296fa2",rules = { }),@ValidationRuleGroup(value = "332f045e-314f-425c-915c-27a32f8ba018",rules = { }),@ValidationRuleGroup(value = "253106d7-2883-4d8e-bb27-e04b88f21ea3",rules = { }),@ValidationRuleGroup(value = "1ce352b4-ef16-464a-80d8-74c44c4ee1c5",rules = { }),@ValidationRuleGroup(value = "5c10f345-c605-4633-96e8-c1621ec70ced",rules = { })})
-    @GetMapping("/api/organisation")
-    public ApiReturn<OrganisationEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class OrganisationEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

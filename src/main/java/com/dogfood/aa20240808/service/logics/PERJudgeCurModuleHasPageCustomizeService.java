@@ -9,12 +9,27 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.repository.PERJudgeCurModuleHasPageCustomizeServiceMapper; 
 
+/**
+ * PER-判断当前模块是否有页面
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class PERJudgeCurModuleHasPageCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private PERJudgeCurModuleHasPageCustomizeServiceMapper pERJudgeCurModuleHasPageCustomizeServiceMapper;
+
     public Boolean pERJudgeCurModuleHasPage(Long moduleId) {
         Long tmp = 0L;
         Boolean result = false;
@@ -34,6 +49,5 @@ public class PERJudgeCurModuleHasPageCustomizeService {
 
         return result;
     } 
-
 
 }

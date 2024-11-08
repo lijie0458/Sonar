@@ -1,6 +1,7 @@
 package com.dogfood.aa20240808.service.logics; 
 
 import org.springframework.stereotype.Service; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.domain.enumeration.DistinctionEnumEnum; 
 import org.slf4j.Logger; 
@@ -9,19 +10,34 @@ import org.slf4j.LoggerFactory;
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.repository.LoadCountsaleOrderCustomizeServiceMapper; 
 
+/**
+ * 查询当前入库条数，创建销售订单用作单号
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCountsaleOrderCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCountsaleOrderCustomizeServiceMapper loadCountsaleOrderCustomizeServiceMapper;
+
     public String loadCountsaleOrder(DistinctionEnumEnum DistinctionEnum) {
         String StringNum = "";
         String DateTime = "";
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F variable1 = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F();
+        AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F variable1 = new AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F();
         String variable2 = "";
         String result = "";
-        variable1 = CommonFunctionUtil.createListPage(loadCountsaleOrderCustomizeServiceMapper.getAnonymousStructure_19AE6979770076098EC91325F1B403C2(DistinctionEnum), loadCountsaleOrderCustomizeServiceMapper.countAnonymousStructure_19AE6979770076098EC91325F1B403C2(DistinctionEnum).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F.class); 
+        variable1 = CommonFunctionUtil.createListPage(loadCountsaleOrderCustomizeServiceMapper.getAnonymousStructure_19AE6979770076098EC91325F1B403C2(DistinctionEnum), loadCountsaleOrderCustomizeServiceMapper.countAnonymousStructure_19AE6979770076098EC91325F1B403C2(DistinctionEnum).intValue(), AnonymousStructure_4A52E0BE3A670997C417E41E4BCDEA9F.class); 
         if ((CommonFunctionUtil.equals(variable1.total, 0L))) {
             StringNum = "1"; 
         } else {
@@ -48,6 +64,5 @@ public class LoadCountsaleOrderCustomizeService {
 
         return result;
     } 
-
 
 }

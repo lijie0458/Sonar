@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface ThirdIdentityEntityMapper extends ReferenceHandleMapper {
 
     int insert(ThirdIdentityEntity bean);
+
     int batchInsert(List<ThirdIdentityEntity> beans);
-    List<ThirdIdentityEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(ThirdIdentityEntity bean, List<String> updateFields);
-    int batchUpdate(List<ThirdIdentityEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    ThirdIdentityEntity selectOne(Long id);
-
-    int createOrUpdate(ThirdIdentityEntity bean);
     int updateBy(ThirdIdentityEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(ThirdIdentityEntity bean);
+
+    int update(ThirdIdentityEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<ThirdIdentityEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    ThirdIdentityEntity selectOne(Long id);
+
+
+    List<ThirdIdentityEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

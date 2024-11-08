@@ -11,22 +11,39 @@ import com.dogfood.aa20240808.domain.entities.CustomerManagementEntity;
 import org.slf4j.Logger; 
 import java.lang.reflect.Field; 
 import org.springframework.beans.factory.annotation.Autowired; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadCustomerManagementTableViewCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadCustomerManagementTableViewCustomizeServiceMapper loadCustomerManagementTableViewCustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7 loadCustomerManagementTableView(Long page, Long size, String sort, String order, CustomerManagementEntity filter) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7();
-        result = CommonFunctionUtil.createListPage(loadCustomerManagementTableViewCustomizeServiceMapper.getAnonymousStructure_826FFD3E738FEC2EAB499855162B82C1(filter, page, size, getTableField("AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1", sort), order), loadCustomerManagementTableViewCustomizeServiceMapper.countAnonymousStructure_826FFD3E738FEC2EAB499855162B82C1(filter, page, size, getTableField("AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7.class); 
+
+    public AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7 loadCustomerManagementTableView(Long page, Long size, String sort, String order, CustomerManagementEntity filter) {
+        AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7 result = new AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7();
+        result = CommonFunctionUtil.createListPage(loadCustomerManagementTableViewCustomizeServiceMapper.getAnonymousStructure_826FFD3E738FEC2EAB499855162B82C1(filter, page, size, getTableField("AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1", sort), order), loadCustomerManagementTableViewCustomizeServiceMapper.countAnonymousStructure_826FFD3E738FEC2EAB499855162B82C1(filter, page, size, getTableField("AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1", sort), order).intValue(), AnonymousStructure_271F5FE3E1E74FBB1BFD66CB40EAADC7.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadCustomerManagementTableViewCustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_826FFD3E738FEC2EAB499855162B82C1").put("customerManagement.id", "`customer_management`.`id`");
@@ -83,6 +100,5 @@ public class LoadCustomerManagementTableViewCustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

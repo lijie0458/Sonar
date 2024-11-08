@@ -15,11 +15,11 @@ public class LCAPJudgeDeptIdRepeatedCustomizeController {
 
     @Autowired
     private LCAPJudgeDeptIdRepeatedCustomizeService lCAPJudgeDeptIdRepeatedCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "e54c6080901641ebbf33e508293ecdd3",rules = { })})
     @PostMapping("/api/lcplogics/LCAPJudgeDeptIdRepeated")
     public ApiReturn<Boolean> lCAPJudgeDeptIdRepeated(@RequestBody LCAPJudgeDeptIdRepeatedCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(lCAPJudgeDeptIdRepeatedCustomizeService.lCAPJudgeDeptIdRepeated(body.getDeptId()));
     } 
-
 
 }

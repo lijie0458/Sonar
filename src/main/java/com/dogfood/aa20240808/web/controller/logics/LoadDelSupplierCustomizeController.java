@@ -15,11 +15,11 @@ public class LoadDelSupplierCustomizeController {
 
     @Autowired
     private LoadDelSupplierCustomizeService loadDelSupplierCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "2ab0b3f02101489291ebeaffb9f6797f",rules = { })})
     @PostMapping("/api/lcplogics/loadDelSupplier")
     public ApiReturn<Boolean> loadDelSupplier(@RequestBody LoadDelSupplierCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadDelSupplierCustomizeService.loadDelSupplier(body.getParam1()));
     } 
-
 
 }

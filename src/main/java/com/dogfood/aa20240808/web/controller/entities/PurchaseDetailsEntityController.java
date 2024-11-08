@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.PurchaseDetailsEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.PurchaseDetailsEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.PurchaseDetailsEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class PurchaseDetailsEntityController {
     @Resource
     private PurchaseDetailsEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "50ab2e3f-dfb0-4244-8d58-69be3daffb4b",rules = { }),@ValidationRuleGroup(value = "91ba067d-5ce1-4004-b2d2-13f4a5cff4d4",rules = { }),@ValidationRuleGroup(value = "1a9419fd-0901-4d90-936e-2b91c007766a",rules = { })})
+    @GetMapping("/api/purchase-details")
+    public ApiReturn<PurchaseDetailsEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen batch create method
@@ -71,14 +82,6 @@ public class PurchaseDetailsEntityController {
         return ApiReturn.of(service.batchUpdate(entities, updateFields));
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "50ab2e3f-dfb0-4244-8d58-69be3daffb4b",rules = { }),@ValidationRuleGroup(value = "91ba067d-5ce1-4004-b2d2-13f4a5cff4d4",rules = { }),@ValidationRuleGroup(value = "1a9419fd-0901-4d90-936e-2b91c007766a",rules = { })})
-    @GetMapping("/api/purchase-details")
-    public ApiReturn<PurchaseDetailsEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -99,4 +102,5 @@ public class PurchaseDetailsEntityController {
         }
         return ApiReturn.of(service.deleteBy(wrapper.getReturnExpression()));
     }
+
 }

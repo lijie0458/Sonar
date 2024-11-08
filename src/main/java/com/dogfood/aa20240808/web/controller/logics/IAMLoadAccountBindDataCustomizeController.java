@@ -17,11 +17,11 @@ public class IAMLoadAccountBindDataCustomizeController {
 
     @Autowired
     private IAMLoadAccountBindDataCustomizeService iAMLoadAccountBindDataCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "4921085d-5bf3-4a69-b885-82df3db91f4c",rules = { }),@ValidationRuleGroup(value = "f622d2f3-c328-44ef-aa26-07f1784a4705",rules = { })})
     @PostMapping("/api/lcplogics/IAMLoadAccountBindData")
     public ApiReturn<List<AccountBindStructureStructure>> iAMLoadAccountBindData(@RequestBody IAMLoadAccountBindDataCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(iAMLoadAccountBindDataCustomizeService.iAMLoadAccountBindData(body.getUserId()));
     } 
-
 
 }

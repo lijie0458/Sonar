@@ -9,9 +9,12 @@ public class FeishuUserInfoRespStructure {
 
     @Label("错误码，非 0 表示失败")
     public Long code;
+
     @Label("错误描述")
     public String msg;
+
     public FeishuUserInfoDataStructure data;
+
     public Long getCode() {
         return code;
     } 
@@ -35,6 +38,5 @@ public class FeishuUserInfoRespStructure {
     public void setData(FeishuUserInfoDataStructure data) {
         this.data = data; 
     } 
-
 
 }

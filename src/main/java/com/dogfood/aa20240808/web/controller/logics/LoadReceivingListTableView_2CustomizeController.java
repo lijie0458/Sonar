@@ -17,11 +17,11 @@ public class LoadReceivingListTableView_2CustomizeController {
 
     @Autowired
     private LoadReceivingListTableView_2CustomizeService loadReceivingListTableView_2CustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "9969cc7fd38c449bb5e2826391b32a7e",rules = { })})
     @PostMapping("/api/lcplogics/loadReceivingListTableView_2")
     public ApiReturn<List<ReceivingDetailsStructureStructure>> loadReceivingListTableView_2(@RequestBody LoadReceivingListTableView_2CustomizeControllerDto body) throws Exception {
         return ApiReturn.of(loadReceivingListTableView_2CustomizeService.loadReceivingListTableView_2(body.getFilter(), body.getTimeHorizon(), body.getDataViewAuthorityUserNameList()));
     } 
-
 
 }

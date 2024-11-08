@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.ModuleTableEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.ModuleTableEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.ModuleTableEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -45,6 +45,8 @@ public class ModuleTableEntityController {
     @Resource
     private ModuleTableEntityService service;
 
+
+
     /**
     * auto gen delete method
     **/
@@ -53,6 +55,7 @@ public class ModuleTableEntityController {
     public ApiReturn<Long> delete( @RequestParam(required = true) Long id ) { 
         return ApiReturn.of(service.delete( id )); 
     }
+
 
     /**
     * auto gen import method
@@ -76,4 +79,5 @@ public class ModuleTableEntityController {
         List<String> updateFields = filter.getProperties();
         return ApiReturn.of(service.createOrUpdate(entity, updateFields));
     }
+
 }

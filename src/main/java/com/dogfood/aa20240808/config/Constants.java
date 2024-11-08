@@ -33,6 +33,28 @@ public final class Constants {
     public static final String AUTH_FILTER_API_PROCESS = "/api/system/process";
     public static final String AUTH_FILTER_API_USER_LIST = "/api/system/user/userListFromNuimOrApp";
     public static final String AUTH_FILTER_API_ANNOTATION_LIST = "/api/system/annotation";
+    public static final String AUTH_FILTER_API_GET_USER0 = "/api/user/system/getUser";
+    public static final String AUTH_FILTER_API_GET_USER = "/api/system/user/getUser";
+    public static final String AUTH_FILTER_API_GET_PERMISSION = "/api/system/user/getUserResources";
+    /**
+     * 系统接口白名单
+     * 需要鉴权
+     */
+    public static final List<String> SYSTEM_AUTHENTICATED_APIS = Arrays.asList(
+            AUTH_FILTER_API_PROCESS,
+            AUTH_FILTER_API_ANNOTATION_LIST,
+            AUTH_FILTER_API_USER_LIST,
+            AUTH_FILTER_API_GET_USER,
+            AUTH_FILTER_API_GET_PERMISSION
+    );
+    /**
+     * 特殊处理的API，在未登录访问情况下，ResponseBody返回为空，HttpStatus返回为200
+     * 目的：避免页面加载时，框架自动调用产生的异常错误误导用户
+     */
+    public static final List<String> SYSTEM_AUTHENTICATED_SPECIAL_APIS = Arrays.asList(
+            AUTH_FILTER_API_GET_USER0,
+            AUTH_FILTER_API_GET_USER,
+            AUTH_FILTER_API_ANNOTATION_LIST);
 
     /**
      * AuthFilter里面token鉴权返回结果的key

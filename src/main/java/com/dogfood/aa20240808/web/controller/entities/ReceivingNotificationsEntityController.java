@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.ReceivingNotificationsEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.ReceivingNotificationsEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.ReceivingNotificationsEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -45,14 +45,6 @@ public class ReceivingNotificationsEntityController {
     @Resource
     private ReceivingNotificationsEntityService service;
 
-    /**
-    * auto gen create method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "a225a2f6-9c60-4086-98c5-8b2da447e48e",rules = { })})
-    @PostMapping("/api/receiving-notifications")
-    public ApiReturn<ReceivingNotificationsEntity> create(@RequestBody ReceivingNotificationsEntity body) {
-        return ApiReturn.of(service.create(body));
-    }
 
     /**
     * auto gen get method
@@ -63,6 +55,17 @@ public class ReceivingNotificationsEntityController {
         return ApiReturn.of(service.get( notificationId )); 
     }
 
+
+    /**
+    * auto gen create method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "a225a2f6-9c60-4086-98c5-8b2da447e48e",rules = { })})
+    @PostMapping("/api/receiving-notifications")
+    public ApiReturn<ReceivingNotificationsEntity> create(@RequestBody ReceivingNotificationsEntity body) {
+        return ApiReturn.of(service.create(body));
+    }
+
+
     /**
     * auto gen import method
     **/
@@ -70,4 +73,5 @@ public class ReceivingNotificationsEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

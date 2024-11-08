@@ -7,12 +7,19 @@ import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure;
 public class LoadPurchaseOrderTableViewCustomizeControllerDto {
 
     public PurchaseOrderEntity filter;
+
     public List<String> dataViewAuthorityUserNameList;
+
     public Long size;
+
     public TimeHorizonStructure TimeHorizon;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public PurchaseOrderEntity getFilter() {
         return filter;
     } 
@@ -68,6 +75,5 @@ public class LoadPurchaseOrderTableViewCustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

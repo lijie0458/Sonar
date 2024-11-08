@@ -7,12 +7,19 @@ import com.dogfood.aa20240808.domain.entities.ProductInStorageEntity;
 public class LoadWarehousingTableView_1CustomizeControllerDto {
 
     public ProductInStorageEntity filter;
+
     public TimeHorizonStructure timeHorizon;
+
     public Long size;
+
     public Long page;
+
     public String sort;
+
     public List<String> dataViewAuthority;
+
     public String order;
+
     public ProductInStorageEntity getFilter() {
         return filter;
     } 
@@ -68,6 +75,5 @@ public class LoadWarehousingTableView_1CustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

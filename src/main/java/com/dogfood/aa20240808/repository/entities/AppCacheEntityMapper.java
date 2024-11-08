@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface AppCacheEntityMapper extends ReferenceHandleMapper {
 
     int insert(AppCacheEntity bean);
+
     int batchInsert(List<AppCacheEntity> beans);
-    List<AppCacheEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(AppCacheEntity bean, List<String> updateFields);
-    int batchUpdate(List<AppCacheEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    AppCacheEntity selectOne(Long id);
-
-    int createOrUpdate(AppCacheEntity bean);
     int updateBy(AppCacheEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(AppCacheEntity bean);
+
+    int update(AppCacheEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<AppCacheEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    AppCacheEntity selectOne(Long id);
+
+
+    List<AppCacheEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

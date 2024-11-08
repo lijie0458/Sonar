@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ValidationAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(ValidationAspect.class);
     private static final String CALL_LOGIC_UUID_HEADER = "lcap-calllogic-uuid";
-    private static final Map<String, List<Validator>> validatorCache = new ConcurrentHashMap<>();
+    private static final Map<String, Map<ValidationRuleGroup, List<Validator>>> validatorCache = new ConcurrentHashMap<>();
 
     @Pointcut(
             "@annotation(com.dogfood.aa20240808.web.validation.Validation)"
@@ -52,8 +52,6 @@ public class ValidationAspect {
         ValidationRuleGroup[] validationRuleGroups = validation.value();
 
         if (null == validationRuleGroups || validationRuleGroups.length == 0) {
-
-
             return joinPoint.proceed();
         }
 
@@ -133,8 +131,9 @@ public class ValidationAspect {
                 }
             }
 
-            List<Validator> validators = validatorCache.get(matchedValidationRuleGroup.value());
-            if (null != validators) {
+            Map<ValidationRuleGroup, List<Validator>> cachedValidators = validatorCache.get(matchedValidationRuleGroup.value());
+            List<Validator> validators = null == cachedValidators ? null : cachedValidators.get(matchedValidationRuleGroup);
+            if (null != validators && !validators.isEmpty()) {
                 for (Validator validator : validators) {
                     if (!validator.validate(params)) {
                         throw new HttpCodeException(400, validator.errorMsg(params));
@@ -255,6 +254,11 @@ public class ValidationAspect {
             }
         }
 
-        validatorCache.putIfAbsent(matchedValidationRuleGroup.value(), validators);
+        Map<ValidationRuleGroup, List<Validator>> cachedValidators = validatorCache.get(matchedValidationRuleGroup.value());
+        if (null == cachedValidators) {
+            cachedValidators = new ConcurrentHashMap<>();
+            validatorCache.put(matchedValidationRuleGroup.value(), cachedValidators);
+        }
+        cachedValidators.putIfAbsent(matchedValidationRuleGroup, validators);
     }
 }

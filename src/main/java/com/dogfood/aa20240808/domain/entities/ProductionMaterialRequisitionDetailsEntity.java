@@ -4,40 +4,55 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 import java.math.BigDecimal; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ProductionMaterialRequisitionDetailsEntity {
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("物料编码")
     public String materialCode;
+
     @Label("数量")
     public BigDecimal quantity;
+
     @Label("单价")
     public BigDecimal unitPrice;
+
     @Label("备注")
     public String notes;
+
     @Label("关联单号")
     public String productionMaterialRequisition;
+
     @Label("发货仓库/退回仓库")
     public Long warehouse;
+
     @Label("退货关联明细id")
     public Long productionMaterialRequisitionId;
+
     @Label("领取批号id/退回批号")
     public Long batchNumber;
+
     @Label("总金额")
     public BigDecimal totalPrice;
+
     @Label("一期不使用")
     public String sourceNumber;
+
     @Label("库位")
     public String storageLocation;
+
     @Label("退货数量")
     public BigDecimal returnQuanTity;
+
     @Label("关联领料单明细")
     public Long sourceNumberId;
+
     public Long getId() {
         return id;
     } 
@@ -149,6 +164,5 @@ public class ProductionMaterialRequisitionDetailsEntity {
     public void setSourceNumberId(Long sourceNumberId) {
         this.sourceNumberId = sourceNumberId; 
     } 
-
 
 }

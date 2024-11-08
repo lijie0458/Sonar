@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.BePutInStorageEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.BePutInStorageEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.BePutInStorageEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -45,14 +45,6 @@ public class BePutInStorageEntityController {
     @Resource
     private BePutInStorageEntityService service;
 
-    /**
-    * auto gen create method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "7ba221b8-9531-4850-84b5-75c265482fe0",rules = { @ValidationRule(value = "required",targetName = "body.warehouse",argvs = "")})})
-    @PostMapping("/api/be-put-in-storage")
-    public ApiReturn<BePutInStorageEntity> create(@RequestBody BePutInStorageEntity body) {
-        return ApiReturn.of(service.create(body));
-    }
 
     /**
     * auto gen get method
@@ -63,6 +55,17 @@ public class BePutInStorageEntityController {
         return ApiReturn.of(service.get( bePutInStorageId )); 
     }
 
+
+    /**
+    * auto gen create method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "7ba221b8-9531-4850-84b5-75c265482fe0",rules = { @ValidationRule(value = "required",targetName = "body.warehouse",argvs = "")})})
+    @PostMapping("/api/be-put-in-storage")
+    public ApiReturn<BePutInStorageEntity> create(@RequestBody BePutInStorageEntity body) {
+        return ApiReturn.of(service.create(body));
+    }
+
+
     /**
     * auto gen import method
     **/
@@ -70,4 +73,5 @@ public class BePutInStorageEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

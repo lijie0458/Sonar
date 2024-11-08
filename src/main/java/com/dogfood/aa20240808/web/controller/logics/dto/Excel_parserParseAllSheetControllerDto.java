@@ -1,22 +1,28 @@
 package com.dogfood.aa20240808.web.controller.logics.dto; 
 
 import com.fasterxml.jackson.annotation.JsonProperty; 
+import com.netease.lowcode.extension.excel.dto.ExcelParseRect; 
 import com.dogfood.aa20240808.service.dto.nasl.TypeArgumentsDto; 
 import java.util.Map; 
 
 public class Excel_parserParseAllSheetControllerDto {
 
-    public com.netease.lowcode.extension.excel.dto.ExcelParseRect rect;
+    public ExcelParseRect rect;
+
     public String path;
+
     public Long row;
+
     public Map<String, String> columnFieldMap;
+
     @JsonProperty("__typeArguments")
     public TypeArgumentsDto[] typeArguments;
-    public com.netease.lowcode.extension.excel.dto.ExcelParseRect getRect() {
+
+    public ExcelParseRect getRect() {
         return rect;
     } 
 
-    public void setRect(com.netease.lowcode.extension.excel.dto.ExcelParseRect rect) {
+    public void setRect(ExcelParseRect rect) {
         this.rect = rect; 
     } 
 
@@ -64,6 +70,5 @@ public class Excel_parserParseAllSheetControllerDto {
 
         return typeArguments[index].toJavaClass();
     } 
-
 
 }

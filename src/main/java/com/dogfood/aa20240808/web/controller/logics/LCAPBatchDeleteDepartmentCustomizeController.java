@@ -15,11 +15,11 @@ public class LCAPBatchDeleteDepartmentCustomizeController {
 
     @Autowired
     private LCAPBatchDeleteDepartmentCustomizeService lCAPBatchDeleteDepartmentCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "350a610f74164765a7b7028b38ebd637",rules = { })})
     @PostMapping("/api/lcplogics/LCAPBatchDeleteDepartment")
     public ApiReturn<String> lCAPBatchDeleteDepartment(@RequestBody LCAPBatchDeleteDepartmentCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(lCAPBatchDeleteDepartmentCustomizeService.lCAPBatchDeleteDepartment(body.getIds()));
     } 
-
 
 }

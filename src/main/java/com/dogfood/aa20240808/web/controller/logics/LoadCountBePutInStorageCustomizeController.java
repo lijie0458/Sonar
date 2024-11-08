@@ -13,11 +13,11 @@ public class LoadCountBePutInStorageCustomizeController {
 
     @Autowired
     private LoadCountBePutInStorageCustomizeService loadCountBePutInStorageCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "2b2b71a9-c643-4a93-8962-b4624d983681",rules = { })})
     @PostMapping("/api/lcplogics/loadCountBePutInStorage")
     public ApiReturn<String> loadCountBePutInStorage() throws Exception {
         return ApiReturn.of(loadCountBePutInStorageCustomizeService.loadCountBePutInStorage());
     } 
-
 
 }

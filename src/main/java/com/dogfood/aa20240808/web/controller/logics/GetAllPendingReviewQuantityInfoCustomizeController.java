@@ -16,11 +16,11 @@ public class GetAllPendingReviewQuantityInfoCustomizeController {
 
     @Autowired
     private GetAllPendingReviewQuantityInfoCustomizeService getAllPendingReviewQuantityInfoCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "f50e01de1c93453290c34bbf350fab8e",rules = { })})
     @PostMapping("/api/lcplogics/getAllPendingReviewQuantityInfo")
     public ApiReturn<AllPendingReviewQuantityStructure> getAllPendingReviewQuantityInfo(@RequestBody GetAllPendingReviewQuantityInfoCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(getAllPendingReviewQuantityInfoCustomizeService.getAllPendingReviewQuantityInfo(body.getDataViewAuthority()));
     } 
-
 
 }

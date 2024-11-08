@@ -14,11 +14,11 @@ public class UpdateInventoryByTransferSlipCustomizeController {
 
     @Autowired
     private UpdateInventoryByTransferSlipCustomizeService updateInventoryByTransferSlipCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "423c6a33dc5a4a2599c9154e8ea878df",rules = { })})
     @PostMapping("/api/lcplogics/updateInventoryByTransferSlip")
     public void updateInventoryByTransferSlip(@RequestBody UpdateInventoryByTransferSlipCustomizeControllerDto body) throws Exception {
         updateInventoryByTransferSlipCustomizeService.updateInventoryByTransferSlip(body.getDocumentNumber());
     } 
-
 
 }

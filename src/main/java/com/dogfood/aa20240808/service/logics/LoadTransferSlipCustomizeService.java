@@ -9,16 +9,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 import com.dogfood.aa20240808.repository.LoadTransferSlipCustomizeServiceMapper; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8DA35266D6FA0C20B8C0F202157B3DD8; 
 
+/**
+ * 调拨单单号创建
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadTransferSlipCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadTransferSlipCustomizeServiceMapper loadTransferSlipCustomizeServiceMapper;
+
     public String loadTransferSlip() {
         String StringNum = "";
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_8DA35266D6FA0C20B8C0F202157B3DD8> variable1 = new ArrayList<>();
+        List<AnonymousStructure_8DA35266D6FA0C20B8C0F202157B3DD8> variable1 = new ArrayList<>();
         String variable2 = "";
         String result = "";
         variable1 = loadTransferSlipCustomizeServiceMapper.getSql1(); 
@@ -47,6 +63,5 @@ public class LoadTransferSlipCustomizeService {
 
         return result;
     } 
-
 
 }

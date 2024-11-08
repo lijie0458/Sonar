@@ -13,11 +13,11 @@ public class AutoGenerationOutsourceReturnSCodeCustomizeController {
 
     @Autowired
     private AutoGenerationOutsourceReturnSCodeCustomizeService autoGenerationOutsourceReturnSCodeCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "59bf2de7-bdb0-4052-bd92-1d7bfabf8a3d",rules = { })})
     @PostMapping("/api/lcplogics/autoGenerationOutsourceReturnSCode")
     public ApiReturn<String> autoGenerationOutsourceReturnSCode() throws Exception {
         return ApiReturn.of(autoGenerationOutsourceReturnSCodeCustomizeService.autoGenerationOutsourceReturnSCode());
     } 
-
 
 }

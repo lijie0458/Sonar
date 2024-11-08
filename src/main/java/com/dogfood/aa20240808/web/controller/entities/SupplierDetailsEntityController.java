@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.SupplierDetailsEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.SupplierDetailsEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.SupplierDetailsEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class SupplierDetailsEntityController {
     @Resource
     private SupplierDetailsEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "95428fabba8d4cd08bf6ebd859702141",rules = { }),@ValidationRuleGroup(value = "1df89e6d-ffba-4ec0-9189-1705f8c47be0",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "9c87e08b1040447ca18dbfbc8066b05e",rules = { }),@ValidationRuleGroup(value = "6df4a519-b4f0-4da2-bcae-3268be414451",rules = { }),@ValidationRuleGroup(value = "3d49d0652b8f4ab1b927bff0d22bfa50",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")})})
+    @GetMapping("/api/supplier-details")
+    public ApiReturn<SupplierDetailsEntity> get( @RequestParam(required = true) Long id ) { 
+        return ApiReturn.of(service.get( id )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class SupplierDetailsEntityController {
         return ApiReturn.of(service.delete( id )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "95428fabba8d4cd08bf6ebd859702141",rules = { }),@ValidationRuleGroup(value = "1df89e6d-ffba-4ec0-9189-1705f8c47be0",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")}),@ValidationRuleGroup(value = "9c87e08b1040447ca18dbfbc8066b05e",rules = { }),@ValidationRuleGroup(value = "6df4a519-b4f0-4da2-bcae-3268be414451",rules = { }),@ValidationRuleGroup(value = "3d49d0652b8f4ab1b927bff0d22bfa50",rules = { @ValidationRule(value = "required",targetName = "id",argvs = "")})})
-    @GetMapping("/api/supplier-details")
-    public ApiReturn<SupplierDetailsEntity> get( @RequestParam(required = true) Long id ) { 
-        return ApiReturn.of(service.get( id )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class SupplierDetailsEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

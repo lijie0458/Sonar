@@ -5,10 +5,15 @@ import com.dogfood.aa20240808.domain.entities.MaterialEntity;
 public class LoadMaterialTableViewCustomizeControllerDto {
 
     public MaterialEntity filter;
+
     public Long size;
+
     public String sort;
+
     public Long page;
+
     public String order;
+
     public MaterialEntity getFilter() {
         return filter;
     } 
@@ -48,6 +53,5 @@ public class LoadMaterialTableViewCustomizeControllerDto {
     public void setOrder(String order) {
         this.order = order; 
     } 
-
 
 }

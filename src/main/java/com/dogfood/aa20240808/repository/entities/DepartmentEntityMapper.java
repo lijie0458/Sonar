@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface DepartmentEntityMapper extends ReferenceHandleMapper {
 
     int insert(DepartmentEntity bean);
+
     int batchInsert(List<DepartmentEntity> beans);
-    List<DepartmentEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(DepartmentEntity bean, List<String> updateFields);
-    int batchUpdate(List<DepartmentEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    DepartmentEntity selectOne(Long id);
-
-    int createOrUpdate(DepartmentEntity bean);
     int updateBy(DepartmentEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(DepartmentEntity bean);
+
+    int update(DepartmentEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<DepartmentEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    DepartmentEntity selectOne(Long id);
+
+
+    List<DepartmentEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

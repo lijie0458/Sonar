@@ -23,16 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.*;
 
-import com.dogfood.aa20240808.exception.HttpCodeException;
+import com.dogfood.aa20240808.domain.PageOf;
 import com.dogfood.aa20240808.domain.entities.OutsourceInStorageEntity;
 import com.dogfood.aa20240808.domain.enumeration.*;
-import com.dogfood.aa20240808.service.entities.OutsourceInStorageEntityService;
-import com.dogfood.aa20240808.web.ApiReturn;
-import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
+import com.dogfood.aa20240808.exception.HttpCodeException;
 import com.dogfood.aa20240808.service.dto.filters.AbstractQueryFilter;
+import com.dogfood.aa20240808.service.dto.filters.EntityFilter;
 import com.dogfood.aa20240808.service.dto.filters.FilterWrapper;
-import com.dogfood.aa20240808.domain.PageOf;
+import com.dogfood.aa20240808.service.entities.OutsourceInStorageEntityService;
 import com.dogfood.aa20240808.util.JacksonUtils;
+import com.dogfood.aa20240808.web.ApiReturn;
 import com.dogfood.aa20240808.web.validation.*;
 
 /**
@@ -44,6 +44,17 @@ import com.dogfood.aa20240808.web.validation.*;
 public class OutsourceInStorageEntityController {
     @Resource
     private OutsourceInStorageEntityService service;
+
+
+    /**
+    * auto gen get method
+    **/
+    @Validation(value = { @ValidationRuleGroup(value = "ed5c1cd7-1b96-4ca0-b386-eeef9561d756",rules = { })})
+    @GetMapping("/api/outsource-in-storage")
+    public ApiReturn<OutsourceInStorageEntity> get( @RequestParam(required = true) String code ) { 
+        return ApiReturn.of(service.get( code )); 
+    }
+
 
     /**
     * auto gen create method
@@ -78,14 +89,6 @@ public class OutsourceInStorageEntityController {
         return ApiReturn.of(service.delete( code )); 
     }
 
-    /**
-    * auto gen get method
-    **/
-    @Validation(value = { @ValidationRuleGroup(value = "ed5c1cd7-1b96-4ca0-b386-eeef9561d756",rules = { })})
-    @GetMapping("/api/outsource-in-storage")
-    public ApiReturn<OutsourceInStorageEntity> get( @RequestParam(required = true) String code ) { 
-        return ApiReturn.of(service.get( code )); 
-    }
 
     /**
     * auto gen import method
@@ -94,4 +97,5 @@ public class OutsourceInStorageEntityController {
     public ApiReturn<String> importEntities(@RequestParam("file") MultipartFile file) {
         return ApiReturn.of(service.importFile(file));
     }
+
 }

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.ZonedDateTime; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 import java.math.BigDecimal; 
 
@@ -12,33 +14,44 @@ import java.math.BigDecimal;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class InventoryEntity {
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("物料")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String materialCode;
+
     @Label("批号")
     public String lotNumber;
-    @javax.validation.constraints.NotNull
+
+    @NotNull
     public String unit;
+
     @Label("仓库")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long warehouse;
+
     @Label("库存数量")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public BigDecimal stockQuantity;
+
     @Label("暂用数量")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public BigDecimal occupiedQuantity;
+
     @Label("可用数量")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long availableQuantity;
+
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime createdAt;
+    public ZonedDateTime createdAt;
+
     @JsonFormat(pattern = DateTimeFormatConfiguration.ZONED_DATETIME_FORMAT,timezone = DateTimeFormatConfiguration.DEFAULT_TIMEZONE)
-    public java.time.ZonedDateTime updatedAt;
+    public ZonedDateTime updatedAt;
+
     @Label("库位")
     public Long location;
+
     public Long getId() {
         return id;
     } 
@@ -103,19 +116,19 @@ public class InventoryEntity {
         this.availableQuantity = availableQuantity; 
     } 
 
-    public java.time.ZonedDateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     } 
 
-    public void setCreatedAt(java.time.ZonedDateTime createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt; 
     } 
 
-    public java.time.ZonedDateTime getUpdatedAt() {
+    public ZonedDateTime getUpdatedAt() {
         return updatedAt;
     } 
 
-    public void setUpdatedAt(java.time.ZonedDateTime updatedAt) {
+    public void setUpdatedAt(ZonedDateTime updatedAt) {
         this.updatedAt = updatedAt; 
     } 
 
@@ -126,6 +139,5 @@ public class InventoryEntity {
     public void setLocation(Long location) {
         this.location = location; 
     } 
-
 
 }

@@ -4,14 +4,23 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class IAMAccountBindOrUnBindCustomizeControllerDto {
 
     public Long identitySourceId;
+
     public String password;
+
     public Boolean hasAccount;
+
     public String passwordConfirm;
+
     public String bindOrUnbind;
+
     public String openId;
+
     public String name;
+
     public Boolean isFromUserCenter;
+
     public String userName;
+
     public Long getIdentitySourceId() {
         return identitySourceId;
     } 
@@ -83,6 +92,5 @@ public class IAMAccountBindOrUnBindCustomizeControllerDto {
     public void setUserName(String userName) {
         this.userName = userName; 
     } 
-
 
 }

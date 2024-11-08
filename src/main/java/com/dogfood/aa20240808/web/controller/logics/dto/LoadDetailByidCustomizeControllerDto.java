@@ -5,6 +5,7 @@ import java.util.List;
 public class LoadDetailByidCustomizeControllerDto {
 
     public List<Long> id;
+
     public List<Long> getId() {
         return id;
     } 
@@ -12,6 +13,5 @@ public class LoadDetailByidCustomizeControllerDto {
     public void setId(List<Long> id) {
         this.id = id; 
     } 
-
 
 }

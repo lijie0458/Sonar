@@ -2,6 +2,7 @@ package com.dogfood.aa20240808.service.logics;
 
 import org.springframework.stereotype.Service; 
 import java.util.ArrayList; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9CC0EE8B16D7F77961F310C582D9C396; 
 import java.util.List; 
 import com.dogfood.aa20240808.repository.LoadProductionMaterialRequisitionCustomizeServiceMapper; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
@@ -11,16 +12,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
 
+/**
+ * 生产领料退料单号创建
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadProductionMaterialRequisitionCustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadProductionMaterialRequisitionCustomizeServiceMapper loadProductionMaterialRequisitionCustomizeServiceMapper;
+
     public String loadProductionMaterialRequisition(DistinctionEnumEnum DistinctionEnum) {
         String StringNum = "";
         String DateTime = "";
-        List<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_9CC0EE8B16D7F77961F310C582D9C396> variable1 = new ArrayList<>();
+        List<AnonymousStructure_9CC0EE8B16D7F77961F310C582D9C396> variable1 = new ArrayList<>();
         String variable2 = "";
         String result = "";
         variable1 = loadProductionMaterialRequisitionCustomizeServiceMapper.getSql1(DistinctionEnum); 
@@ -50,6 +66,5 @@ public class LoadProductionMaterialRequisitionCustomizeService {
 
         return result;
     } 
-
 
 }

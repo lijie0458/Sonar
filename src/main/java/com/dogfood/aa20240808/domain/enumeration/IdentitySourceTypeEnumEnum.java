@@ -14,7 +14,9 @@ public enum IdentitySourceTypeEnumEnum implements BaseEnum<IdentitySourceTypeEnu
     FIELD_Enterprise("Enterprise", "企业身份源"),; 
 
     public final String code;
+
     public final String desc;
+
 IdentitySourceTypeEnumEnum(String code, String desc) {
         this.code = code; 
         this.desc = desc; 
@@ -36,7 +38,6 @@ IdentitySourceTypeEnumEnum(String code, String desc) {
     } 
 
 
-
     public static class IdentitySourceTypeEnumEnumDeserializer extends JsonDeserializer<IdentitySourceTypeEnumEnum>{
 
             @Override
@@ -55,7 +56,6 @@ IdentitySourceTypeEnumEnum(String code, String desc) {
                 } 
                 return null;
             } 
-
 
     }
 

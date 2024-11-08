@@ -8,7 +8,9 @@ import com.dogfood.aa20240808.domain.entities.AppConfigEntity;
 public class ConfigResStructure {
 
     public AppConfigEntity appConfig;
+
     public IdentityConfigStructure idectityConfig;
+
     public AppConfigEntity getAppConfig() {
         return appConfig;
     } 
@@ -24,6 +26,5 @@ public class ConfigResStructure {
     public void setIdectityConfig(IdentityConfigStructure idectityConfig) {
         this.idectityConfig = idectityConfig; 
     } 
-
 
 }

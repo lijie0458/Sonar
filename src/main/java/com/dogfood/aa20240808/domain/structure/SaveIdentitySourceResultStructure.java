@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 public class SaveIdentitySourceResultStructure {
 
     public Long code;
+
     public String msg;
+
     public Long getCode() {
         return code;
     } 
@@ -23,6 +25,5 @@ public class SaveIdentitySourceResultStructure {
     public void setMsg(String msg) {
         this.msg = msg; 
     } 
-
 
 }

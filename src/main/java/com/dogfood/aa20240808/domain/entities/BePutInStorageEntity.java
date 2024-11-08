@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,23 +14,31 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class BePutInStorageEntity {
 
     @Label("入库订单号")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String bePutInStorageId;
+
     @Label("入库日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate bePutInStorageDate;
+    public LocalDate bePutInStorageDate;
+
     @Label("收货订单号")
     public String orderNumber;
+
     @Label("供应商")
     public String supplierName;
+
     @Label("说明")
     public String description;
+
     @Label("附件")
     public String annex;
+
     @Label("仓库")
     public Long warehouse;
+
     @Label("创建者")
     public String createdBy;
+
     public String getBePutInStorageId() {
         return bePutInStorageId;
     } 
@@ -37,11 +47,11 @@ public class BePutInStorageEntity {
         this.bePutInStorageId = bePutInStorageId; 
     } 
 
-    public java.time.LocalDate getBePutInStorageDate() {
+    public LocalDate getBePutInStorageDate() {
         return bePutInStorageDate;
     } 
 
-    public void setBePutInStorageDate(java.time.LocalDate bePutInStorageDate) {
+    public void setBePutInStorageDate(LocalDate bePutInStorageDate) {
         this.bePutInStorageDate = bePutInStorageDate; 
     } 
 
@@ -92,6 +102,5 @@ public class BePutInStorageEntity {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy; 
     } 
-
 
 }

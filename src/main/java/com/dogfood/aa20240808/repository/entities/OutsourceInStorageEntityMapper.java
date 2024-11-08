@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface OutsourceInStorageEntityMapper extends ReferenceHandleMapper {
 
     int insert(OutsourceInStorageEntity bean);
+
     int batchInsert(List<OutsourceInStorageEntity> beans);
-    List<OutsourceInStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(OutsourceInStorageEntity bean, List<String> updateFields);
-    int batchUpdate(List<OutsourceInStorageEntity> beans, List<String> updateFields);
-    int delete(String id);
-    int batchDelete(List<String> ids);
-    OutsourceInStorageEntity selectOne(String id);
-
-    int createOrUpdate(OutsourceInStorageEntity bean);
     int updateBy(OutsourceInStorageEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(OutsourceInStorageEntity bean);
+
+    int update(OutsourceInStorageEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<OutsourceInStorageEntity> beans, List<String> updateFields);
+
+    int delete(String id);
+
+    int batchDelete(List<String> ids);
+
+    OutsourceInStorageEntity selectOne(String id);
+
+
+    List<OutsourceInStorageEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

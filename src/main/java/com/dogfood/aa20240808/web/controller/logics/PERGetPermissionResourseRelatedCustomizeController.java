@@ -17,11 +17,11 @@ public class PERGetPermissionResourseRelatedCustomizeController {
 
     @Autowired
     private PERGetPermissionResourseRelatedCustomizeService pERGetPermissionResourseRelatedCustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "b1402151-7e77-4879-a973-269e63f074bf",rules = { })})
     @PostMapping("/api/lcplogics/PERGetPermissionResourseRelated")
     public ApiReturn<List<LCAPPermissionAndResourceStructure>> pERGetPermissionResourseRelated(@RequestBody PERGetPermissionResourseRelatedCustomizeControllerDto body) throws Exception {
         return ApiReturn.of(pERGetPermissionResourseRelatedCustomizeService.pERGetPermissionResourseRelated(body.getPermissionId()));
     } 
-
 
 }

@@ -14,20 +14,37 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78; 
 
+/**
+ * 外购入库列表
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadBePutInStorageListTableView_2CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadBePutInStorageListTableView_2CustomizeServiceMapper loadBePutInStorageListTableView_2CustomizeServiceMapper;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78 loadBePutInStorageListTableView_2(Long page, Long size, String sort, String order, BePutInStorageEntity filter, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78();
-        result = CommonFunctionUtil.createListPage(loadBePutInStorageListTableView_2CustomizeServiceMapper.getAnonymousStructure_B3517114D7D75A04E66F8916E0CC7388(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B3517114D7D75A04E66F8916E0CC7388", sort), order), loadBePutInStorageListTableView_2CustomizeServiceMapper.countAnonymousStructure_B3517114D7D75A04E66F8916E0CC7388(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B3517114D7D75A04E66F8916E0CC7388", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78.class); 
+
+    public AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78 loadBePutInStorageListTableView_2(Long page, Long size, String sort, String order, BePutInStorageEntity filter, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
+        AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78 result = new AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78();
+        result = CommonFunctionUtil.createListPage(loadBePutInStorageListTableView_2CustomizeServiceMapper.getAnonymousStructure_B3517114D7D75A04E66F8916E0CC7388(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B3517114D7D75A04E66F8916E0CC7388", sort), order), loadBePutInStorageListTableView_2CustomizeServiceMapper.countAnonymousStructure_B3517114D7D75A04E66F8916E0CC7388(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_B3517114D7D75A04E66F8916E0CC7388", sort), order).intValue(), AnonymousStructure_C48E1CEBD9C524EDEF01D3202263DF78.class); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadBePutInStorageListTableView_2CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_B3517114D7D75A04E66F8916E0CC7388", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_B3517114D7D75A04E66F8916E0CC7388").put("bePutInStorage.bePutInStorageId", "`be_put_in_storage`.`be_put_in_storage_id`");
@@ -205,6 +222,5 @@ public class LoadBePutInStorageListTableView_2CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

@@ -9,7 +9,9 @@ import java.util.List;
 public class LCAPRoleBindUsersBodyStructure {
 
     public Long roleId;
+
     public List<String> userIdList = new ArrayList<>();
+
     public Long getRoleId() {
         return roleId;
     } 
@@ -25,6 +27,5 @@ public class LCAPRoleBindUsersBodyStructure {
     public void setUserIdList(List<String> userIdList) {
         this.userIdList = userIdList; 
     } 
-
 
 }

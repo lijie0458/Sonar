@@ -18,18 +18,27 @@ import org.apache.ibatis.annotations.Param;
 public interface OrganisationEntityMapper extends ReferenceHandleMapper {
 
     int insert(OrganisationEntity bean);
+
     int batchInsert(List<OrganisationEntity> beans);
-    List<OrganisationEntity> selectList(@Param("filter") AbstractQueryFilter filter);
-    int count(@Param("filter") AbstractQueryFilter filter);
 
-    int update(OrganisationEntity bean, List<String> updateFields);
-    int batchUpdate(List<OrganisationEntity> beans, List<String> updateFields);
-    int delete(Long id);
-    int batchDelete(List<Long> ids);
-    OrganisationEntity selectOne(Long id);
-
-    int createOrUpdate(OrganisationEntity bean);
     int updateBy(OrganisationEntity bean, List<String> updateFields, AbstractQueryFilter filter);
+
     int deleteBy(@Param("filter") AbstractQueryFilter filter);
 
+    int createOrUpdate(OrganisationEntity bean);
+
+    int update(OrganisationEntity bean, List<String> updateFields);
+
+    int batchUpdate(List<OrganisationEntity> beans, List<String> updateFields);
+
+    int delete(Long id);
+
+    int batchDelete(List<Long> ids);
+
+    OrganisationEntity selectOne(Long id);
+
+
+    List<OrganisationEntity> selectList(@Param("filter") AbstractQueryFilter filter);
+
+    int count(@Param("filter") AbstractQueryFilter filter);
 }

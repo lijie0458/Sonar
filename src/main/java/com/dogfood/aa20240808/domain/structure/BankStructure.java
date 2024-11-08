@@ -9,10 +9,13 @@ public class BankStructure {
 
     @Label("存储银行账号")
     public String bank_account;
+
     @Label("存储账户名称")
     public String account_name;
+
     @Label("开户银行")
     public String bank_name;
+
     public String getBank_account() {
         return bank_account;
     } 
@@ -36,6 +39,5 @@ public class BankStructure {
     public void setBank_name(String bank_name) {
         this.bank_name = bank_name; 
     } 
-
 
 }

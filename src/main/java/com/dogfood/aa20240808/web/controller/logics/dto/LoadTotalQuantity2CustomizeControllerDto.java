@@ -4,8 +4,11 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class LoadTotalQuantity2CustomizeControllerDto {
 
     public String code;
+
     public Long id;
+
     public String batchNumber;
+
     public String getCode() {
         return code;
     } 
@@ -29,6 +32,5 @@ public class LoadTotalQuantity2CustomizeControllerDto {
     public void setBatchNumber(String batchNumber) {
         this.batchNumber = batchNumber; 
     } 
-
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.ArrayList; 
 import java.util.List; 
 import com.dogfood.aa20240808.domain.structure.TimeHorizonStructure; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B; 
 import com.dogfood.aa20240808.util.CommonFunctionUtil; 
 import com.dogfood.aa20240808.exception.HttpCodeException; 
 import com.dogfood.aa20240808.domain.entities.TransferSlipEntity; 
@@ -16,25 +17,43 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.slf4j.LoggerFactory; 
 import com.dogfood.aa20240808.service.entities.Warehouse_levelTwoEntityService; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13; 
 import com.dogfood.aa20240808.repository.LoadTransferSlipTableView_1CustomizeServiceMapper; 
 import com.dogfood.aa20240808.config.Constants; 
+import com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A617B684B2576BF205A0A005CC8AF429; 
 
+/**
+ * 调拨单数据表格
+ * 
+ * @author sys
+ * 
+ * @date 2024-11-8 10:18
+ * 
+ * @version 1.0
+ * 
+ * @BelongsProject mybatis审计日志
+ * 
+ * @BelongsPackage src/main/java/com/dogfood/aa20240808/service/logics
+ */
 @Service
 public class LoadTransferSlipTableView_1CustomizeService {
 
     private static final Logger LCAP_LOGGER = LoggerFactory.getLogger(Constants.LCAP_CUSTOMIZE_LOGGER);
+
     @Autowired
     private LoadTransferSlipTableView_1CustomizeServiceMapper loadTransferSlipTableView_1CustomizeServiceMapper;
+
     @Autowired
     private Warehouse_levelTwoEntityService warehouse_levelTwoEntityService;
-    public com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A617B684B2576BF205A0A005CC8AF429 loadTransferSlipTableView_1(Long page, Long size, String sort, String order, TransferSlipEntity filter, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
+
+    public AnonymousStructure_A617B684B2576BF205A0A005CC8AF429 loadTransferSlipTableView_1(Long page, Long size, String sort, String order, TransferSlipEntity filter, TimeHorizonStructure TimeHorizon, List<String> dataViewAuthorityUserNameList) {
         ListTransferSlipStructure ListTransferSlip = new ListTransferSlipStructure();
-        LambdaParamWrapper<com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13> variable1 = new LambdaParamWrapper<>(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13());
-        List<ListTransferSlipStructure> ListTransferSlip1 = new ArrayList<>();
-        com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A617B684B2576BF205A0A005CC8AF429 result = new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A617B684B2576BF205A0A005CC8AF429();
-        variable1.param = CommonFunctionUtil.createListPage(loadTransferSlipTableView_1CustomizeServiceMapper.getAnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B", sort), order), loadTransferSlipTableView_1CustomizeServiceMapper.countAnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B", sort), order).intValue(), com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13.class); 
+        LambdaParamWrapper<AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13> variable1 = new LambdaParamWrapper<>(new AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13());
+        LambdaParamWrapper<List<ListTransferSlipStructure>> ListTransferSlip1 = new LambdaParamWrapper<>(new ArrayList<>());
+        AnonymousStructure_A617B684B2576BF205A0A005CC8AF429 result = new AnonymousStructure_A617B684B2576BF205A0A005CC8AF429();
+        variable1.param = CommonFunctionUtil.createListPage(loadTransferSlipTableView_1CustomizeServiceMapper.getAnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B", sort), order), loadTransferSlipTableView_1CustomizeServiceMapper.countAnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B(filter, dataViewAuthorityUserNameList, page, size, TimeHorizon, getTableField("AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B", sort), order).intValue(), AnonymousStructure_E4F157EE5CC3DF1BE154C443EE6BDA13.class); 
         for (Long index = 0L; index < variable1.param.list.size(); index++) {
-            com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B item = variable1.param.list.get(index.intValue());
+            AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B item = variable1.param.list.get(index.intValue());
             ListTransferSlip.transferSlip = item.transferSlip; 
             ListTransferSlip.user = item.lCAPUser; 
             ListTransferSlip.transferSlipDetails = item.transferSlipDetails; 
@@ -42,17 +61,18 @@ public class LoadTransferSlipTableView_1CustomizeService {
             ListTransferSlip.measuringUnit = item.measuringUnit; 
             ListTransferSlip.oUTwarehouse_levelTwo = item.warehouse_levelTwo; 
             ListTransferSlip.inwarehouse_levelTwo = warehouse_levelTwoEntityService.get(item.transferSlipDetails.inWarehouse).warehouse_name; 
-            CommonFunctionUtil.add(ListTransferSlip1, CommonFunctionUtil.clone(ListTransferSlip));
+            CommonFunctionUtil.add(ListTransferSlip1.param, CommonFunctionUtil.clone(ListTransferSlip));
         } 
 
-        result = CommonFunctionUtil.newWithInitiation(new com.dogfood.aa20240808.domain.structure.anonymous.AnonymousStructure_A617B684B2576BF205A0A005CC8AF429(), _bean539 -> {
-    _bean539.total = variable1.param.total; 
-    _bean539.list = ListTransferSlip1; 
+        result = CommonFunctionUtil.newWithInitiation(new AnonymousStructure_A617B684B2576BF205A0A005CC8AF429(), _bean1 -> {
+    _bean1.total = variable1.param.total; 
+    _bean1.list = ListTransferSlip1.param; 
 } ); 
         return result;
     } 
 
     private Map<String, Map<String, String>> orderByParamToColumnMap = new HashMap();
+
     public LoadTransferSlipTableView_1CustomizeService() {
         orderByParamToColumnMap.put("AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B", new HashMap());
         orderByParamToColumnMap.get("AnonymousStructure_63985552DE586FCD03EB1711C5BB0D2B").put("transferSlip.documentNumber", "`transfer_slip`.`document_number`");
@@ -198,6 +218,5 @@ public class LoadTransferSlipTableView_1CustomizeService {
             throw new HttpCodeException("500", e); 
         } 
     } 
-
 
 }

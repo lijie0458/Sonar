@@ -4,28 +4,35 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility; 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
+import javax.validation.constraints.NotNull; 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class LCAPLogicViewMapping {
 
     @Label("主键")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("逻辑标识")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String logicIdentifier;
+
     @Label("资源路径")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String resourceName;
+
     @Label("资源类型")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public String resourceType;
+
     @Label("逻辑与资源绑定的分组关系")
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long group;
+
     @Label("创建时间")
     public Long changeTime;
+
     public Long getId() {
         return id;
     } 
@@ -73,6 +80,5 @@ public class LCAPLogicViewMapping {
     public void setChangeTime(Long changeTime) {
         this.changeTime = changeTime; 
     } 
-
 
 }

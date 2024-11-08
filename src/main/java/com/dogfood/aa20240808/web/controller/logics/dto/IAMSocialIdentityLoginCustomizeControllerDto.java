@@ -4,7 +4,9 @@ package com.dogfood.aa20240808.web.controller.logics.dto;
 public class IAMSocialIdentityLoginCustomizeControllerDto {
 
     public String code;
+
     public String source;
+
     public String getCode() {
         return code;
     } 
@@ -20,6 +22,5 @@ public class IAMSocialIdentityLoginCustomizeControllerDto {
     public void setSource(String source) {
         this.source = source; 
     } 
-
 
 }

@@ -14,11 +14,11 @@ public class UpdateInventoryByProductReutrnS2CustomizeController {
 
     @Autowired
     private UpdateInventoryByProductReutrnS2CustomizeService updateInventoryByProductReutrnS2CustomizeService;
+
     @Validation(value = { @ValidationRuleGroup(value = "e71b56adfcd245539e0c3401c894c9f9",rules = { })})
     @PostMapping("/api/lcplogics/updateInventoryByProductReutrnS2")
     public void updateInventoryByProductReutrnS2(@RequestBody UpdateInventoryByProductReutrnS2CustomizeControllerDto body) throws Exception {
         updateInventoryByProductReutrnS2CustomizeService.updateInventoryByProductReutrnS2(body.getOtherReturnCode(), body.getAddOrReduce());
     } 
-
 
 }

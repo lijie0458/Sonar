@@ -25,6 +25,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.regex.Pattern;
+import java.security.SecureRandom;
 import static com.dogfood.aa20240808.filestorage.FileStorageClient.DOWNLOAD_FORM_ORIGINAL_S3_CLIENT;
 
 public final class FileUploadUtils {
@@ -390,27 +391,21 @@ public final class FileUploadUtils {
      * @return
      */
     private static String getRandomTag() {
-        Random random = new Random();
+        SecureRandom secureRandom = new SecureRandom();
         StringBuilder stringBuilder = new StringBuilder();
 
         // 第一位是数字
-        int randomNumber = random.nextInt(10);
+        int randomNumber = secureRandom.nextInt(10);
         stringBuilder.append(randomNumber);
 
-        // 第二位是字符
-        char firstChar = (char) (random.nextInt(26) + 'A');
-        stringBuilder.append(firstChar);
+        // 后面三位是字符
+        for (int i = 0; i < 3; i++) {
+            char randomChar = (char) (secureRandom.nextInt(26) + 'A');
+            stringBuilder.append(randomChar);
+        }
 
-        // 第三位是字符
-        char secondChar = (char) (random.nextInt(26) + 'A');
-        stringBuilder.append(secondChar);
-
-        // 第四位是字符
-        char thirdChar = (char) (random.nextInt(26) + 'A');
-        stringBuilder.append(thirdChar);
-
-        // 第五位是数字
-        int secondNumber = random.nextInt(10);
+        // 最后一位是数字
+        int secondNumber = secureRandom.nextInt(10);
         stringBuilder.append(secondNumber);
 
         return stringBuilder.toString();

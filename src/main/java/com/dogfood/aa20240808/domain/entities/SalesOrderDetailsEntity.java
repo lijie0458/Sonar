@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; 
 import com.dogfood.aa20240808.annotation.Label; 
 import com.dogfood.aa20240808.config.DateTimeFormatConfiguration; 
+import java.time.LocalDate; 
+import javax.validation.constraints.NotNull; 
 import com.fasterxml.jackson.annotation.JsonFormat; 
 import java.math.BigDecimal; 
 
@@ -12,35 +14,49 @@ import java.math.BigDecimal;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class SalesOrderDetailsEntity {
 
-    @javax.validation.constraints.NotNull
+    @NotNull
     public Long id;
+
     @Label("物料编号")
     public String materialCode;
+
     @Label("数量")
     public BigDecimal quantity;
+
     @Label("单价")
     public BigDecimal unitPrice;
+
     @Label("交货日期")
     @JsonFormat(pattern = DateTimeFormatConfiguration.LOCAL_DATE_FORMAT)
-    public java.time.LocalDate deliveryDate;
+    public LocalDate deliveryDate;
+
     @Label("备注")
     public String notes;
+
     @Label("关联销售订单/发货通知单/出库单")
     public String salesOrderNumber;
+
     @Label("发货仓库/退回仓库")
     public Long warehouse;
+
     @Label("发货数量")
     public BigDecimal quantityShipped;
+
     @Label("关联销售单明细/出库单明细")
     public Long salesOrderDetailsId;
+
     @Label("批号id（发货通知使用）/退回批号")
     public Long batchNumber;
+
     @Label("实际出库数量")
     public BigDecimal outboundQuantity;
+
     @Label("退货数量")
     public BigDecimal returnQuanTity;
+
     @Label("未入库数量")
     public BigDecimal availableQuantity;
+
     public Long getId() {
         return id;
     } 
@@ -73,11 +89,11 @@ public class SalesOrderDetailsEntity {
         this.unitPrice = unitPrice; 
     } 
 
-    public java.time.LocalDate getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     } 
 
-    public void setDeliveryDate(java.time.LocalDate deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate; 
     } 
 
@@ -152,6 +168,5 @@ public class SalesOrderDetailsEntity {
     public void setAvailableQuantity(BigDecimal availableQuantity) {
         this.availableQuantity = availableQuantity; 
     } 
-
 
 }
